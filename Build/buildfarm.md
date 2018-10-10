@@ -4,6 +4,8 @@
 
 ## Build Status
 
+> Please note, some build failures below are related to in-progress work.
+
 * ros-melodic-desktop [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.desktop)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=16)
 * ros-melodic-desktop_full [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.desktop_full)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=19)
 * ros-melodic-viz [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.viz)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=10)

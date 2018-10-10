@@ -20,7 +20,7 @@ We are targeting Mid-December to complete the ROS porting effort.
 + Started discussions about upstreaming.
 
 
-# September 2018 (ROSCon Status)
+# September 2018
 + Core ROS
     + Core ROS has been ported
 + ROSSerial
@@ -50,7 +50,7 @@ We are targeting Mid-December to complete the ROS porting effort.
 
 # Packages to port
 
-Top 40
+**Top 40**
 
 - [X] python-catkin-pkg
 - [ ] python-catkin-pkg-modules
