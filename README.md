@@ -16,8 +16,7 @@ At ROSCon 2018 in Madrid, Spain, Microsoft demonstrated a Robotis Turtlebot 3 ro
 Microsoft also showcased a ROS simulation environment running in Azure. It demonstrated a swarm of robots running in a virtual world connected to an orchestration system and controlled via Azure IoT Hub. 
 Microsoft will host the Windows builds for ROS1 and shortly ROS2, as well as provide documentation, development and deployment solutions for Windows.
 
-> ROS on Windows is experimental.
-> For more details, visit us at [ROSCon 2018](https://roscon.ros.org/2018/)
+> ROS on Windows is experimental. We're targeting end of 2018 for the core porting effort.
 
 # Working with ROS on Windows
 + [Install ROS on Windows](GettingStarted/Setup.md)
