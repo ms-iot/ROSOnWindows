@@ -15,7 +15,7 @@ We are targeting Mid-December to complete the ROS porting effort.
     + First Life! We have MoveIt planning paths for a UR-3.
 + Developing a program to close the loop with customers
 + Navigation
-    + Working with Juraj Oršulić on Cartographer port
+    + Workin on Cartographer port
     + Working on other ports
 + Started discussions about upstreaming.
 
