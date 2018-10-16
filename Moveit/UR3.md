@@ -42,6 +42,8 @@ The `$(find xacro)/xacro` eventually will be replaced with the full filepath of 
 
 To fix it, you will need to replace all the usgae of `$(find xacro)/xacro` with `$(find xacro)/xacro.exe` to tell launch file to run the exectuable wrapper instead.
 
+> For general porting guidance of shebang usage for ROS on Windows, check out [here](Porting/Cookbook.md#shebang).
+
 ### Running UR3 Launch Files
 Now let's run everything! In this example, it requires three launch files to run: One is to run the UR3 driver stack for planning execution, one is to run the UR3 motion planning, and the other one is to run the visualization tool.
 
