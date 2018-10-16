@@ -58,3 +58,12 @@ Finally, run the visualization tool:
 > Known Issue: When you don't see all panels displayed in RViz, try to enter full screen mode and exit (F11) to refresh the windows rendering.
 
 Now you are ready to move the robot arm in the visualization tool and start planning and see your arm moving in action!
+
+### Troubleshoot
+1. The arm fails to move and `Invalid Trajectory: start point deviates from current robot state more than ...` shows in motion planning console window. This might be caused by a small [allowed_start_tolerance](http://moveit.ros.org/moveit!/ros/2017/01/03/firstIndigoRelease.html) value. Edit `ur3_moveit_config/launch/move_group.launch` and adding `allowed_start_tolerance` can help:
+```
+  <node name="move_group" launch-prefix="$(arg launch_prefix)" pkg="moveit_ros_move_group" type="move_group" respawn="false" output="screen" args="$(arg command_args)">
+    ...
+    <param name="trajectory_execution/allowed_start_tolerance" value="0.0"/> <!-- default 0.01, disable 0.0 -->
+  </node>
+```
