@@ -24,12 +24,26 @@ Then, create a workspace, checkout and build the Universal Robot Driver for UR3.
 > c:\catkin_ws\devel\setup.bat
 ```
 
-Now you are good to go to run UR3 launch files. Before proceeding, make sure your UR3 controller is on and the network is connected to your dev box.
+Now you are almost good to go to run UR3 launch files. Before proceeding, make sure your UR3 controller is on and the network is connected to your dev box.
 
 > Currently the simulation stack is not yet ported for ROS on Windows, so you might see build break on `ur_gazebo`. To workaround that, remove the `ur_gazebo` subfolder from `c:\catkin_ws\src\universal_robot` directory, and run `catkin_make` again.
 
+### Customize UR3 Launch Files
+One last step. In Windows, cmd.exe doesn't recognize shebang line for files with no extension name. For examples, in universal_robot repository, many packages are defining its launch files as below:
+```
+  <!-- Load universal robot description format (URDF) -->
+  <group if="$(arg load_robot_description)">
+    <param unless="$(arg limited)" name="$(arg robot_description)" command="$(find xacro)/xacro --inorder $(find ur_description)/urdf/ur3_robot.urdf.xacro" />
+    <param if="$(arg limited)" name="$(arg robot_description)" command="$(find xacro)/xacro --inorder '$(find ur_description)/urdf/ur3_joint_limited_robot.urdf.xacro'" />
+  </group>
+```
+
+The `$(find xacro)/xacro` eventually will be replaced with the full filepath of xacro script, but the script with no extension won't be considered as a valid executable under Windows.
+
+To fix it, you will need to replace all the usgae of `$(find xacro)/xacro` with `$(find xacro)/xacro.exe` to tell launch file to run the exectuable wrapper instead.
+
 ### Running UR3 Launch Files
-In this example, it requires three launch files to run: One is to run the UR3 driver stack for planning execution, one is to run the UR3 motion planning, and the other one is to run the visualization tool.
+Now let's run everything! In this example, it requires three launch files to run: One is to run the UR3 driver stack for planning execution, one is to run the UR3 motion planning, and the other one is to run the visualization tool.
 
 Let's start the UR3 driver stack:
 ```
