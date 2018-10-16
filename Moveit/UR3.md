@@ -2,7 +2,9 @@
 Getting Started with the Moveit! and UR3 running Windows.
 
 ## Prerequisite
-This guide assumes you had hands-on experience on running ROSOnWindows from this document. (https://ms-iot.github.io/ROSOnWindows/GettingStarted/Setup.html)
+* This guide assumes you had hands-on experience on running ROSOnWindows from this document. (https://ms-iot.github.io/ROSOnWindows/GettingStarted/Setup.html)
+
+* This guide requires you have an Universal Robot UR3 with a software version (3.x)
 
 ### Moveit! and UR3 on Windows Installation
 First, you can get started by installing moveit related packages from ROSOnWindows Chocolatey server.
