@@ -10,7 +10,7 @@ Getting Started with the Moveit! and UR3 on Windows. If you are new to Moveit!, 
 First, you can get started by installing moveit related packages from ROSOnWindows Chocolatey server.
 ```
 (open a command prompt as admin)
-> choco upgrade ros-melodic-moveit
+> choco upgrade ros-melodic-moveit -y
 ```
 
 Then, create a workspace, checkout and build the Universal Robot Driver for UR3.
@@ -29,22 +29,6 @@ Then, create a workspace, checkout and build the Universal Robot Driver for UR3.
 Now you are almost good to go to run UR3 launch files. Before proceeding, make sure your UR3 controller is on and the network is connected to your dev box.
 
 > Currently the simulation stack is not yet ported for ROS on Windows, so you might see build break on `ur_gazebo`. To workaround that, remove the `ur_gazebo` subfolder from `c:\catkin_ws\src\universal_robot` directory, and run `catkin_make` again.
-
-### Customize UR3 Launch Files
-One last step. In Windows, cmd.exe doesn't recognize shebang line for files with no extension name. For examples, in universal_robot repository, many packages are defining its launch files as below:
-```
-  <!-- Load universal robot description format (URDF) -->
-  <group if="$(arg load_robot_description)">
-    <param unless="$(arg limited)" name="$(arg robot_description)" command="$(find xacro)/xacro --inorder $(find ur_description)/urdf/ur3_robot.urdf.xacro" />
-    <param if="$(arg limited)" name="$(arg robot_description)" command="$(find xacro)/xacro --inorder '$(find ur_description)/urdf/ur3_joint_limited_robot.urdf.xacro'" />
-  </group>
-```
-
-The `$(find xacro)/xacro` eventually will be replaced with the full filepath of xacro script, but the script with no extension won't be considered as a valid executable under Windows.
-
-To fix it, you will need to replace all the usgae of `$(find xacro)/xacro` with `$(find xacro)/xacro.exe` to tell launch file to run the exectuable wrapper instead.
-
-> For general porting guidance of shebang usage for ROS on Windows, check out [here](Porting/Cookbook.md#shebang).
 
 ### Running UR3 Launch Files
 Now let's run everything! In this example, it requires three launch files to run: One is to run the UR3 driver stack for planning execution, one is to run the UR3 motion planning, and the other one is to run the visualization tool.
