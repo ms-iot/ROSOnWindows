@@ -64,12 +64,14 @@ Now you are ready to move the robot arm in the visualization tool and start plan
 
 ## Troubleshoot
 1. The arm fails to move and `Invalid Trajectory: start point deviates from current robot state more than ...` shows in motion planning console window. It is likely the default value of [allowed_start_tolerance](http://moveit.ros.org/moveit!/ros/2017/01/03/firstIndigoRelease.html) being too small for you. Before figuring out a reasonable value,  edit `ur3_moveit_config/launch/move_group.launch` and adding `allowed_start_tolerance` can help:
-```xml
-  <node name="move_group" launch-prefix="$(arg launch_prefix)" pkg="moveit_ros_move_group" type="move_group" respawn="false" output="screen" args="$(arg command_args)">
-    ...
-    <param name="trajectory_execution/allowed_start_tolerance" value="0.0"/> <!-- default 0.01, disable 0.0 -->
-  </node>
-```
+
+<pre>
+ &lt;node name="move_group" launch-prefix="$(arg launch_prefix)" pkg="moveit_ros_move_group" type="move_group" respawn="false" output="screen" args="$(arg command_args)"&gt;
+  ...
+  &lt;param name="trajectory_execution/allowed_start_tolerance" value="0.0"/&gt; &lt;!-- default 0.01, disable 0.0 --&gt;
+ &lt;/node&gt;
+</pre>
+
 
 ## More Information
 * [ur_modern_driver](https://github.com/seanyen-msft/rosonWindows)
