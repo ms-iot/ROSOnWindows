@@ -1,5 +1,5 @@
 # Moveit! Tutorials on Windows
-This guide is to show you how to prepare a workspace (for ROS on Windows) for your Moveit! tutorials. Find out more about Moveit!, visit https://ros-planning.github.io/moveit_tutorials/index.html.
+This guide is to show you how to prepare a workspace (for ROS on Windows) for your Moveit! tutorials. Find out more about Moveit!, visit [here](https://ros-planning.github.io/moveit_tutorials/index.html).
 
 ## Moveit! Binary Installation on Windows
 First, download the ROS on Windows with Moveit! packages.
