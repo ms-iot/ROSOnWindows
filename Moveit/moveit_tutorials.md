@@ -1,1 +1,24 @@
-# Moveit! Tutorials for Windows Installation Guide
+# Moveit! Tutorials on Windows
+This guide is to show you how to prepare a workspace (for ROS on Windows) for your Moveit! tutorials. Find out more about Moveit!, visit https://ros-planning.github.io/moveit_tutorials/index.html.
+
+## Moveit! Binary Installation on Windows
+First, download the ROS on Windows with Moveit! packages.
+```
+(open a command prompt as admin)
+> choco upgrade ros-melodic-moveit
+```
+
+## Create Workspace for Moveit! Tutorials
+Then, let's download the example code to your workspace.
+
+```
+(open a command prompt as admin)
+> mkdir c:\moveit_ws\src
+> cd c:\moveit_ws\src
+> catkin_init_workspace
+> git clone https://github.com/ms-iot/moveit_tutorials -b init_windows
+> git clone https://github.com/ros-planning/panda_moveit_config.git
+> git clone https://github.com/frankaemika/franka_ros-release/tree/release/kinetic/franka_description
+> cd c:\moveit_ws
+> catkin_make
+```
