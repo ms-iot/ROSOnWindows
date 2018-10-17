@@ -1,5 +1,5 @@
 # Getting Started with Moveit! and UR3 on Windows
-Getting Started with the Moveit! and UR3 on Windows. If you are new to Moveit!, check out [Moveit! Tutorials on Windows](Moveit/moveit_tutorials.md).
+Getting Started with the Moveit! and UR3 on Windows. If you are new to Moveit!, check out [Moveit! Tutorials on Windows](moveit_tutorials.md).
 
 ## Prerequisite
 * This guide assumes you had hands-on experience on running ROSOnWindows from this document. (https://ms-iot.github.io/ROSOnWindows/GettingStarted/Setup.html)
