@@ -30,4 +30,4 @@ After it is built, source the catkin workspace.
 ```
 
 ## Getting Started with Moveit! Tutorials
-Now you are ready to go with the [Moveit! Tutorials](https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html)!
+Now you are ready to continue the journal on [Moveit! Tutorials](https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html).
