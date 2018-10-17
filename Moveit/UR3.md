@@ -6,7 +6,7 @@ Getting Started with the Moveit! and UR3 on Windows. If you are new to Moveit!, 
 
 * This guide requires you have an Universal Robot UR3 with a software version (3.x)
 
-### Moveit! and UR3 on Windows Installation
+## Moveit! and UR3 on Windows Installation
 First, you can get started by installing moveit related packages from ROSOnWindows Chocolatey server.
 ```
 (open a command prompt as admin)
@@ -31,7 +31,7 @@ Then, create a workspace, checkout and build the Universal Robot Driver for UR3.
 
 Now you are almost good to go to run UR3 launch files. Before proceeding, make sure your UR3 controller is on and the network is connected to your dev box.
 
-### Running UR3 Launch Files
+## Running UR3 Launch Files
 Now let's run it! In this example, it requires three launch files to run: One is to run the UR3 driver stack for planning execution, one is to run the UR3 motion planning, and the other one is to run the visualization tool.
 
 Let's start the UR3 driver stack:
@@ -62,7 +62,7 @@ Finally, run the visualization tool:
 
 Now you are ready to move the robot arm in the visualization tool and start planning and see your arm moving in action!
 
-### Troubleshoot
+## Troubleshoot
 1. The arm fails to move and `Invalid Trajectory: start point deviates from current robot state more than ...` shows in motion planning console window. This might be caused by a small [allowed_start_tolerance](http://moveit.ros.org/moveit!/ros/2017/01/03/firstIndigoRelease.html) value. Edit `ur3_moveit_config/launch/move_group.launch` and adding `allowed_start_tolerance` can help:
 ```
   <node name="move_group" launch-prefix="$(arg launch_prefix)" pkg="moveit_ros_move_group" type="move_group" respawn="false" output="screen" args="$(arg command_args)">
@@ -71,6 +71,6 @@ Now you are ready to move the robot arm in the visualization tool and start plan
   </node>
 ```
 
-### More Information
+## More Information
 * [ur_modern_driver](https://github.com/seanyen-msft/rosonWindows)
 * [Moveit! Tutorials](https://ros-planning.github.io/moveit_tutorials/)
