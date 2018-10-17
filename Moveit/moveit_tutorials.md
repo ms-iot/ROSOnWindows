@@ -17,7 +17,7 @@ Then, let's download the example code to your workspace.
 > cd c:\moveit_ws\src
 > catkin_init_workspace
 > git clone https://github.com/ms-iot/moveit_tutorials -b init_windows
-> git clone https://github.com/ros-planning/panda_moveit_config.git
+> git clone https://github.com/ms-iot/panda_moveit_config -b init_windows
 > git clone https://github.com/frankaemika/franka_ros-release -b release/kinetic/franka_description
 > cd c:\moveit_ws
 > catkin_make
