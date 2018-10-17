@@ -85,3 +85,7 @@ Now you are ready to move the robot arm in the visualization tool and start plan
     <param name="trajectory_execution/allowed_start_tolerance" value="0.0"/> <!-- default 0.01, disable 0.0 -->
   </node>
 ```
+
+### More Information
+* [ur_modern_driver](https://github.com/seanyen-msft/rosonWindows)
+* [Moveit! Tutorials](https://ros-planning.github.io/moveit_tutorials/)
