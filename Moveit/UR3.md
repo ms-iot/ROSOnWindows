@@ -26,12 +26,16 @@ Then, create a workspace, checkout and build the Universal Robot Driver for UR3.
 > c:\catkin_ws\devel\setup.bat
 ```
 
+As of the release of ros-melodic for Windows, Gazebo has not been ported. Please disable this portion of the build.
+
+```
+> echo > universal_robot\ur_gazebo\CATKIN_IGNORE
+```
+
 Now you are almost good to go to run UR3 launch files. Before proceeding, make sure your UR3 controller is on and the network is connected to your dev box.
 
-> Currently the simulation stack is not yet ported for ROS on Windows, so you might see build break on `ur_gazebo`. To workaround that, remove the `ur_gazebo` subfolder from `c:\catkin_ws\src\universal_robot` directory, and run `catkin_make` again.
-
 ### Running UR3 Launch Files
-Now let's run everything! In this example, it requires three launch files to run: One is to run the UR3 driver stack for planning execution, one is to run the UR3 motion planning, and the other one is to run the visualization tool.
+Now let's run it! In this example, it requires three launch files to run: One is to run the UR3 driver stack for planning execution, one is to run the UR3 motion planning, and the other one is to run the visualization tool.
 
 Let's start the UR3 driver stack:
 ```
