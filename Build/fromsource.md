@@ -1,6 +1,6 @@
 
 ## Install ROS for Windows from source
-As an alternative to using Chocolatey, ROS for Windows can also be [installed from source](Build/source.md).
+As an alternative to using Chocolatey, ROS for Windows can also be [installed from source](source.md).
 
 ## ROS Environment Command Prompt
 When running ROS, open an elevated Command Prompt with the following setup:
