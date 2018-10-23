@@ -1,6 +1,6 @@
 # Using ROS on Windows
 While every effort has been made to reduce the effort needed to support ROS on Windows, 
-there will inevitably be required changes between platforms. This docynent is intended to address porting OS differences between Linux and Windows.
+there will inevitably be required changes between platforms. This document is intended to address porting OS differences between Linux and Windows.
 
 Microsoft has created staging forks for many projects. We will be committing back upstream and removing out forks once they are stabilized on Windows and Linux. 
 Until these changes are committed upstream, please look at the [Microsoft ms-iot github](https://github.com/ms-iot) to see if there is a fork for the ROS repository you are interested in and use that. Typically, there is also have an init_windows branch which should be used instead of the melodic-devel branch.
