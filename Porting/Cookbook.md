@@ -65,7 +65,7 @@ In the library header with the exported symbols, you'll need a switch between ex
 
 ```
 #ifdef WIN32
-#idef BUILDING_LIB
+#ifdef BUILDING_LIB
 #define LIB_EXTERN __declspec(dllimport)
 #else
 #define LIB_EXTERN __declspec(dllexport)
