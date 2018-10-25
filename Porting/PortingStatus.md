@@ -53,7 +53,7 @@ We are targeting Mid-December to complete the ROS porting effort.
 **Top 40**
 
 - [X] python-catkin-pkg
-- [ ] python-catkin-pkg-modules
+- [X] python-catkin-pkg-modules
 - [X] python-rosdep
 - [X] python-rosdistro
 - [X] python-rosdistro-modules
@@ -61,7 +61,7 @@ We are targeting Mid-December to complete the ROS porting effort.
 - [X] python-rospkg-modules
 - [X] ros-melodic-actionlib
 - [X] ros-melodic-actionlib-msgs
-- [ ] ros-melodic-cv-bridge
+- [X] ros-melodic-cv-bridge
 - [X] ros-melodic-desktop
 - [ ] ros-melodic-desktop-full
 - [X] ros-melodic-diagnostic-updater
