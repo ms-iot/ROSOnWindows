@@ -20,6 +20,65 @@ mkdir d:\workspaces
 mklink c:\workspaces d:\workspaces
 ```
 
+## `install Library TARGETS given no DESTINATION!` 
+
+Windows will generate separate archives and librarys. To handle this, add an ARCHIVE destination:
+```
+install(
+    TARGETS ${PROJECT_NAME}
+    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
+```
+## All Warnings
+Warnings are good. Warning level 4 is better. Warnings are potential bugs.
+
+```
+if(MSVC)
+  add_compile_options(/W4 /WX)
+else()
+  add_compile_options(-Wall -Wextra)
+endif()
+```
+
+## C++ versioning
+Use CMake to set the C++ version:
+
+```
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 11)
+endif()
+```
+## ____attribute____
+____attribute____ is not suppported on MSVC. You can use a macro replacement or use a cross platform convention.
+
+## `Unresolved External`
+Linux automatically exports symbols. Windows, symbols are private by default. [CMake provides a facility for this](https://cmake.org/cmake/help/v3.4/prop_tgt/WINDOWS_EXPORT_ALL_SYMBOLS.html).
+
+In your cmake:
+
+```
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+```
+
+However, you may encounter a problem with static class members. In this case you need to manually handle this.
+In the library header with the exported symbols, you'll need a switch between exporting and importing:
+
+```
+#ifdef WIN32
+#idef BUILDING_LIB
+#define LIB_EXTERN __declspec(dllimport)
+#else
+#define LIB_EXTERN __declspec(dllexport)
+#endif
+#else
+#define LIB_EXTERN
+#endif
+```
+
+In the file which exports the symbols, you can define `BUILDING_LIB` to export the symbols.
+
+
+
 ## Beware of aggressive optimization
 The Microsoft compiler will optimize agressively. This can manifest in strange ways. One instance was in turtlebot3 fake code, is a ROS_ASSERT with a function that only returns true. Nothing else executed.
 
