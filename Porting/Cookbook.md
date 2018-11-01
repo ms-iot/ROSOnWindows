@@ -30,14 +30,23 @@ install(
     LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
 ```
 ## All Warnings
-Warnings are good. Warning level 4 is better. Warnings are potential bugs.
+Warnings are good. The options for selecting warning level are different. If you add specific compiler options for warnings, please add an MSVC selection. For the Visual Studio compiler, you'll use `/W3` for warning level 3 (or `/W4` which offers more warning options). If you would like to treat warnings as errors pass `/WX`. However, these warnings would need to be corrected before the compile will succeed.
 
 ```
 if(MSVC)
-  add_compile_options(/W4 /WX)
+  add_compile_options(/W3 /WX)
 else()
   add_compile_options(-Wall -Wextra)
 endif()
+```
+
+You can disable specific warnings using `#pragma`:
+
+```
+#ifdef _MSC_VER
+  #pragma warning(disable: 4244)
+  #pragma warning(disable: 4661)
+#endif
 ```
 
 ## C++ versioning
