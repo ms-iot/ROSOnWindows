@@ -60,10 +60,23 @@ To get things started, install the recommended `desktop` metapackage. A Metapack
     + `choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1`
     + `choco upgrade ros-melodic-desktop -y`
 
-Congratulations! You have successfully installed ROS for Windows after all the previous steps. Now you are all set to further explore [ROS Tutorials](http://wiki.ros.org/ROS/Tutorials) with ROS for Windows.
+### Using ROS on Windows
+ROS makes heavy use of the Windows Command Prompt. You will often find that you need to have many command prompts open at once. Each command prompt you open where you intend to use ROS commands, you'll need to run the setup script.
+
++ Open the Visual Studio command prompt created above.
++ Execute the ROS setup script `c:\opt\ros\x64\setup.bat`
++ You can now execute ROS Commands, including checking out packages, building your nodes or launching ROS
+
+Now you are all set to further explore [ROS Tutorials](http://wiki.ros.org/ROS/Tutorials). 
+[Microsoft has a staging fork of the ROS tutorials](https://github.com/ms-iot/ros_tutorials) which should be used instead of the repository in the tutorials.
+
+If you are new to ROS on Windows, please visit the[ Differences between ROS on Windows and ROS on Linux page](UsingROSonWindows.md) which describes some differences you'll encounter between what you see in the ROS tutorials and running on Windows. 
+
+### Getting Help
+If you need help with ROS or ROS on Windows, please check out the [troubleshooting page](Troubleshooting.md)
 
 ### Stay Up to Date
-Builds are updated nightly. If you want to move your tree forward, use Chocolatey's upgrade feature:
+Builds are updated nightly. If you want to move your environment forward, use Chocolatey's upgrade feature:
 
 +  Open the ROS Command Prompt created above and approve the administrative elevation if not already opened.
     + Run the following command:
