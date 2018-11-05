@@ -69,23 +69,32 @@ In your cmake:
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 ```
 
-However, you may encounter a problem with static class members. In this case you need to manually handle this.
-In the library header with the exported symbols, you'll need a switch between exporting and importing:
+However, you may encounter a problem with static class members, i.e. global data symbols, as discussed in https://blog.kitware.com/create-dlls-on-windows-without-declspec-using-new-cmake-export-all-feature/. In this case you need to manually handle visibility of the static class members, using the [`GenerateExportHeader`](https://cmake.org/cmake/help/v3.4/module/GenerateExportHeader.html) CMake module. 
 
-```
-#ifdef WIN32
-#ifdef BUILDING_LIB
-#define LIB_EXTERN __declspec(dllimport)
-#else
-#define LIB_EXTERN __declspec(dllexport)
-#endif
-#else
-#define LIB_EXTERN
-#endif
-```
+In particular, if your static class members are contained in a library called `mylibrary`, you need to add the following lines in your CMake after the call to
+`add_library(mylibrary ...)`: 
+~~~
+include(GenerateExportHeader)
+generate_export_header(mylibrary)
+target_include_directories(mylibrary PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+~~~
 
-In the file which exports the symbols, you can define `BUILDING_LIB` to export the symbols.
+The `generate_export_header(mylibrary)` call creates a file called `mylibrary_export.h`, contained in the `${CMAKE_CURRENT_BINARY_DIR}` build directory. This file contains the definition of the `mylibrary_EXPORT` macro, that you can use to modify your code as in the following: 
+~~~
+#include "mylibrary_export.h"
 
+class myclass
+{
+ static mylibrary_EXPORT int GlobalCounter;
+…
+~~~
+
+If this class definition is contained in a public header, you need to make sure to install the generated 
+`mylibrary_export.h` together with the rest of the headers, i.e. : 
+~~~
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mylibrary_export.h
+        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
+~~~
 
 
 ## Beware of aggressive optimization
