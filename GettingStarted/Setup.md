@@ -64,7 +64,7 @@ To get things started, install the recommended `desktop` metapackage. A Metapack
 ROS makes heavy use of the Windows Command Prompt. You will often find that you need to have many command prompts open at once. Each command prompt you open where you intend to use ROS commands, you'll need to run the setup script.
 
 + Open the Visual Studio command prompt created above.
-+ Execute the ROS setup script `c:\opt\ros\x64\setup.bat`
++ Execute the ROS setup script `c:\opt\ros\melodic\x64\setup.bat`
 + You can now execute ROS Commands, including checking out packages, building your nodes or launching ROS
 
 Now you are all set to further explore [ROS Tutorials](http://wiki.ros.org/ROS/Tutorials). 
