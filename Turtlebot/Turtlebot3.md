@@ -18,7 +18,7 @@ Please use turtlebot3_bringup-win.launch which has Windows device bindings.
 
 ## 6. Setup
 ### 6.1 PC Setup
-Please follow the instructions for setting up your computer with [ROS on Windows](README.md).
+Please follow the instructions for setting up your computer with [ROS on Windows](https://github.com/ms-iot/ROSOnWindows/blob/master/GettingStarted/Setup.md).
 
 ### 6.2 SBC Setup
 You can bypass this section
