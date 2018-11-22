@@ -26,6 +26,7 @@ Microsoft will host the Windows builds for ROS1 and shortly ROS2, as well as pro
 + [Help and Troubleshooting](GettingStarted/Troubleshooting.md)
 + [Getting Started with Turtlebot3](Turtlebot/Turtlebot3.md)
 + [Getting Started with Moveit! and UR3](Moveit/UR3.md)
++ [Continuous Integration with ROS on Windows](GettingStarted/SetupCI.md)
 + [About the Azure DevOps buildfarm for ROS on Windows](Build/buildfarm.md)
 + [Buiding ROS for Windows from Source](Build/fromsource.md)
 
