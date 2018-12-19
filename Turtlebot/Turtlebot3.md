@@ -36,7 +36,10 @@ ROS on Windows requires a x64 bit Windows 10 Desktop or Windows 10 IoT Enterpris
 > ROS on Windows was brought up using [Up2](http://www.up-board.org/upsquared/) and an Intel Nuc.
 
 ## Get Gazebo simulation installed
-Gazebo now is enabled for ROS on Windows. Use ```choco upgrade ros-melodic-desktop_full -y``` to get it installed.
+Gazebo now is enabled for ROS on Windows. Use the following to get it installed:
+```
+choco upgrade ros-melodic-desktop_full -y
+```
 
 ## Create a new workspace
 In a Command Window set up with the ROS environment, create a directory for your robot workspaces and a workspace for turtlebot.
