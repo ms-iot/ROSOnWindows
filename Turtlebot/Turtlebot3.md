@@ -35,9 +35,8 @@ ROS on Windows requires a x64 bit Windows 10 Desktop or Windows 10 IoT Enterpris
 
 > ROS on Windows was brought up using [Up2](http://www.up-board.org/upsquared/) and an Intel Nuc.
 
-## 11 Simulation
-As of the September release, Gazebo has not been ported to Windows yet. 
-
+## Get Gazebo simulation installed
+Gazebo now is enabled for ROS on Windows. Use ```choco upgrade ros-melodic-desktop_full -y``` to get it installed.
 
 ## Create a new workspace
 In a Command Window set up with the ROS environment, create a directory for your robot workspaces and a workspace for turtlebot.
@@ -53,12 +52,6 @@ git clone -b melodic-devel https://github.com/ms-iot/hls_lfcd_lds_driver
 cd c:\ws\turtlebot3
 rosdep install --from-paths src --ignore-src -r -y
 ```
-
-As of the September release of ros-melodic for Windows, Gazebo has not been ported. Please disable this portion of the build. 
-```
-echo > turtlebot3_simulations\turtlebot3_gazebo\CATKIN_IGNORE
-```
-
 
 ## Customize Turtlebot Launch Files
 Modify the ROS Launch files to map the devices to the correct COM port. To determine which COM ports you require, right click on the Windows Start Menu, Select Device Manager.
