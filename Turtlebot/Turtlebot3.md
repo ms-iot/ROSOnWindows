@@ -53,6 +53,7 @@ git clone -b melodic-devel https://github.com/ms-iot/turtlebot3_simulations
 git clone -b melodic-devel https://github.com/ms-iot/turtlebot3.git 
 git clone -b melodic-devel https://github.com/ms-iot/hls_lfcd_lds_driver
 cd c:\ws\turtlebot3
+rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 ```
 
