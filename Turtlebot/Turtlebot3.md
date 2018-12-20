@@ -11,33 +11,30 @@ The Turtlebot 3 uses a Lidar which requires the following driver.
 ## General notes
 The turtlebot documentation uses the unix command 'export' to set environment variables, instead use the following:
 ```
-set TURTLEBOT3_MODEL=Waffle
+set TURTLEBOT3_MODEL=waffle
 ```
+> NOTE: The value of %TURTLEBOT3_MODEL% is case-sensitive.
 
 Please use turtlebot3_bringup-win.launch which has Windows device bindings.
 
-## 6. Setup
-### 6.1 PC Setup
+## Setup
+### PC Setup
 Please follow the instructions for setting up your computer with [ROS on Windows](https://github.com/ms-iot/ROSOnWindows/blob/master/GettingStarted/Setup.md).
 
-### 6.2 SBC Setup
+### SBC Setup
 You can bypass this section
 
-### 6.3 OpenCR Setup
+### OpenCR Setup
 Please follow the Windows instructions for the [Robotis OpenCR board in the Robotis Manual](http://emanual.robotis.com/docs/en/parts/controller/opencr10/).
 
 Before proceeding, make sure the motors turn by pressing the motor test buttons near the USB connector.
 
 > BUG: We're working to identify a sync error coming from rosserial, which ultimately leads to a board reset.
 
-### 6.4 Compatible devices
+### Compatible devices
 ROS on Windows requires a x64 bit Windows 10 Desktop or Windows 10 IoT Enterprise, and compatible hardware. 
 
-> ROS on Windows was brought up using [Up2](http://www.up-board.org/upsquared/) and an Intel Nuc.
-
-## 11 Simulation
-As of the September release, Gazebo has not been ported to Windows yet. 
-
+> ROS on Windows was brought up using [Up2](http://www.up-board.org/upsquared) and an Intel Nuc.
 
 ## Create a new workspace
 In a Command Window set up with the ROS environment, create a directory for your robot workspaces and a workspace for turtlebot.
@@ -51,14 +48,9 @@ git clone -b melodic-devel https://github.com/ms-iot/turtlebot3_simulations
 git clone -b melodic-devel https://github.com/ms-iot/turtlebot3.git 
 git clone -b melodic-devel https://github.com/ms-iot/hls_lfcd_lds_driver
 cd c:\ws\turtlebot3
+rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 ```
-
-As of the September release of ros-melodic for Windows, Gazebo has not been ported. Please disable this portion of the build. 
-```
-echo > turtlebot3_simulations\turtlebot3_gazebo\CATKIN_IGNORE
-```
-
 
 ## Customize Turtlebot Launch Files
 Modify the ROS Launch files to map the devices to the correct COM port. To determine which COM ports you require, right click on the Windows Start Menu, Select Device Manager.
@@ -103,18 +95,50 @@ c:\ws\turtlebot3\install\setup.bat
 # Running Turtlebot
 
 ## No Robot - No Problem!
-rViz is tool which allows you to visualize a representation of a robot, and project fake data in order to exerise or develop logic. The turtlebot simulation is
-in the turtlebot3_simulations package. 
+rViz is tool which allows you to visualize a representation of a robot, and project fake data in order to exerise or develop logic. The turtlebot simulation is in the turtlebot3_simulations package. 
 
-In one command window, start `roscore`.
-
-In another command window, start the simulation environment.
+To start the simulation, open one elevated command prompt:
 
 ```
-roslaunch turtlebot3_simulations turtlebot3_fake.launch
+c:\opt\ros\melodic\x64\setup.bat
+c:\ws\turtlebot3\install\setup.bat
+set TURTLEBOT3_MODEL=waffle
+roslaunch turtlebot3_fake turtlebot3_fake.launch
 ```
 
-You can create your own logic which reads `/odom` or publish `/cmd_vel` to move the virtual robot.
+Then, open another elevated command prompt:
+
+```
+c:\opt\ros\melodic\x64\setup.bat
+c:\ws\turtlebot3\install\setup.bat
+set TURTLEBOT3_MODEL=waffle
+roslaunch turtlebot3_gazebo turtlebot3_simulation.launch
+```
+
+Now you should see turtlebot3 random walking on RViz. You can create your own logic which reads `/odom` or publish `/cmd_vel` to move the virtual robot.
+
+## Let's try out something more!
+SLAM (Simultaneous localization and mapping) is a very popular application in the mobile robots, and with the simulator - Gazebo, you can exercise this technology on your Windows desktop, even without a real robot.
+
+To start this demo, open an evelated command prompt:
+
+```
+:: make sure all required binaries installed.
+choco upgrade ros-melodic-desktop_full -y
+choco upgrade ros-melodic-cartographer_ros -y
+```
+
+```
+:: run the demo.
+c:\opt\ros\melodic\x64\setup.bat
+c:\ws\turtlebot3\install\setup.bat
+set TURTLEBOT3_MODEL=waffle
+roslaunch turtlebot3_gazebo turtlebot3_gazebo_cartographer_demo.launch
+```
+
+After a few moments, you will see Gazebo running a simulated world with your simulated turtlebot, RViz running the mapping progress, and a simulation node to drive the turtlebot random walking.
+
+![](../Assets/Turtlebot3_Gazebo_SLAM.gif)
 
 ## Run Turtlebot3 with Sensors connected to your devlopment machine.
 If you have Turtlebot3 hardware, you can plug the sensors directly into your development machine to iterate on fuctionality with 

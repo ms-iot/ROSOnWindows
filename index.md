@@ -24,7 +24,7 @@ Microsoft will host the Windows builds for ROS1 and shortly ROS2, as well as pro
 + [Learn about the differences between ROS on Windows and ROS on Linux](GettingStarted/UsingROSonWindows.md)
 + [Porting Status](Porting/PortingStatus.md)
 + [Help and Troubleshooting](GettingStarted/Troubleshooting.md)
-+ [Getting Started with Turtlebot3](Turtlebot/Turtlebot3.md)
++ [Getting Started with Turtlebot3](Turtlebot/Turtlebot3.md) (UPDATED: Gazebo + Cartographer example added)
 + [Getting Started with Moveit! and UR3](Moveit/UR3.md)
 + [Continuous Integration with ROS on Windows](GettingStarted/SetupCI.md)
 + [About the Azure DevOps buildfarm for ROS on Windows](Build/buildfarm.md)
