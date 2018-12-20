@@ -23,16 +23,16 @@
 * https://github.com/ms-iot/image_pipeline.git
 * https://github.com/ms-iot/industrial_core.git
 * https://github.com/ms-iot/interactive_markers.git
-* https://github.com/ms-iot/joint_state_publisher.git, kinetic-devel
-* https://github.com/ms-iot/joystick_drivers.git, master
+* https://github.com/ms-iot/joint_state_publisher.git
+* https://github.com/ms-iot/joystick_drivers.git
 * https://github.com/ms-iot/kdl_parser.git
 * https://github.com/ms-iot/laser_geometry.git
 * https://github.com/ms-iot/metapackages.git
 * https://github.com/ms-iot/moveit.git
 * https://github.com/ms-iot/moveit_visual_tools.git
-* https://github.com/ms-iot/navigation.git, melodic-devel
+* https://github.com/ms-iot/navigation.git
 * https://github.com/ms-iot/nodelet_core.git
-* https://github.com/ms-iot/open_karto.git, melodic-devel
+* https://github.com/ms-iot/open_karto.git
 * https://github.com/ms-iot/orocos_kinematics_dynamics.git
 * https://github.com/ms-iot/perception_pcl.git
 * https://github.com/ms-iot/pluginlib.git
@@ -53,7 +53,7 @@
 * https://github.com/ms-iot/rosconsole_bridge.git
 * https://github.com/ms-iot/roscpp_core.git
 * https://github.com/ms-iot/rospack.git
-* https://github.com/ms-iot/rosserial.git, jade-devel
+* https://github.com/ms-iot/rosserial.git
 * https://github.com/ms-iot/rqt.git
 * https://github.com/ms-iot/rqt_bag.git
 * https://github.com/ms-iot/rqt_console.git
@@ -66,12 +66,12 @@
 * https://github.com/ms-iot/rqt_shell.git
 * https://github.com/ms-iot/rviz.git
 * https://github.com/ms-iot/rviz_visual_tools.git
-* https://github.com/ms-iot/slam_karto.git, melodic-devel
-* https://github.com/ms-iot/sparse_bundle_adjustment.git, melodic-devel
+* https://github.com/ms-iot/slam_karto.git
+* https://github.com/ms-iot/sparse_bundle_adjustment.git
 * https://github.com/ms-iot/srdfdom.git
 * https://github.com/ms-iot/stage-release.git
 * https://github.com/ms-iot/stage_ros.git
-* https://github.com/ms-iot/teleop_twist_joy.git, indigo-devel
+* https://github.com/ms-iot/teleop_twist_joy.git
 * https://github.com/ms-iot/universal_robot.git
 * https://github.com/ms-iot/urdf.git
 * https://github.com/ms-iot/vision_opencv.git
