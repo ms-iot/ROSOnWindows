@@ -17,30 +17,24 @@ set TURTLEBOT3_MODEL=waffle
 
 Please use turtlebot3_bringup-win.launch which has Windows device bindings.
 
-## 6. Setup
-### 6.1 PC Setup
+## Setup
+### PC Setup
 Please follow the instructions for setting up your computer with [ROS on Windows](https://github.com/ms-iot/ROSOnWindows/blob/master/GettingStarted/Setup.md).
 
-### 6.2 SBC Setup
+### SBC Setup
 You can bypass this section
 
-### 6.3 OpenCR Setup
+### OpenCR Setup
 Please follow the Windows instructions for the [Robotis OpenCR board in the Robotis Manual](http://emanual.robotis.com/docs/en/parts/controller/opencr10/).
 
 Before proceeding, make sure the motors turn by pressing the motor test buttons near the USB connector.
 
 > BUG: We're working to identify a sync error coming from rosserial, which ultimately leads to a board reset.
 
-### 6.4 Compatible devices
+### Compatible devices
 ROS on Windows requires a x64 bit Windows 10 Desktop or Windows 10 IoT Enterprise, and compatible hardware. 
 
 > ROS on Windows was brought up using [Up2](http://www.up-board.org/upsquared/) and an Intel Nuc.
-
-## Get Gazebo simulation installed
-Gazebo now is enabled for ROS on Windows. Use the following to get it installed:
-```
-choco upgrade ros-melodic-desktop_full -y
-```
 
 ## Create a new workspace
 In a Command Window set up with the ROS environment, create a directory for your robot workspaces and a workspace for turtlebot.
@@ -129,13 +123,20 @@ SLAM (Simultaneous localization and mapping) is a very popular application in th
 To start this demo, open an evelated command prompt:
 
 ```
+:: make sure all required binaries installed.
+choco upgrade ros-melodic-desktop_full -y
+choco upgrade ros-melodic-cartographer_ros -y
+```
+
+```
+:: run the demo.
 c:\opt\ros\melodic\x64\setup.bat
 c:\ws\turtlebot3\install\setup.bat
 set TURTLEBOT3_MODEL=waffle
 roslaunch turtlebot3_gazebo turtlebot3_gazebo_cartographer_demo.launch
 ```
 
-After a few moments, you will see Gazebo which runs a simulated world with your simulated turtlebot, RViz which runs the mapping progress, and a simulation node to drive the turtlebot random walking.
+After a few moments, you will see Gazebo running a simulated world with your simulated turtlebot, RViz running the mapping progress, and a simulation node to drive the turtlebot random walking.
 
 ![](../Assets/Turtlebot3_Gazebo_SLAM.gif)
 
