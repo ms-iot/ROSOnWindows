@@ -137,6 +137,8 @@ roslaunch turtlebot3_gazebo turtlebot3_gazebo_cartographer_demo.launch
 
 After a few moments, you will see Gazebo which runs a simulated world with your simulated turtlebot, RViz which runs the mapping progress, and a simulation node to drive the turtlebot random walking.
 
+![](Assets/Turtlebot3_Gazebo_SLAM.gif)
+
 ## Run Turtlebot3 with Sensors connected to your devlopment machine.
 If you have Turtlebot3 hardware, you can plug the sensors directly into your development machine to iterate on fuctionality with 
 your development machine. Perform the steps to set up the launch file for your development system.
