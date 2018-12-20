@@ -85,11 +85,8 @@ Enter the COM port in the correct fields in the launch files below:
 To build the turtlebot packages, enter the turtlebot3 workspace and build using the catkin build system. 
 ```
 cd c:\ws\turtlebot3
-set CXXFLAGS=/DROS_ASSERT_ENABLED
 catkin_make install -DCMAKE_BUILD_TYPE=RelWithDebInfo
 ```
-
-> `ROS_ASSERT_ENABLED` is required to make turtlebot3 code path properly compiled. [See more.](https://github.com/ROBOTIS-GIT/turtlebot3_simulations/pull/68)
 
 Now inform ROS where to find your turtlebot code by merging the turtlebot install environment with the ROS environment. Please ensure you do this every time you open a command window. 
 
