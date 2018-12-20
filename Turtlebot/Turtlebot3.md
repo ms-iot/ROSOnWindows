@@ -34,7 +34,7 @@ Before proceeding, make sure the motors turn by pressing the motor test buttons 
 ### Compatible devices
 ROS on Windows requires a x64 bit Windows 10 Desktop or Windows 10 IoT Enterprise, and compatible hardware. 
 
-> ROS on Windows was brought up using [Up2](http://www.up-board.org/upsquared/) and an Intel Nuc.
+> ROS on Windows was brought up using [Up2](http://www.up-board.org/upsquared) and an Intel Nuc.
 
 ## Create a new workspace
 In a Command Window set up with the ROS environment, create a directory for your robot workspaces and a workspace for turtlebot.
