@@ -11,8 +11,9 @@ The Turtlebot 3 uses a Lidar which requires the following driver.
 ## General notes
 The turtlebot documentation uses the unix command 'export' to set environment variables, instead use the following:
 ```
-set TURTLEBOT3_MODEL=Waffle
+set TURTLEBOT3_MODEL=waffle
 ```
+> NOTE: The value of %TURTLEBOT3_MODEL% is case-sensitive.
 
 Please use turtlebot3_bringup-win.launch which has Windows device bindings.
 
@@ -100,18 +101,27 @@ c:\ws\turtlebot3\install\setup.bat
 # Running Turtlebot
 
 ## No Robot - No Problem!
-rViz is tool which allows you to visualize a representation of a robot, and project fake data in order to exerise or develop logic. The turtlebot simulation is
-in the turtlebot3_simulations package. 
+rViz is tool which allows you to visualize a representation of a robot, and project fake data in order to exerise or develop logic. The turtlebot simulation is in the turtlebot3_simulations package. 
 
-In one command window, start `roscore`.
-
-In another command window, start the simulation environment.
+To start the simulation, open one elevated command prompt:
 
 ```
-roslaunch turtlebot3_simulations turtlebot3_fake.launch
+c:\opt\ros\melodic\x64\setup.bat
+c:\ws\turtlebot3\install\setup.bat
+set TURTLEBOT3_MODEL=waffle
+roslaunch turtlebot3_fake turtlebot3_fake.launch
 ```
 
-You can create your own logic which reads `/odom` or publish `/cmd_vel` to move the virtual robot.
+Then, open another elevated command prompt:
+
+```
+c:\opt\ros\melodic\x64\setup.bat
+c:\ws\turtlebot3\install\setup.bat
+set TURTLEBOT3_MODEL=waffle
+roslaunch turtlebot3_gazebo turtlebot3_simulation.launch
+```
+
+Now you should see turtlebot3 random walking on RViz. You can create your own logic which reads `/odom` or publish `/cmd_vel` to move the virtual robot.
 
 ## Run Turtlebot3 with Sensors connected to your devlopment machine.
 If you have Turtlebot3 hardware, you can plug the sensors directly into your development machine to iterate on fuctionality with 
