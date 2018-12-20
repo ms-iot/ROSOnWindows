@@ -6,14 +6,16 @@
 
 > Please note, some build failures below are related to in-progress work.
 
-* ros-melodic-desktop [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.desktop)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=16)
-* ros-melodic-desktop_full [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.desktop_full)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=19)
-* ros-melodic-viz [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.viz)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=10)
-* ros-melodic-perception [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.perception)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=21)
-* ros-melodic-robot [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.robot)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=15)
-* ros-melodic-simulators [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.simulators)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=23)
-* ros-melodic-ros_base [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.ros_base)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=5)
-* ros-melodic-ros_core [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.ros_core)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=22)
+| Variant | Build Status |
+|-----|-----|
+| ros-melodic-desktop  | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.desktop)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=16)  |
+| ros-melodic-desktop_full | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.desktop_full)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=19) |
+| ros-melodic-viz | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.viz)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=10) |
+| ros-melodic-perception | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.perception)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=21) |
+| ros-melodic-robot | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.robot)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=15) |
+| ros-melodic-simulators | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.simulators)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=23) |
+| ros-melodic-ros_base | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.ros_base)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=5) |
+| ros-melodic-ros_core | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.ros_core)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=22) |
 
 ## BuildFarm Introduction
 
