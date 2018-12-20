@@ -121,4 +121,12 @@ uint8_t unused;
 unused;
 ```
 
+# Working with Git on Windows
+
+## symbolic links
+While symbolic links are natively supported on Linux, they are not fully supported on Windows until around Vista time frame.
+Some ROS packages' test cases test against the use of symbolic links, for instance, `roslib` under [`ros\core`](https://github.com/ros/ros)
+
+To work with symbolic links on git repos, check documentation from [Git for Windows](https://github.com/git-for-windows/git/wiki/Symbolic-Links)
+
 ##  
