@@ -7,11 +7,11 @@ This approach works fine for the very initial ROS1 porting to manage the initial
 * **Updatibility:** Using stock binaries, it would be a bottleneck for us to upgrade its downstream projects (thinking about ABI changes or compatiblity), unless we know how to build them.
 * **Latest Visual C++ toolchain support:** Not every project keeps its build instructions or code up-to-dated for the latest Visual C++ toolchain. We want the binaries always come from the best of breed.
 
-To address those issues, we are considering a fantastic project - Vcpkg. Vcpkg comes the following features:
+To address those issues, we are considering a fantastic project - [Vcpkg](https://github.com/Microsoft/vcpkg), which comes the following features:
 * Managing the how-to-build sauces of eight hundred and more open-source projects. And it is still growing!
 * With framework (Vcpkg helper) support, users are easily to compile libraries cross-platform and using the latest toolchain.
 
-## ROS1 System Dependencies Inventory List
+## ROS1 System Dependencies (Target: Melodic Windows 10)
 
 To evalute the cost switching to Vcpkg, begin with a list of system dependencies currently hosted for ROS1 on Windows:
 
@@ -27,7 +27,7 @@ To evalute the cost switching to Vcpkg, begin with a list of system dependencies
 | boost | 1.66.0              | 1.68.0 |
 | bullet3 | 2.87.0            | 2.87 |
 | bzip2 | 1.0.6               | 1.0.6-3 |
-| console_bridge | 0.4.0      | No |
+| console_bridge | 0.4.0      | 0.3.2-3 |
 | libccd | 2.0.0              | 2.0.0-2 |
 | libcurl | 7.58.0            | 7.61.1-1 |
 | libfcl | 0.5.0              | 0.5.0-3 |
