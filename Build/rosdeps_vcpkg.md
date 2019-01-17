@@ -7,11 +7,22 @@ This approach works fine for the very initial ROS1 porting to manage the initial
 * **Updatibility:** Using stock binaries, it would be a bottleneck for us to upgrade its downstream projects (thinking about ABI changes or compatiblity), unless we know how to build them.
 * **Latest Visual C++ toolchain support:** Not every project keeps its build instructions or code up-to-dated for the latest Visual C++ toolchain. We want the binaries always come from the best of breed.
 
-To address those issues, we are considering a fantastic project - [Vcpkg](https://github.com/Microsoft/vcpkg), which comes the following features:
+To address those issues, we are looking for any leverages to solve them. Here Vcpkg comes.
+
+## Vcpkg
+
+"Vcpkg simplifies acquiring and building open source libraries on Windows." - [Visual C++ Team Blog](https://blogs.msdn.microsoft.com/vcblog/2016/09/19/vcpkg-a-tool-to-acquire-and-build-c-open-source-libraries-on-windows/)
+
+It comes with the following features:
 * Managing the how-to-build sauces of eight hundred and more open-source projects. And it is still growing!
-* With framework (Vcpkg helper) support, users are easily to compile libraries cross-platform and using the latest toolchain.
+* More visibility on the dependencies relationship between projects, so we can better manage what to update after an upstream project gets updated.
+* Everything is compiled against the same set of depedencies, so no more ABI hazards.
+
+However, Vcpkg mainly supports the pure C/C++ projects. Some Python modules mixes C/C++ sources (e.g., pyside2), and Vcpkg isn't a good solution to manage this type of project.
+
 
 ## ROS1 System Dependencies (Target: Melodic Windows 10)
+
 
 To evalute the cost switching to Vcpkg, begin with a list of system dependencies currently hosted for ROS1 on Windows:
 
