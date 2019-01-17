@@ -15,7 +15,7 @@ To address those issues, we are looking for any leverages to solve them. Here Vc
 
 It comes with the following features:
 * Managing the how-to-build sauces of eight hundred and more open-source projects. And it is still growing!
-* More visibility on the dependencies relationship between projects, so we can better manage what to update after an upstream project gets updated.
+* Clear visibility on the dependencies relationship between projects. Now we can better manage what to update after an upstream project gets updated.
 * Everything is compiled against the same set of depedencies, so no more ABI hazards.
 
 However, Vcpkg mainly supports the pure C/C++ projects. Some Python modules mixes C/C++ sources (e.g., pyside2), and Vcpkg isn't a good solution to manage this type of project.
