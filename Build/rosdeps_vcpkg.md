@@ -1,4 +1,4 @@
-# Vcpkg, ROS1 system dependencies, and Azure DevOps CI investigation
+# [WIP] Vcpkg, ROS1 system dependencies, and Azure DevOps CI integration
 
 In ROS1, there are many open sources project required as a minimum to run ROS desktop stack. In the beginning, we either privately built the libraries by project-specific build instructions or looked for stock binaries if it just works.
 
