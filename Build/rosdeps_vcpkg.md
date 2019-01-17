@@ -18,13 +18,21 @@ It comes with the following features:
 * Clear visibility on the dependencies relationship between projects. Now we can better manage what to update after an upstream project gets updated.
 * Everything is compiled against the same set of depedencies, so no more ABI hazards.
 
-However, Vcpkg mainly supports the pure C/C++ projects. Some Python modules mixes C/C++ sources (e.g., pyside2), and Vcpkg isn't a good solution to manage this type of project.
-
+Now let's take a look ROS1 system dependencies for Windows (as of today).
 
 ## ROS1 System Dependencies (Target: Melodic Windows 10)
 
+To evalute switching to Vcpkg, firstly we'd like to know anything missing from Vcpkg ports. After comparison, we see most of packages to exist on Vcpkg. Only few don't exist and need some more investigations:
+* libompl
+* log4cxx
+* libgraphviz
+* pkg-config
 
-To evalute the cost switching to Vcpkg, begin with a list of system dependencies currently hosted for ROS1 on Windows:
+Also, some projects are Python modules mixing C/C++ sources (e.g., pyside2), and Vcpkg currently doesn't manage this type of projects.
+
+## References
+* [ROS1 Target Platforms](http://www.ros.org/reps/rep-0003.html#melodic-morenia-may-2018-may-2023)
+* Comparsion Table of ROS1 System Dependencies and Vcpkg Ports
 
 | Project Name   | Version | Vcpkg ports? |
 |-------|-----|-----|
@@ -105,6 +113,3 @@ To evalute the cost switching to Vcpkg, begin with a list of system dependencies
 | libpcl | 1.8.1              | 1.9.0-1 |
 | libazure-iot-sdk-c | 1.2.10 | 1.2.10-1 |
 | libqglviewer | 2.7.1        | No |
-
-## References
-* [ROS1 Target Platforms](http://www.ros.org/reps/rep-0003.html#melodic-morenia-may-2018-may-2023)
