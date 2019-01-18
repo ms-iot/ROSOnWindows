@@ -156,7 +156,7 @@
     * [ms-iot/resource_retriever](https://github.com/ros/resource_retriever/compare/kinetic-devel...ms-iot:init_windows)
 
 `desktop`
-* [ms-iot/angles](https://github.com/ros/angles/compare/master...ms-iot:init_windows)
+* [~~ms-iot/angles~~](https://github.com/ros/angles/compare/master...ms-iot:init_windows)
 * [ms-iot/ros_tutorials](https://github.com/ros/ros_tutorials/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/visualization_tutorials](https://github.com/ros-visualization/visualization_tutorials/compare/kinetic-devel...ms-iot:init_windows)
 
