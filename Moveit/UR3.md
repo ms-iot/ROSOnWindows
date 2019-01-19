@@ -74,5 +74,5 @@ Now you are ready to move the robot arm in the visualization tool and start plan
 
 
 ## More Information
-* [ur_modern_driver](https://github.com/seanyen-msft/rosonWindows)
+* [ur_modern_driver](https://github.com/ms-iot/ur_modern_driver)
 * [Moveit! Tutorials](https://ros-planning.github.io/moveit_tutorials/)
