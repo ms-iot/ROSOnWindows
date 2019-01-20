@@ -77,8 +77,14 @@ Enter the COM port in the correct fields in the launch files below:
 
 
 ## Build Nodes
-To build the turtlebot packages, enter the turtlebot3 workspace and build using the catkin build system. 
+To build the turtlebot packages, enter the turtlebot3 workspace and build using the catkin build system.
 ```
+:: make sure all required binaries installed.
+choco upgrade ros-melodic-desktop_full -y
+```
+
+```
+:: build Turtlebot3 workspace.
 cd c:\ws\turtlebot3
 catkin_make install -DCMAKE_BUILD_TYPE=RelWithDebInfo
 ```
