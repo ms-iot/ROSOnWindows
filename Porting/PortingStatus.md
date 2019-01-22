@@ -63,10 +63,10 @@ We are targeting Mid-December to complete the ROS porting effort.
 - [X] ros-melodic-actionlib-msgs
 - [X] ros-melodic-cv-bridge
 - [X] ros-melodic-desktop
-- [ ] ros-melodic-desktop-full
+- [X] ros-melodic-desktop-full
 - [X] ros-melodic-diagnostic-updater
-- [ ] ros-melodic-gazebo-plugins
-- [ ] ros-melodic-gazebo-ros
+- [X] ros-melodic-gazebo-plugins
+- [X] ros-melodic-gazebo-ros
 - [X] ros-melodic-geometry-msgs
 - [X] ros-melodic-image-transport
 - [X] ros-melodic-interactive-markers
@@ -81,7 +81,7 @@ We are targeting Mid-December to complete the ROS porting effort.
 - [X] ros-melodic-rqt-rviz
 - [X] ros-melodic-rviz
 - [X] ros-melodic-sensor-msgs
-- [ ] ros-melodic-simulators
+- [X] ros-melodic-simulators
 - [X] ros-melodic-tf
 - [X] ros-melodic-tf2
 - [X] ros-melodic-tf2-eigen
@@ -92,4 +92,3 @@ We are targeting Mid-December to complete the ROS porting effort.
 - [X] ros-melodic-tf2-ros
 - [X] ros-melodic-tf-conversions
 - [X] ros-melodic-viz
-
