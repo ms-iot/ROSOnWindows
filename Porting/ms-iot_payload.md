@@ -83,6 +83,9 @@
 ## list of `init_windows` repos for current porting task with cached commits:
 
 ### 1st Tier Changes
+
+Packages in ros-melodic-ros_base.
+
 `ros-infrastructure`
 * [ms-iot/catkin_pkg](https://github.com/ros-infrastructure/catkin_pkg/compare/master...ms-iot:init_windows)
 * [ms-iot/rosdep](https://github.com/ros-infrastructure/rosdep/compare/master...ms-iot:init_windows)
@@ -113,7 +116,9 @@
 
 ### 2nd Tier Changes
 
-`robot`
+Packages not in ros-melodic-ros_base, but in ros-melodic-desktop_full.
+
+`ros`
 * [ms-iot/diagnostics](https://github.com/ros/diagnostics/compare/indigo-devel...ms-iot:init_windows)
 * [ms-iot/filters](https://github.com/ros/filters/compare/lunar-devel...ms-iot:init_windows)
 * [ms-iot/geometry](https://github.com/ros/geometry/compare/melodic-devel...ms-iot:init_windows)
@@ -123,19 +128,20 @@
 * [ms-iot/urdf](https://github.com/ros/urdf/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/xacro](https://github.com/ros/xacro/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/geometry2](https://github.com/ros/geometry2/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/orocos_kinematics_dynamics](https://github.com/orocos/orocos_kinematics_dynamics/compare/master...ms-iot:init_windows)
+* [ms-iot/resource_retriever](https://github.com/ros/resource_retriever/compare/kinetic-devel...ms-iot:init_windows)
+* [~~ms-iot/angles~~](https://github.com/ros/angles/compare/master...ms-iot:init_windows)
+* [ms-iot/ros_tutorials](https://github.com/ros/ros_tutorials/compare/melodic-devel...ms-iot:init_windows)
 
-`perception`
+`ros-perception`
 * [ms-iot/image_common](https://github.com/ros-perception/image_common/compare/hydro-devel...ms-iot:init_windows)
 * [ms-iot/image_pipeline](https://github.com/ros-perception/image_pipeline/compare/indigo...ms-iot:init_windows)
 * [ms-iot/perception_pcl](https://github.com/ros-perception/perception_pcl/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/vision_opencv](https://github.com/ros-perception/vision_opencv/compare/melodic...ms-iot:init_windows)
+* [ms-iot/laser_geometry](https://github.com/ros-perception/laser_geometry/compare/indigo-devel...ms-iot:init_windows)
 
-`rqt`
+`ros-visualization`
 * [ms-iot/rqt](https://github.com/ros-visualization/rqt/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/qt_gui_core](https://github.com/ros-visualization/qt_gui_core/compare/kinetic-devel...ms-iot:init_windows)
-
-`rqt_common_plugins`
 * [ms-iot/rqt_bag](https://github.com/ros-visualization/rqt_bag/compare/master...ms-iot:init_windows)
 * [ms-iot/rqt_console](https://github.com/ros-visualization/rqt_console/compare/master...ms-iot:init_windows)
 * [ms-iot/rqt_dep](https://github.com/ros-visualization/rqt_dep/compare/master...ms-iot:init_windows)
@@ -144,41 +150,33 @@
 * [ms-iot/rqt_logger_level](https://github.com/ros-visualization/rqt_logger_level/compare/master...ms-iot:init_windows)
 * [ms-iot/rqt_plot](https://github.com/ros-visualization/rqt_plot/compare/master...ms-iot:init_windows)
 * [ms-iot/rqt_shell](https://github.com/ros-visualization/rqt_shell/compare/master...ms-iot:init_windows)
-    * dependency
-    * [ms-iot/python_qt_binding](https://github.com/ros-visualization/python_qt_binding/compare/kinetic-devel...ms-iot:init_windows)
-
-`rqt_robot_plugins`
+* [ms-iot/python_qt_binding](https://github.com/ros-visualization/python_qt_binding/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/rqt_rviz](https://github.com/ros-visualization/rqt_rviz/compare/lunar-devel...ms-iot:init_windows)
+* [ms-iot/rviz](https://github.com/ros-visualization/rviz/compare/melodic-devel...ms-iot:init_windows)
+* [ms-iot/interactive_markers](https://github.com/ros-visualization/interactive_markers/compare/indigo-devel...ms-iot:init_windows)
+* [ms-iot/visualization_tutorials](https://github.com/ros-visualization/visualization_tutorials/compare/kinetic-devel...ms-iot:init_windows)
 
-`simulators`
+`ros-simulation`
 * [ms-iot/gazebo_ros_pkgs](https://github.com/ros-simulation/gazebo_ros_pkgs/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/stage_ros](https://github.com/ros-simulation/stage_ros/compare/lunar-devel...ms-iot:init_windows)
     * dependency
     * [ms-iot/stage-release](https://github.com/ros-gbp/stage-release/compare/release/melodic/stage...ms-iot:init_windows)
 
-`ROS control`
+`ros-controls`
 * [ms-iot/control_toolbox](https://github.com/ros-controls/control_toolbox/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/ros_control](https://github.com/ros-controls/ros_control/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/ros_controllers](https://github.com/ros-controls/ros_controllers/compare/melodic-devel...ms-iot:init_windows)
-    * dependency
-    * [ms-iot/realtime_tools](https://github.com/ros-controls/realtime_tools/compare/melodic-devel...ms-iot:init_windows)
+* [ms-iot/realtime_tools](https://github.com/ros-controls/realtime_tools/compare/melodic-devel...ms-iot:init_windows)
 
-`viz`
-* [ms-iot/rviz](https://github.com/ros-visualization/rviz/compare/melodic-devel...ms-iot:init_windows)
-    * dependency
-    * [ms-iot/interactive_markers](https://github.com/ros-visualization/interactive_markers/compare/indigo-devel...ms-iot:init_windows)
-    * [ms-iot/laser_geometry](https://github.com/ros-perception/laser_geometry/compare/indigo-devel...ms-iot:init_windows)
-    * [ms-iot/resource_retriever](https://github.com/ros/resource_retriever/compare/kinetic-devel...ms-iot:init_windows)
-
-`desktop`
-* [~~ms-iot/angles~~](https://github.com/ros/angles/compare/master...ms-iot:init_windows)
-* [ms-iot/ros_tutorials](https://github.com/ros/ros_tutorials/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/visualization_tutorials](https://github.com/ros-visualization/visualization_tutorials/compare/kinetic-devel...ms-iot:init_windows)
-
-`navigation`
+`ros-planning`
 * [ms-iot/navigation](https://github.com/ros-planning/navigation/compare/melodic-devel...ms-iot:init_windows)
 
+`orocos`
+* [ms-iot/orocos_kinematics_dynamics](https://github.com/orocos/orocos_kinematics_dynamics/compare/master...ms-iot:init_windows)
+
 ### 3rd Tier Changes
+
+Packages beyond ros-melodic-destkop_full.
 
 `moveit`
 * [ms-iot/moveit](https://github.com/ros-planning/moveit/compare/melodic-devel...ms-iot:init_windows)
