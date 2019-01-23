@@ -78,8 +78,11 @@
 * https://github.com/ms-iot/visualization_tutorials.git
 * https://github.com/ms-iot/warehouse_ros.git
 * https://github.com/ms-iot/xacro.git
+* https://github.com/ms-iot/descartes
 
 ## list of `init_windows` repos for current porting task with cached commits:
+
+### 1st Tier Changes
 `ros-infrastructure`
 * [ms-iot/catkin_pkg](https://github.com/ros-infrastructure/catkin_pkg/compare/master...ms-iot:init_windows)
 * [ms-iot/rosdep](https://github.com/ros-infrastructure/rosdep/compare/master...ms-iot:init_windows)
@@ -108,6 +111,8 @@
 * [ms-iot/dynamic_reconfigure](https://github.com/ros/dynamic_reconfigure/compare/master...ms-iot:init_windows)
 * [ms-iot/nodelet_core](https://github.com/ros/nodelet_core/compare/indigo-devel...ms-iot:init_windows)
 
+### 2nd Tier Changes
+
 `robot`
 * [ms-iot/diagnostics](https://github.com/ros/diagnostics/compare/indigo-devel...ms-iot:init_windows)
 * [ms-iot/filters](https://github.com/ros/filters/compare/lunar-devel...ms-iot:init_windows)
@@ -117,6 +122,8 @@
 * [ms-iot/robot_state_publisher](https://github.com/ros/robot_state_publisher/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/urdf](https://github.com/ros/urdf/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/xacro](https://github.com/ros/xacro/compare/melodic-devel...ms-iot:init_windows)
+* [ms-iot/geometry2](https://github.com/ros/geometry2/compare/melodic-devel...ms-iot:init_windows)
+* [ms-iot/orocos_kinematics_dynamics](https://github.com/orocos/orocos_kinematics_dynamics/compare/master...ms-iot:init_windows)
 
 `perception`
 * [ms-iot/image_common](https://github.com/ros-perception/image_common/compare/hydro-devel...ms-iot:init_windows)
@@ -126,6 +133,7 @@
 
 `rqt`
 * [ms-iot/rqt](https://github.com/ros-visualization/rqt/compare/kinetic-devel...ms-iot:init_windows)
+* [ms-iot/qt_gui_core](https://github.com/ros-visualization/qt_gui_core/compare/kinetic-devel...ms-iot:init_windows)
 
 `rqt_common_plugins`
 * [ms-iot/rqt_bag](https://github.com/ros-visualization/rqt_bag/compare/master...ms-iot:init_windows)
@@ -148,6 +156,13 @@
     * dependency
     * [ms-iot/stage-release](https://github.com/ros-gbp/stage-release/compare/release/melodic/stage...ms-iot:init_windows)
 
+`ROS control`
+* [ms-iot/control_toolbox](https://github.com/ros-controls/control_toolbox/compare/kinetic-devel...ms-iot:init_windows)
+* [ms-iot/ros_control](https://github.com/ros-controls/ros_control/compare/melodic-devel...ms-iot:init_windows)
+* [ms-iot/ros_controllers](https://github.com/ros-controls/ros_controllers/compare/melodic-devel...ms-iot:init_windows)
+    * dependency
+    * [ms-iot/realtime_tools](https://github.com/ros-controls/realtime_tools/compare/melodic-devel...ms-iot:init_windows)
+
 `viz`
 * [ms-iot/rviz](https://github.com/ros-visualization/rviz/compare/melodic-devel...ms-iot:init_windows)
     * dependency
@@ -160,6 +175,11 @@
 * [ms-iot/ros_tutorials](https://github.com/ros/ros_tutorials/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/visualization_tutorials](https://github.com/ros-visualization/visualization_tutorials/compare/kinetic-devel...ms-iot:init_windows)
 
+`navigation`
+* [ms-iot/navigation](https://github.com/ros-planning/navigation/compare/melodic-devel...ms-iot:init_windows)
+
+### 3rd Tier Changes
+
 `moveit`
 * [ms-iot/moveit](https://github.com/ros-planning/moveit/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/moveit_visual_tools](https://github.com/ros-planning/moveit_visual_tools/compare/melodic-devel...ms-iot:init_windows)
@@ -170,12 +190,6 @@
     * [ms-iot/srdfdom](https://github.com/ros-planning/srdfdom/compare/melodic-devel...ms-iot:init_windows)
     * [ms-iot/warehouse_ros](https://github.com/ros-planning/warehouse_ros/compare/kinetic-devel...ms-iot:init_windows)
 
-`prbt_moveit_config`
-* [ms-iot/ros_control](https://github.com/ros-controls/ros_control/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/ros_controllers](https://github.com/ros-controls/ros_controllers/compare/melodic-devel...ms-iot:init_windows)
-    * dependency
-    * [ms-iot/realtime_tools](https://github.com/ros-controls/realtime_tools/compare/melodic-devel...ms-iot:init_windows)
-
 `universal_robot`
 * [ms-iot/universal_robot](https://github.com/ros-industrial/universal_robot/compare/kinetic-devel...ms-iot:init_windows)
 
@@ -184,19 +198,13 @@
     * dependency
     * [ms-iot/abseil-cpp](https://github.com/Eurecat/abseil-cpp/compare/master...ms-iot:init_windows)
 
-`navigation`
-* [ms-iot/navigation](https://github.com/ros-planning/navigation/compare/melodic-devel...ms-iot:init_windows)
-
-others
-* [ms-iot/control_toolbox](https://github.com/ros-controls/control_toolbox/compare/kinetic-devel...ms-iot:init_windows)
-* [ms-iot/geometry2](https://github.com/ros/geometry2/compare/melodic-devel...ms-iot:init_windows)
+`others`
 * [ms-iot/industrial_core](https://github.com/ros-industrial/industrial_core/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/joystick_drivers](https://github.com/ros-drivers/joystick_drivers/compare/master...ms-iot:init_windows)
 * [~~ms-iot/metapackages~~](https://github.com/ros/metapackages/compare/melodic-devel...ms-iot:init_windows)
 * [~~ms-iot/open_karto~~](https://github.com/ros-perception/open_karto/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/orocos_kinematics_dynamics](https://github.com/orocos/orocos_kinematics_dynamics/compare/master...ms-iot:init_windows)
-* [ms-iot/qt_gui_core](https://github.com/ros-visualization/qt_gui_core/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/rosserial](https://github.com/ros-drivers/rosserial/compare/melodic-devel...ms-iot:init_windows)
 * [~~ms-iot/slam_karto~~](https://github.com/ros-perception/slam_karto/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/sparse_bundle_adjustment](https://github.com/ros-perception/sparse_bundle_adjustment/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/teleop_twist_joy](https://github.com/ros-teleop/teleop_twist_joy/compare/indigo-devel...ms-iot:init_windows)
+* [ms-iot/descartes](https://github.com/ros-industrial-consortium/descartes/compare/kinetic-devel...ms-iot:init_windows)
