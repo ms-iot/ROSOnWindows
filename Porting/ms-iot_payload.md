@@ -111,7 +111,7 @@ Packages in ros-melodic-ros_base.
 `ros_base`
 * [~~ms-iot/actionlib~~](https://github.com/ros/actionlib/compare/indigo-devel...ms-iot:init_windows)
 * [ms-iot/bond_core](https://github.com/ros/bond_core/compare/kinetic-devel...ms-iot:init_windows)
-* [ms-iot/dynamic_reconfigure](https://github.com/ros/dynamic_reconfigure/compare/master...ms-iot:init_windows)
+* [ms-iot/dynamic_reconfigure](https://github.com/ros/dynamic_reconfigure/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/nodelet_core](https://github.com/ros/nodelet_core/compare/indigo-devel...ms-iot:init_windows)
 
 ### 2nd Tier Changes
