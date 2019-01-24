@@ -128,7 +128,7 @@ Packages not in ros-melodic-ros_base, but in ros-melodic-desktop_full.
 * [ms-iot/urdf](https://github.com/ros/urdf/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/xacro](https://github.com/ros/xacro/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/geometry2](https://github.com/ros/geometry2/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/resource_retriever](https://github.com/ros/resource_retriever/compare/kinetic-devel...ms-iot:init_windows)
+* [~~ms-iot/resource_retriever~~](https://github.com/ros/resource_retriever/compare/kinetic-devel...ms-iot:init_windows)
 * [~~ms-iot/angles~~](https://github.com/ros/angles/compare/master...ms-iot:init_windows)
 * [ms-iot/ros_tutorials](https://github.com/ros/ros_tutorials/compare/melodic-devel...ms-iot:init_windows)
 
