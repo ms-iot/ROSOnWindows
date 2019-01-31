@@ -158,9 +158,9 @@ Packages not in ros-melodic-ros_base, but in ros-melodic-desktop_full.
 
 `ros-simulation`
 * [ms-iot/gazebo_ros_pkgs](https://github.com/ros-simulation/gazebo_ros_pkgs/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/stage_ros](https://github.com/ros-simulation/stage_ros/compare/lunar-devel...ms-iot:init_windows)
+* [~~ms-iot/stage_ros~~](https://github.com/ros-simulation/stage_ros/compare/lunar-devel...ms-iot:init_windows)
     * dependency
-    * [ms-iot/stage-release](https://github.com/ros-gbp/stage-release/compare/release/melodic/stage...ms-iot:init_windows)
+    * [~~ms-iot/stage-release~~](https://github.com/ros-gbp/stage-release/compare/release/melodic/stage...ms-iot:init_windows)
 
 `ros-controls`
 * [ms-iot/control_toolbox](https://github.com/ros-controls/control_toolbox/compare/kinetic-devel...ms-iot:init_windows)
