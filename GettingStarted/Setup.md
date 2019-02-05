@@ -65,7 +65,7 @@ ROS makes heavy use of the Windows Command Prompt. You will often find that you 
 
 NOTE:
 > Each command prompt you open where you intend to use ROS commands, you'll need to run the setup script.
-> it is helpful to change the ROS shortcut to add `&& c:\opt\ros\melodic\x64\setup.bat` 
+> It is helpful to change the ROS shortcut to add `&& c:\opt\ros\melodic\x64\setup.bat` 
 
 + Open the Visual Studio command prompt created above.
 + Execute the ROS setup script `c:\opt\ros\melodic\x64\setup.bat`
