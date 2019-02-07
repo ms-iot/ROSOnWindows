@@ -139,7 +139,7 @@ Packages not in ros-melodic-ros_base, but in ros-melodic-desktop_full.
 * [~~ms-iot/image_pipeline~~](https://github.com/ros-perception/image_pipeline/compare/indigo...ms-iot:init_windows)
 * [ms-iot/perception_pcl](https://github.com/ros-perception/perception_pcl/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/vision_opencv](https://github.com/ros-perception/vision_opencv/compare/melodic...ms-iot:init_windows)
-* [ms-iot/laser_geometry](https://github.com/ros-perception/laser_geometry/compare/indigo-devel...ms-iot:init_windows)
+* [~~ms-iot/laser_geometry~~](https://github.com/ros-perception/laser_geometry/compare/indigo-devel...ms-iot:init_windows)
 
 `ros-visualization`
 * [ms-iot/rqt](https://github.com/ros-visualization/rqt/compare/kinetic-devel...ms-iot:init_windows)
