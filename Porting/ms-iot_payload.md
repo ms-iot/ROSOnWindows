@@ -2,6 +2,8 @@
 
 ## List of repos redirected in [rosdistro-db (ms-iot)](https://github.com/ms-iot/rosdistro-db/blob/init_windows/melodic/distribution.yaml):
 
+**TODO: remove redirection to ms-iot repos without change**
+
 *all repos in `init_windows` branch unless specified*
 * https://github.com/ms-iot/abseil-cpp.git
 * https://github.com/ms-iot/actionlib.git
@@ -97,13 +99,13 @@ Packages in ros-melodic-ros_base.
 `ros_core`
 * [ms-iot/class_loader](https://github.com/ros/class_loader/compare/melodic-devel...ms-iot:init_windows)
 * [~~ms-iot/common_msgs~~](https://github.com/ros/common_msgs/compare/jade-devel...ms-iot:init_windows)
-* [ms-iot/gencpp](https://github.com/ros/gencpp/compare/indigo-devel...ms-iot:init_windows)
+* [~~ms-iot/gencpp~~](https://github.com/ros/gencpp/compare/indigo-devel...ms-iot:init_windows)
 * [ms-iot/pluginlib](https://github.com/ros/pluginlib/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/ros](https://github.com/ros/ros/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/ros_comm](https://github.com/ros/ros_comm/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/rosconsole](https://github.com/ros/rosconsole/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/rosconsole_bridge](https://github.com/ros/rosconsole_bridge/compare/kinetic-devel...ms-iot:init_windows)
-* [ms-iot/roscpp_core](https://github.com/ros/roscpp_core/compare/kinetic-devel...ms-iot:init_windows)
+* [~~ms-iot/rosconsole~~](https://github.com/ros/rosconsole/compare/melodic-devel...ms-iot:init_windows)
+* [~~ms-iot/rosconsole_bridge~~](https://github.com/ros/rosconsole_bridge/compare/kinetic-devel...ms-iot:init_windows)
+* [~~ms-iot/roscpp_core~~](https://github.com/ros/roscpp_core/compare/kinetic-devel...ms-iot:init_windows)
 * [~~ms-iot/rospack~~](https://github.com/ros/rospack/compare/lunar-devel...ms-iot:init_windows)
     * dependency
     * [ms-iot/ros_environment](https://github.com/ros/ros_environment/compare/melodic...ms-iot:init_windows)
@@ -164,9 +166,9 @@ Packages not in ros-melodic-ros_base, but in ros-melodic-desktop_full.
 
 `ros-controls`
 * [ms-iot/control_toolbox](https://github.com/ros-controls/control_toolbox/compare/kinetic-devel...ms-iot:init_windows)
-* [ms-iot/ros_control](https://github.com/ros-controls/ros_control/compare/melodic-devel...ms-iot:init_windows)
+* [~~ms-iot/ros_control~~](https://github.com/ros-controls/ros_control/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/ros_controllers](https://github.com/ros-controls/ros_controllers/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/realtime_tools](https://github.com/ros-controls/realtime_tools/compare/melodic-devel...ms-iot:init_windows)
+* [~~ms-iot/realtime_tools~~](https://github.com/ros-controls/realtime_tools/compare/melodic-devel...ms-iot:init_windows), don't need to check in the `SharedPtr` change
 
 `ros-planning`
 * [ms-iot/navigation](https://github.com/ros-planning/navigation/compare/melodic-devel...ms-iot:init_windows)
