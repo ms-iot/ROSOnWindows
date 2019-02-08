@@ -208,3 +208,10 @@ Packages beyond ros-melodic-destkop_full.
 * [ms-iot/sparse_bundle_adjustment](https://github.com/ros-perception/sparse_bundle_adjustment/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/teleop_twist_joy](https://github.com/ros-teleop/teleop_twist_joy/compare/indigo-devel...ms-iot:init_windows)
 * [ms-iot/descartes](https://github.com/ros-industrial-consortium/descartes/compare/kinetic-devel...ms-iot:init_windows)
+
+## Other informations
+The progress of upstream is tracked under [projects](https://github.com/ms-iot/ROSOnWindows/projects).
+### Open pull requests from MSFT contributors
+* [pull requests from @johnsonshih](https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+author%3Ajohnsonshih+archived%3Afalse+)
+* [pull requests from @kejxu](https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+author%3Akejxu+archived%3Afalse+)
+* [pull requests from @seanyen-msft](https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+author%3Aseanyen-msft+archived%3Afalse+)
