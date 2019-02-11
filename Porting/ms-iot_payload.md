@@ -124,7 +124,7 @@ Packages not in ros-melodic-ros_base, but in ros-melodic-desktop_full.
 * [ms-iot/diagnostics](https://github.com/ros/diagnostics/compare/indigo-devel...ms-iot:init_windows)
 * [~~ms-iot/filters~~](https://github.com/ros/filters/compare/lunar-devel...ms-iot:init_windows)
 * [ms-iot/geometry](https://github.com/ros/geometry/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/joint_state_publisher](https://github.com/ros/joint_state_publisher/compare/kinetic-devel...ms-iot:init_windows)
+* [~~ms-iot/joint_state_publisher~~](https://github.com/ros/joint_state_publisher/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/kdl_parser](https://github.com/ros/kdl_parser/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/robot_state_publisher](https://github.com/ros/robot_state_publisher/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/urdf](https://github.com/ros/urdf/compare/melodic-devel...ms-iot:init_windows)
