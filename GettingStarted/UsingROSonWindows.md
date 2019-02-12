@@ -25,11 +25,6 @@ Linux has a neat shortcut for refering to the users' home directory `~`.
 
 Windows - not so much - Please use `%USERPROFILE%` when you see `~` in documentation.
 
-
-## $(find ...) idiom to package:// url
-In many cases in ROS, `$(find ...)` is used to locate a resource at runtime. However, the semantics are different on Windows and Linux. 
-To alleviate this, please use `package://<ros package id>/<resource>`. 
-
 ## Paths and ROS commands
 Many ROS Commands are sensitive to the drive letter they are executed from. This manifests in problems such as rosdeps not resolving correctly. 
 
