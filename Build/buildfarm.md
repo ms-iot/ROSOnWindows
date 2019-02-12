@@ -28,7 +28,7 @@ There are 3 major components for this BuildFarm:
 
 To monitor **ROS on Windows** bring-up progress, we use Azure Pipeline as the CI\CD environment.
 
-The main entry for the ROS build process is [BuildROS.vsts-ci.yaml](\tools\BuildROS.vsts-ci.yaml), and we can break it down into:
+The main entry for the ROS build process is [BuildROS.vsts-ci.yaml](https://ros-win.visualstudio.com/_git/ros-win?path=%2Ftools%2FBuildROS.vsts-ci.yml&version=GBmaster), and we can break it down into:
 1. Setup Cholatey server to https://roswin.azurewebsites.net
 2. Walk through the source installation.
 3. Pack the binary output into Chocolatey package.
