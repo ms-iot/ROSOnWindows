@@ -17,6 +17,12 @@ If you use Visual Studio Code, then the [ROS for VSCode plugin](https://marketpl
 
 
 # Windows vs Linux
+## C++ 17
+In your CMakeLists.txt add the compile option:
+`add_compile_options(/std:c++latest)`
+
+
+
 ## Directory Separators
 Windows uses backslash `\` whereas Linux uses forward slash `/`. As we encounter path processing, we've been replacing them with the Python or Boost equivelents.
 
