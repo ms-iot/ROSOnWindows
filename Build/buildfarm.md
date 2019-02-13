@@ -17,6 +17,11 @@
 | ros-melodic-ros_base | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.ros_base)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=5) |
 | ros-melodic-ros_core | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.ros_core)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=22) |
 
+| Additional Stack | Build Status |
+|-----|-----|
+| ros-melodic-moveit | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.moveit?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=29&branchName=master) |
+| ros-melodic-cartographer_ros | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/build.ros.melodic.cartographer_ros?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=44&branchName=master) |
+
 ## BuildFarm Introduction
 
 There are 3 major components for this BuildFarm:
