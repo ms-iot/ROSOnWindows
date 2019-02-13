@@ -101,7 +101,7 @@ Packages in ros-melodic-ros_base.
 * [~~ms-iot/common_msgs~~](https://github.com/ros/common_msgs/compare/jade-devel...ms-iot:init_windows)
 * [~~ms-iot/gencpp~~](https://github.com/ros/gencpp/compare/indigo-devel...ms-iot:init_windows)
 * [ms-iot/pluginlib](https://github.com/ros/pluginlib/compare/melodic-devel...ms-iot:init_windows)
-* [~~ms-iot/ros~~](https://github.com/ros/ros/compare/kinetic-devel...ms-iot:init_windows)
+* [ms-iot/ros](https://github.com/ros/ros/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/ros_comm](https://github.com/ros/ros_comm/compare/melodic-devel...ms-iot:init_windows)
 * [~~ms-iot/rosconsole~~](https://github.com/ros/rosconsole/compare/melodic-devel...ms-iot:init_windows)
 * [~~ms-iot/rosconsole_bridge~~](https://github.com/ros/rosconsole_bridge/compare/kinetic-devel...ms-iot:init_windows)
