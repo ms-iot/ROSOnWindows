@@ -88,10 +88,15 @@
 
 Packages in ros-melodic-ros_base.
 
+`ros`
+* [~~ms-iot/rosdistro-db~~](https://github.com/ros/rosdistro/compare/master...ms-iot:init_windows)
+
 `ros-infrastructure`
 * [ms-iot/catkin_pkg](https://github.com/ros-infrastructure/catkin_pkg/compare/master...ms-iot:init_windows)
 * [ms-iot/rosdep](https://github.com/ros-infrastructure/rosdep/compare/master...ms-iot:init_windows)
-* [~~ms-iot/rosdistro-db~~](https://github.com/ros/rosdistro/compare/master...ms-iot:init_windows)
+* [ms-iot/rosinstall_generator](https://github.com/ros-infrastructure/rosinstall_generator/compare/master...ms-iot:init_windows)
+* [ms-iot/wstool](https://github.com/vcstools/wstool/compare/master...ms-iot:init_windows)
+* [ms-iot/vcstools](https://github.com/vcstools/vcstools/compare/master...ms-iot:init_windows)
 
 `catkin`
 * [ms-iot/catkin](https://github.com/ros/catkin/compare/kinetic-devel...ms-iot:init_windows)
