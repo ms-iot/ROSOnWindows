@@ -146,7 +146,7 @@ After a few moments, you will see Gazebo running a simulated world with your sim
 
 ![](../Assets/Turtlebot3_Gazebo_SLAM.gif)
 
-## Run Turtlebot3 with Sensors connected to your devlopment machine.
+## Run Turtlebot3 with Sensors connected to your development machine.
 If you have Turtlebot3 hardware, you can plug the sensors directly into your development machine to iterate on fuctionality with 
 your development machine. Perform the steps to set up the launch file for your development system.
 
