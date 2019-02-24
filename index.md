@@ -2,7 +2,7 @@
 
 # ROS for Windows
 People have always been fascinated by robots. Today advanced robots are changing our lives, both at work and at home. Warehouse robots have enabled next-day deliveries to online shoppers, and many pet owners rely on robotic vacuums to keep their floors clean. 
-Industries as diverse as manufacturing, transportation, healthcare, and real estate are seeing benefits from robots. As robots have advanced, so have the development tools. Many developers leverage the [Robot Operating System (ROS)](//ros.org), 
+Industries as diverse as manufacturing, transportation, healthcare, and real estate are seeing benefits from robots. As robots have advanced, so have the development tools. Many developers leverage the [Robot Operating System (ROS)](http://ros.org), 
 a set of libraries and tools which help you build complex robots. ROS is used in many cutting-edge robotic projects around the world. 
 
 Microsoft is excited to announce an experimental release of ROS1 for Windows. This will bring the manageability and security of Windows 10 IoT Enterprise to the innovative ROS ecosystem.
