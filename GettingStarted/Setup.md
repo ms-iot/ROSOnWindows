@@ -57,8 +57,24 @@ To set up ROS for Windows follow these recommended steps:
 To get things started, install the recommended `desktop` metapackage. A Metapackage is a collection of other packages. The Desktop metapackage refers to a number of other packages needed to build, run, debug and visualize a robot.
 
 +  Open the ROS Command Prompt created above and approve the administrative elevation if not already opened.
-    + `choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1`
-    + `choco upgrade ros-melodic-desktop -y`
+```
+> choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1
+> choco upgrade ros-melodic-desktop -y
+```
+
+> **Advanced Tips:**
+> To co-exist with [ROS2](https://index.ros.org/doc/ros2/Installation/Windows-Install-Binary/), one can isolate and redirect `%ChocolateyInstall%` install space. The example is as followed:
+```
+> :: For the first time installation.
+> mkdir c:\opt\chocolatey
+> set ChocolateyInstall=c:\opt\chocolatey
+> choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1
+> choco upgrade ros-melodic-desktop -y
+>
+> :: Next time when upgrading the installation.
+> set ChocolateyInstall=c:\opt\chocolatey
+> choco upgrade ros-melodic-desktop -y
+```
 
 ### Using ROS on Windows
 ROS makes heavy use of the Windows Command Prompt. You will often find that you need to have many command prompts open at once. 
