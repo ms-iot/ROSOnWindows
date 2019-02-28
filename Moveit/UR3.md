@@ -10,6 +10,7 @@ Getting Started with the Moveit! and UR3 on Windows. If you are new to Moveit! o
 First, you can get started by installing moveit related packages from ROSOnWindows Chocolatey server.
 ```
 (open a command prompt as admin)
+> choco upgrade ros-melodic-desktop_full -y
 > choco upgrade ros-melodic-moveit -y
 ```
 
@@ -21,13 +22,10 @@ Then, create a workspace, checkout and build the Universal Robot Driver for UR3.
 > cd c:\catkin_ws\src
 > git clone https://github.com/ms-iot/universal_robot -b init_windows
 > git clone https://github.com/ms-iot/ur_modern_driver -b init_windows
-> echo > universal_robot\ur_gazebo\CATKIN_IGNORE
 > cd c:\catkin_ws
 > catkin_make
 > c:\catkin_ws\devel\setup.bat
 ```
-
-> As of October 2018, Gazebo has not been ported. We create `universal_robot\ur_gazebo\CATKIN_IGNORE` to asks catkin disabling Gazebo related package.
 
 Now you are almost good to go to run UR3 launch files. Before proceeding, make sure your UR3 controller is on and the network is connected to your dev box.
 
