@@ -126,14 +126,14 @@ Packages in ros-melodic-ros_base.
 Packages not in ros-melodic-ros_base, but in ros-melodic-desktop_full.
 
 `ros`
-* [ms-iot/diagnostics](https://github.com/ros/diagnostics/compare/indigo-devel...ms-iot:init_windows)
+* [ms-iot/diagnostics](https://github.com/ros/diagnostics/compare/indigo-devel...ms-iot:init_windows), need to merge https://github.com/ros/diagnostics/pull/96 after
 * [~~ms-iot/filters~~](https://github.com/ros/filters/compare/lunar-devel...ms-iot:init_windows)
 * [ms-iot/geometry](https://github.com/ros/geometry/compare/melodic-devel...ms-iot:init_windows)
 * [~~ms-iot/joint_state_publisher~~](https://github.com/ros/joint_state_publisher/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/kdl_parser](https://github.com/ros/kdl_parser/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/robot_state_publisher](https://github.com/ros/robot_state_publisher/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/urdf](https://github.com/ros/urdf/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/xacro](https://github.com/ros/xacro/compare/melodic-devel...ms-iot:init_windows)
+* [~~ms-iot/xacro~~](https://github.com/ros/xacro/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/geometry2](https://github.com/ros/geometry2/compare/melodic-devel...ms-iot:init_windows)
 * [~~ms-iot/resource_retriever~~](https://github.com/ros/resource_retriever/compare/kinetic-devel...ms-iot:init_windows)
 * [~~ms-iot/angles~~](https://github.com/ros/angles/compare/master...ms-iot:init_windows)
@@ -149,14 +149,14 @@ Packages not in ros-melodic-ros_base, but in ros-melodic-desktop_full.
 `ros-visualization`
 * [ms-iot/rqt](https://github.com/ros-visualization/rqt/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/qt_gui_core](https://github.com/ros-visualization/qt_gui_core/compare/kinetic-devel...ms-iot:init_windows)
-* [ms-iot/rqt_bag](https://github.com/ros-visualization/rqt_bag/compare/master...ms-iot:init_windows)
-* [ms-iot/rqt_console](https://github.com/ros-visualization/rqt_console/compare/master...ms-iot:init_windows)
-* [ms-iot/rqt_dep](https://github.com/ros-visualization/rqt_dep/compare/master...ms-iot:init_windows)
-* [ms-iot/rqt_graph](https://github.com/ros-visualization/rqt_graph/compare/master...ms-iot:init_windows)
-* [ms-iot/rqt_image_view](https://github.com/ros-visualization/rqt_image_view/compare/master...ms-iot:init_windows)
-* [ms-iot/rqt_logger_level](https://github.com/ros-visualization/rqt_logger_level/compare/master...ms-iot:init_windows)
-* [ms-iot/rqt_plot](https://github.com/ros-visualization/rqt_plot/compare/master...ms-iot:init_windows)
-* [ms-iot/rqt_shell](https://github.com/ros-visualization/rqt_shell/compare/master...ms-iot:init_windows)
+* [~~ms-iot/rqt_bag~~](https://github.com/ros-visualization/rqt_bag/compare/master...ms-iot:init_windows)
+* [~~ms-iot/rqt_console~~](https://github.com/ros-visualization/rqt_console/compare/master...ms-iot:init_windows)
+* [~~ms-iot/rqt_dep~~](https://github.com/ros-visualization/rqt_dep/compare/master...ms-iot:init_windows)
+* [~~ms-iot/rqt_graph~~](https://github.com/ros-visualization/rqt_graph/compare/master...ms-iot:init_windows)
+* [~~ms-iot/rqt_image_view~~](https://github.com/ros-visualization/rqt_image_view/compare/master...ms-iot:init_windows)
+* [~~ms-iot/rqt_logger_level~~](https://github.com/ros-visualization/rqt_logger_level/compare/master...ms-iot:init_windows)
+* [~~ms-iot/rqt_plot~~](https://github.com/ros-visualization/rqt_plot/compare/master...ms-iot:init_windows)
+* [~~ms-iot/rqt_shell~~](https://github.com/ros-visualization/rqt_shell/compare/master...ms-iot:init_windows)
 * [ms-iot/python_qt_binding](https://github.com/ros-visualization/python_qt_binding/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/rqt_rviz](https://github.com/ros-visualization/rqt_rviz/compare/lunar-devel...ms-iot:init_windows)
 * [ms-iot/rviz](https://github.com/ros-visualization/rviz/compare/melodic-devel...ms-iot:init_windows)
@@ -170,7 +170,7 @@ Packages not in ros-melodic-ros_base, but in ros-melodic-desktop_full.
     * [~~ms-iot/stage-release~~](https://github.com/ros-gbp/stage-release/compare/release/melodic/stage...ms-iot:init_windows)
 
 `ros-controls`
-* [ms-iot/control_toolbox](https://github.com/ros-controls/control_toolbox/compare/kinetic-devel...ms-iot:init_windows)
+* [ms-iot/control_toolbox](https://github.com/ros-controls/control_toolbox/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/ros_control](https://github.com/ros-controls/ros_control/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/ros_controllers](https://github.com/ros-controls/ros_controllers/compare/melodic-devel...ms-iot:init_windows)
 * [~~ms-iot/realtime_tools~~](https://github.com/ros-controls/realtime_tools/compare/melodic-devel...ms-iot:init_windows), don't need to check in the `SharedPtr` change
