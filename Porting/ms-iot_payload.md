@@ -173,7 +173,7 @@ Packages not in ros-melodic-ros_base, but in ros-melodic-desktop_full.
 * [ms-iot/control_toolbox](https://github.com/ros-controls/control_toolbox/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/ros_control](https://github.com/ros-controls/ros_control/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/ros_controllers](https://github.com/ros-controls/ros_controllers/compare/melodic-devel...ms-iot:init_windows)
-* [~~ms-iot/realtime_tools~~](https://github.com/ros-controls/realtime_tools/compare/melodic-devel...ms-iot:init_windows), don't need to check in the `SharedPtr` change
+* [~~ms-iot/realtime_tools~~](https://github.com/ros-controls/realtime_tools/compare/melodic-devel...ms-iot:init_windows)
 
 `ros-planning`
 * [ms-iot/navigation](https://github.com/ros-planning/navigation/compare/melodic-devel...ms-iot:init_windows)
