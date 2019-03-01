@@ -86,7 +86,7 @@
 
 ### 1st Tier Changes
 
-Packages in ros-melodic-ros_base.
+Packages in `ros-melodic-ros_base`.
 
 `ros`
 * [~~ms-iot/rosdistro-db~~](https://github.com/ros/rosdistro/compare/master...ms-iot:init_windows)
@@ -123,7 +123,7 @@ Packages in ros-melodic-ros_base.
 
 ### 2nd Tier Changes
 
-Packages not in ros-melodic-ros_base, but in ros-melodic-desktop_full.
+Packages beyond `ros-melodic-ros_base`, within `ros-melodic-desktop_full`.
 
 `ros`
 * [ms-iot/diagnostics](https://github.com/ros/diagnostics/compare/indigo-devel...ms-iot:init_windows), need to merge https://github.com/ros/diagnostics/pull/96 after
@@ -183,7 +183,7 @@ Packages not in ros-melodic-ros_base, but in ros-melodic-desktop_full.
 
 ### 3rd Tier Changes
 
-Packages beyond ros-melodic-destkop_full.
+Packages beyond `ros-melodic-destkop_full`.
 
 `moveit`
 * [ms-iot/moveit](https://github.com/ros-planning/moveit/compare/melodic-devel...ms-iot:init_windows)
