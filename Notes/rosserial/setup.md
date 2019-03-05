@@ -5,8 +5,8 @@
 - ROS on Windows installation: https://github.com/ms-iot/ROSOnWindows/blob/master/GettingStarted/Setup.md
 - Arduino: https://www.arduino.cc/en/Main/Software
     - *note: choose Windows Installer (instead of Windows app) to use Arduino with VS Code*
-- *optional:* VS Code: https://code.visualstudio.com/
-- *optional:* VS Code Arduino plugin: https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino
+- ~~*optional:* VS Code: https://code.visualstudio.com/~~
+- ~~*optional:* VS Code Arduino plugin: https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino~~
 
 ## Install
 
