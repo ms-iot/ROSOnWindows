@@ -79,13 +79,20 @@ Once it has completed downloading the packages and resolving the dependencies yo
 
 Invoke catkin_make_isolated:
 
-    set PATH=c:\opt\rosdeps\x64\bin;%PATH%
-    python .\src\catkin\bin\catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --use-nmake
+```
+set PATH=c:\opt\rosdeps\x64\bin;%PATH%
+python .\src\catkin\bin\catkin_make_isolated --use-nmake --install ^
+--install-space c:/opt/ros/melodic/x64 ^
+-DCMAKE_BUILD_TYPE=Release ^
+-DCMAKE_PREFIX_PATH=c:/opt/ros/melodic/x64;c:/opt/rosdeps/x64 ^
+```
 
 >The rosdep BIN path needs to be added to `PATH` so catkin can find the build tools (e.g. CMake).
 
-Now the packages should have been installed to c:\ros_catkin_ws\install_isolated or to wherever you specified with the --install-space argument. If you look in that directory you will see that a setup.bash file have been generated. To utilize the things installed there simply source that file like so:
+Now the packages should have been installed to `c:/opt/ros/melodic/x64` or to wherever you specified with the --install-space argument. If you look in that directory you will see that a setup.bash file have been generated. To utilize the things installed there simply source that file like so:
  
-    c:\ros_catkin_ws\install_isolated\setup.bat
+```
+c:\opt\ros\melodic\x64\setup.bat
+```
 
 
