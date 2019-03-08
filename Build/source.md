@@ -84,7 +84,7 @@ set PATH=c:\opt\rosdeps\x64\bin;%PATH%
 python .\src\catkin\bin\catkin_make_isolated --use-nmake --install ^
 --install-space c:/opt/ros/melodic/x64 ^
 -DCMAKE_BUILD_TYPE=Release ^
--DCMAKE_PREFIX_PATH=c:/opt/ros/melodic/x64;c:/opt/rosdeps/x64 ^
+-DCMAKE_PREFIX_PATH=c:/opt/ros/melodic/x64;c:/opt/rosdeps/x64
 ```
 
 >The rosdep BIN path needs to be added to `PATH` so catkin can find the build tools (e.g. CMake).
