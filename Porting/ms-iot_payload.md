@@ -219,4 +219,4 @@ The progress of upstream is tracked under [projects](https://github.com/ms-iot/R
 ### Open pull requests from MSFT contributors
 * [pull requests from @johnsonshih](https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+author%3Ajohnsonshih+archived%3Afalse+)
 * [pull requests from @kejxu](https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+author%3Akejxu+archived%3Afalse+)
-* [pull requests from @seanyen-msft](https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+author%3Aseanyen-msft+archived%3Afalse+)
+* [pull requests from @seanyen](https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+author%3Aseanyen+archived%3Afalse+)
