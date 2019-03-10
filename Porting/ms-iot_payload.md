@@ -159,7 +159,7 @@ Packages beyond `ros-melodic-ros_base`, within `ros-melodic-desktop_full`.
 * [~~ms-iot/rqt_shell~~](https://github.com/ros-visualization/rqt_shell/compare/master...ms-iot:init_windows)
 * [ms-iot/python_qt_binding](https://github.com/ros-visualization/python_qt_binding/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/rqt_rviz](https://github.com/ros-visualization/rqt_rviz/compare/lunar-devel...ms-iot:init_windows)
-* [ms-iot/rviz](https://github.com/ros-visualization/rviz/compare/melodic-devel...ms-iot:init_windows)
+* [~~ms-iot/rviz~~](https://github.com/ros-visualization/rviz/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/interactive_markers](https://github.com/ros-visualization/interactive_markers/compare/indigo-devel...ms-iot:init_windows)
 * [ms-iot/visualization_tutorials](https://github.com/ros-visualization/visualization_tutorials/compare/kinetic-devel...ms-iot:init_windows)
 
@@ -192,7 +192,7 @@ Packages beyond `ros-melodic-destkop_full`.
     * [ms-iot/geometric_shapes](https://github.com/ros-planning/geometric_shapes/compare/melodic-devel...ms-iot:init_windows)
     * [ms-iot/random_numbers](https://github.com/ros-planning/random_numbers/compare/master...ms-iot:init_windows)
     * [ms-iot/rviz_visual_tools](https://github.com/PickNikRobotics/rviz_visual_tools/compare/melodic-devel...ms-iot:init_windows)
-    * [ms-iot/srdfdom](https://github.com/ros-planning/srdfdom/compare/melodic-devel...ms-iot:init_windows)
+    * [~~ms-iot/srdfdom~~](https://github.com/ros-planning/srdfdom/compare/melodic-devel...ms-iot:init_windows)
     * [ms-iot/warehouse_ros](https://github.com/ros-planning/warehouse_ros/compare/kinetic-devel...ms-iot:init_windows)
 
 `universal_robot`
