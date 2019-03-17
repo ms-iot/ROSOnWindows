@@ -20,7 +20,7 @@ mkdir d:\workspaces
 mklink c:\workspaces d:\workspaces
 ```
 
-## `install Library TARGETS given no DESTINATION!` 
+## install Library TARGETS given no DESTINATION! 
 
 Windows will generate separate archives and librarys. To handle this, add an ARCHIVE destination:
 ```
@@ -47,6 +47,19 @@ You can disable specific warnings using `#pragma`:
   #pragma warning(disable: 4244)
   #pragma warning(disable: 4661)
 #endif
+```
+## Security Warnings
+Windows deprecates certain C APIs because they are inherently insecure. You will receive a message of the form:
+
+```
+warning C4996: 'xxx': This function or variable may be unsafe. Consider using xxx_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+```
+
+Consider using modern equivelents. If you cannot use a modern equivelent, you can add the following to your cmake files:
+
+```
+add_definitions("/D_CRT_SECURE_NO_WARNINGS")
+add_definitions("/D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS")
 ```
 
 ## C++ versioning
