@@ -59,7 +59,7 @@ To get things started, install the recommended `desktop` metapackage. A Metapack
 +  Open the ROS Command Prompt created above and approve the administrative elevation if not already opened.
 ```
 > choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1
-> choco upgrade ros-melodic-desktop -y
+> choco upgrade ros-melodic-desktop_full -y
 ```
 
 > **Advanced Tips:**
