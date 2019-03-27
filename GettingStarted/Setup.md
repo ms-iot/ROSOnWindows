@@ -30,7 +30,7 @@
             `C:\Windows\System32\cmd.exe /k "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\Tools\VsDevCmd.bat" -arch=amd64 -host_arch=amd64`
     + Name the shortcut *ROS*
     + Set that shortcut as Administrator
-        + Right Click on the shortcut.
+        + Right Click on the shortcut and choose "Properties".
         + Select the Shortcut Tab if not already selected.
         + Press the Advanced button
         + Check the button "Run as Administrator".
