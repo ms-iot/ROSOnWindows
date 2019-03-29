@@ -81,7 +81,9 @@ Invoke catkin_make_isolated:
 
 ```
 set PATH=c:\opt\rosdeps\x64\bin;%PATH%
-python .\src\catkin\bin\catkin_make_isolated --use-nmake --install ^
+
+copy ".\src\catkin\bin\catkin_make_isolated" ".\src\catkin\bin\catkin_make_isolated.py"
+python .\src\catkin\bin\catkin_make_isolated.py --use-nmake --install ^
 --install-space c:/opt/ros/melodic/x64 ^
 -DCMAKE_BUILD_TYPE=Release ^
 -DCMAKE_PREFIX_PATH=c:/opt/ros/melodic/x64;c:/opt/rosdeps/x64
