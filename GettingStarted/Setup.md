@@ -64,6 +64,7 @@ choco upgrade ros-melodic-desktop_full -y
 
 > **Advanced Tips:**
 > To co-exist with [ROS2](https://index.ros.org/doc/ros2/Installation/Windows-Install-Binary/), one can isolate and redirect `%ChocolateyInstall%` install space. The example is as followed:
+
 ```
 mkdir c:\opt\chocolatey
 set ChocolateyInstall=c:\opt\chocolatey
