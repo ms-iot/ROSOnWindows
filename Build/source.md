@@ -5,7 +5,7 @@ Install from source requires that you download and compile the source code on yo
 
 ## Prerequisites
 ### Installing toolchains
-Follow the Prerequisites section from [README](/README.md) to install Visual Studio Build Tool 2017, Cmake, and Chocolatey.
+Follow the Prerequisites section from [Setup.md](/GettingStarted/Setup.md) to install Visual Studio Build Tool 2017, Cmake, and Chocolatey.
 
 > Please note that *ROS for Windows* expects the 64-bit Python2.7 to be installed under `C:\opt\python27amd64\`.
 
