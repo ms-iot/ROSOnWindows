@@ -1,6 +1,4 @@
-![ROS Logo](http://www.ros.org/wp-content/uploads/2013/10/rosorg-logo1.png)
-
-> ROS on Windows is experimental.
+<!-- ![ROS Logo](http://www.ros.org/wp-content/uploads/2013/10/rosorg-logo1.png) -->
 
 # Set up Continuous Integration with ROS on Windows
 
