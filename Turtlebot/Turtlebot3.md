@@ -86,13 +86,13 @@ choco upgrade ros-melodic-desktop_full -y
 ```
 :: build Turtlebot3 workspace.
 cd c:\ws\turtlebot3
-catkin_make install -DCMAKE_BUILD_TYPE=RelWithDebInfo
+catkin_make
 ```
 
 Now inform ROS where to find your turtlebot code by merging the turtlebot install environment with the ROS environment. Please ensure you do this every time you open a command window. 
 
 ```
-c:\ws\turtlebot3\install\setup.bat
+c:\ws\turtlebot3\devel\setup.bat
 ```
 
 > If you forget to merge the turtlebot environment by calling the setup batch file, you'll get an error such as this: 
@@ -107,7 +107,7 @@ To start the simulation, open one elevated command prompt:
 
 ```
 c:\opt\ros\melodic\x64\setup.bat
-c:\ws\turtlebot3\install\setup.bat
+c:\ws\turtlebot3\devel\setup.bat
 set TURTLEBOT3_MODEL=waffle
 roslaunch turtlebot3_fake turtlebot3_fake.launch
 ```
@@ -116,7 +116,7 @@ Then, open another elevated command prompt:
 
 ```
 c:\opt\ros\melodic\x64\setup.bat
-c:\ws\turtlebot3\install\setup.bat
+c:\ws\turtlebot3\devel\setup.bat
 set TURTLEBOT3_MODEL=waffle
 roslaunch turtlebot3_gazebo turtlebot3_simulation.launch
 ```
@@ -137,7 +137,7 @@ choco upgrade ros-melodic-cartographer_ros -y
 ```
 :: run the demo.
 c:\opt\ros\melodic\x64\setup.bat
-c:\ws\turtlebot3\install\setup.bat
+c:\ws\turtlebot3\devel\setup.bat
 set TURTLEBOT3_MODEL=waffle
 roslaunch turtlebot3_gazebo turtlebot3_gazebo_cartographer_demo.launch
 ```
