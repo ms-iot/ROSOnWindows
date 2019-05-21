@@ -1,4 +1,4 @@
-# BuildFarm for ROS on Windows
+# The BuildFarm for ROS on Windows
 
 ## Build Status
 
@@ -38,9 +38,15 @@ When a package is added or updated, `rosdep-au-packages CI` pipeline will be tri
 
 ## ROS Build on Windows
 
-To monitor **ROS on Windows** bring-up progress, we use Azure DevOps as the CI\CD environment.
+The Open Source Robotics Foundation (OSRF) maintains public [buildfarm](http://wiki.ros.org/build.ros.org) for the community. Package maintainers can make use of this public services to release ROS packages in sources or pre-built binaries on certain platforms. Likewise, the Buildfarm for ROS on Windows is an equivalent service to complement Windows developer community.
 
-The main entry point for ROS build is [ros-catkin-build/azure-pipelines.yml](https://dev.azure.com/ros-win/ros-win/_git/ros-windows-build?path=%2Fros-catkin-build%2Fazure-pipelines.yml&version=GBmaster), and we can break it down into:
-1. Setup Cholatey server to https://roswin.azurewebsites.net
-2. Walk through the source installation.
-3. Pack the binary output into Chocolatey package.
+### Nightly Upstream Build Pipelines
+
+One goal of the buildfarm is to make sure every ROS packages built from the upstream (the latest) source code. It is important to catch any regressions as early as possible.
+
+[`ros-catkin-build/azure-pipelines.yml`](https://dev.azure.com/ros-win/ros-win/_git/ros-windows-build?path=%2Fros-catkin-build%2Fazure-pipelines.yml&version=GBmaster) is the entry point for the build. It kicks off [source installation](../Build/source.md) on Azure DevOps and the binaries are packaged into `Chocolatey` packages.
+
+### Pre-built Binaries Release Pipelines
+
+Whenever a nightly build finishes successfully, it kicks off a deployment pipeline, which in turn will publish the `Chocolatey` packages to https://roswin.azurewebsites.net. The nightly build will be firstly released as `prerelease` packages, and a `prerelease` package will be promoted to `release` when it mets quality criteria.
+
