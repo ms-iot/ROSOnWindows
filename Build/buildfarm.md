@@ -22,7 +22,21 @@ There are 3 major components for this BuildFarm:
 2. Build Pipelines for [Variants for ROS Melodic](http://www.ros.org/reps/rep-0150.html).
 3. Build Pipelines for rosdep inventory.
 
-### Build Pipeline for ROS build
+## ROS System Dependencies on Windows
+
+The [ROS target platforms](http://www.ros.org/reps/rep-0003.html) defines a set of tools and packages which many ROS core packages depends on. Those packages and tools are also called ROS system dependencies, and they can be deployed by `rosdep` for any supported platforms.
+
+On Windows, `Chocolatey` is chosen as the default package manager for pre-built packages delivery, `rosdep` is extended to support `Chocolatey` and `pip` on Windows platform, and https://roswin.azurewebsites.net is created to host them for Windows developers.
+
+[`rosdep.yaml`](http://www.ros.org/reps/rep-0111.html) is also extended for Windows. Every **ROS on Windows** environmnet gets additional manifest files. For example, [`win-chocolatey.yaml`](https://github.com/ms-iot/rosdistro-db/blob/init_windows/rosdep/win-chocolatey.yaml) defines what `Chocolatey` or `pip` packages to install when Windows developers uses `rosdep` to resolve dependencies.
+
+### Azure DevOps Pipelines for System Dependencies
+
+Everytime an new package is identified to be onboarded for Windows. The pre-built binaries are generated offline and checked-in to `rosdep-au-packages` repository, which is an automatic packaging repository using the `Chocolatey`-recommended [`Auto Updater`](https://github.com/majkinetor/au).
+
+When a package is added or updated, `rosdep-au-packages CI` pipeline will be triggered, and it starts packaging and generating `.nupkg` files. After the packaging pipeline finishes, `ROSDEP to ROSWIN Public Chocolatey Server` pipeline will be triggered in turn and publishing those newly added\updated packages to https://roswin.azurewebsites.net.
+
+## ROS Build on Windows
 
 To monitor **ROS on Windows** bring-up progress, we use Azure DevOps as the CI\CD environment.
 
@@ -30,7 +44,3 @@ The main entry point for ROS build is [ros-catkin-build/azure-pipelines.yml](htt
 1. Setup Cholatey server to https://roswin.azurewebsites.net
 2. Walk through the source installation.
 3. Pack the binary output into Chocolatey package.
-
-### Build Pipeline for Rosdeps
-
-Additionally, we inventory the rosdep for the system depedencies in a Git repository - [rosdep-au-packages](https://ros-win.visualstudio.com/ros-win/_git/rosdep-au-packages?_a=readme).
