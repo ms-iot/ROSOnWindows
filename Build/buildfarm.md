@@ -32,7 +32,7 @@ On Windows, `Chocolatey` is chosen as the default package manager for pre-built 
 
 ### Azure DevOps Pipelines for System Dependencies
 
-Everytime an new package is identified to be onboarded for Windows. The pre-built binaries are generated offline and checked-in to `rosdep-au-packages` repository, which is an automatic packaging repository using the `Chocolatey`-recommended [`Auto Updater`](https://github.com/majkinetor/au).
+Everytime an new package is identified to be onboarded for Windows. The pre-built binaries are generated offline and uploaded to `rosdep-au-packages` repository. It is an automatic packaging repository using [`Chocolatey Automatic Package Updater Module`](https://github.com/majkinetor/au), and the deployment is automated in Azure DevOps.
 
 When a package is added or updated, `rosdep-au-packages CI` pipeline will be triggered, and it starts packaging and generating `.nupkg` files. After the packaging pipeline finishes, `ROSDEP to ROSWIN Public Chocolatey Server` pipeline will be triggered in turn and publishing those newly added\updated packages to https://roswin.azurewebsites.net.
 
