@@ -24,7 +24,7 @@ There are 3 major components for this BuildFarm:
 
 ## ROS System Dependencies on Windows
 
-The [ROS target platforms](http://www.ros.org/reps/rep-0003.html) defines a set of tools and packages which many ROS core packages depends on. Those packages and tools are also called ROS system dependencies, and they can be deployed by `rosdep` for any supported platforms.
+[ROS target platforms](http://www.ros.org/reps/rep-0003.html) defines a set of tools and packages which ROS packages depends on. Those tools and packages are also called ROS system dependencies, and they can be deployed by `rosdep` for any supported platforms.
 
 On Windows, `Chocolatey` is chosen as the default package manager for pre-built packages delivery, `rosdep` is extended to support `Chocolatey` and `pip` on Windows platform, and https://roswin.azurewebsites.net is created to host them for Windows developers.
 
