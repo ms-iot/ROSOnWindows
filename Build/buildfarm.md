@@ -5,6 +5,15 @@
 | Build Pipeline | Build Status |
 |-----|-----|
 | ros-catkin-build(melodic) | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/ros-catkin-build%20(melodic)?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=54&branchName=master) |
+| ros-colon-build(all) | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/ros-colcon-build%20(all)?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=55&branchName=master) |
+| rosdep-au-packages | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/rosdep-au-packages/rosdep-au-packages%20CI?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=26&branchName=master) |
+
+## Test Results
+
+| Test Pipeline | Test Status |
+|-----|-----|
+| runtests.ros.melodic.desktop | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/runtests.ros.melodic.desktop?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=33&branchName=master) |
+| runtests.ros.melodic.ros_base | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/runtests.ros.melodic.ros_base?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=8&branchName=master) |
 
 ## BuildFarm Introduction
 
