@@ -50,5 +50,5 @@ One goal of the buildfarm is to make sure every ROS packages built from the upst
 
 ### Pre-built Binaries Release Pipelines
 
-Whenever a nightly build finishes successfully, it kicks off a deployment pipeline, which in turn will publish the `Chocolatey` packages to https://roswin.azurewebsites.net. The nightly build will be firstly released as `prerelease` packages, and a `prerelease` package will be promoted to `release` when it mets quality criteria.
+Whenever a nightly build finishes successfully, a deployment will start in turn, which publishes the `Chocolatey` packages to https://roswin.azurewebsites.net. The nightly builds will be firstly published as `prerelease` packages, and a `prerelease` package can be promoted to a `release` package when it mets quality criteria.
 
