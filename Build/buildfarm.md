@@ -1,5 +1,7 @@
 # The BuildFarm for ROS on Windows
 
+The BuildFarm is a public service which is made of a set of tools and Azure DevOps pipelines to continuously build\test\deliver Open Robotics [ROS](https://www.ros.org/) for Windows developer community.
+
 ## Build Status
 
 | Build Pipeline | Build Status |
@@ -16,13 +18,6 @@
 |-----|-----|
 | runtests.ros.melodic.desktop | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/runtests.ros.melodic.desktop?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=33&branchName=master) |
 | runtests.ros.melodic.ros_base | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/runtests.ros.melodic.ros_base?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=8&branchName=master) |
-
-## BuildFarm Introduction
-
-There are 3 major components for this BuildFarm:
-1. **ROS on Windows** hosted Chocolatey server - https://roswin.azurewebsites.net, where ROS system dependencies (aka rosdep) and **ROS on Windows** pre-built binaries are hosted.
-2. Build Pipelines for [Variants for ROS Melodic](http://www.ros.org/reps/rep-0150.html).
-3. Build Pipelines for rosdep inventory.
 
 ## ROS System Dependencies on Windows
 
