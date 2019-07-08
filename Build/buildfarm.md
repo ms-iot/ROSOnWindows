@@ -41,7 +41,7 @@ The Open Source Robotics Foundation (OSRF) maintains public [buildfarm](http://w
 
 One goal of the buildfarm is to make sure every ROS packages built from the upstream (the latest) source code. It is important to catch any regressions as early as possible.
 
-[`ros-catkin-build/azure-pipelines.yml`](https://dev.azure.com/ros-win/ros-win/_git/ros-windows-build?path=%2Fros-catkin-build%2Fazure-pipelines.yml&version=GBmaster) is the entry point for the build. It kicks off [source installation](../Build/source.md) on Azure DevOps and the binaries are packaged into `Chocolatey` packages.
+[`ros-catkin-build/azure-pipelines.yml`](https://github.com/ms-iot/ros-windows-build/blob/master/ros-catkin-build/azure-pipelines.yml) is the entry point for the build. It kicks off [source installation](../Build/source.md) on Azure DevOps and the binaries are packaged into `Chocolatey` packages.
 
 ### Pre-built Binaries Release Pipelines
 
