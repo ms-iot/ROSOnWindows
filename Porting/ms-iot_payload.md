@@ -16,15 +16,12 @@
 * https://github.com/ms-iot/industrial_core.git
 * https://github.com/ms-iot/interactive_markers.git
 * https://github.com/ms-iot/joystick_drivers.git
-* https://github.com/ms-iot/kdl_parser.git
 * https://github.com/ms-iot/laser_geometry.git
 * https://github.com/ms-iot/moveit.git
 * https://github.com/ms-iot/moveit_visual_tools.git
 * https://github.com/ms-iot/navigation.git
-* https://github.com/ms-iot/perception_pcl.git
 * https://github.com/ms-iot/pluginlib.git
 * https://github.com/ms-iot/ros_comm.git
-* https://github.com/ms-iot/ros_controllers.git
 * https://github.com/ms-iot/ros_environment.git
 * https://github.com/ms-iot/ros_tutorials.git
 * https://github.com/ms-iot/ros_type_introspection.git
@@ -37,7 +34,6 @@
 * https://github.com/ms-iot/universal_robot.git
 * https://github.com/ms-iot/urdf.git
 * https://github.com/ms-iot/vision_opencv.git
-* https://github.com/ms-iot/warehouse_ros.git
 * https://github.com/ms-iot/descartes
 
 ## list of `init_windows` repos for current porting task with cached commits:
@@ -71,14 +67,12 @@ Packages beyond `ros-melodic-ros_base`, within `ros-melodic-desktop_full`.
 * [ms-iot/diagnostics](https://github.com/ros/diagnostics/compare/indigo-devel...ms-iot:init_windows), need to merge https://github.com/ros/diagnostics/pull/96 after
 * [~~ms-iot/filters~~](https://github.com/ros/filters/compare/lunar-devel...ms-iot:init_windows)
 * [ms-iot/geometry](https://github.com/ros/geometry/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/kdl_parser](https://github.com/ros/kdl_parser/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/urdf](https://github.com/ros/urdf/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/geometry2](https://github.com/ros/geometry2/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/ros_tutorials](https://github.com/ros/ros_tutorials/compare/melodic-devel...ms-iot:init_windows)
 
 `ros-perception`
 * [ms-iot/image_common](https://github.com/ros-perception/image_common/compare/hydro-devel...ms-iot:init_windows)
-* [ms-iot/perception_pcl](https://github.com/ros-perception/perception_pcl/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/vision_opencv](https://github.com/ros-perception/vision_opencv/compare/melodic...ms-iot:init_windows)
 * [~~ms-iot/laser_geometry~~](https://github.com/ros-perception/laser_geometry/compare/indigo-devel...ms-iot:init_windows)
 
@@ -90,9 +84,6 @@ Packages beyond `ros-melodic-ros_base`, within `ros-melodic-desktop_full`.
 * [~~ms-iot/stage_ros~~](https://github.com/ros-simulation/stage_ros/compare/lunar-devel...ms-iot:init_windows)
     * dependency
     * [~~ms-iot/stage-release~~](https://github.com/ros-gbp/stage-release/compare/release/melodic/stage...ms-iot:init_windows)
-
-`ros-controls`
-* [ms-iot/ros_controllers](https://github.com/ros-controls/ros_controllers/compare/melodic-devel...ms-iot:init_windows), only test code change
 
 `ros-planning`
 * [ms-iot/navigation](https://github.com/ros-planning/navigation/compare/melodic-devel...ms-iot:init_windows)
@@ -106,7 +97,6 @@ Packages beyond `ros-melodic-destkop_full`.
 * [ms-iot/moveit_visual_tools](https://github.com/ros-planning/moveit_visual_tools/compare/melodic-devel...ms-iot:init_windows)
     * dependency
     * [ms-iot/rviz_visual_tools](https://github.com/PickNikRobotics/rviz_visual_tools/compare/melodic-devel...ms-iot:init_windows)
-    * [ms-iot/warehouse_ros](https://github.com/ros-planning/warehouse_ros/compare/kinetic-devel...ms-iot:init_windows)
 
 `universal_robot`
 * [ms-iot/universal_robot](https://github.com/ros-industrial/universal_robot/compare/kinetic-devel...ms-iot:init_windows)
