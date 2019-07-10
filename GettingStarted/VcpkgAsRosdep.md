@@ -2,7 +2,7 @@
 
 # Why we marry Vcpkg with Rosdep
 
-Today, many ROS packages consume OSS libraries which are much beyond [ROS on Windows Chocolatey server](https://roswin.azurewebsites.net/) for `Open Robotics` core packages. To enable developers lighting up more ROS packages on Windows, we leverage the Vcpkg community (which has 1000+ OSS libraries ports), and extend the rosdep to manage Vcpkg packages which are known to work with `ROS on Windows` installation. It means ROS developer can either consume the OOS libraries right away if they are in Vcpkg ports or can contribute Vcpkg ports back to the upstream which can benefit ROS developers on Windows community.
+Today, many ROS packages consume OSS libraries which are much beyond [ROS on Windows Chocolatey server](https://roswin.azurewebsites.net/) for `Open Robotics` core packages. To enable developers lighting up more ROS packages on Windows, we leverage the [Vcpkg](https://github.com/microsoft/vcpkg) community (which has 1000+ OSS libraries ports), and extend `rosdep` to manage Vcpkg packages which are known to work with `ROS on Windows` installation. It means ROS developer can either consume the OOS libraries right away if they are in Vcpkg ports, or they can contribute Vcpkg ports back which benefit ROS community.
 
 # Example Workflow
 
