@@ -6,7 +6,7 @@ Today, many ROS packages consume OSS libraries which are much beyond Microsoft-h
 
 # Example Workflow
 
-Let's take [koboki](http://wiki.ros.org/kobuki) as an example. After checking out the source code and running `rosdep check`, two missing requirements are reported from here: `libusb-dev` and `libftdi-dev`. They are the rosdep keys, so you will need another look up to see what's the actual package names for platforms. By checking `index.ros.org`, they are found as `libusb-dev` and `libftdi-dev` respectively on Ubuntu. By a further check, they are registered as `libftdi-dev (0.20-4build1)` and `libusb-dev (2:0.1.12-28)` on `packages.ubuntu.com`. It gives us an idea what version to use.
+Let's take [koboki](http://wiki.ros.org/kobuki) as an example. After checking out the source code and running `rosdep check`, two missing requirements are reported from here: `libusb-dev` and `libftdi-dev`. They are the rosdep keys, so you will need another look up to see what's the actual package names for platforms. By checking [`index.ros.org`](https://index.ros.org), they are found as `libusb-dev` and `libftdi-dev` respectively on Ubuntu. By a further check, they are registered as [`libftdi-dev (0.20-4build3)`](https://packages.ubuntu.com/bionic/libftdi-dev) and [`libusb-dev (2:0.1.12-31)`](https://packages.ubuntu.com/bionic/libusb-dev) on [`packages.ubuntu.com`](https://packages.ubuntu.com), which gives us an idea what version to use.
 
 Back to Vcpkg, `libusb-dev` can be found as `libusb-win32`. You can do `vcpkg install libusb-win32:x64-windows` from the ROS command prompt. Since Vcpkg is integrated with your ROS installation already, developers can do `catkin_make` to iterate on Windows port work. And in this example, `libftdi-dev` is not found in Vcpkg. It is because the library is not ported yet in Vcpkg. You can make a Vcpkg port for it, and contributethe Vcpkg recipe back to [Microsoft\Vcpkg](https://github.com/microsoft/vcpkg).
 
@@ -24,4 +24,4 @@ This new integration is avaiable in the build of `20190617.1.0-pre` and above. T
 
 # Feedback
 
-For any feedback, please open an issue on [GitHub](https://github.com/ms-iot/rosonWindows/issues). We will help you there.
+For any feedback, please open an issue on [ms-iot\ROSOnWindows](https://github.com/ms-iot/rosonWindows/issues). We will help you there.
