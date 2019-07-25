@@ -57,7 +57,7 @@ To get things started, install the recommended `desktop` metapackage. A Metapack
 +  Open the ROS Command Prompt created above and approve the administrative elevation if not already opened.
 ```
 choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1
-choco upgrade ros-melodic-desktop_full -y
+choco upgrade ros-melodic-desktop_full -y --execution-timeout=0
 ```
 
 > **Advanced Tips:**
@@ -67,11 +67,11 @@ choco upgrade ros-melodic-desktop_full -y
 mkdir c:\opt\chocolatey
 set ChocolateyInstall=c:\opt\chocolatey
 choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1
-choco upgrade ros-melodic-desktop -y
+choco upgrade ros-melodic-desktop -y  --execution-timeout=0
 
 :: Next time when upgrading the installation.
 set ChocolateyInstall=c:\opt\chocolatey
-choco upgrade ros-melodic-desktop -y
+choco upgrade ros-melodic-desktop -y  --execution-timeout=0
 ```
 
 ### Using ROS on Windows
