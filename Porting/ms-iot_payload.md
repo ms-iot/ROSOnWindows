@@ -6,7 +6,6 @@
 
 *all repos in `init_windows` branch unless specified*
 * https://github.com/ms-iot/abseil-cpp.git
-* https://github.com/ms-iot/catkin.git
 * https://github.com/ms-iot/diagnostics.git
 * https://github.com/ms-iot/filters.git
 * https://github.com/ms-iot/gazebo_ros_pkgs.git
@@ -16,9 +15,7 @@
 * https://github.com/ms-iot/industrial_core.git
 * https://github.com/ms-iot/interactive_markers.git
 * https://github.com/ms-iot/joystick_drivers.git
-* https://github.com/ms-iot/laser_geometry.git
 * https://github.com/ms-iot/moveit.git
-* https://github.com/ms-iot/moveit_visual_tools.git
 * https://github.com/ms-iot/navigation.git
 * https://github.com/ms-iot/pluginlib.git
 * https://github.com/ms-iot/ros_comm.git
@@ -26,7 +23,6 @@
 * https://github.com/ms-iot/ros_tutorials.git
 * https://github.com/ms-iot/ros_type_introspection.git
 * https://github.com/ms-iot/rosserial.git
-* https://github.com/ms-iot/rviz_visual_tools.git
 * https://github.com/ms-iot/slam_karto.git
 * https://github.com/ms-iot/sparse_bundle_adjustment.git
 * https://github.com/ms-iot/stage-release.git
@@ -50,12 +46,8 @@ Packages in `ros-melodic-ros_base`.
 * [ms-iot/wstool](https://github.com/vcstools/wstool/compare/master...ms-iot:init_windows)
 * [ms-iot/vcstools](https://github.com/vcstools/vcstools/compare/master...ms-iot:init_windows)
 
-`catkin`
-* [ms-iot/catkin](https://github.com/ros/catkin/compare/kinetic-devel...ms-iot:init_windows)
-
 `ros_core`
 * [ms-iot/pluginlib](https://github.com/ros/pluginlib/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/ros](https://github.com/ros/ros/compare/kinetic-devel...ms-iot:init_windows)
 * [ms-iot/ros_comm](https://github.com/ros/ros_comm/compare/melodic-devel...ms-iot:init_windows)
 * [ms-iot/ros_environment](https://github.com/ros/ros_environment/compare/melodic...ms-iot:init_windows)
 
@@ -74,7 +66,6 @@ Packages beyond `ros-melodic-ros_base`, within `ros-melodic-desktop_full`.
 `ros-perception`
 * [ms-iot/image_common](https://github.com/ros-perception/image_common/compare/hydro-devel...ms-iot:init_windows)
 * [ms-iot/vision_opencv](https://github.com/ros-perception/vision_opencv/compare/melodic...ms-iot:init_windows)
-* [~~ms-iot/laser_geometry~~](https://github.com/ros-perception/laser_geometry/compare/indigo-devel...ms-iot:init_windows)
 
 `ros-visualization`
 * [ms-iot/interactive_markers](https://github.com/ros-visualization/interactive_markers/compare/indigo-devel...ms-iot:init_windows)
@@ -94,9 +85,6 @@ Packages beyond `ros-melodic-destkop_full`.
 
 `moveit`
 * [ms-iot/moveit](https://github.com/ros-planning/moveit/compare/melodic-devel...ms-iot:init_windows)
-* [ms-iot/moveit_visual_tools](https://github.com/ros-planning/moveit_visual_tools/compare/melodic-devel...ms-iot:init_windows)
-    * dependency
-    * [ms-iot/rviz_visual_tools](https://github.com/PickNikRobotics/rviz_visual_tools/compare/melodic-devel...ms-iot:init_windows)
 
 `universal_robot`
 * [ms-iot/universal_robot](https://github.com/ros-industrial/universal_robot/compare/kinetic-devel...ms-iot:init_windows)
@@ -116,6 +104,7 @@ Packages beyond `ros-melodic-destkop_full`.
 
 ## Other informations
 The progress of upstream is tracked under [projects](https://github.com/ms-iot/ROSOnWindows/projects).
+
 ### Open pull requests from MSFT contributors
 * [pull requests from @johnsonshih](https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+author%3Ajohnsonshih+archived%3Afalse+)
 * [pull requests from @kejxu](https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+author%3Akejxu+archived%3Afalse+)
