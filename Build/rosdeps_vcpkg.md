@@ -32,84 +32,84 @@ Also, some projects are Python modules mixing C/C++ sources (e.g., pyside2), and
 
 ## References
 * [ROS1 Target Platforms](http://www.ros.org/reps/rep-0003.html#melodic-morenia-may-2018-may-2023)
-* Comparsion Table of ROS1 System Dependencies and Vcpkg Ports
+* Comparsion Table of ROS1 System Dependencies and vcpkg ports (snap at [2019/09/29](https://github.com/microsoft/vcpkg/tree/94b7f9a6a8c527d7dbdb3b78a46f0874b79712a4))
 
-| Project Name   | Version | Vcpkg ports? |
-|-------|-----|-----|
-| libflann | 1.9.1            | 1.9.1-8 |
-| zlib | 1.2.11               | 1.2.11-3 |
-| octomap | 1.9.0             | cefed0c1d79afafa5aeb05273cf1246b093b771c-3? |
-| libglew | 2.1.0             | 2.1.0-1 |
-| ogre | 1.10.11              | 1.10.11 |
-| libompl | 1.2.2             | No |
-| assimp | 4.0.1              | 4.1.0-3 |
-| boost | 1.66.0              | 1.68.0 |
-| bullet3 | 2.87.0            | 2.87 |
-| bzip2 | 1.0.6               | 1.0.6-3 |
-| console_bridge | 0.4.0      | 0.3.2-3 |
-| libccd | 2.0.0              | 2.0.0-2 |
-| libcurl | 7.58.0            | 7.61.1-1 |
-| libfcl | 0.5.0              | 0.5.0-3 |
-| libjpeg-turbo | 1.5.3       | 1.5.3-1 |
-| libopencv | 3.4.1           | 3.4.3-3 |
-| cppunit | 1.12.1            | 1.14.0 |
-| libpng | 1.6.35             | 1.6.35-1 |
-| eigen | 3.3.4               | 3.3.5 |
-| libqhull | 2015.2.0         | 2015.2-3 |
-| freeglut | 3.0.0            | 3.0.0-5 |
-| log4cxx | 0.10.0            | No |
-| google-mock | 1.8.0         | 1.8.1-1 (gtest) |
-| cairo | 1.15.12             | 1.15.8-4 |
-| google-test | 1.8.0         | 1.8.1-1 |
-| gtk2 | 2.22.1               | No |
-| gtk3 | 3.22.19              | 3.22.19-2 |
-| poco | 1.8.1                | 1.9.0-1 |
-| pyqt5 | 5.10.1              | No (python) |
-| OpenNI | 1.0.0??              | No |
-| OpenNI2 | 1.0.0??             | 2.2.0.33-7 |
-| clapack | 3.2.1             | 3.2.1-1 |
-| gflags | 2.2.1              | 2.2.2-1 |
-| pyside2 | 5.10.1            | No (python) |
-| glog | 0.3.5                | 0.3.5-1 |
-| openblas | 0.2.20           | 0.2.20-2 |
-| suitesparse | 1.4.0??         | 5.1.2 |
-| metis | 5.1.0               | 5.1.0-2 |
-| sdl | 1.2.15                | 1.2.15-3 |
-| protobuf | 3.6.1            | 3.6.1-4 |
-| freeimage | 3.17.0          | 3.18.0-2 |
-| cppzmq | 4.2.2              | 4.2.2-1 |
-| zeromq | 4.2.5              | 2018-11-01? |
-| dlfcn-win32 | 1.1.1         | 1.1.1-1 |
-| libwebp | 0.6.1             | 0.6.1-2 |
-| openjpeg | 2.3.0            | 2.3.0 |
-| tiff | 4.0.9                | 4.0.10-1 |
-| ilmbase | 2.2.1             | 2.2.1-1 |
-| sdl_image | 1.2.12          | No? |
-| jxrlib | 1.1.0              | 1.1-4 |
-| sip | 4.19.8                | No (python) |
-| tinyxml | 2.6.2             | 2.6.2-2 |
-| libraw | 0.19.0             | 0.19.0-1 |
-| tinyxml2 | 6.1.0            | 6.2.0 |
-| liblzma | 5.2.4             | 5.2.4 |
-| urdfdom | 1.0.0             | 1.0.0-2 |
-| openexr | 2.2.1             | 2.2.1-1 |
-| urdfdom_headers | 1.0.0     | 1.0.0-2 |
-| lcms | 2.8.0                | 2.8-5 |
-| yaml-cpp | 0.5.3            | 0.6.2-2 |
-| jasper | 2.0.14             | 2.0.14-1 |
-| ceres | 1.14.0              | 1.14.0-1 |
-| qwt | 6.1.3                 | 6.1.3-6 |
-| gazebo9 | 9.4.1             | No |
-| libfltk | 1.3.4             | 1.3.4-5 |
-| libtbb-dev | 2018.6.0       | 2018_U6 |
-| libgraphviz | 2.41.0        | No |
-| lz4 | 1.8.1                 | 1.8.3 |
-| openssl | 1.1.1             | 1.0.2p-1? |
-| orocos_kdl | 1.3.1          | No |
-| pkg-config | 0.29.2         | No |
-| qt5-sdk | 5.10.1            | 5.11.2 |
-| libtheora | 1.1.1           | 1.2.0alpha1-2 |
-| libogg | 1.3.3              | 1.3.3 |
-| libpcl | 1.8.1              | 1.9.0-1 |
-| libazure-iot-sdk-c | 1.2.10 | 1.2.10-1 |
-| libqglviewer | 2.7.1        | No |
+| package | version | vcpkg port | link | note |
+|:-------:|:-------:|:----------:|:----:|:----:|
+| libflann | `1.9.1` | `2019-04-07-1` (based on `1.9.1`) | [flann](https://github.com/microsoft/vcpkg/tree/master/ports/flann) | |
+| zlib                  | `1.2.11` | `1.2.11-5` | [zlib](https://github.com/microsoft/vcpkg/tree/master/ports/zlib) | |
+| octomap               | `1.9.0` | `2017-03-11-7` (based on `1.8.0`) | [octomap](https://github.com/microsoft/vcpkg/tree/master/ports/octomap) | minor version |
+| libglew               | `2.1.0` | `2.1.0-6` | [glew](https://github.com/microsoft/vcpkg/tree/master/ports/glew) | |
+| ogre                  | `1.10.11` | `1.12.1` | [ogre](https://github.com/microsoft/vcpkg/tree/master/ports/ogre) | minor version |
+| libompl               | `1.2.2` | `1.4.2-2` | [ompl](https://github.com/microsoft/vcpkg/tree/master/ports/ompl) | minor version |
+| assimp                | `4.0.1` | `5.0.0` | [assimp](https://github.com/microsoft/vcpkg/tree/master/ports/assimp) | **major** version |
+| boost                 | `1.66.0` | `1.71.0` | [boost](https://github.com/microsoft/vcpkg/tree/master/ports/boost) | minor version |
+| bullet3               | `2.87.0` | `2.88-1` | [bullet3](https://github.com/microsoft/vcpkg/tree/master/ports/bullet3) | minor version |
+| bzip2                 | `1.0.6` | `1.0.6-4` | [bzip2](https://github.com/microsoft/vcpkg/tree/master/ports/bzip2) | |
+| console_bridge        | `0.4.0` | `0.4.3-1` | [console-bridge](https://github.com/microsoft/vcpkg/tree/master/ports/console-bridge) | |
+| libccd                | `2.0.0` | `2.1-1` | [ccd](https://github.com/microsoft/vcpkg/tree/master/ports/ccd) | minor version |
+| libcurl               | `7.58.0` | `7.66.0` | [curl](https://github.com/microsoft/vcpkg/tree/master/ports/curl) | minor version |
+| libfcl                | `0.5.0` | `0.5.0-6` | [fcl](https://github.com/microsoft/vcpkg/tree/master/ports/fcl) | |
+| libjpeg-turbo         | `1.5.3` | `2.0.2` | [libjepg-turbo](https://github.com/microsoft/vcpkg/tree/master/ports/libjpeg-turbo) | **major** version |
+| libopencv             | `3.4.1` | `4.1.1-1` | [opencv](https://github.com/microsoft/vcpkg/tree/master/ports/opencv) | **major** version |
+| cppunit               | `1.12.1` | `1.14.0` | [cppunit](https://github.com/microsoft/vcpkg/tree/master/ports/cppunit) | minor version |
+| libpng                | `1.6.35` | `1.6.37-4` | [libpng](https://github.com/microsoft/vcpkg/tree/master/ports/libpng) | |
+| eigen                 | `3.3.4` | `3.3.7-3` | [eigen3](https://github.com/microsoft/vcpkg/tree/master/ports/eigen3) | |
+| libqhull              | `2015.2.0` | `7.3.2-1` (based on `2019.1`) | [qhull](https://github.com/microsoft/vcpkg/tree/master/ports/qhull) | **major** version |
+| freeglut              | `3.0.0` | `3.0.0-7` | [freeglut](https://github.com/microsoft/vcpkg/tree/master/ports/freeglut) | |
+| log4cxx               | `0.10.0` | N/A | | ***missing*** |
+| google-mock           | `1.8.0` | `2019-08-14-2` (based on `1.9.0`) | [gtest](https://github.com/microsoft/vcpkg/tree/master/ports/gtest) | minor version |
+| cairo                 | `1.15.12` | `1.16.0-2` | [cairo](https://github.com/microsoft/vcpkg/tree/master/ports/cairo) | minor version |
+| google-test           | `1.8.0` | `2019-08-14-2` (based on `1.9.0`) | [gtest](https://github.com/microsoft/vcpkg/tree/master/ports/gtest) | minor version |
+| gtk2                  | `2.22.1` | N/A | | ***missing*** |
+| gtk3                  | `3.22.19` | `3.22.19-3` | [gtk](https://github.com/microsoft/vcpkg/tree/master/ports/gtk) | |
+| poco                  | `1.8.1` | `1.9.2-1` | [poco](https://github.com/microsoft/vcpkg/tree/master/ports/poco) | minor version |
+| pyqt5                 | `5.10.1` | N/A | | ***Python*** |
+| OpenNI                | unsure | N/A | | ***missing*** |
+| OpenNI2               | unsure | `2.2.0.33-10` | [openni2](https://github.com/microsoft/vcpkg/tree/master/ports/openni2) | |
+| clapack               | `3.2.1` | `3.2.1-12` | [clapack](https://github.com/microsoft/vcpkg/tree/master/ports/clapack) | |
+| gflags                | `2.2.1` | `2.2.2-1` | [gflags](https://github.com/microsoft/vcpkg/tree/master/ports/gflags) | |
+| pyside2               | `5.10.1` | N/A | | ***Python*** |
+| glog                  | `0.3.5` | `0.4.0-2` | [glog](https://github.com/microsoft/vcpkg/tree/master/ports/glog) | minor version |
+| openblas              | `0.2.20` | `0.3.6-6` | [openblas](https://github.com/microsoft/vcpkg/tree/master/ports/openblas) | minor version |
+| suitesparse           | unsure | `5.4.0-3` | [suitesparse](https://github.com/microsoft/vcpkg/tree/master/ports/suitesparse) | |
+| metis                 | `5.1.0` | `5.1.0-5` | [metis](https://github.com/microsoft/vcpkg/tree/master/ports/metis) | |
+| sdl                   | `1.2.15` | `1.2.15-8` | [sdl1](https://github.com/microsoft/vcpkg/tree/master/ports/sdl1) | |
+| protobuf              | `3.6.1` | `3.9.1` | [protobuf](https://github.com/microsoft/vcpkg/tree/master/ports/protobuf) | minor version |
+| freeimage             | `3.17.0` | `3.18.0-7` | [freeimage](https://github.com/microsoft/vcpkg/tree/master/ports/freeimage) | minor version |
+| cppzmq                | `4.2.2` | `4.4.1` | [cppzmq](https://github.com/microsoft/vcpkg/tree/master/ports/cppzmq) | minor version |
+| zeromq                | `4.2.5` | `2019-09-20` (based on `4.3.3`) | [zeromq](https://github.com/microsoft/vcpkg/tree/master/ports/zeromq) | minor version |
+| dlfcn-win32           | `1.1.1` | `1.1.1-3` | [dlfcn-win32](https://github.com/microsoft/vcpkg/tree/master/ports/dlfcn-win32) | |
+| libwebp               | `0.6.1` | `1.0.2-7` | [libwebp](https://github.com/microsoft/vcpkg/tree/master/ports/libwebp) | **major** version |
+| openjpeg              | `2.3.0` | `2.3.1-1` | [openjpeg](https://github.com/microsoft/vcpkg/tree/master/ports/openjpeg) | |
+| tiff                  | `4.0.9` | `4.0.10-7` | [tiff](https://github.com/microsoft/vcpkg/tree/master/ports/tiff) | |
+| ilmbase               | `2.2.1` | `2.3.0` | [ilmbase](https://github.com/microsoft/vcpkg/tree/master/ports/ilmbase) | minor version |
+| sdl_image             | `1.2.12` | N/A | | ***missing*** |
+| jxrlib                | `1.1.0` | `1.1-8` | [jxrlib](https://github.com/microsoft/vcpkg/tree/master/ports/jxrlib) | |
+| sip                   | `4.19.8` | N/A | | ***Python*** |
+| tinyxml               | `2.6.2` | `2.6.2-4` | [tinyxml](https://github.com/microsoft/vcpkg/tree/master/ports/tinyxml) | |
+| libraw                | `0.19.0` | `201903-1` (based on `0.19.0`) | [libraw](https://github.com/microsoft/vcpkg/tree/master/ports/libraw) | |
+| tinyxml2              | `6.1.0` | `7.0.1-2` | [tinyxml2](https://github.com/microsoft/vcpkg/tree/master/ports/tinyxml2) | **major** version |
+| liblzma               | `5.2.4` | `5.2.4-2` | [liblzma](https://github.com/microsoft/vcpkg/tree/master/ports/liblzma) | |
+| urdfdom               | `1.0.0` | `1.0.3-1` | [urdfdom](https://github.com/microsoft/vcpkg/tree/master/ports/urdfdom) | |
+| openexr               | `2.2.1` | `2.3.0-4` | [openexr](https://github.com/microsoft/vcpkg/tree/master/ports/openexr) | minor version |
+| urdfdom_headers       | `1.0.0` | `1.0.4-1` | [urdfdom-headers](https://github.com/microsoft/vcpkg/tree/master/ports/urdfdom-headers) | |
+| lcms                  | `2.8.0` | `2.9` | [lcms](https://github.com/microsoft/vcpkg/tree/master/ports/lcms) | minor version |
+| yaml-cpp              | `0.5.3` | `0.6.2-3` | [yaml-cpp](https://github.com/microsoft/vcpkg/tree/master/ports/yaml-cpp) | minor version |
+| jasper                | `2.0.14` | `2.0.16-2` | [jasper](https://github.com/microsoft/vcpkg/tree/master/ports/jasper) | |
+| ceres                 | `1.14.0` | `1.14.0-6` | [ceres](https://github.com/microsoft/vcpkg/tree/master/ports/ceres) | |
+| qwt                   | `6.1.3` | `6.1.3-8` | [qwt](https://github.com/microsoft/vcpkg/tree/master/ports/qwt) | |
+| gazebo9               | `9.4.1` | N/A | | ***missing*** |
+| libfltk               | `1.3.4` | `1.3.4-7` | [fltk](https://github.com/microsoft/vcpkg/tree/master/ports/fltk) | |
+| libtbb-dev            | `2018.6.0` | `2019_U8-1` | [tbb](https://github.com/microsoft/vcpkg/tree/master/ports/tbb) | |
+| libgraphviz           | `2.41.0` | N/A | | ***missing*** |
+| lz4                   | `1.8.1` | `1.9.2` | [lz4](https://github.com/microsoft/vcpkg/tree/master/ports/lz4) | minor version |
+| openssl               | `1.1.1` | `1.0.2s-1` | [openssl-windows](https://github.com/microsoft/vcpkg/tree/master/ports/openssl-windows) | minor version |
+| orocos_kdl            | `1.3.1` | `1.4-2` | [orocos-kdl](https://github.com/microsoft/vcpkg/tree/master/ports/orocos-kdl) | minor version |
+| pkg-config            | `0.29.2` | N/A | | ***missing*** |
+| qt5-sdk               | `5.10.1` | `5.12.5` | [qt5](https://github.com/microsoft/vcpkg/tree/master/ports/qt5) | minor version |
+| libtheora             | `1.1.1` | `1.2.0alpha1-20170719~vcpkg1-3` | [libtheora](https://github.com/microsoft/vcpkg/tree/master/ports/libtheora) | minor version |
+| libogg                | `1.3.3` | `1.3.4` | [libogg](https://github.com/microsoft/vcpkg/tree/master/ports/libogg) | |
+| libpcl                | `1.8.1` | `1.9.1-9` | [pcl](https://github.com/microsoft/vcpkg/tree/master/ports/pcl) | minor version |
+| libazure-iot-sdk-c    | `1.2.10` | `2019-08-20.1` (based on `1.3.4`) | [azure-iot-sdk-c](https://github.com/microsoft/vcpkg/tree/master/ports/azure-iot-sdk-c) | minor version |
+| libqglviewer          | `2.7.1` | `2.7.0-2` | [libqglviewer](https://github.com/microsoft/vcpkg/tree/master/ports/libqglviewer) | |
