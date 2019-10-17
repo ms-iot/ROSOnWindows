@@ -20,6 +20,15 @@ mkdir d:\workspaces
 mklink c:\workspaces d:\workspaces
 ```
 
+## Visibility
+Windows and Linux handle symbol visibility differently. You may encounter a build error of the form:
+```
+error C2448: '__attribute__': function-style initializer appears to be a function definition
+'visibility': identifier not found
+```
+
+[The GCC visibility documentation](https://gcc.gnu.org/wiki/Visibility) has a good article on handling the compiler differences. This includes adding a header file which uses a compiler switch to select the correct visibility macro handler.
+
 ## install Library TARGETS given no DESTINATION! 
 
 Windows will generate separate archives and librarys. To handle this, add an ARCHIVE destination:
