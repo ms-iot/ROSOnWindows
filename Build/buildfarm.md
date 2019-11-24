@@ -25,7 +25,7 @@ The BuildFarm is a public service which is made of a set of tools and Azure DevO
 
 On Windows, `Chocolatey` is chosen as the default package manager for pre-built packages delivery, `rosdep` is extended to support `Chocolatey` and `pip` on Windows platform, and https://roswin.azurewebsites.net is created to host them for Windows developers.
 
-[`rosdep.yaml`](http://www.ros.org/reps/rep-0111.html) is also extended for Windows. Every **ROS on Windows** environmnet gets additional manifest files. For example, [`win-chocolatey.yaml`](https://github.com/ms-iot/rosdistro-db/blob/init_windows/rosdep/win-chocolatey.yaml) defines what `Chocolatey` or `pip` packages to install when Windows developers uses `rosdep` to resolve dependencies.
+[`rosdep.yaml`](http://www.ros.org/reps/rep-0111.html) is also extended for Windows. Every **ROS on Windows** environment gets additional manifest files. For example, [`win-chocolatey.yaml`](https://github.com/ms-iot/rosdistro-db/blob/init_windows/rosdep/win-chocolatey.yaml) defines what `Chocolatey` or `pip` packages to install when Windows developers uses `rosdep` to resolve dependencies.
 
 ### Azure DevOps Pipelines for System Dependencies
 
