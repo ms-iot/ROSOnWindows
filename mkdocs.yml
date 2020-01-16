@@ -1,0 +1,26 @@
+site_name: ROS on Windows
+repo_url: https://github.com/seanyen/rosonwindows/
+edit_uri: edit/mkdocs/docs/
+nav:
+    - Home: index.md
+    - What's New: Porting/PortingStatus.md
+    - Build Status: Build/buildfarm.md
+    - Get ROS:
+        - Binary Installation: GettingStarted/Setup.md
+        - Source Installation: Build/source.md
+    - Using ROS:
+        - Getting Started: GettingStarted/NewToROS.md
+        - Windows vs. Linux: GettingStarted/UsingROSonWindows.md
+    - Tutorials:
+        - MoveIt: Moveit/moveit_tutorials.md
+        - Universal Robot UR3: Moveit/UR3.md
+        - TurtuleBot 3: Turtlebot/Turtlebot3.md
+    - CI/CD Practices:
+        - Continuous Integration Template: GettingStarted/SetupCI.md
+    - Porting Guide:
+        - Cookbook: Porting/Cookbook.md
+        - Resolving Dependencies by Vcpkg: GettingStarted/VcpkgAsRosdep.md
+    - Support:
+        - Troubleshooting: GettingStarted/Troubleshooting.md
+theme: readthedocs
+use_directory_urls: false
