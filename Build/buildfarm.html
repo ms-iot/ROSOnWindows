@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Build Status - ROS on Windows</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Build Status";
+    var mkdocs_page_input_path = "Build\\buildfarm.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="icon icon-home"> ROS on Windows</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Porting/PortingStatus.html">What's New</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="buildfarm.html">Build Status</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#the-buildfarm-for-ros-on-windows">The BuildFarm for ROS on Windows</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#build-status">Build Status</a></li>
+        
+            <li><a class="toctree-l3" href="#test-results">Test Results</a></li>
+        
+            <li><a class="toctree-l3" href="#ros-system-dependencies-on-windows">ROS System Dependencies on Windows</a></li>
+        
+            <li><a class="toctree-l3" href="#ros-build-on-windows">ROS Build on Windows</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Get ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Setup.html">Binary Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="source.html">Source Installation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/NewToROS.html">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/UsingROSonWindows.html">Windows vs. Linux</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Moveit/moveit_tutorials.html">MoveIt</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Moveit/UR3.html">Universal Robot UR3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Turtlebot/Turtlebot3.html">TurtuleBot 3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">CI/CD Practices</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/SetupCI.html">Continuous Integration Template</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Porting Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Porting/Cookbook.html">Cookbook</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/VcpkgAsRosdep.html">Resolving Dependencies by Vcpkg</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Troubleshooting.html">Troubleshooting</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">ROS on Windows</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Build Status</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ms-iot/rosonwindows/edit/mkdocs/docs/Build/buildfarm.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="the-buildfarm-for-ros-on-windows">The BuildFarm for ROS on Windows</h1>
+<p>The BuildFarm is a public service which is made of a set of tools and Azure DevOps pipelines to continuously build\test\deliver Open Robotics <a href="https://www.ros.org/">ROS</a> for Windows developer community.</p>
+<h2 id="build-status">Build Status</h2>
+<table>
+<thead>
+<tr>
+<th>Build Pipeline</th>
+<th>Build Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ros-catkin-build(melodic)</td>
+<td><a href="https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=54&amp;branchName=master"><img alt="Build Status" src="https://ros-win.visualstudio.com/ros-win/_apis/build/status/ros-catkin-build%20(melodic)?branchName=master" /></a></td>
+</tr>
+<tr>
+<td>ros-colon-build(melodic)</td>
+<td><a href="https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=59&amp;branchName=master"><img alt="Build Status" src="https://ros-win.visualstudio.com/ros-win/_apis/build/status/ros-colcon-build%20(melodic)?branchName=master" /></a></td>
+</tr>
+<tr>
+<td>ros-colon-build(crystal)</td>
+<td><a href="https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=60&amp;branchName=master"><img alt="Build Status" src="https://ros-win.visualstudio.com/ros-win/_apis/build/status/ros-colcon-build%20(crystal)?branchName=master" /></a></td>
+</tr>
+<tr>
+<td>ros-colon-build(dashing)</td>
+<td><a href="https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=61&amp;branchName=master"><img alt="Build Status" src="https://ros-win.visualstudio.com/ros-win/_apis/build/status/ros-colcon-build%20(dashing)?branchName=master" /></a></td>
+</tr>
+<tr>
+<td>rosdep-au-packages</td>
+<td><a href="https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=26&amp;branchName=master"><img alt="Build Status" src="https://ros-win.visualstudio.com/ros-win/_apis/build/status/rosdep-au-packages/rosdep-au-packages%20CI?branchName=master" /></a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="test-results">Test Results</h2>
+<table>
+<thead>
+<tr>
+<th>Test Pipeline</th>
+<th>Test Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>runtests.ros.melodic.desktop</td>
+<td><a href="https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=33&amp;branchName=master"><img alt="Build Status" src="https://ros-win.visualstudio.com/ros-win/_apis/build/status/runtests.ros.melodic.desktop?branchName=master" /></a></td>
+</tr>
+<tr>
+<td>runtests.ros.melodic.ros_base</td>
+<td><a href="https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=8&amp;branchName=master"><img alt="Build Status" src="https://ros-win.visualstudio.com/ros-win/_apis/build/status/runtests.ros.melodic.ros_base?branchName=master" /></a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="ros-system-dependencies-on-windows">ROS System Dependencies on Windows</h2>
+<p><a href="http://www.ros.org/reps/rep-0003.html">ROS target platforms</a> defines a set of tools and packages which ROS packages depends on. Those tools and packages are also called ROS system dependencies, and they can be deployed by <code>rosdep</code> for any supported platforms.</p>
+<p>On Windows, <code>Chocolatey</code> is chosen as the default package manager for pre-built packages delivery, <code>rosdep</code> is extended to support <code>Chocolatey</code> and <code>pip</code> on Windows platform, and https://roswin.azurewebsites.net is created to host them for Windows developers.</p>
+<p><a href="http://www.ros.org/reps/rep-0111.html"><code>rosdep.yaml</code></a> is also extended for Windows. Every <strong>ROS on Windows</strong> environment gets additional manifest files. For example, <a href="https://github.com/ms-iot/rosdistro-db/blob/init_windows/rosdep/win-chocolatey.yaml"><code>win-chocolatey.yaml</code></a> defines what <code>Chocolatey</code> or <code>pip</code> packages to install when Windows developers uses <code>rosdep</code> to resolve dependencies.</p>
+<h3 id="azure-devops-pipelines-for-system-dependencies">Azure DevOps Pipelines for System Dependencies</h3>
+<p>Everytime an new package is identified to be onboarded for Windows. The pre-built binaries are generated offline and uploaded to <code>rosdep-au-packages</code> repository. It is an automatic packaging repository using <a href="https://github.com/majkinetor/au"><code>Chocolatey Automatic Package Updater Module</code></a>, and the deployment is automated in Azure DevOps.</p>
+<p>When a package is added or updated, <code>rosdep-au-packages CI</code> pipeline will be triggered, and it starts packaging and generating <code>.nupkg</code> files. After the packaging pipeline finishes, <code>ROSDEP to ROSWIN Public Chocolatey Server</code> pipeline will be triggered in turn and publishing those newly added\updated packages to https://roswin.azurewebsites.net.</p>
+<h2 id="ros-build-on-windows">ROS Build on Windows</h2>
+<p>The Open Source Robotics Foundation (OSRF) maintains public <a href="http://wiki.ros.org/build.ros.org">buildfarm</a> for the community. Package maintainers can make use of this public services to release ROS packages in sources or pre-built binaries on certain platforms. Likewise, the Buildfarm for ROS on Windows is an equivalent service to complement Windows developer community.</p>
+<h3 id="nightly-upstream-build-pipelines">Nightly Upstream Build Pipelines</h3>
+<p>One goal of the buildfarm is to make sure every ROS packages built from the upstream (the latest) source code. It is important to catch any regressions as early as possible.</p>
+<p><a href="https://github.com/ms-iot/ros-windows-build/blob/master/ros-catkin-build/azure-pipelines.yml"><code>ros-catkin-build/azure-pipelines.yml</code></a> is the entry point for the build. It kicks off <a href="source.html">source installation</a> on Azure DevOps and the binaries are packaged into <code>Chocolatey</code> packages.</p>
+<h3 id="pre-built-binaries-release-pipelines">Pre-built Binaries Release Pipelines</h3>
+<p>Whenever a nightly build finishes successfully, a deployment will start in turn, which publishes the <code>Chocolatey</code> packages to https://roswin.azurewebsites.net. The nightly builds will be firstly published as <code>prerelease</code> packages, and a <code>prerelease</code> package can be promoted to a <code>release</code> package when it mets quality criteria.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../GettingStarted/Setup.html" class="btn btn-neutral float-right" title="Binary Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Porting/PortingStatus.html" class="btn btn-neutral" title="What's New"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../Porting/PortingStatus.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../GettingStarted/Setup.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

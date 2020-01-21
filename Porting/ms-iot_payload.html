@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>ms-iot payloads for ROS on Windows packages - ROS on Windows</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "ms-iot payloads for ROS on Windows packages";
+    var mkdocs_page_input_path = "Porting\\ms-iot_payload.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="icon icon-home"> ROS on Windows</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="PortingStatus.html">What's New</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Build/buildfarm.html">Build Status</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Get ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Setup.html">Binary Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Build/source.html">Source Installation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/NewToROS.html">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/UsingROSonWindows.html">Windows vs. Linux</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Moveit/moveit_tutorials.html">MoveIt</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Moveit/UR3.html">Universal Robot UR3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Turtlebot/Turtlebot3.html">TurtuleBot 3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">CI/CD Practices</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/SetupCI.html">Continuous Integration Template</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Porting Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="Cookbook.html">Cookbook</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/VcpkgAsRosdep.html">Resolving Dependencies by Vcpkg</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Troubleshooting.html">Troubleshooting</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">ROS on Windows</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>ms-iot payloads for ROS on Windows packages</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ms-iot/rosonwindows/edit/mkdocs/docs/Porting/ms-iot_payload.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="ms-iot-payloads-for-ros-on-windows-packages">ms-iot payloads for ROS on Windows packages</h1>
+<h2 id="list-of-repos-redirected-in-rosdistro-db-ms-iot">List of repos redirected in <a href="https://github.com/ms-iot/rosdistro-db/blob/init_windows/melodic/distribution.yaml">rosdistro-db (ms-iot)</a>:</h2>
+<p><strong>TODO: remove redirection to ms-iot repos without change</strong></p>
+<p><em>all repos in <code>init_windows</code> branch unless specified</em>
+* https://github.com/ms-iot/abseil-cpp.git
+* https://github.com/ms-iot/diagnostics.git
+* https://github.com/ms-iot/filters.git
+* https://github.com/ms-iot/gazebo_ros_pkgs.git
+* https://github.com/ms-iot/geometry.git
+* https://github.com/ms-iot/geometry2.git
+* https://github.com/ms-iot/image_common.git
+* https://github.com/ms-iot/industrial_core.git
+* https://github.com/ms-iot/interactive_markers.git
+* https://github.com/ms-iot/joystick_drivers.git
+* https://github.com/ms-iot/moveit.git
+* https://github.com/ms-iot/navigation.git
+* https://github.com/ms-iot/pluginlib.git
+* https://github.com/ms-iot/ros_comm.git
+* https://github.com/ms-iot/ros_environment.git
+* https://github.com/ms-iot/ros_tutorials.git
+* https://github.com/ms-iot/ros_type_introspection.git
+* https://github.com/ms-iot/rosserial.git
+* https://github.com/ms-iot/slam_karto.git
+* https://github.com/ms-iot/sparse_bundle_adjustment.git
+* https://github.com/ms-iot/stage-release.git
+* https://github.com/ms-iot/stage_ros.git
+* https://github.com/ms-iot/universal_robot.git
+* https://github.com/ms-iot/urdf.git
+* https://github.com/ms-iot/vision_opencv.git
+* https://github.com/ms-iot/descartes</p>
+<h2 id="list-of-init_windows-repos-for-current-porting-task-with-cached-commits">list of <code>init_windows</code> repos for current porting task with cached commits:</h2>
+<h3 id="1st-tier-changes">1st Tier Changes</h3>
+<p>Packages in <code>ros-melodic-ros_base</code>.</p>
+<p><code>ros</code>
+* <a href="https://github.com/ros/rosdistro/compare/master...ms-iot:init_windows">~~ms-iot/rosdistro-db~~</a></p>
+<p><code>ros-infrastructure</code>
+* <a href="https://github.com/ros-infrastructure/rosdep/compare/master...ms-iot:init_windows">ms-iot/rosdep</a>
+* <a href="https://github.com/vcstools/wstool/compare/master...ms-iot:init_windows">ms-iot/wstool</a>
+* <a href="https://github.com/vcstools/vcstools/compare/master...ms-iot:init_windows">ms-iot/vcstools</a></p>
+<p><code>ros_core</code>
+* <a href="https://github.com/ros/pluginlib/compare/melodic-devel...ms-iot:init_windows">ms-iot/pluginlib</a>
+* <a href="https://github.com/ros/ros_comm/compare/melodic-devel...ms-iot:init_windows">ms-iot/ros_comm</a>
+* <a href="https://github.com/ros/ros_environment/compare/melodic...ms-iot:init_windows">ms-iot/ros_environment</a></p>
+<h3 id="2nd-tier-changes">2nd Tier Changes</h3>
+<p>Packages beyond <code>ros-melodic-ros_base</code>, within <code>ros-melodic-desktop_full</code>.</p>
+<p><code>ros</code>
+* <a href="https://github.com/ros/diagnostics/compare/indigo-devel...ms-iot:init_windows">ms-iot/diagnostics</a>, need to merge https://github.com/ros/diagnostics/pull/96 after
+* <a href="https://github.com/ros/filters/compare/lunar-devel...ms-iot:init_windows">~~ms-iot/filters~~</a>
+* <a href="https://github.com/ros/geometry/compare/melodic-devel...ms-iot:init_windows">ms-iot/geometry</a>
+* <a href="https://github.com/ros/urdf/compare/melodic-devel...ms-iot:init_windows">ms-iot/urdf</a>
+* <a href="https://github.com/ros/geometry2/compare/melodic-devel...ms-iot:init_windows">ms-iot/geometry2</a>
+* <a href="https://github.com/ros/ros_tutorials/compare/melodic-devel...ms-iot:init_windows">ms-iot/ros_tutorials</a></p>
+<p><code>ros-perception</code>
+* <a href="https://github.com/ros-perception/image_common/compare/hydro-devel...ms-iot:init_windows">ms-iot/image_common</a>
+* <a href="https://github.com/ros-perception/vision_opencv/compare/melodic...ms-iot:init_windows">ms-iot/vision_opencv</a></p>
+<p><code>ros-visualization</code>
+* <a href="https://github.com/ros-visualization/interactive_markers/compare/indigo-devel...ms-iot:init_windows">ms-iot/interactive_markers</a></p>
+<p><code>ros-simulation</code>
+* <a href="https://github.com/ros-simulation/gazebo_ros_pkgs/compare/melodic-devel...ms-iot:init_windows">ms-iot/gazebo_ros_pkgs</a>
+* <a href="https://github.com/ros-simulation/stage_ros/compare/lunar-devel...ms-iot:init_windows">~~ms-iot/stage_ros~~</a>
+    * dependency
+    * <a href="https://github.com/ros-gbp/stage-release/compare/release/melodic/stage...ms-iot:init_windows">~~ms-iot/stage-release~~</a></p>
+<p><code>ros-planning</code>
+* <a href="https://github.com/ros-planning/navigation/compare/melodic-devel...ms-iot:init_windows">ms-iot/navigation</a></p>
+<h3 id="3rd-tier-changes">3rd Tier Changes</h3>
+<p>Packages beyond <code>ros-melodic-destkop_full</code>.</p>
+<p><code>moveit</code>
+* <a href="https://github.com/ros-planning/moveit/compare/melodic-devel...ms-iot:init_windows">ms-iot/moveit</a></p>
+<p><code>universal_robot</code>
+* <a href="https://github.com/ros-industrial/universal_robot/compare/kinetic-devel...ms-iot:init_windows">ms-iot/universal_robot</a></p>
+<p><code>ros_type_introspection</code>
+* <a href="https://github.com/facontidavide/ros_type_introspection/compare/master...ms-iot:init_windows">ms-iot/ros_type_introspection</a>
+    * dependency
+    * <a href="https://github.com/Eurecat/abseil-cpp/compare/master...ms-iot:init_windows">ms-iot/abseil-cpp</a></p>
+<p><code>others</code>
+* <a href="https://github.com/ros-industrial/industrial_core/compare/kinetic-devel...ms-iot:init_windows">ms-iot/industrial_core</a>
+* <a href="https://github.com/ros-drivers/joystick_drivers/compare/master...ms-iot:init_windows">ms-iot/joystick_drivers</a>
+* <a href="https://github.com/ros-drivers/rosserial/compare/melodic-devel...ms-iot:init_windows">ms-iot/rosserial</a>
+* <a href="https://github.com/ros-perception/slam_karto/compare/melodic-devel...ms-iot:init_windows">~~ms-iot/slam_karto~~</a>
+* <a href="https://github.com/ros-perception/sparse_bundle_adjustment/compare/melodic-devel...ms-iot:init_windows">ms-iot/sparse_bundle_adjustment</a>
+* <a href="https://github.com/ros-industrial-consortium/descartes/compare/kinetic-devel...ms-iot:init_windows">ms-iot/descartes</a></p>
+<h2 id="other-informations">Other informations</h2>
+<p>The progress of upstream is tracked under <a href="https://github.com/ms-iot/ROSOnWindows/projects">projects</a>.</p>
+<h3 id="open-pull-requests-from-msft-contributors">Open pull requests from MSFT contributors</h3>
+<ul>
+<li><a href="https://github.com/pulls?utf8=%E2%9C%93&amp;q=is%3Aopen+is%3Apr+author%3Ajohnsonshih+archived%3Afalse+">pull requests from @johnsonshih</a></li>
+<li><a href="https://github.com/pulls?utf8=%E2%9C%93&amp;q=is%3Aopen+is%3Apr+author%3Akejxu+archived%3Afalse+">pull requests from @kejxu</a></li>
+<li><a href="https://github.com/pulls?utf8=%E2%9C%93&amp;q=is%3Aopen+is%3Apr+author%3Aseanyen+archived%3Afalse+">pull requests from @seanyen</a></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

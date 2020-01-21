@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>bond timeout issue - ROS on Windows</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "bond timeout issue";
+    var mkdocs_page_input_path = "Notes\\bond\\bond-creation-timeout.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../../index.html" class="icon icon-home"> ROS on Windows</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Porting/PortingStatus.html">What's New</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Build/buildfarm.html">Build Status</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Get ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../GettingStarted/Setup.html">Binary Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Build/source.html">Source Installation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../GettingStarted/NewToROS.html">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../GettingStarted/UsingROSonWindows.html">Windows vs. Linux</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Moveit/moveit_tutorials.html">MoveIt</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Moveit/UR3.html">Universal Robot UR3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Turtlebot/Turtlebot3.html">TurtuleBot 3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">CI/CD Practices</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../GettingStarted/SetupCI.html">Continuous Integration Template</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Porting Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Porting/Cookbook.html">Cookbook</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../GettingStarted/VcpkgAsRosdep.html">Resolving Dependencies by Vcpkg</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../GettingStarted/Troubleshooting.html">Troubleshooting</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">ROS on Windows</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>bond timeout issue</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ms-iot/rosonwindows/edit/mkdocs/docs/Notes/bond/bond-creation-timeout.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="bond-timeout-issue">bond timeout issue</h1>
+<p><a href="http://wiki.ros.org/nodelet"><code>nodelet</code></a> works with the manager-children structure, and <a href="http://wiki.ros.org/bond"><code>bond</code></a>s are formed between the manager and a child to transmit heartbeat data between the 2. <code>bond</code> is essentially a templated class to create publishers and subscribers for the <code>/&lt;manager&gt;/bond</code> topic. Definitions related to this analysis in the <code>Bond</code> class include:</p>
+<ul>
+<li>the <code>Bond</code> class defines timers for different purposes. The timer related to this issue is the <code>connect_timer_</code> variable</li>
+<li>the <code>Bond</code> class initializes all timers with default timeout values. The default timeout value for <code>connect_timer_</code> is <code>bond::Constants::DEFAULT_CONNECT_TIMEOUT</code>, which is <code>10.0</code> seconds by default</li>
+<li>the <code>Bond</code> class defines both <code>ros::Subscriber sub_</code> and <code>ros::Publisher pub_</code>, which are initialized upon <code>Bond::start()</code></li>
+</ul>
+<p>When a nodelet requests the manager to load code, a bond (if requested) will also be attempted to be formed. During this process, the nodelet manager and the child talk in the following steps:</p>
+<ol>
+<li>child sends <code>/load_nodelet</code> service request to manager</li>
+<li>manager receives <code>/load_nodelet</code> service request and loads nodelet code</li>
+<li>manager process creates bond by calling <code>bond-&gt;start()</code>, and starts sending out heartbeat periodically</li>
+<li>child receives (success) response from <code>/load_nodelet</code> service request</li>
+<li>child process creates bond by calling <code>bond-&gt;start()</code>, and starts sending out heartbeat periodically</li>
+</ol>
+<p>the bond class recognizes a connection between 2 process when its subscriber receives the first heartbeat signal from the other process. when the heartbeat signal takes too long to be received, it will mark the connection as timed out.</p>
+<p>the following is a typical network log when the bond between a nodelet manager process and the nodelet process after removing the timeout. as we can see, the connection ultimately gets established after more than 10 seconds</p>
+<pre><code>[ INFO] [1562890405.970666100]: creating bond [ed2a422e-61dc-4904-88df-2f37e511b35d] in manager process
+[ INFO] [1562890405.994268400]: starting bond [0609a515-48ac-4e2e-8a2c-6fd36ef697ff] in nodelet process
+[ INFO] [1562890406.975367400]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890406.975669500]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890406.975161500) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890407.000803900]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890406.975161500) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890407.101340700]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890407.200162600]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890407.101267700) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890407.974825200]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890407.975015000]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890407.974730900) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890408.000520200]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890407.974730900) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890408.000780400]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890408.100311500]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890408.000661700) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890408.975287600]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890408.975501700]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890408.975150700) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890409.000731900]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890408.975150700) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890409.001049400]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890409.101234600]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890409.000942500) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890409.974813900]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890409.975078600]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890409.974681600) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890410.001003300]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890409.974681600) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890410.001354200]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890410.100709100]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890410.001208600) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890410.975656500]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890410.975812800]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890410.975562800) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890411.000465900]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890410.975562800) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890411.099975500]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890411.200872200]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890411.099921700) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890411.975869200]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890411.976046300]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890411.975763300) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890412.000183100]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890411.975763300) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890412.100907600]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890412.200875300]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890412.100867800) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890412.976709700]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890412.976921500]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890412.976630700) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890413.000973600]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890412.976630700) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890413.100695900]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890413.200892500]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890413.100656800) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890413.975151300]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890413.975465600]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890413.974932100) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890414.000426200]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890413.974932100) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890414.100246400]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890414.201452000]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890414.100197000) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890414.976412200]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890414.976653500]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890414.976246100) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890415.000773000]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890414.976246100) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890415.001125100]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890415.100916600]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890415.001086300) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890415.975091500]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890415.975380900]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890415.974927000) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890416.000446900]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890415.974927000) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890416.100609400]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890416.200165700]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890416.100518600) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890416.974734700]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890416.974915000]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890416.974628100) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890417.000062700]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890416.974628100) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890417.100349300]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890417.200339600]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890417.100282800) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890417.977415300]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890417.977700000]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890417.977267800) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890418.000681500]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890417.977267800) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890418.000986500]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890418.101075300]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890418.000944100) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890418.975271900]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890418.999782000]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890418.975120700) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890419.063147200]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890418.975120700) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890419.100688200]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890419.100421200]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890419.100563900) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890419.200455000]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890419.100563900) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890419.975241800]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
+[ INFO] [1562890419.975373100]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890419.975075500) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890420.000584600]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890419.975075500) ed2a422e-61dc-4904-88df-2f37e511b35d
+[ INFO] [1562890420.100615700]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
+[ INFO] [1562890420.100336000]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890420.100524300) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+[ INFO] [1562890420.200336100]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890420.100524300) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
+</code></pre>
+
+<p>to simplify the explanation, we use the following aliases for the bonds and their publishers and subscribers:</p>
+<ul>
+<li><code>bond [ed2a422e-61dc-4904-88df-2f37e511b35d]</code> created in the manager process as <code>b1</code>, its publisher as <code>b1-pub</code> and subscriber as <code>b1-sub</code></li>
+<li><code>bond [0609a515-48ac-4e2e-8a2c-6fd36ef697ff]</code> created in the nodelet process as <code>b2</code>, its publisher as <code>b2-pub</code> and subscriber as <code>b2-sub</code></li>
+</ul>
+<p>what we have noticed is that even if <code>b2</code> (in the child process) has started to send out heartbeat signal (its own subscriber-callbacks are getting called), <code>b1</code> is not getting any heartbeat callback at all for the first few seconds (around 14 seconds). The log indicates:</p>
+<ul>
+<li>both bonds have been properly initialized</li>
+<li>publishers and subscribers of both bonds have also been properly initialized</li>
+<li><code>b1-sub</code> is not getting signal from <code>b2-pub</code></li>
+<li><code>b2-sub</code> is getting signal from <code>b1-pub</code> as expected</li>
+</ul>
+<p>Noticing that <code>b1</code> with its publisher and subscriber are created earlier than <code>b2</code> and its publisher and subscriber, we can conclude that <code>b1-pub</code> is created earlier than <code>b2-sub</code> (this is because publisher and subscriber creation code is blocking). Meantime, however, <code>b2-pub</code> is created later than <code>b1-sub</code>. Would this be the reason for the behavior above? Searching online would lead us to <a href="https://answers.ros.org/question/10171/ros-msgs-not-received-if-publisher-starts-after-subscriber/">this question</a> that has been discussed on answers.ros. The root cause for this is that when a publisher is created later than a subscriber, the subscriber takes a long time to establish a connection with the newly emerged publisher.</p>
+<p>As explained in the "Node Environment Variables" section of <a href="http://wiki.ros.org/ROS/EnvironmentVariables">this ROS documentation</a>, when a machine has more than one network name this problem starts to emerge. To work around it, use the <code>ROS_IP</code> or <code>ROS_HOSTNAME</code> environment variable to specify a designated connection. The network log proves that it works:</p>
+<pre><code>[ INFO] [1562890762.216079700]: creating bond [469d6a4a-6f6c-40e9-a35a-05526812d10e] in manager process
+[ INFO] [1562890763.272645100]: starting bond [260dff49-6afa-47a3-b288-fb560cd53edc] in nodelet process
+[ INFO] [1562890763.220602400]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: heartbeat - 1
+[ INFO] [1562890763.220870700]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890763.220382500) 469d6a4a-6f6c-40e9-a35a-05526812d10e
+[ INFO] [1562890764.282294900]: 260dff49-6afa-47a3-b288-fb560cd53edc: bond status callback - (1562890763.220382500) 469d6a4a-6f6c-40e9-a35a-05526812d10e
+[ INFO] [1562890764.382758000]: 260dff49-6afa-47a3-b288-fb560cd53edc: heartbeat - 1
+[ INFO] [1562890763.382176600]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890764.382646800) 260dff49-6afa-47a3-b288-fb560cd53edc
+[ INFO] [1562890764.482311800]: 260dff49-6afa-47a3-b288-fb560cd53edc: bond status callback - (1562890764.382646800) 260dff49-6afa-47a3-b288-fb560cd53edc
+[ INFO] [1562890764.220152000]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: heartbeat - 1
+[ INFO] [1562890764.220486600]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890764.220003500) 469d6a4a-6f6c-40e9-a35a-05526812d10e
+[ INFO] [1562890765.282785900]: 260dff49-6afa-47a3-b288-fb560cd53edc: bond status callback - (1562890764.220003500) 469d6a4a-6f6c-40e9-a35a-05526812d10e
+[ INFO] [1562890765.382817700]: 260dff49-6afa-47a3-b288-fb560cd53edc: heartbeat - 1
+[ INFO] [1562890764.382367100]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890765.382671600) 260dff49-6afa-47a3-b288-fb560cd53edc
+[ INFO] [1562890765.482481400]: 260dff49-6afa-47a3-b288-fb560cd53edc: bond status callback - (1562890765.382671600) 260dff49-6afa-47a3-b288-fb560cd53edc
+[ INFO] [1562890765.221731600]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: heartbeat - 1
+[ INFO] [1562890765.222049500]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890765.221565600) 469d6a4a-6f6c-40e9-a35a-05526812d10e
+[ INFO] [1562890766.282347400]: 260dff49-6afa-47a3-b288-fb560cd53edc: bond status callback - (1562890765.221565600) 469d6a4a-6f6c-40e9-a35a-05526812d10e
+[ INFO] [1562890766.382124800]: 260dff49-6afa-47a3-b288-fb560cd53edc: heartbeat - 1
+[ INFO] [1562890765.381757300]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890766.381970500) 260dff49-6afa-47a3-b288-fb560cd53edc
+[ INFO] [1562890766.483556400]: 260dff49-6afa-47a3-b288-fb560cd53edc: bond status callback - (1562890766.381970500) 260dff49-6afa-47a3-b288-fb560cd53edc
+[ INFO] [1562890766.220679800]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: heartbeat - 1
+[ INFO] [1562890766.221091400]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890766.220478900) 469d6a4a-6f6c-40e9-a35a-05526812d10e
+[ INFO] [1562890767.282366100]: 260dff49-6afa-47a3-b288-fb560cd53edc: bond status callback - (1562890766.220478900) 469d6a4a-6f6c-40e9-a35a-05526812d10e
+[ INFO] [1562890767.382669700]: 260dff49-6afa-47a3-b288-fb560cd53edc: heartbeat - 1
+[ INFO] [1562890766.382365400]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890767.382425100) 260dff49-6afa-47a3-b288-fb560cd53edc
+[ INFO] [1562890767.482913600]: 260dff49-6afa-47a3-b288-fb560cd53edc: bond status callback - (1562890767.382425100) 260dff49-6afa-47a3-b288-fb560cd53edc
+[ INFO] [1562890767.220318200]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: heartbeat - 1
+[ INFO] [1562890767.220589500]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890767.220160300) 469d6a4a-6f6c-40e9-a35a-05526812d10e
+[ INFO] [1562890768.282961200]: 260dff49-6afa-47a3-b288-fb560cd53edc: bond status callback - (1562890767.220160300) 469d6a4a-6f6c-40e9-a35a-05526812d10e
+[ INFO] [1562890768.383043300]: 260dff49-6afa-47a3-b288-fb560cd53edc: heartbeat - 1
+[ INFO] [1562890767.382516700]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890768.382942700) 260dff49-6afa-47a3-b288-fb560cd53edc
+[ INFO] [1562890768.483124600]: 260dff49-6afa-47a3-b288-fb560cd53edc: bond status callback - (1562890768.382942700) 260dff49-6afa-47a3-b288-fb560cd53edc
+[ INFO] [1562890768.219913400]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: heartbeat - 1
+[ INFO] [1562890768.220194100]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890768.219739700) 469d6a4a-6f6c-40e9-a35a-05526812d10e
+[ INFO] [1562890769.283423200]: 260dff49-6afa-47a3-b288-fb560cd53edc: bond status callback - (1562890768.219739700) 469d6a4a-6f6c-40e9-a35a-05526812d10e
+[ INFO] [1562890769.382575200]: 260dff49-6afa-47a3-b288-fb560cd53edc: heartbeat - 1
+[ INFO] [1562890768.382076400]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890769.382510900) 260dff49-6afa-47a3-b288-fb560cd53edc
+[ INFO] [1562890769.481919300]: 260dff49-6afa-47a3-b288-fb560cd53edc: bond status callback - (1562890769.382510900) 260dff49-6afa-47a3-b288-fb560cd53edc
+</code></pre>
+
+<!-- external links -->
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Setup `rosserial_arduino` with ROS on Windows - ROS on Windows</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Setup `rosserial_arduino` with ROS on Windows";
+    var mkdocs_page_input_path = "Notes\\rosserial\\setup.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../../index.html" class="icon icon-home"> ROS on Windows</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Porting/PortingStatus.html">What's New</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../Build/buildfarm.html">Build Status</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Get ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../GettingStarted/Setup.html">Binary Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Build/source.html">Source Installation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../GettingStarted/NewToROS.html">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../GettingStarted/UsingROSonWindows.html">Windows vs. Linux</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Moveit/moveit_tutorials.html">MoveIt</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Moveit/UR3.html">Universal Robot UR3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../Turtlebot/Turtlebot3.html">TurtuleBot 3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">CI/CD Practices</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../GettingStarted/SetupCI.html">Continuous Integration Template</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Porting Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../Porting/Cookbook.html">Cookbook</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../GettingStarted/VcpkgAsRosdep.html">Resolving Dependencies by Vcpkg</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../../GettingStarted/Troubleshooting.html">Troubleshooting</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">ROS on Windows</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Setup `rosserial_arduino` with ROS on Windows</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ms-iot/rosonwindows/edit/mkdocs/docs/Notes/rosserial/setup.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="setup-rosserial_arduino-with-ros-on-windows">Setup <code>rosserial_arduino</code> with ROS on Windows</h1>
+<h2 id="prerequisite">prerequisite</h2>
+<ul>
+<li>ROS on Windows installation: https://github.com/ms-iot/ROSOnWindows/blob/master/GettingStarted/Setup.md</li>
+<li>Arduino: https://www.arduino.cc/en/Main/Software<ul>
+<li><em>note: choose Windows Installer (instead of Windows app) to use Arduino with VS Code</em></li>
+</ul>
+</li>
+<li>~~<em>optional:</em> VS Code: https://code.visualstudio.com/~~</li>
+<li>~~<em>optional:</em> VS Code Arduino plugin: https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino~~</li>
+</ul>
+<h2 id="install">Install</h2>
+<ol>
+<li>
+<p>follow <a href="https://github.com/ms-iot/ROSOnWindows/blob/master/GettingStarted/Setup.md">ROS on Windows setup instructions</a> to install ROS on Windows binaries (install from source code works too, but might be more complicated)</p>
+</li>
+<li>
+<p>(if ROS on Windows is already installed) use the following <code>choco upgrade</code> command to make sure you have the latest binaries
+    <code>choco upgrade ros-melodic-desktop -y</code></p>
+</li>
+<li>
+<p>load ROS on Windows environment with <code>setup.bat</code>, similar to the following command
+    <code>C:\opt\ros\melodic\x64\setup.bat</code></p>
+<p><em>note: this step is critical; otherwise all the ROS CLI tools like <code>catkin_make</code> or <code>catkin_make_isolated</code> cannot be used</em></p>
+</li>
+<li>
+<p>before moving on to <code>rosserial</code> installation, check environment</p>
+<ul>
+<li>you should see this is ROS environment is loaded
+    <code>&gt;set ros
+    ROS_DISTRO=melodic
+    ROS_ETC_DIR=C:/opt/ros/melodic/x64/etc/ros
+    ROS_MASTER_URI=http://localhost:11311
+    ROS_PACKAGE_PATH=C:\opt\ros\melodic\x64\share
+    ROS_PYTHON_VERSION=2
+    ROS_ROOT=C:/opt/ros/melodic/x64/share/ros
+    ROS_VERSION=1
+    &gt;set path
+    Path=C:/opt/rosdeps/x64\bin;C:/opt/rosdeps/x64\lib;C:/opt/ros/melodic/x64\bin;C:/opt/ros/melodic/x64\lib;...</code></li>
+<li>you should see this if Python (for ROS) is added to PATH
+    <code>&gt;set path
+    Path=...;C:\opt\python27amd64\;C:\opt\python27amd64\Scripts;...</code></li>
+<li>you should be able to use call Python from command line
+    <code>&gt;python --version
+    Python 2.7.15</code></li>
+</ul>
+</li>
+<li>
+<p>create <code>rosserial</code> workspace, clone <code>rosserial</code>, and build</p>
+<p><em>note: please use <code>ms-iot:init_windows</code> on Windows until <code>ms-iot</code> changes are upstreamed back to ROS mainline</em>
+<code>mkdir c:\ros\catkin_ws\rosserial\src\ &amp;&amp; cd c:\ros\catkin_ws\rosserial\src\
+git clone https://github.com/ms-iot/rosserial.git -b init_windows
+cd ..
+catkin_make_isolated</code></p>
+</li>
+<li>
+<p>load <code>rosserial</code> environment just have just been built, and setup Arduino environment (assuming current work directory is still <code>c:\ros\catkin_ws\rosserial</code>)</p>
+<p><em>note: these steps are very similar to <a href="http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup">the steps (for Ubuntu) in <code>rosserial_arduino</code> tutorials</a></em>
+<code>.\install_isolated\setup.bat
+rosrun rosserial_arduino make_libraries.py .</code></p>
+</li>
+<li>
+<p>at this point, a new folder called <code>ros_lib</code> should have been generated, copy that to the library folder for Arduino</p>
+<ul>
+<li>library folder for Arduino could be found through these steps:<ol>
+<li>launch Arduino</li>
+<li>Open File\Preferences</li>
+<li>find Sketchbook location, the path would be <code>&lt;path&gt;\Arduino</code></li>
+<li>Arduino's library path would be <code>&lt;path&gt;\Arduino\libraries</code></li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>check if <code>ros_lib</code> is installed correctly for Arduino</p>
+<ol>
+<li>launch Arduino (close and relaunch if needed)</li>
+<li>check File\Examples</li>
+<li>there sould be <code>ros_lib</code> under <code>Examples from Custom Libraries</code></li>
+</ol>
+</li>
+<li>
+<p>explore <code>rosserial</code> by following <a href="http://wiki.ros.org/rosserial_arduino/Tutorials">its tutorials</a></p>
+<p><em>note: certain <code>#define</code> flags need to be added for specific platforms, check <a href="http://wiki.ros.org/rosserial_arduino">rosserial_arduino</a> for details</em>
+- especially, add <code>#define USE_USBCON</code> for Arduino based on 32u4: Leonardo, Micro</p>
+</li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>TurtuleBot 3 - ROS on Windows</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "TurtuleBot 3";
+    var mkdocs_page_input_path = "Turtlebot\\Turtlebot3.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="icon icon-home"> ROS on Windows</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Porting/PortingStatus.html">What's New</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Build/buildfarm.html">Build Status</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Get ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Setup.html">Binary Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Build/source.html">Source Installation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/NewToROS.html">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/UsingROSonWindows.html">Windows vs. Linux</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Moveit/moveit_tutorials.html">MoveIt</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Moveit/UR3.html">Universal Robot UR3</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="Turtlebot3.html">TurtuleBot 3</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#turtlebot-3">Turtlebot 3</a></li>
+    
+
+    <li class="toctree-l3"><a href="#windows-requirements">Windows Requirements</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#windows-software">Windows Software</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#guide">Guide</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#general-notes">General notes</a></li>
+        
+            <li><a class="toctree-l4" href="#setup">Setup</a></li>
+        
+            <li><a class="toctree-l4" href="#create-a-new-workspace">Create a new workspace</a></li>
+        
+            <li><a class="toctree-l4" href="#customize-turtlebot-launch-files">Customize Turtlebot Launch Files</a></li>
+        
+            <li><a class="toctree-l4" href="#build-nodes">Build Nodes</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#running-turtlebot">Running Turtlebot</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#no-robot-no-problem">No Robot - No Problem!</a></li>
+        
+            <li><a class="toctree-l4" href="#lets-try-out-something-more">Let's try out something more!</a></li>
+        
+            <li><a class="toctree-l4" href="#run-turtlebot3-with-sensors-connected-to-your-development-machine">Run Turtlebot3 with Sensors connected to your development machine.</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">CI/CD Practices</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/SetupCI.html">Continuous Integration Template</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Porting Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Porting/Cookbook.html">Cookbook</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/VcpkgAsRosdep.html">Resolving Dependencies by Vcpkg</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Troubleshooting.html">Troubleshooting</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">ROS on Windows</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Tutorials &raquo;</li>
+        
+      
+    
+    <li>TurtuleBot 3</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ms-iot/rosonwindows/edit/mkdocs/docs/Turtlebot/Turtlebot3.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="turtlebot-3">Turtlebot 3</h1>
+<p>Getting Started with the Turtlebot 3 running Windows. The ROS for Ubuntu documentation is located at the <a href="http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/">Robotis website</a>. 
+The documentation on this page will describe the differences between Ubuntu and Windows.</p>
+<h1 id="windows-requirements">Windows Requirements</h1>
+<h2 id="windows-software">Windows Software</h2>
+<p>The Turtlebot 3 uses a Lidar which requires the following driver.
++ <a href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">CP2102 Driver</a></p>
+<h1 id="guide">Guide</h1>
+<h2 id="general-notes">General notes</h2>
+<p>The turtlebot documentation uses the unix command 'export' to set environment variables, instead use the following:</p>
+<pre><code>set TURTLEBOT3_MODEL=waffle
+</code></pre>
+
+<blockquote>
+<p>NOTE: The value of %TURTLEBOT3_MODEL% is case-sensitive.</p>
+</blockquote>
+<p>Please use turtlebot3_bringup-win.launch which has Windows device bindings.</p>
+<h2 id="setup">Setup</h2>
+<h3 id="pc-setup">PC Setup</h3>
+<p>Please follow the instructions for setting up your computer with <a href="https://github.com/ms-iot/ROSOnWindows/blob/master/GettingStarted/Setup.md">ROS on Windows</a>.</p>
+<h3 id="sbc-setup">SBC Setup</h3>
+<p>You can bypass this section</p>
+<h3 id="opencr-setup">OpenCR Setup</h3>
+<p>Please follow the Windows instructions for the <a href="http://emanual.robotis.com/docs/en/parts/controller/opencr10/">Robotis OpenCR board in the Robotis Manual</a>.</p>
+<p>Before proceeding, make sure the motors turn by pressing the motor test buttons near the USB connector.</p>
+<blockquote>
+<p>BUG: We're working to identify a sync error coming from rosserial, which ultimately leads to a board reset.</p>
+</blockquote>
+<h3 id="compatible-devices">Compatible devices</h3>
+<p>ROS on Windows requires a x64 bit Windows 10 Desktop or Windows 10 IoT Enterprise, and compatible hardware. </p>
+<blockquote>
+<p>ROS on Windows was brought up using <a href="http://www.up-board.org/upsquared">Up2</a> and an Intel Nuc.</p>
+</blockquote>
+<h2 id="create-a-new-workspace">Create a new workspace</h2>
+<p>In a Command Window set up with the ROS environment, create a directory for your robot workspaces and a workspace for turtlebot.</p>
+<pre><code>mkdir c:\ws\turtlebot3\src
+cd c:\ws\turtlebot3\src
+catkin_init_workspace
+git clone -b melodic-devel https://github.com/ROBOTIS-GIT/turtlebot3_msgs
+git clone -b melodic-devel https://github.com/ms-iot/turtlebot3_simulations
+git clone -b melodic-devel https://github.com/ms-iot/turtlebot3.git 
+git clone -b melodic-devel https://github.com/ms-iot/hls_lfcd_lds_driver
+cd c:\ws\turtlebot3
+rosdep update
+rosdep install --from-paths src --ignore-src -r -y
+</code></pre>
+
+<h2 id="customize-turtlebot-launch-files">Customize Turtlebot Launch Files</h2>
+<p>Modify the ROS Launch files to map the devices to the correct COM port. To determine which COM ports you require, right click on the Windows Start Menu, Select Device Manager.</p>
+<p>Under the <code>Ports (COM &amp; LPT)</code> node:
+ * USB Serial Debice (COMx) is the OpenCR board. 
+ * Silicon Labs CP210x USB to UART Bridge (COMy) is the Lidar</p>
+<p>Enter the COM port in the correct fields in the launch files below:</p>
+<p><em>turtlebot3_bringup/launch/turtlebot3_core-win.launch</em></p>
+<pre><code>&lt;node pkg=&quot;rosserial_python&quot; type=&quot;serial_node.py&quot; name=&quot;turtlebot3_core&quot; output=&quot;screen&quot;&gt;
+    &lt;param name=&quot;port&quot; value=&quot;COMx&quot;/&gt;
+</code></pre>
+
+<p><em>turtlebot3_bringup/launch/turtlebot3_lidar-win.launch</em></p>
+<pre><code>  &lt;node pkg=&quot;hls_lfcd_lds_driver&quot; type=&quot;hlds_laser_publisher&quot; name=&quot;turtlebot3_lds&quot; output=&quot;screen&quot;&gt;
+    &lt;param name=&quot;port&quot; value=&quot;COMy&quot;/&gt;
+</code></pre>
+
+<h2 id="build-nodes">Build Nodes</h2>
+<p>To build the turtlebot packages, enter the turtlebot3 workspace and build using the catkin build system.</p>
+<pre><code>:: make sure all required binaries installed.
+choco upgrade ros-melodic-desktop_full -y
+</code></pre>
+
+<pre><code>:: build Turtlebot3 workspace.
+cd c:\ws\turtlebot3
+catkin_make
+</code></pre>
+
+<p>Now inform ROS where to find your turtlebot code by merging the turtlebot install environment with the ROS environment. Please ensure you do this every time you open a command window. </p>
+<pre><code>c:\ws\turtlebot3\devel\setup.bat
+</code></pre>
+
+<blockquote>
+<p>If you forget to merge the turtlebot environment by calling the setup batch file, you'll get an error such as this: 
+<code>RLException: [turtlebot3_robot.launch] is neither a launch file in package [turtlebot3_bringup] nor is [turtlebot3_bringup] a launch file name</code></p>
+</blockquote>
+<h1 id="running-turtlebot">Running Turtlebot</h1>
+<h2 id="no-robot-no-problem">No Robot - No Problem!</h2>
+<p>rViz is tool which allows you to visualize a representation of a robot, and project fake data in order to exerise or develop logic. The turtlebot simulation is in the turtlebot3_simulations package. </p>
+<p>To start the simulation, open one elevated command prompt:</p>
+<pre><code>c:\opt\ros\melodic\x64\setup.bat
+c:\ws\turtlebot3\devel\setup.bat
+set TURTLEBOT3_MODEL=waffle
+roslaunch turtlebot3_fake turtlebot3_fake.launch
+</code></pre>
+
+<p>Then, open another elevated command prompt:</p>
+<pre><code>c:\opt\ros\melodic\x64\setup.bat
+c:\ws\turtlebot3\devel\setup.bat
+set TURTLEBOT3_MODEL=waffle
+roslaunch turtlebot3_gazebo turtlebot3_simulation.launch
+</code></pre>
+
+<p>Now you should see turtlebot3 random walking on RViz. You can create your own logic which reads <code>/odom</code> or publish <code>/cmd_vel</code> to move the virtual robot.</p>
+<h2 id="lets-try-out-something-more">Let's try out something more!</h2>
+<p>SLAM (Simultaneous localization and mapping) is a very popular application in the mobile robots, and with the simulator - Gazebo, you can exercise this technology on your Windows desktop, even without a real robot.</p>
+<p>To start this demo, open an evelated command prompt:</p>
+<pre><code>:: make sure all required binaries installed.
+choco upgrade ros-melodic-desktop_full -y
+choco upgrade ros-melodic-cartographer_ros -y
+</code></pre>
+
+<pre><code>:: run the demo.
+c:\opt\ros\melodic\x64\setup.bat
+c:\ws\turtlebot3\devel\setup.bat
+set TURTLEBOT3_MODEL=waffle
+roslaunch turtlebot3_gazebo turtlebot3_gazebo_cartographer_demo.launch
+</code></pre>
+
+<p>After a few moments, you will see Gazebo running a simulated world with your simulated turtlebot, RViz running the mapping progress, and a simulation node to drive the turtlebot random walking.</p>
+<p><img alt="" src="../Assets/Turtlebot3_Gazebo_SLAM.gif" /></p>
+<h2 id="run-turtlebot3-with-sensors-connected-to-your-development-machine">Run Turtlebot3 with Sensors connected to your development machine.</h2>
+<p>If you have Turtlebot3 hardware, you can plug the sensors directly into your development machine to iterate on fuctionality with 
+your development machine. Perform the steps to set up the launch file for your development system.</p>
+<p>In one command window, start <code>roscore</code>.</p>
+<p>In another command window, launch the turtlebot robot code.</p>
+<pre><code>roslaunch turtlebot3_bringup turtlebot3_robot.launch
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../GettingStarted/SetupCI.html" class="btn btn-neutral float-right" title="Continuous Integration Template">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Moveit/UR3.html" class="btn btn-neutral" title="Universal Robot UR3"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../Moveit/UR3.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../GettingStarted/SetupCI.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Windows vs. Linux - ROS on Windows</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Windows vs. Linux";
+    var mkdocs_page_input_path = "GettingStarted\\UsingROSonWindows.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="icon icon-home"> ROS on Windows</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Porting/PortingStatus.html">What's New</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Build/buildfarm.html">Build Status</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Get ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="Setup.html">Binary Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Build/source.html">Source Installation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="NewToROS.html">Getting Started</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="UsingROSonWindows.html">Windows vs. Linux</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#using-ros-on-windows">Using ROS on Windows</a></li>
+    
+
+    <li class="toctree-l3"><a href="#tips">Tips</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#use-a-tabbed-command-line-manager">Use a Tabbed command line manager</a></li>
+        
+            <li><a class="toctree-l4" href="#debugging-a-ros-node">Debugging a ROS node</a></li>
+        
+            <li><a class="toctree-l4" href="#ros-for-vs-code">ROS for VS Code</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#windows-vs-linux">Windows vs Linux</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#c-17">C++ 17</a></li>
+        
+            <li><a class="toctree-l4" href="#directory-separators">Directory Separators</a></li>
+        
+            <li><a class="toctree-l4" href="#user-directory">User directory</a></li>
+        
+            <li><a class="toctree-l4" href="#paths-and-ros-commands">Paths and ROS commands</a></li>
+        
+            <li><a class="toctree-l4" href="#quote-handling-in-command-window">Quote handling in command window</a></li>
+        
+            <li><a class="toctree-l4" href="#beware-of-aggressive-optimization">Beware of aggressive optimization</a></li>
+        
+            <li><a class="toctree-l4" href="#case-sensitivity">Case sensitivity</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#python">Python</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#shebang">Shebang</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#errors">Errors</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#gtest-notfound">gtest-NOTFOUND</a></li>
+        
+            <li><a class="toctree-l4" href="#boostasio-winsockh-has-already-been-included">Boost::asio Winsock.h has already been included</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#missing-symbols">Missing Symbols</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#m_pi">'M_PI'</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#warnings">Warnings</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#truncation">Truncation</a></li>
+        
+            <li><a class="toctree-l4" href="#unreferenced-parameters">unreferenced parameters</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#working-with-git-on-windows">Working with Git on Windows</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#symbolic-links">symbolic links</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Moveit/moveit_tutorials.html">MoveIt</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Moveit/UR3.html">Universal Robot UR3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Turtlebot/Turtlebot3.html">TurtuleBot 3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">CI/CD Practices</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="SetupCI.html">Continuous Integration Template</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Porting Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Porting/Cookbook.html">Cookbook</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="VcpkgAsRosdep.html">Resolving Dependencies by Vcpkg</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="Troubleshooting.html">Troubleshooting</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">ROS on Windows</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Using ROS &raquo;</li>
+        
+      
+    
+    <li>Windows vs. Linux</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ms-iot/rosonwindows/edit/mkdocs/docs/GettingStarted/UsingROSonWindows.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="using-ros-on-windows">Using ROS on Windows</h1>
+<p>While every effort has been made to reduce the effort needed to support ROS on Windows, 
+there will inevitably be required changes between platforms. This document is intended to address porting OS differences between Linux and Windows.</p>
+<p>Microsoft has created staging forks for many projects. We will be committing back upstream and removing out forks once they are stabilized on Windows and Linux. 
+Until these changes are committed upstream, please look at the <a href="https://github.com/ms-iot">Microsoft ms-iot github</a> to see if there is a fork for the ROS repository you are interested in and use that. Typically, there is also have an init_windows branch which should be used instead of the melodic-devel branch.</p>
+<h1 id="tips">Tips</h1>
+<h2 id="use-a-tabbed-command-line-manager">Use a Tabbed command line manager</h2>
+<p>While working with ROS you will need to have multiple command windows open. Each window you open, you need to load the environment. To assist with managing multiple command lines, <a href="https://conemu.github.io/">ConEmu</a> is a tabbed command line host which works well for managing ROS Command Windows.</p>
+<h2 id="debugging-a-ros-node">Debugging a ROS node</h2>
+<p>In many cases, you can launch devenv from within a ROS Command window, then launch the node's executable to debug it. In some cases, you need to debug a node which was launched via ROSLanuch. We've found that the <a href="https://marketplace.visualstudio.com/items?itemName=ErlandR.ReAttach">Visual Studio plugin ReAttach</a> works well for attaching to a ROS node when it launches.</p>
+<h2 id="ros-for-vs-code">ROS for VS Code</h2>
+<p>If you use Visual Studio Code, then the <a href="https://marketplace.visualstudio.com/items?itemName=ajshort.ros">ROS for VSCode plugin</a> will be useful. We will be enhancing this for Windows, as well as adding debug options and cloud build connectivity.</p>
+<h1 id="windows-vs-linux">Windows vs Linux</h1>
+<h2 id="c-17">C++ 17</h2>
+<p>In your CMakeLists.txt add the compile option:
+<code>add_compile_options(/std:c++latest)</code></p>
+<h2 id="directory-separators">Directory Separators</h2>
+<p>Windows uses backslash <code>\</code> whereas Linux uses forward slash <code>/</code>. As we encounter path processing, we've been replacing them with the Python or Boost equivelents.</p>
+<h2 id="user-directory">User directory</h2>
+<p>Linux has a neat shortcut for refering to the users' home directory <code>~</code>. </p>
+<p>Windows - not so much - Please use <code>%USERPROFILE%</code> when you see <code>~</code> in documentation.</p>
+<h2 id="paths-and-ros-commands">Paths and ROS commands</h2>
+<p>Many ROS Commands are sensitive to the drive letter they are executed from. This manifests in problems such as rosdeps not resolving correctly. </p>
+<p>To address this either:
+  * Put all of your ROS workspaces on the C:\ drive
+  * Link folders from your C:\ drive to your workspaces.</p>
+<p>To link a folder on Windows, use the mklink to create a filesystem link from one drive to another.:</p>
+<pre><code>mkdir d:\workspaces
+mklink c:\workspaces d:\workspaces
+</code></pre>
+
+<h2 id="quote-handling-in-command-window">Quote handling in command window</h2>
+<p>Cmd.exe is the command processor of command window.  Single quotes are not used at all by the cmd.exe except in batch file to enclose the command to run within a FOR /F statement.  Cmd.exe handles quoting with double quotes.  This is different from Linux that uses single quote as quote character.  As encounter quoting on Windows, please use double quote.  The following example shows using double quotes around the message contents:</p>
+<pre><code>rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- &quot;[2.0, 0.0, 0.0]&quot; &quot;[0.0, 0.0, 1.8]&quot;
+</code></pre>
+
+<h2 id="beware-of-aggressive-optimization">Beware of aggressive optimization</h2>
+<p>The Microsoft compiler will optimize agressively. This can manifest in strange ways. One instance was in turtlebot3 fake code, is a ROS_ASSERT with a function that only returns true. Nothing else executed.</p>
+<h2 id="case-sensitivity">Case sensitivity</h2>
+<p>Linux is case sensitive, whereas Windows is not. We are trying to locate case sensitive areas and fix them. This manifests in odd errors like this: </p>
+<pre><code>RLException: multiple files named [turtlebot3_robot.launch] in package [turtlebot3_bringup]:
+- C:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
+- c:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
+</code></pre>
+
+<p>In this case, the ROS_PACKAGE_PATH has a lower case drive letter.</p>
+<h1 id="python">Python</h1>
+<h2 id="shebang">Shebang</h2>
+<p>Windows does not support Shebang character sequence for automatically launching an interpreter. To support Python nodes on Windows, a few changes need to be made.</p>
+<h3 id="shebang-in-ros-nodes">Shebang in ROS nodes</h3>
+<p>If a ROS node uses Python, please rename the file with the .py extension.</p>
+<h3 id="shebang-in-command-line-commands">Shebang in command line commands</h3>
+<p>If you are producing a command line application which will be installed with Pip, please add a windows wrapper.</p>
+<h1 id="errors">Errors</h1>
+<h2 id="gtest-notfound">gtest-NOTFOUND</h2>
+<p>This occurs when linking against gtest instead of ${GTEST_LIBRARIES}. Update target_link_libraries with the macro:</p>
+<pre><code>  target_link_libraries( rtest
+      ${GTEST_LIBRARIES}
+      ${catkin_LIBRARIES}
+  )
+</code></pre>
+
+<h2 id="boostasio-winsockh-has-already-been-included">Boost::asio Winsock.h has already been included</h2>
+<p>ROS includes Windows.h, but explicitly excludes Winsock.h. Boost's socket_types.h checks for this flag and assumes winsock.h was included.</p>
+<p>Add the following before boost/asio.hpp:</p>
+<pre><code class="C++">#include &lt;ros/ros.h&gt;
+
+#ifdef WIN32
+#include &lt;winsock2.h&gt;
+#endif
+
+#include &lt;boost/asio.hpp&gt;
+</code></pre>
+
+<h1 id="missing-symbols">Missing Symbols</h1>
+<h2 id="m_pi">'M_PI'</h2>
+<p>Add the following to the top of your file</p>
+<pre><code class="C++">#define _USE_MATH_DEFINES 
+</code></pre>
+
+<h1 id="warnings">Warnings</h1>
+<p>The Microsoft Visual Studio compiler has strict type checking enabled by default. Here are some common warnings.</p>
+<h2 id="truncation">Truncation</h2>
+<p><code>'=': truncation from 'double' to float</code>
+<code>'=': truncation from 'size_t' to uint32_t</code></p>
+<p>It is best to use the same size primitive throughout a codepath. </p>
+<h2 id="unreferenced-parameters">unreferenced parameters</h2>
+<p>Either remove it, or reference it in a noop block</p>
+<pre><code class="c++">uint8_t unused;
+unused;
+</code></pre>
+
+<h1 id="working-with-git-on-windows">Working with Git on Windows</h1>
+<h2 id="symbolic-links">symbolic links</h2>
+<p>While symbolic links are natively supported on Linux, they are not fully supported on Windows until around Vista time frame.
+Some ROS packages' test cases test against the use of symbolic links, for instance, <code>roslib</code> under <a href="https://github.com/ros/ros"><code>ros\core</code></a></p>
+<p>To work with symbolic links on git repos, check documentation from <a href="https://github.com/git-for-windows/git/wiki/Symbolic-Links">Git for Windows</a></p>
+<h2 id="_1"></h2>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Moveit/moveit_tutorials.html" class="btn btn-neutral float-right" title="MoveIt">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="NewToROS.html" class="btn btn-neutral" title="Getting Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="NewToROS.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Moveit/moveit_tutorials.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

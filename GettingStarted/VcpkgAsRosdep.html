@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Resolving Dependencies by Vcpkg - ROS on Windows</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Resolving Dependencies by Vcpkg";
+    var mkdocs_page_input_path = "GettingStarted\\VcpkgAsRosdep.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="icon icon-home"> ROS on Windows</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Porting/PortingStatus.html">What's New</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Build/buildfarm.html">Build Status</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Get ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="Setup.html">Binary Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Build/source.html">Source Installation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="NewToROS.html">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UsingROSonWindows.html">Windows vs. Linux</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Moveit/moveit_tutorials.html">MoveIt</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Moveit/UR3.html">Universal Robot UR3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Turtlebot/Turtlebot3.html">TurtuleBot 3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">CI/CD Practices</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="SetupCI.html">Continuous Integration Template</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Porting Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Porting/Cookbook.html">Cookbook</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="VcpkgAsRosdep.html">Resolving Dependencies by Vcpkg</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#why-we-marry-vcpkg-with-rosdep">Why we marry Vcpkg with Rosdep</a></li>
+    
+
+    <li class="toctree-l3"><a href="#example-workflow">Example Workflow</a></li>
+    
+
+    <li class="toctree-l3"><a href="#how-do-i-try-it-out">How do I try it out</a></li>
+    
+
+    <li class="toctree-l3"><a href="#feedback">Feedback</a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="Troubleshooting.html">Troubleshooting</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">ROS on Windows</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Porting Guide &raquo;</li>
+        
+      
+    
+    <li>Resolving Dependencies by Vcpkg</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ms-iot/rosonwindows/edit/mkdocs/docs/GettingStarted/VcpkgAsRosdep.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <!-- ![ROS Logo](http://www.ros.org/wp-content/uploads/2013/10/rosorg-logo1.png) -->
+
+<h1 id="why-we-marry-vcpkg-with-rosdep">Why we marry Vcpkg with Rosdep</h1>
+<p>Today, many ROS packages consume OSS libraries which are much beyond <a href="https://roswin.azurewebsites.net/">ROS on Windows Chocolatey server</a> for <code>Open Robotics</code> core packages. To enable developers lighting up more ROS packages on Windows, we leverage the <a href="https://github.com/microsoft/vcpkg">Vcpkg</a> community (which has 1000+ OSS libraries ports), and extend <code>rosdep</code> to manage Vcpkg packages which are known to work with <code>ROS on Windows</code> installation. It means ROS developer can either consume the OOS libraries right away if they are in Vcpkg ports, or they can contribute Vcpkg ports back which benefit ROS community.</p>
+<h1 id="example-workflow">Example Workflow</h1>
+<p>Let's take <a href="http://wiki.ros.org/kobuki">koboki</a> as an example. After checking out the source code and running <code>rosdep check</code>, two missing requirements are reported from here: <code>libusb-dev</code> and <code>libftdi-dev</code>. They are the rosdep keys, so you will need another look up to see what's the actual package names for platforms. By checking <a href="https://index.ros.org"><code>index.ros.org</code></a>, they are found as <code>libusb-dev</code> and <code>libftdi-dev</code> respectively on Ubuntu. By a further check, they are registered as <a href="https://packages.ubuntu.com/bionic/libftdi-dev"><code>libftdi-dev (0.20-4build3)</code></a> and <a href="https://packages.ubuntu.com/bionic/libusb-dev"><code>libusb-dev (2:0.1.12-31)</code></a> on <a href="https://packages.ubuntu.com"><code>packages.ubuntu.com</code></a>, which gives us an idea what version to use.</p>
+<p>Back to Vcpkg, <code>libusb-dev</code> can be found as <code>libusb-win32</code>. You can do <code>vcpkg install libusb-win32:x64-windows</code> from the ROS command prompt. Since Vcpkg is integrated with your ROS installation already, developers can do <code>catkin_make</code> to iterate on Windows port work. And in this example, <code>libftdi-dev</code> is not found in Vcpkg. It is because the library is not ported yet in Vcpkg. You can make a Vcpkg port for it, and contributethe Vcpkg recipe back to <a href="https://github.com/microsoft/vcpkg">Microsoft\Vcpkg</a>.</p>
+<blockquote>
+<p>As of today, a port for  <code>libftdi-dev</code> is contributed back to <a href="https://github.com/microsoft/vcpkg/pull/6843">Vcpkg</a>.</p>
+</blockquote>
+<p>After a Windows port finished, developers can send pull request to register Vcpkg port to Rosdep keys (https://github.com/ms-iot/rosdistro-db/blob/init_windows/rosdep/vcpkg.yaml). So the next time for who wants to build koboki, installing the system dependencies can be simplified to by running <code>rosdep install</code>.</p>
+<h1 id="how-do-i-try-it-out">How do I try it out</h1>
+<p>This new integration is avaiable in the build of <code>20190617.1.0-pre</code> and above. To try it out, run Chocolatey upgrade to use the prerelease builds:</p>
+<p><code>choco upgrade ros-melodic-desktop_full -y --pre</code></p>
+<h1 id="feedback">Feedback</h1>
+<p>For any feedback, please open an issue on <a href="https://github.com/ms-iot/rosonWindows/issues">ms-iot\ROSOnWindows</a>. We will help you there.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Porting/Cookbook.html" class="btn btn-neutral" title="Cookbook"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../Porting/Cookbook.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="Troubleshooting.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

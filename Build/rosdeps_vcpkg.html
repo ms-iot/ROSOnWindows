@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>[WIP] Vcpkg, ROS1 system dependencies, and Azure DevOps CI integration - ROS on Windows</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "[WIP] Vcpkg, ROS1 system dependencies, and Azure DevOps CI integration";
+    var mkdocs_page_input_path = "Build\\rosdeps_vcpkg.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="icon icon-home"> ROS on Windows</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Porting/PortingStatus.html">What's New</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="buildfarm.html">Build Status</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Get ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Setup.html">Binary Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="source.html">Source Installation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/NewToROS.html">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/UsingROSonWindows.html">Windows vs. Linux</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Moveit/moveit_tutorials.html">MoveIt</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Moveit/UR3.html">Universal Robot UR3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Turtlebot/Turtlebot3.html">TurtuleBot 3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">CI/CD Practices</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/SetupCI.html">Continuous Integration Template</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Porting Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Porting/Cookbook.html">Cookbook</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/VcpkgAsRosdep.html">Resolving Dependencies by Vcpkg</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Troubleshooting.html">Troubleshooting</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">ROS on Windows</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>[WIP] Vcpkg, ROS1 system dependencies, and Azure DevOps CI integration</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ms-iot/rosonwindows/edit/mkdocs/docs/Build/rosdeps_vcpkg.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="wip-vcpkg-ros1-system-dependencies-and-azure-devops-ci-integration">[WIP] Vcpkg, ROS1 system dependencies, and Azure DevOps CI integration</h1>
+<p>In ROS1, there are many open sources project required as a minimum to run ROS desktop stack. In the beginning, we either privately built the libraries by project-specific build instructions or looked for stock binaries if it just works.</p>
+<p>This approach works fine for the very initial ROS1 porting to manage the initial set of open sources libraries. However, we are also seeing problems with this method:
+* <strong>Build Instruction Management (How-to-build-xyz):</strong> Every new project could come with its owned way to build end-to-end. We should share the knowledge in a managible way.
+* <strong>Updatibility:</strong> Using stock binaries, it would be a bottleneck for us to upgrade its downstream projects (thinking about ABI changes or compatiblity), unless we know how to build them.
+* <strong>Latest Visual C++ toolchain support:</strong> Not every project keeps its build instructions or code up-to-dated for the latest Visual C++ toolchain. We want the binaries always come from the best of breed.</p>
+<p>To address those issues, we are looking for any leverages to solve them. Here Vcpkg comes.</p>
+<h2 id="vcpkg">Vcpkg</h2>
+<p>"Vcpkg simplifies acquiring and building open source libraries on Windows." - <a href="https://blogs.msdn.microsoft.com/vcblog/2016/09/19/vcpkg-a-tool-to-acquire-and-build-c-open-source-libraries-on-windows/">Visual C++ Team Blog</a></p>
+<p>It comes with the following features:
+* Managing the how-to-build sauces of eight hundred and more open-source projects. And it is still growing!
+* Clear visibility on the dependencies relationship between projects. Now we can better manage what to update after an upstream project gets updated.
+* Everything is compiled against the same set of depedencies, so no more ABI hazards.</p>
+<p>Now let's take a look ROS1 system dependencies for Windows (as of today).</p>
+<h2 id="ros1-system-dependencies-target-melodic-windows-10">ROS1 System Dependencies (Target: Melodic Windows 10)</h2>
+<p>To evalute switching to Vcpkg, firstly we'd like to know anything missing from Vcpkg ports. After comparison, we see most of packages to exist on Vcpkg. Only few don't exist and need some more investigations:
+* libompl
+* log4cxx
+* libgraphviz
+* pkg-config</p>
+<p>Also, some projects are Python modules mixing C/C++ sources (e.g., pyside2), and Vcpkg currently doesn't manage this type of projects.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://www.ros.org/reps/rep-0003.html#melodic-morenia-may-2018-may-2023">ROS1 Target Platforms</a></li>
+<li>Comparsion Table of ROS1 System Dependencies and vcpkg ports (snap at <a href="https://github.com/microsoft/vcpkg/tree/94b7f9a6a8c527d7dbdb3b78a46f0874b79712a4">2019/09/29</a>)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">package</th>
+<th align="center">version</th>
+<th align="center">vcpkg port</th>
+<th align="center">link</th>
+<th align="center">note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">libflann</td>
+<td align="center"><code>1.9.1</code></td>
+<td align="center"><code>2019-04-07-1</code> (based on <code>1.9.1</code>)</td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/flann">flann</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">zlib</td>
+<td align="center"><code>1.2.11</code></td>
+<td align="center"><code>1.2.11-5</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/zlib">zlib</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">octomap</td>
+<td align="center"><code>1.9.0</code></td>
+<td align="center"><code>2017-03-11-7</code> (based on <code>1.8.0</code>)</td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/octomap">octomap</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">libglew</td>
+<td align="center"><code>2.1.0</code></td>
+<td align="center"><code>2.1.0-6</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/glew">glew</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">ogre</td>
+<td align="center"><code>1.10.11</code></td>
+<td align="center"><code>1.12.1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/ogre">ogre</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">libompl</td>
+<td align="center"><code>1.2.2</code></td>
+<td align="center"><code>1.4.2-2</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/ompl">ompl</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">assimp</td>
+<td align="center"><code>4.0.1</code></td>
+<td align="center"><code>5.0.0</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/assimp">assimp</a></td>
+<td align="center"><strong>major</strong> version</td>
+</tr>
+<tr>
+<td align="center">boost</td>
+<td align="center"><code>1.66.0</code></td>
+<td align="center"><code>1.71.0</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/boost">boost</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">bullet3</td>
+<td align="center"><code>2.87.0</code></td>
+<td align="center"><code>2.88-1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/bullet3">bullet3</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">bzip2</td>
+<td align="center"><code>1.0.6</code></td>
+<td align="center"><code>1.0.6-4</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/bzip2">bzip2</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">console_bridge</td>
+<td align="center"><code>0.4.0</code></td>
+<td align="center"><code>0.4.3-1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/console-bridge">console-bridge</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">libccd</td>
+<td align="center"><code>2.0.0</code></td>
+<td align="center"><code>2.1-1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/ccd">ccd</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">libcurl</td>
+<td align="center"><code>7.58.0</code></td>
+<td align="center"><code>7.66.0</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/curl">curl</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">libfcl</td>
+<td align="center"><code>0.5.0</code></td>
+<td align="center"><code>0.5.0-6</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/fcl">fcl</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">libjpeg-turbo</td>
+<td align="center"><code>1.5.3</code></td>
+<td align="center"><code>2.0.2</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/libjpeg-turbo">libjepg-turbo</a></td>
+<td align="center"><strong>major</strong> version</td>
+</tr>
+<tr>
+<td align="center">libopencv</td>
+<td align="center"><code>3.4.1</code></td>
+<td align="center"><code>4.1.1-1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/opencv">opencv</a></td>
+<td align="center"><strong>major</strong> version</td>
+</tr>
+<tr>
+<td align="center">cppunit</td>
+<td align="center"><code>1.12.1</code></td>
+<td align="center"><code>1.14.0</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/cppunit">cppunit</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">libpng</td>
+<td align="center"><code>1.6.35</code></td>
+<td align="center"><code>1.6.37-4</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/libpng">libpng</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">eigen</td>
+<td align="center"><code>3.3.4</code></td>
+<td align="center"><code>3.3.7-3</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/eigen3">eigen3</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">libqhull</td>
+<td align="center"><code>2015.2.0</code></td>
+<td align="center"><code>7.3.2-1</code> (based on <code>2019.1</code>)</td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/qhull">qhull</a></td>
+<td align="center"><strong>major</strong> version</td>
+</tr>
+<tr>
+<td align="center">freeglut</td>
+<td align="center"><code>3.0.0</code></td>
+<td align="center"><code>3.0.0-7</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/freeglut">freeglut</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">log4cxx</td>
+<td align="center"><code>0.10.0</code></td>
+<td align="center">N/A</td>
+<td align="center"></td>
+<td align="center"><strong><em>missing</em></strong></td>
+</tr>
+<tr>
+<td align="center">google-mock</td>
+<td align="center"><code>1.8.0</code></td>
+<td align="center"><code>2019-08-14-2</code> (based on <code>1.9.0</code>)</td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/gtest">gtest</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">cairo</td>
+<td align="center"><code>1.15.12</code></td>
+<td align="center"><code>1.16.0-2</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/cairo">cairo</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">google-test</td>
+<td align="center"><code>1.8.0</code></td>
+<td align="center"><code>2019-08-14-2</code> (based on <code>1.9.0</code>)</td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/gtest">gtest</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">gtk2</td>
+<td align="center"><code>2.22.1</code></td>
+<td align="center">N/A</td>
+<td align="center"></td>
+<td align="center"><strong><em>missing</em></strong></td>
+</tr>
+<tr>
+<td align="center">gtk3</td>
+<td align="center"><code>3.22.19</code></td>
+<td align="center"><code>3.22.19-3</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/gtk">gtk</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">poco</td>
+<td align="center"><code>1.8.1</code></td>
+<td align="center"><code>1.9.2-1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/poco">poco</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">pyqt5</td>
+<td align="center"><code>5.10.1</code></td>
+<td align="center">N/A</td>
+<td align="center"></td>
+<td align="center"><strong><em>Python</em></strong></td>
+</tr>
+<tr>
+<td align="center">OpenNI</td>
+<td align="center">unsure</td>
+<td align="center">N/A</td>
+<td align="center"></td>
+<td align="center"><strong><em>missing</em></strong></td>
+</tr>
+<tr>
+<td align="center">OpenNI2</td>
+<td align="center">unsure</td>
+<td align="center"><code>2.2.0.33-10</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/openni2">openni2</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">clapack</td>
+<td align="center"><code>3.2.1</code></td>
+<td align="center"><code>3.2.1-12</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/clapack">clapack</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">gflags</td>
+<td align="center"><code>2.2.1</code></td>
+<td align="center"><code>2.2.2-1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/gflags">gflags</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">pyside2</td>
+<td align="center"><code>5.10.1</code></td>
+<td align="center">N/A</td>
+<td align="center"></td>
+<td align="center"><strong><em>Python</em></strong></td>
+</tr>
+<tr>
+<td align="center">glog</td>
+<td align="center"><code>0.3.5</code></td>
+<td align="center"><code>0.4.0-2</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/glog">glog</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">openblas</td>
+<td align="center"><code>0.2.20</code></td>
+<td align="center"><code>0.3.6-6</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/openblas">openblas</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">suitesparse</td>
+<td align="center">unsure</td>
+<td align="center"><code>5.4.0-3</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/suitesparse">suitesparse</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">metis</td>
+<td align="center"><code>5.1.0</code></td>
+<td align="center"><code>5.1.0-5</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/metis">metis</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">sdl</td>
+<td align="center"><code>1.2.15</code></td>
+<td align="center"><code>1.2.15-8</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/sdl1">sdl1</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">protobuf</td>
+<td align="center"><code>3.6.1</code></td>
+<td align="center"><code>3.9.1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/protobuf">protobuf</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">freeimage</td>
+<td align="center"><code>3.17.0</code></td>
+<td align="center"><code>3.18.0-7</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/freeimage">freeimage</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">cppzmq</td>
+<td align="center"><code>4.2.2</code></td>
+<td align="center"><code>4.4.1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/cppzmq">cppzmq</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">zeromq</td>
+<td align="center"><code>4.2.5</code></td>
+<td align="center"><code>2019-09-20</code> (based on <code>4.3.3</code>)</td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/zeromq">zeromq</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">dlfcn-win32</td>
+<td align="center"><code>1.1.1</code></td>
+<td align="center"><code>1.1.1-3</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/dlfcn-win32">dlfcn-win32</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">libwebp</td>
+<td align="center"><code>0.6.1</code></td>
+<td align="center"><code>1.0.2-7</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/libwebp">libwebp</a></td>
+<td align="center"><strong>major</strong> version</td>
+</tr>
+<tr>
+<td align="center">openjpeg</td>
+<td align="center"><code>2.3.0</code></td>
+<td align="center"><code>2.3.1-1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/openjpeg">openjpeg</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">tiff</td>
+<td align="center"><code>4.0.9</code></td>
+<td align="center"><code>4.0.10-7</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/tiff">tiff</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">ilmbase</td>
+<td align="center"><code>2.2.1</code></td>
+<td align="center"><code>2.3.0</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/ilmbase">ilmbase</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">sdl_image</td>
+<td align="center"><code>1.2.12</code></td>
+<td align="center">N/A</td>
+<td align="center"></td>
+<td align="center"><strong><em>missing</em></strong></td>
+</tr>
+<tr>
+<td align="center">jxrlib</td>
+<td align="center"><code>1.1.0</code></td>
+<td align="center"><code>1.1-8</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/jxrlib">jxrlib</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">sip</td>
+<td align="center"><code>4.19.8</code></td>
+<td align="center">N/A</td>
+<td align="center"></td>
+<td align="center"><strong><em>Python</em></strong></td>
+</tr>
+<tr>
+<td align="center">tinyxml</td>
+<td align="center"><code>2.6.2</code></td>
+<td align="center"><code>2.6.2-4</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/tinyxml">tinyxml</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">libraw</td>
+<td align="center"><code>0.19.0</code></td>
+<td align="center"><code>201903-1</code> (based on <code>0.19.0</code>)</td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/libraw">libraw</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">tinyxml2</td>
+<td align="center"><code>6.1.0</code></td>
+<td align="center"><code>7.0.1-2</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/tinyxml2">tinyxml2</a></td>
+<td align="center"><strong>major</strong> version</td>
+</tr>
+<tr>
+<td align="center">liblzma</td>
+<td align="center"><code>5.2.4</code></td>
+<td align="center"><code>5.2.4-2</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/liblzma">liblzma</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">urdfdom</td>
+<td align="center"><code>1.0.0</code></td>
+<td align="center"><code>1.0.3-1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/urdfdom">urdfdom</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">openexr</td>
+<td align="center"><code>2.2.1</code></td>
+<td align="center"><code>2.3.0-4</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/openexr">openexr</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">urdfdom_headers</td>
+<td align="center"><code>1.0.0</code></td>
+<td align="center"><code>1.0.4-1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/urdfdom-headers">urdfdom-headers</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">lcms</td>
+<td align="center"><code>2.8.0</code></td>
+<td align="center"><code>2.9</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/lcms">lcms</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">yaml-cpp</td>
+<td align="center"><code>0.5.3</code></td>
+<td align="center"><code>0.6.2-3</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/yaml-cpp">yaml-cpp</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">jasper</td>
+<td align="center"><code>2.0.14</code></td>
+<td align="center"><code>2.0.16-2</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/jasper">jasper</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">ceres</td>
+<td align="center"><code>1.14.0</code></td>
+<td align="center"><code>1.14.0-6</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/ceres">ceres</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">qwt</td>
+<td align="center"><code>6.1.3</code></td>
+<td align="center"><code>6.1.3-8</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/qwt">qwt</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">gazebo9</td>
+<td align="center"><code>9.4.1</code></td>
+<td align="center">N/A</td>
+<td align="center"></td>
+<td align="center"><strong><em>missing</em></strong></td>
+</tr>
+<tr>
+<td align="center">libfltk</td>
+<td align="center"><code>1.3.4</code></td>
+<td align="center"><code>1.3.4-7</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/fltk">fltk</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">libtbb-dev</td>
+<td align="center"><code>2018.6.0</code></td>
+<td align="center"><code>2019_U8-1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/tbb">tbb</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">libgraphviz</td>
+<td align="center"><code>2.41.0</code></td>
+<td align="center">N/A</td>
+<td align="center"></td>
+<td align="center"><strong><em>missing</em></strong></td>
+</tr>
+<tr>
+<td align="center">lz4</td>
+<td align="center"><code>1.8.1</code></td>
+<td align="center"><code>1.9.2</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/lz4">lz4</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">openssl</td>
+<td align="center"><code>1.1.1</code></td>
+<td align="center"><code>1.0.2s-1</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/openssl-windows">openssl-windows</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">orocos_kdl</td>
+<td align="center"><code>1.3.1</code></td>
+<td align="center"><code>1.4-2</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/orocos-kdl">orocos-kdl</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">pkg-config</td>
+<td align="center"><code>0.29.2</code></td>
+<td align="center">N/A</td>
+<td align="center"></td>
+<td align="center"><strong><em>missing</em></strong></td>
+</tr>
+<tr>
+<td align="center">qt5-sdk</td>
+<td align="center"><code>5.10.1</code></td>
+<td align="center"><code>5.12.5</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/qt5">qt5</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">libtheora</td>
+<td align="center"><code>1.1.1</code></td>
+<td align="center"><code>1.2.0alpha1-20170719~vcpkg1-3</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/libtheora">libtheora</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">libogg</td>
+<td align="center"><code>1.3.3</code></td>
+<td align="center"><code>1.3.4</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/libogg">libogg</a></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">libpcl</td>
+<td align="center"><code>1.8.1</code></td>
+<td align="center"><code>1.9.1-9</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/pcl">pcl</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">libazure-iot-sdk-c</td>
+<td align="center"><code>1.2.10</code></td>
+<td align="center"><code>2019-08-20.1</code> (based on <code>1.3.4</code>)</td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/azure-iot-sdk-c">azure-iot-sdk-c</a></td>
+<td align="center">minor version</td>
+</tr>
+<tr>
+<td align="center">libqglviewer</td>
+<td align="center"><code>2.7.1</code></td>
+<td align="center"><code>2.7.0-2</code></td>
+<td align="center"><a href="https://github.com/microsoft/vcpkg/tree/master/ports/libqglviewer">libqglviewer</a></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

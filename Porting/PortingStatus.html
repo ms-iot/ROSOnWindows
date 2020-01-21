@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>What's New - ROS on Windows</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "What's New";
+    var mkdocs_page_input_path = "Porting\\PortingStatus.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="icon icon-home"> ROS on Windows</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="PortingStatus.html">What's New</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#porting-status">Porting Status</a></li>
+    
+
+    <li class="toctree-l2"><a href="#plan">Plan</a></li>
+    
+
+    <li class="toctree-l2"><a href="#october-2018">October 2018</a></li>
+    
+
+    <li class="toctree-l2"><a href="#september-2018">September 2018</a></li>
+    
+
+    <li class="toctree-l2"><a href="#packages-to-port">Packages to port</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Build/buildfarm.html">Build Status</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Get ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Setup.html">Binary Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Build/source.html">Source Installation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/NewToROS.html">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/UsingROSonWindows.html">Windows vs. Linux</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Moveit/moveit_tutorials.html">MoveIt</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Moveit/UR3.html">Universal Robot UR3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Turtlebot/Turtlebot3.html">TurtuleBot 3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">CI/CD Practices</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/SetupCI.html">Continuous Integration Template</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Porting Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="Cookbook.html">Cookbook</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/VcpkgAsRosdep.html">Resolving Dependencies by Vcpkg</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Troubleshooting.html">Troubleshooting</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">ROS on Windows</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>What's New</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ms-iot/rosonwindows/edit/mkdocs/docs/Porting/PortingStatus.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="porting-status">Porting Status</h1>
+<p>This page covers the current porting status of ROS1 on Windows.</p>
+<h1 id="plan">Plan</h1>
+<p>Microsoft has been working with Open Robotics and ROS Industrial Consortium on the ROS for Windows porting logistics. Open Robotics has provided a list (below) of packages which need to be ported in order to not be considered experimental. Once tested and upstreamed, Open Robotics will consider Windows supported.</p>
+<p>We are targeting Mid-December to complete the ROS porting effort.</p>
+<h1 id="october-2018">October 2018</h1>
+<ul>
+<li>rViz<ul>
+<li>Missing panels appear to be a timing issue which also repros on Linux. </li>
+</ul>
+</li>
+<li>MoveIt<ul>
+<li>First Life! We have MoveIt planning paths for a UR-3.</li>
+</ul>
+</li>
+<li>Developing a program to close the loop with customers</li>
+<li>Navigation<ul>
+<li>Workin on Cartographer port</li>
+<li>Working on other ports</li>
+</ul>
+</li>
+<li>Started discussions about upstreaming.</li>
+</ul>
+<h1 id="september-2018">September 2018</h1>
+<ul>
+<li>Core ROS<ul>
+<li>Core ROS has been ported</li>
+</ul>
+</li>
+<li>ROSSerial<ul>
+<li>We are observing some transport failures in the ROSSerial connection.</li>
+</ul>
+</li>
+<li>rViz<ul>
+<li>Subpanels, such as Display, do not show up consistently. We believe it is an optimization problem. We're working on this.</li>
+</ul>
+</li>
+<li>Gazebo<ul>
+<li>Port has not started Yet. This is a long port, which will start after MoveIt for Windows is completed.</li>
+</ul>
+</li>
+<li>Turtlebot3<ul>
+<li>Turtlebot mostly brought up.</li>
+<li>Navigation in progress</li>
+</ul>
+</li>
+<li>Perception<ul>
+<li>Camera nodes</li>
+<li>Lidar</li>
+<li>OpenNI porting started.</li>
+</ul>
+</li>
+<li>Navigation<ul>
+<li>OpenKarto has been ported, but not tested.</li>
+<li>gmapping port has not started</li>
+<li>We will discuss other mapping projects with their maintainers</li>
+</ul>
+</li>
+<li>MoveIt<ul>
+<li>MoveIt port started</li>
+</ul>
+</li>
+<li>Linux testing<ul>
+<li>ROSComm in progress</li>
+</ul>
+</li>
+<li>ROS#<ul>
+<li>Testing has not started, but we believe it will work</li>
+</ul>
+</li>
+</ul>
+<h1 id="packages-to-port">Packages to port</h1>
+<p><strong>Top 40</strong></p>
+<ul>
+<li>[X] python-catkin-pkg</li>
+<li>[X] python-catkin-pkg-modules</li>
+<li>[X] python-rosdep</li>
+<li>[X] python-rosdistro</li>
+<li>[X] python-rosdistro-modules</li>
+<li>[X] python-rospkg</li>
+<li>[X] python-rospkg-modules</li>
+<li>[X] ros-melodic-actionlib</li>
+<li>[X] ros-melodic-actionlib-msgs</li>
+<li>[X] ros-melodic-cv-bridge</li>
+<li>[X] ros-melodic-desktop</li>
+<li>[X] ros-melodic-desktop-full</li>
+<li>[X] ros-melodic-diagnostic-updater</li>
+<li>[X] ros-melodic-gazebo-plugins</li>
+<li>[X] ros-melodic-gazebo-ros</li>
+<li>[X] ros-melodic-geometry-msgs</li>
+<li>[X] ros-melodic-image-transport</li>
+<li>[X] ros-melodic-interactive-markers</li>
+<li>[X] ros-melodic-kdl-parser</li>
+<li>[X] ros-melodic-laser-geometry</li>
+<li>[X] ros-melodic-nav-msgs</li>
+<li>[X] ros-melodic-pcl-conversions</li>
+<li>[X] ros-melodic-pcl-msgs</li>
+<li>[X] ros-melodic-pcl-ros</li>
+<li>[X] ros-melodic-robot-state-publisher</li>
+<li>[X] ros-melodic-rqt-robot-plugins</li>
+<li>[X] ros-melodic-rqt-rviz</li>
+<li>[X] ros-melodic-rviz</li>
+<li>[X] ros-melodic-sensor-msgs</li>
+<li>[X] ros-melodic-simulators</li>
+<li>[X] ros-melodic-tf</li>
+<li>[X] ros-melodic-tf2</li>
+<li>[X] ros-melodic-tf2-eigen</li>
+<li>[X] ros-melodic-tf2-geometry-msgs</li>
+<li>[X] ros-melodic-tf2-kdl</li>
+<li>[X] ros-melodic-tf2-msgs</li>
+<li>[X] ros-melodic-tf2-py</li>
+<li>[X] ros-melodic-tf2-ros</li>
+<li>[X] ros-melodic-tf-conversions</li>
+<li>[X] ros-melodic-viz</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Build/buildfarm.html" class="btn btn-neutral float-right" title="Build Status">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../index.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Build/buildfarm.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Cookbook - ROS on Windows</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Cookbook";
+    var mkdocs_page_input_path = "Porting\\Cookbook.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="icon icon-home"> ROS on Windows</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="PortingStatus.html">What's New</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Build/buildfarm.html">Build Status</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Get ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Setup.html">Binary Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Build/source.html">Source Installation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/NewToROS.html">Getting Started</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/UsingROSonWindows.html">Windows vs. Linux</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Moveit/moveit_tutorials.html">MoveIt</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Moveit/UR3.html">Universal Robot UR3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Turtlebot/Turtlebot3.html">TurtuleBot 3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">CI/CD Practices</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/SetupCI.html">Continuous Integration Template</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Porting Guide</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="Cookbook.html">Cookbook</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#ros-for-windows-porting-cookbook">ROS for Windows Porting Cookbook</a></li>
+    
+
+    <li class="toctree-l3"><a href="#windows-vs-linux">Windows vs Linux</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#find-idiom-to-package-url">$(find ...) idiom to package:// url</a></li>
+        
+            <li><a class="toctree-l4" href="#paths-and-ros-commands">Paths and ROS commands</a></li>
+        
+            <li><a class="toctree-l4" href="#visibility">Visibility</a></li>
+        
+            <li><a class="toctree-l4" href="#install-library-targets-given-no-destination">install Library TARGETS given no DESTINATION!</a></li>
+        
+            <li><a class="toctree-l4" href="#all-warnings">All Warnings</a></li>
+        
+            <li><a class="toctree-l4" href="#security-warnings">Security Warnings</a></li>
+        
+            <li><a class="toctree-l4" href="#c-versioning">C++ versioning</a></li>
+        
+            <li><a class="toctree-l4" href="#_attribute_">_attribute_</a></li>
+        
+            <li><a class="toctree-l4" href="#unresolved-external">Unresolved External</a></li>
+        
+            <li><a class="toctree-l4" href="#beware-of-aggressive-optimization">Beware of aggressive optimization</a></li>
+        
+            <li><a class="toctree-l4" href="#case-sensitivity">Case sensitivity</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#python">Python</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#shebang">Shebang</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#errors">Errors</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#gtest-notfound">gtest-NOTFOUND</a></li>
+        
+            <li><a class="toctree-l4" href="#boostasio-winsockh-has-already-been-included">Boost::asio Winsock.h has already been included</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#missing-symbols">Missing Symbols</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#m_pi">'M_PI'</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l3"><a href="#warnings">Warnings</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#truncation">Truncation</a></li>
+        
+            <li><a class="toctree-l4" href="#unreferenced-parameters">unreferenced parameters</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/VcpkgAsRosdep.html">Resolving Dependencies by Vcpkg</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Troubleshooting.html">Troubleshooting</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">ROS on Windows</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Porting Guide &raquo;</li>
+        
+      
+    
+    <li>Cookbook</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ms-iot/rosonwindows/edit/mkdocs/docs/Porting/Cookbook.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="ros-for-windows-porting-cookbook">ROS for Windows Porting Cookbook</h1>
+<p>While every effort has been made to reduce the effort needed to support ROS nodes on Windows, 
+there will inevitably be required changes between platforms. This cookbook is intended to collect common issues and recommended solutions.</p>
+<h1 id="windows-vs-linux">Windows vs Linux</h1>
+<h2 id="find-idiom-to-package-url">$(find ...) idiom to package:// url</h2>
+<p>In many cases in ROS, <code>$(find ...)</code> is used to locate a resource at runtime. However, the semantics are different on Windows and Linux. 
+To alleviate this, please use <code>package://&lt;ros package id&gt;/&lt;resource&gt;</code>   </p>
+<h2 id="paths-and-ros-commands">Paths and ROS commands</h2>
+<p>Many ROS Commands are sensitive to the drive letter they are executed from. This manifests in problems such as rosdeps not resolving correctly. </p>
+<p>To address this either:
+  * Put all of your ROS workspaces on the C:\ drive
+  * Link folders from your C:\ drive to your workspaces.</p>
+<p>To link a folder on Windows, use the mklink to create a filesystem link from one drive to another.:</p>
+<pre><code>mkdir d:\workspaces
+mklink c:\workspaces d:\workspaces
+</code></pre>
+
+<h2 id="visibility">Visibility</h2>
+<p>Windows and Linux handle symbol visibility differently. You may encounter a build error of the form:</p>
+<pre><code>error C2448: '__attribute__': function-style initializer appears to be a function definition
+'visibility': identifier not found
+</code></pre>
+
+<p><a href="https://gcc.gnu.org/wiki/Visibility">The GCC visibility documentation</a> has a good article on handling the compiler differences. This includes adding a header file which uses a compiler switch to select the correct visibility macro handler.</p>
+<h2 id="install-library-targets-given-no-destination">install Library TARGETS given no DESTINATION!</h2>
+<p>Windows will generate separate archives and librarys. To handle this, add an ARCHIVE destination:</p>
+<pre><code>install(
+    TARGETS ${PROJECT_NAME}
+    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
+</code></pre>
+
+<h2 id="all-warnings">All Warnings</h2>
+<p>Warnings are good. The options for selecting warning level are different. If you add specific compiler options for warnings, please add an MSVC selection. For the Visual Studio compiler, you'll use <code>/W3</code> for warning level 3 (or <code>/W4</code> which offers more warning options). If you would like to treat warnings as errors pass <code>/WX</code>. However, these warnings would need to be corrected before the compile will succeed.</p>
+<pre><code>if(MSVC)
+  add_compile_options(/W3 /WX)
+else()
+  add_compile_options(-Wall -Wextra)
+endif()
+</code></pre>
+
+<p>You can disable specific warnings using <code>#pragma</code>:</p>
+<pre><code>#ifdef _MSC_VER
+  #pragma warning(disable: 4244)
+  #pragma warning(disable: 4661)
+#endif
+</code></pre>
+
+<h2 id="security-warnings">Security Warnings</h2>
+<p>Windows deprecates certain C APIs because they are inherently insecure. You will receive a message of the form:</p>
+<pre><code>warning C4996: 'xxx': This function or variable may be unsafe. Consider using xxx_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+</code></pre>
+
+<p>Consider using modern equivelents. If you cannot use a modern equivelent, you can add the following to your cmake files:</p>
+<pre><code>add_definitions(&quot;/D_CRT_SECURE_NO_WARNINGS&quot;)
+add_definitions(&quot;/D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS&quot;)
+</code></pre>
+
+<h2 id="c-versioning">C++ versioning</h2>
+<p>Use CMake to set the C++ version:</p>
+<pre><code>if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 11)
+endif()
+</code></pre>
+
+<h2 id="_attribute_"><strong><em>_attribute</em></strong>_</h2>
+<p><strong><em>_attribute</em></strong>_ is not suppported on MSVC. You can use a macro replacement or use a cross platform convention.</p>
+<h2 id="unresolved-external"><code>Unresolved External</code></h2>
+<p>Linux automatically exports symbols. Windows, symbols are private by default. <a href="https://cmake.org/cmake/help/v3.4/prop_tgt/WINDOWS_EXPORT_ALL_SYMBOLS.html">CMake provides a facility for this</a>.</p>
+<p>In your cmake:</p>
+<pre><code>set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+</code></pre>
+
+<p>However, you may encounter a problem with static class members, i.e. global data symbols, as discussed in https://blog.kitware.com/create-dlls-on-windows-without-declspec-using-new-cmake-export-all-feature/. In this case you need to manually handle visibility of the static class members, using the <a href="https://cmake.org/cmake/help/v3.4/module/GenerateExportHeader.html"><code>GenerateExportHeader</code></a> CMake module. </p>
+<p>In particular, if your static class members are contained in a library called <code>mylibrary</code>, you need to add the following lines in your CMake after the call to
+<code>add_library(mylibrary ...)</code>: </p>
+<pre><code>include(GenerateExportHeader)
+generate_export_header(mylibrary)
+target_include_directories(mylibrary PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+</code></pre>
+
+<p>The <code>generate_export_header(mylibrary)</code> call creates a file called <code>mylibrary_export.h</code>, contained in the <code>${CMAKE_CURRENT_BINARY_DIR}</code> build directory. This file contains the definition of the <code>mylibrary_EXPORT</code> macro, that you can use to modify your code as in the following: </p>
+<pre><code>#include &quot;mylibrary_export.h&quot;
+
+class myclass
+{
+ static mylibrary_EXPORT int GlobalCounter;
+…
+</code></pre>
+
+<p>If this class definition is contained in a public header, you need to make sure to install the generated 
+<code>mylibrary_export.h</code> together with the rest of the headers, i.e. : </p>
+<pre><code>install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mylibrary_export.h
+        DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
+</code></pre>
+
+<h2 id="beware-of-aggressive-optimization">Beware of aggressive optimization</h2>
+<p>The Microsoft compiler will optimize agressively. This can manifest in strange ways. One instance was in turtlebot3 fake code, is a ROS_ASSERT with a function that only returns true. Nothing else executed.</p>
+<h2 id="case-sensitivity">Case sensitivity</h2>
+<p>Linux is case sensitive, whereas Windows is not. We are trying to locate case sensitive areas and isolate them. This manifests in odd errors like this: </p>
+<pre><code>RLException: multiple files named [turtlebot3_robot.launch] in package [turtlebot3_bringup]:
+- C:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
+- c:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
+</code></pre>
+
+<p>In this case, the ROS_PACKAGE_PATH has a lower case drive letter.</p>
+<h1 id="python">Python</h1>
+<h2 id="shebang">Shebang</h2>
+<p>Windows does not support Shebang character sequence for automatically launching an interpreter. To support Python nodes on Windows, a few changes need to be made.</p>
+<h3 id="shebang-in-ros-nodes">Shebang in ROS nodes</h3>
+<p>If a ROS node uses Python, please rename the file with the .py extension.</p>
+<h3 id="shebang-in-command-line-commands">Shebang in command line commands</h3>
+<p>If you are producing a command line application which will be installed with Pip, please add a windows wrapper.</p>
+<h1 id="errors">Errors</h1>
+<h2 id="gtest-notfound">gtest-NOTFOUND</h2>
+<p>This occurs when linking against gtest instead of ${GTEST_LIBRARIES}</p>
+<pre><code>  target_link_libraries( rtest
+      ${GTEST_LIBRARIES}
+      ${catkin_LIBRARIES}
+  )
+</code></pre>
+
+<h2 id="boostasio-winsockh-has-already-been-included">Boost::asio Winsock.h has already been included</h2>
+<h3 id="cause">Cause:</h3>
+<p>ROS includes Windows.h, but explicitly excludes Winsock.h. Boost's socket_types.h checks for this flag and assumes winsock.h was included.</p>
+<h3 id="fix">Fix:</h3>
+<p>Add the following before boost/asio.hpp:</p>
+<pre><code class="C++">#include &lt;ros/ros.h&gt;
+
+#ifdef WIN32
+#include &lt;winsock2.h&gt;
+#endif
+
+#include &lt;boost/asio.hpp&gt;
+</code></pre>
+
+<h1 id="missing-symbols">Missing Symbols</h1>
+<h2 id="m_pi">'M_PI'</h2>
+<p>Add the following to the top of your file</p>
+<pre><code class="C++">#define _USE_MATH_DEFINES 
+</code></pre>
+
+<h1 id="warnings">Warnings</h1>
+<p>The Microsoft Visual Studio compiler has strict type checking enabled by default. Here are some common warnings.</p>
+<h2 id="truncation">Truncation</h2>
+<p>'=': truncation from 'double' to float
+Use appropriate casts ensuring accuracy of the conversion.</p>
+<h2 id="unreferenced-parameters">unreferenced parameters</h2>
+<p>Either remove it, or reference it in a noop block</p>
+<pre><code class="c++">uint8_t unused;
+unused;
+</code></pre>
+
+<h2 id="_1"></h2>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../GettingStarted/VcpkgAsRosdep.html" class="btn btn-neutral float-right" title="Resolving Dependencies by Vcpkg">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../GettingStarted/SetupCI.html" class="btn btn-neutral" title="Continuous Integration Template"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../GettingStarted/SetupCI.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../GettingStarted/VcpkgAsRosdep.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
