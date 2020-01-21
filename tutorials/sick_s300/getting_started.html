@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Setup `rosserial_arduino` with ROS on Windows - ROS on Windows</title>
+  <title>SICK S300 - ROS on Windows</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Setup `rosserial_arduino` with ROS on Windows";
-    var mkdocs_page_input_path = "Notes\\rosserial\\setup.md";
+    var mkdocs_page_name = "SICK S300";
+    var mkdocs_page_input_path = "tutorials\\sick_s300\\getting_started.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -105,9 +105,33 @@
                     
     <a class="" href="../../Turtlebot/Turtlebot3.html">TurtuleBot 3</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../../tutorials/sick_s300/getting_started.html">SICK S300</a>
+    <a class="current" href="getting_started.html">SICK S300</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#prerequisite">Prerequisite</a></li>
+    
+
+    <li class="toctree-l3"><a href="#step-1-clone-the-driver-package">Step 1: Clone the Driver Package</a></li>
+    
+
+    <li class="toctree-l3"><a href="#step-2-create-your-owned-package">Step 2: Create your owned Package</a></li>
+    
+
+    <li class="toctree-l3"><a href="#step-3-build-the-workspace">Step 3: Build the Workspace</a></li>
+    
+
+    <li class="toctree-l3"><a href="#step-4-write-a-ros-launch-file-running-laser-scanner-node">Step 4: Write a ROS Launch file running Laser Scanner node</a></li>
+    
+
+    <li class="toctree-l3"><a href="#step-5-start-to-run-ros-application">Step 5: Start to Run ROS application</a></li>
+    
+
+    <li class="toctree-l3"><a href="#summary">Summary</a></li>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -220,11 +244,15 @@
     <li><a href="../../index.html">Docs</a> &raquo;</li>
     
       
+        
+          <li>Tutorials &raquo;</li>
+        
+      
     
-    <li>Setup `rosserial_arduino` with ROS on Windows</li>
+    <li>SICK S300</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/Notes/rosserial/setup.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/tutorials/sick_s300/getting_started.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -234,97 +262,121 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="setup-rosserial_arduino-with-ros-on-windows">Setup <code>rosserial_arduino</code> with ROS on Windows</h1>
-<h2 id="prerequisite">prerequisite</h2>
+                <p>In this post, I will show you how to get started with <strong>SICK S300 Safety Laser Scanner</strong> in a ROS workspace.
+I will begin with an empty workspace, add required ROS packages, define and run an exmaple ROS application, and check laser scan in the ROS visualization tools.</p>
+<p>In this tutorial, I will be using <strong>cob_sick_s300</strong>, a community ROS package, to drive <strong>SICK S300</strong> to get the laser scan messages into ROS topics.</p>
+<p>For more information, see <a href="http://wiki.ros.org/cob_sick_s300">http://wiki.ros.org/cob_sick_s300</a>.</p>
+<h2 id="prerequisite">Prerequisite</h2>
 <ul>
-<li>ROS on Windows installation: https://github.com/ms-iot/ROSOnWindows/blob/master/GettingStarted/Setup.md</li>
-<li>Arduino: https://www.arduino.cc/en/Main/Software<ul>
-<li><em>note: choose Windows Installer (instead of Windows app) to use Arduino with VS Code</em></li>
+<li>You have a machine with <code>Windows 10</code> installed.</li>
+<li>You have <a href="https://wiki.ros.org/Installation/Windows"><code>ROS Melodic Desktop Full</code></a> installed.</li>
+<li>You have a <strong>SICK S300 Safety Laser Scanner</strong> commissioned to operate and connected to your host machine over a serial port.</li>
+<li>This tutorial applies to:<ul>
+<li><a href="http://www.sick.com/s300_standard"><code>S300 Standard</code></a></li>
+<li><a href="http://www.sick.com/s300_advanced"><code>S300 Advanced</code></a></li>
+<li><a href="http://www.sick.com/s300_professional"><code>S300 Professional</code></a></li>
+<li><a href="http://www.sick.com/s300_expert"><code>S300 Expert</code></a></li>
 </ul>
 </li>
-<li>~~<em>optional:</em> VS Code: https://code.visualstudio.com/~~</li>
-<li>~~<em>optional:</em> VS Code Arduino plugin: https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.vscode-arduino~~</li>
 </ul>
-<h2 id="install">Install</h2>
-<ol>
-<li>
-<p>follow <a href="https://github.com/ms-iot/ROSOnWindows/blob/master/GettingStarted/Setup.md">ROS on Windows setup instructions</a> to install ROS on Windows binaries (install from source code works too, but might be more complicated)</p>
-</li>
-<li>
-<p>(if ROS on Windows is already installed) use the following <code>choco upgrade</code> command to make sure you have the latest binaries
-    <code>choco upgrade ros-melodic-desktop -y</code></p>
-</li>
-<li>
-<p>load ROS on Windows environment with <code>setup.bat</code>, similar to the following command
-    <code>C:\opt\ros\melodic\x64\setup.bat</code></p>
-<p><em>note: this step is critical; otherwise all the ROS CLI tools like <code>catkin_make</code> or <code>catkin_make_isolated</code> cannot be used</em></p>
-</li>
-<li>
-<p>before moving on to <code>rosserial</code> installation, check environment</p>
+<h2 id="step-1-clone-the-driver-package">Step 1: Clone the Driver Package</h2>
+<p>Firstly, you will need a <code>catkin</code> workspace to contain the driver package.
+Let's assume you are working on a empty workspace under <code>c:\s300_ws</code> and now you need to clone the driver package and its dependencies into the source folder:</p>
+<pre><code>:: change the directory to the source subfolder.
+c:\s300_ws&gt; cd src
+
+:: checkout the driver package code.
+c:\s300_ws\src&gt; git clone https://github.com/seanyen/cob_sick_s300
+c:\s300_ws\src&gt; git clone https://github.com/wjwwood/serial
+</code></pre>
+
+<h2 id="step-2-create-your-owned-package">Step 2: Create your owned Package</h2>
+<p>Now you have the required packages in your workspace.
+By ROS convention, it is common to manage the peripheral nodes in ROS launch files.
+However, since we begin this tutorial with an empty workspace, let's create a new package so we can add the ROS launch files later.</p>
+<pre><code>:: change the directory to the source subfolder.
+c:\s300_ws&gt; cd src
+
+:: create your owned package
+c:\s300_ws\src&gt; catkin_create_pkg my_pkg
+</code></pre>
+
+<h2 id="step-3-build-the-workspace">Step 3: Build the Workspace</h2>
+<p>Let's build the workspace to produce the executables and binaries.
+And remember to run <code>setup.bat</code> to add the development space into the current environment.</p>
+<pre><code>:: Build the workspace
+c:\s300_ws&gt; catkin_make
+
+:: Add the development space into the current environment.
+c:\s300_ws&gt; devel\setup.bat
+</code></pre>
+
+<h2 id="step-4-write-a-ros-launch-file-running-laser-scanner-node">Step 4: Write a ROS Launch file running Laser Scanner node</h2>
+<p>At this moment, you are ready to add new ROS launch file for the new package.
+Let's add a new one called <code>my_pkg.launch</code>:</p>
+<pre><code>:: Change the directory to new package
+c:\s300_ws&gt; roscd my_pkg
+
+:: Create the ROS launch file
+C:\workspace\s300_ws\src\my_pkg&gt; mkdir launch &amp;&amp; notepad launch\my_pkg.launch
+</code></pre>
+
+<p>Once the <code>notepad</code> gets launched, copy and paste the following text into the new file, save it, and close the notepad:</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;launch&gt;
+    &lt;!-- start laser driver --&gt;
+    &lt;node name=&quot;laser_front&quot; pkg=&quot;cob_sick_s300&quot; type=&quot;cob_sick_s300&quot; respawn=&quot;false&quot; output=&quot;screen&quot;&gt;
+        &lt;rosparam subst_value=&quot;true&quot;&gt;
+            port: COM1
+            baud: 115200
+            scan_duration: 0.025 #no info about that in SICK-docu, but 0.025 is believable and looks good in rviz
+            scan_cycle_time: 0.040 #SICK-docu says S300 scans every 40ms
+            inverted: true
+            scan_id: 7
+            frame_id: /base_laser_link
+            scan_intervals: [[-1.3526, 1.361357]] #[rad] these intervals are included to the scan
+        &lt;/rosparam&gt;
+    &lt;/node&gt;
+
+    &lt;!-- start ROS visualization tools --&gt;
+    &lt;node name=&quot;rqt_gui&quot; pkg=&quot;rqt_gui&quot; type=&quot;rqt_gui&quot;/&gt;
+    &lt;node name=&quot;rviz&quot; pkg=&quot;rviz&quot; type=&quot;rviz&quot;/&gt;
+&lt;/launch&gt;
+</code></pre>
+
+<p>Before we move forward, let's take a look some important parameters to accommodate your environment:</p>
 <ul>
-<li>you should see this is ROS environment is loaded
-    <code>&gt;set ros
-    ROS_DISTRO=melodic
-    ROS_ETC_DIR=C:/opt/ros/melodic/x64/etc/ros
-    ROS_MASTER_URI=http://localhost:11311
-    ROS_PACKAGE_PATH=C:\opt\ros\melodic\x64\share
-    ROS_PYTHON_VERSION=2
-    ROS_ROOT=C:/opt/ros/melodic/x64/share/ros
-    ROS_VERSION=1
-    &gt;set path
-    Path=C:/opt/rosdeps/x64\bin;C:/opt/rosdeps/x64\lib;C:/opt/ros/melodic/x64\bin;C:/opt/ros/melodic/x64\lib;...</code></li>
-<li>you should see this if Python (for ROS) is added to PATH
-    <code>&gt;set path
-    Path=...;C:\opt\python27amd64\;C:\opt\python27amd64\Scripts;...</code></li>
-<li>you should be able to use call Python from command line
-    <code>&gt;python --version
-    Python 2.7.15</code></li>
+<li><code>port</code> should be pointed to where the <code>SICK S300</code> connnected to your host machine.</li>
+<li><code>baud</code> should be the baudrate configured by the <code>SICK S300</code>.</li>
 </ul>
-</li>
-<li>
-<p>create <code>rosserial</code> workspace, clone <code>rosserial</code>, and build</p>
-<p><em>note: please use <code>ms-iot:init_windows</code> on Windows until <code>ms-iot</code> changes are upstreamed back to ROS mainline</em>
-<code>mkdir c:\ros\catkin_ws\rosserial\src\ &amp;&amp; cd c:\ros\catkin_ws\rosserial\src\
-git clone https://github.com/ms-iot/rosserial.git -b init_windows
-cd ..
-catkin_make_isolated</code></p>
-</li>
-<li>
-<p>load <code>rosserial</code> environment just have just been built, and setup Arduino environment (assuming current work directory is still <code>c:\ros\catkin_ws\rosserial</code>)</p>
-<p><em>note: these steps are very similar to <a href="http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup">the steps (for Ubuntu) in <code>rosserial_arduino</code> tutorials</a></em>
-<code>.\install_isolated\setup.bat
-rosrun rosserial_arduino make_libraries.py .</code></p>
-</li>
-<li>
-<p>at this point, a new folder called <code>ros_lib</code> should have been generated, copy that to the library folder for Arduino</p>
-<ul>
-<li>library folder for Arduino could be found through these steps:<ol>
-<li>launch Arduino</li>
-<li>Open File\Preferences</li>
-<li>find Sketchbook location, the path would be <code>&lt;path&gt;\Arduino</code></li>
-<li>Arduino's library path would be <code>&lt;path&gt;\Arduino\libraries</code></li>
-</ol>
-</li>
-</ul>
-</li>
-<li>
-<p>check if <code>ros_lib</code> is installed correctly for Arduino</p>
-<ol>
-<li>launch Arduino (close and relaunch if needed)</li>
-<li>check File\Examples</li>
-<li>there sould be <code>ros_lib</code> under <code>Examples from Custom Libraries</code></li>
-</ol>
-</li>
-<li>
-<p>explore <code>rosserial</code> by following <a href="http://wiki.ros.org/rosserial_arduino/Tutorials">its tutorials</a></p>
-<p><em>note: certain <code>#define</code> flags need to be added for specific platforms, check <a href="http://wiki.ros.org/rosserial_arduino">rosserial_arduino</a> for details</em>
-- especially, add <code>#define USE_USBCON</code> for Arduino based on 32u4: Leonardo, Micro</p>
-</li>
-</ol>
+<h2 id="step-5-start-to-run-ros-application">Step 5: Start to Run ROS application</h2>
+<p>After everything is correctly configured, you are ready to run it.</p>
+<pre><code>:: Run the ROS launch file
+c:\s300_ws&gt; roslaunch my_pkg my_pkg.launch
+</code></pre>
+
+<p>A few moments later, you will see <code>rqt</code> and <code>rviz</code> tools running.
+On the <code>rqt</code>, you can turn on the real-time monitoring on the topic <code>/laser_front/scan</code>.
+<img alt="" src="./rqt.PNG" /></p>
+<p>And on the <code>rviz</code>, you can add built-in <code>LaserScan</code> display by topic and visualize <code>/laser_front/scan</code> in the 3D view port.
+<img alt="" src="./rviz.PNG" /></p>
+<h1 id="summary">Summary</h1>
+<p>Now you have an initial bring-up for <strong>SICK S300 Safety Laser Scanner</strong>.
+You may need to tweak other parameters to reflect the settings of your laser scanner.
+For more information, visit <a href="http://wiki.ros.org/cob_sick_s300">http://wiki.ros.org/cob_sick_s300</a> for the complete guidance.</p>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../GettingStarted/SetupCI.html" class="btn btn-neutral float-right" title="Continuous Integration Template">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../Turtlebot/Turtlebot3.html" class="btn btn-neutral" title="TurtuleBot 3"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -350,6 +402,10 @@ rosrun rosserial_arduino make_libraries.py .</code></p>
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
+        <span><a href="../../Turtlebot/Turtlebot3.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../GettingStarted/SetupCI.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
