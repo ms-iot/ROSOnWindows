@@ -1,6 +1,6 @@
 site_name: ROS on Windows
 repo_url: https://github.com/ms-iot/rosonwindows/
-edit_uri: edit/mkdocs/docs/
+edit_uri: edit/master/docs/
 nav:
     - Home: index.md
     - What's New: Porting/PortingStatus.md
