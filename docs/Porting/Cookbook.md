@@ -2,12 +2,26 @@
 While every effort has been made to reduce the effort needed to support ROS nodes on Windows, 
 there will inevitably be required changes between platforms. This cookbook is intended to collect common issues and recommended solutions.
 
-# Windows vs Linux
-## $(find ...) idiom to package:// url
-In many cases in ROS, `$(find ...)` is used to locate a resource at runtime. However, the semantics are different on Windows and Linux. 
-To alleviate this, please use `package://<ros package id>/<resource>`   
+## Windows and Linux Differences
+## C++ 17
+In your CMakeLists.txt add the compile option:
+`add_compile_options(/std:c++latest)`
 
-## Paths and ROS commands
+## Directory Separators
+Windows uses backslash `\` whereas Linux uses forward slash `/`. As we encounter path processing, we've been replacing them with the Python or Boost equivelents.
+
+## User directory
+Linux has a neat shortcut for refering to the users' home directory `~`. 
+
+Windows uses the environment variable `%USERPROFILE%` - use this whenever you see `~` in ROS documentation.
+
+## Quote handling in command window
+Cmd.exe is the command processor of command window.  Single quotes are not used at all by the cmd.exe except in batch file to enclose the command to run within a FOR /F statement.  Cmd.exe handles quoting with double quotes.  This is different from Linux that uses single quote as quote character.  As encounter quoting on Windows, please use double quote.  The following example shows using double quotes around the message contents:
+``` 
+rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- "[2.0, 0.0, 0.0]" "[0.0, 0.0, 1.8]"
+```
+
+### Paths and ROS commands
 Many ROS Commands are sensitive to the drive letter they are executed from. This manifests in problems such as rosdeps not resolving correctly. 
 
 To address this either:
@@ -20,16 +34,20 @@ mkdir d:\workspaces
 mklink c:\workspaces d:\workspaces
 ```
 
-## Visibility
+### Symbol Visibility
 Windows and Linux handle symbol visibility differently. You may encounter a build error of the form:
 ```
 error C2448: '__attribute__': function-style initializer appears to be a function definition
 'visibility': identifier not found
 ```
 
-[The GCC visibility documentation](https://gcc.gnu.org/wiki/Visibility) has a good article on handling the compiler differences. This includes adding a header file which uses a compiler switch to select the correct visibility macro handler.
+[The GCC visibility documentation](https://gcc.gnu.org/wiki/Visibility)&nearr; has a good article on handling the compiler differences. This includes adding a header file which uses a compiler switch to select the correct visibility macro handler.
 
-## install Library TARGETS given no DESTINATION! 
+Symbol Visibility also impacts binary loading. If you are finding a Nodelet that does not run or a Qt Visualizer isn't working, it may be that the hosting process can not find an expected binary export. To diagnose this on Windows, the Windows developer tools includes a program called Gflags to enable various options. One of those options is called *Loader Snaps* which enables you to detect load failures while debugging. 
+
+Please visit the Microsoft Documentation for more information on [Gflags](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/setting-and-clearing-image-file-flags) and  [Loaders snaps](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/show-loader-snaps).
+
+### install Library TARGETS given no DESTINATION! 
 
 Windows will generate separate archives and librarys. To handle this, add an ARCHIVE destination:
 ```
@@ -38,7 +56,7 @@ install(
     ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
     LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
 ```
-## All Warnings
+### All Warnings
 Warnings are good. The options for selecting warning level are different. If you add specific compiler options for warnings, please add an MSVC selection. For the Visual Studio compiler, you'll use `/W3` for warning level 3 (or `/W4` which offers more warning options). If you would like to treat warnings as errors pass `/WX`. However, these warnings would need to be corrected before the compile will succeed.
 
 ```
@@ -57,7 +75,7 @@ You can disable specific warnings using `#pragma`:
   #pragma warning(disable: 4661)
 #endif
 ```
-## Security Warnings
+### Security Warnings
 Windows deprecates certain C APIs because they are inherently insecure. You will receive a message of the form:
 
 ```
@@ -71,7 +89,7 @@ add_definitions("/D_CRT_SECURE_NO_WARNINGS")
 add_definitions("/D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS")
 ```
 
-## C++ versioning
+### C++ versioning
 Use CMake to set the C++ version:
 
 ```
@@ -79,10 +97,10 @@ if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 11)
 endif()
 ```
-## ____attribute____
+### ____attribute____
 ____attribute____ is not suppported on MSVC. You can use a macro replacement or use a cross platform convention.
 
-## `Unresolved External`
+### `Unresolved External`
 Linux automatically exports symbols. Windows, symbols are private by default. [CMake provides a facility for this](https://cmake.org/cmake/help/v3.4/prop_tgt/WINDOWS_EXPORT_ALL_SYMBOLS.html).
 
 In your cmake:
@@ -119,10 +137,10 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mylibrary_export.h
 ~~~
 
 
-## Beware of aggressive optimization
+### Beware of aggressive optimization
 The Microsoft compiler will optimize agressively. This can manifest in strange ways. One instance was in turtlebot3 fake code, is a ROS_ASSERT with a function that only returns true. Nothing else executed.
 
-## Case sensitivity
+### Case sensitivity
 Linux is case sensitive, whereas Windows is not. We are trying to locate case sensitive areas and isolate them. This manifests in odd errors like this: 
 
 ```
@@ -132,18 +150,18 @@ RLException: multiple files named [turtlebot3_robot.launch] in package [turtlebo
 ```
 In this case, the ROS_PACKAGE_PATH has a lower case drive letter.
 
-# Python
-## Shebang
+## Python
+### Shebang
 Windows does not support Shebang character sequence for automatically launching an interpreter. To support Python nodes on Windows, a few changes need to be made.
-### Shebang in ROS nodes
+#### Shebang in ROS nodes
 If a ROS node uses Python, please rename the file with the .py extension.
 
-### Shebang in command line commands
+#### Shebang in command line commands
 If you are producing a command line application which will be installed with Pip, please add a windows wrapper.
 
 
-# Errors
-## gtest-NOTFOUND
+## Errors
+### gtest-NOTFOUND
 This occurs when linking against gtest instead of ${GTEST_LIBRARIES}
 ```
   target_link_libraries( rtest
@@ -152,12 +170,12 @@ This occurs when linking against gtest instead of ${GTEST_LIBRARIES}
   )
 ```
 
-## Boost::asio Winsock.h has already been included
+### Boost::asio Winsock.h has already been included
 
-### Cause:
+#### Cause:
 ROS includes Windows.h, but explicitly excludes Winsock.h. Boost's socket_types.h checks for this flag and assumes winsock.h was included.
 
-### Fix:
+#### Fix:
 Add the following before boost/asio.hpp:
 ``` C++
 #include <ros/ros.h>
@@ -169,27 +187,27 @@ Add the following before boost/asio.hpp:
 #include <boost/asio.hpp>
 ```
 
-# Missing Symbols
-## 'M_PI'
-Add the following to the top of your file
+## Missing Symbols
+### 'M_PI'
+Add the following to the top of your file:
 
 ``` C++
 #define _USE_MATH_DEFINES 
 ```
 
-# Warnings
+or define it in the CMakeFile.exe
+
+## Warnings
 The Microsoft Visual Studio compiler has strict type checking enabled by default. Here are some common warnings.
 
-## Truncation
+### Truncation
 '=': truncation from 'double' to float
 Use appropriate casts ensuring accuracy of the conversion.
 
-## unreferenced parameters
-Either remove it, or reference it in a noop block
+### unreferenced parameters
+Either remove the variable, or reference it in a noop block
 
 ```c++ 
 uint8_t unused;
 unused;
 ```
-
-##  
