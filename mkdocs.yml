@@ -18,7 +18,7 @@ nav:
         - Continuous Integration Template: GettingStarted/SetupCI.md
     - Porting Guide:
         - Consuming a ROS Package: GettingStarted/UsingROSonWindows.md
-        - Porting a ROS PAckage: GettingStarted/PortingANode.md
+        - Porting a ROS Package: GettingStarted/PortingANode.md
         - Using a C++ Depdendency: GettingStarted/UsingVCPKG.md
         - Porting a C++ Depdendency: GettingStarted/AddingVCPKG.md
         - Porting Cookbook: Porting/Cookbook.md
@@ -27,10 +27,10 @@ nav:
         - Windows ML ROS Node: ROSAtMS/WinML.md
         - Azure Kinect ROS Node &nearr;: https://github.com/microsoft/azure_kinect_ros_driver
         - Azure IoT Hub Node &nearr;: https://github.com/microsoft/ros_azure_iothub
-        - Visual Studio Code ROS Extension &nearr;: https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros
-    - Support:
-        - Troubleshooting: GettingStarted/Troubleshooting.md
+        - Visual Studio Code ROS Extension &nearr;: https://aka.ms/ros/vscode
     - Advanced:
         - Source Installation: Build/source.md
+    - Support:
+        - Troubleshooting: GettingStarted/Troubleshooting.md
 theme: readthedocs
 use_directory_urls: false
