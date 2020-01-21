@@ -1,5 +1,5 @@
 site_name: ROS on Windows
-repo_url: https://github.com/seanyen/rosonwindows/
+repo_url: https://github.com/ms-iot/rosonwindows/
 edit_uri: edit/mkdocs/docs/
 nav:
     - Home: index.md
