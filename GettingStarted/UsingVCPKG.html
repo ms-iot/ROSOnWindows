@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Consuming a ROS Package - ROS on Windows</title>
+  <title>Using a C++ Depdendency - ROS on Windows</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Consuming a ROS Package";
-    var mkdocs_page_input_path = "GettingStarted\\UsingROSonWindows.md";
+    var mkdocs_page_name = "Using a C++ Depdendency";
+    var mkdocs_page_input_path = "GettingStarted\\UsingVCPKG.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -123,29 +123,29 @@
 		
     <span class="caption-text">Porting Guide</span>
     <ul class="subnav">
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="UsingROSonWindows.html">Consuming a ROS Package</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#using-a-ros-package-on-windows">Using a ROS Package on Windows</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#is-the-node-already-supported">Is the node already supported?</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="UsingROSonWindows.html">Consuming a ROS Package</a>
                 </li>
                 <li class="">
                     
     <a class="" href="PortingANode.html">Porting a ROS Package</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="UsingVCPKG.html">Using a C++ Depdendency</a>
+    <a class="current" href="UsingVCPKG.html">Using a C++ Depdendency</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#using-a-c-dependency-in-a-ros-node-using-vcpkg">Using a C++ Dependency in a ROS Node using vcpkg</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#updating-vcpkg-mappings">Updating vcpkg mappings</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
@@ -233,10 +233,10 @@
         
       
     
-    <li>Consuming a ROS Package</li>
+    <li>Using a C++ Depdendency</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/UsingROSonWindows.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/UsingVCPKG.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -246,64 +246,51 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="using-a-ros-package-on-windows">Using a ROS Package on Windows</h1>
-<p>The ROS community has many thousands of nodes which cover many different aspects of building a Robot. Many nodes have been ported by the community or build on Windows without modification. </p>
-<h2 id="is-the-node-already-supported">Is the node already supported?</h2>
-<p>To consume a ROS node, we recommend the following workflow:</p>
+                <h1 id="using-a-c-dependency-in-a-ros-node-using-vcpkg">Using a C++ Dependency in a ROS Node using vcpkg</h1>
+<p>If you find that a dependency is not met with vcpkg today, that dependency can be added by following the <a href="AddingVCPKG.html">vcpkg guide</a></p>
+<h3 id="updating-vcpkg-mappings">Updating vcpkg mappings</h3>
+<p>Often the name of a a library on Linux differs from the name on vcpkg. In order to address this, a mapping file called <code>vcpkg.yaml</code> is part of the rosditro database. This creates a mapping between the Linux name for the package and the vcpkg name.</p>
 <ul>
-<li>Determine if there is a binary release of the ROS node.<ul>
-<li>Using <a href="http://wiki.ros.org">ROS Wiki</a> &nearr;, locate the binary release name and attempt to install using chocolatey. </li>
-<li>If this succeeds, then you are all set!</li>
+<li>Fork <a href="https://github.com/ms-iot/rosdistro-db">https://github.com/ms-iot/rosdistro-db</a> &nearr; into your github account, if you haven't already</li>
+<li>Create a file called <code>0-update.list</code> in <code>c:\opt\ros\melodic\x64\etc\ros\rosdep\sources.list.d</code></li>
+<li>In this file, add a line which points to your fork.</li>
 </ul>
-</li>
-</ul>
-<pre><code>choco install ros-melodic-&lt;project&gt;
+<pre><code># os-specific listings first
+yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
+yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
 </code></pre>
 
 <ul>
-<li>
-<p>If there isn't a binary release, determine if there is a source only distribution. </p>
-<ul>
-<li>Look on <code>https://wiki.ros.org/&lt;project&gt;</code> for the node you are interested in.</li>
-<li>navigate to the project repository.</li>
-<li>Look to see if the node has a <code>windows</code>, <code>init_windows</code>, or similar branch</li>
+<li>Add a mapping from the dependency name used in the ROS package, to the name used in vcpkg. You can edit this file directly on github in your fork. 
+  The format of the vcpkg.yaml:</li>
 </ul>
-</li>
-<li>
-<p>If it has a <code>windows</code>, <code>init_windows</code> or similar branch </p>
-</li>
-<li>Clone that branch locally into a catkin workspace</li>
-</ul>
-<pre><code>mkdir c:\ws\test_ws
-cd c:\ws\test_ws
-git clone -b init_windows http://github.com/&lt;organization&gt;/&lt;project&gt;
+<p><code>Python</code></p>
+<pre><code>&lt;python-package-name&gt;:
+    windows:
+      pip:
+        packages: [&lt;python-package-name-in-pip&gt;]
+</code></pre>
+
+<p><code>C++</code></p>
+<pre><code>  &lt;linux--package-name&gt;:
+    windows:
+      vcpkg:
+        packages: [&lt;vcpkg-name&gt;]
 </code></pre>
 
 <ul>
-<li>
-<p>If it does not have a <code>windows</code>, <code>init_windows</code> or similarly named branch, check to see if the current development branch has already enabled Windows.</p>
-</li>
-<li>
-<p>If Windows is not enabled for the ROS node, check to see if Microsoft's ms-iot Github organization has a fork of that project and working on a port.</p>
-<ul>
-<li>See if there is a <code>&lt;project&gt;</code> fork on http://github.com/ms-iot</li>
-<li>If it does, clone that into your catkin workspace</li>
+<li>Update rosdeps on your computer.</li>
 </ul>
-</li>
-</ul>
-<pre><code>mkdir c:\ws\test_ws
-cd c:\ws\test_ws
-git clone -b init_windows http://github.com/ms-iot/&lt;project&gt;
+<pre><code>rosdep update
+rosdep install --from-paths src --ignore-src -r -y
 </code></pre>
 
-<ul>
-<li>
-<p>If the node has not been enabled on Windows, please create an issue on the ROS node's project page asking for Windows to be supported. </p>
-</li>
-<li>
-<p>If you are able, please consider enabling the ROS node on Windows and submitting a pull request to the original repository. Please refer to the <a href="porting">ROS porting guide</a></p>
-</li>
-</ul>
+<p>You'll see that the dependency resolves correctly. However, you may be provided with specific instructions for using that library in ROS nodes:</p>
+<pre><code>The package &lt;library&gt;:x64-windows provides CMake targets:
+
+    find_package(&lt;package&gt; CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE &lt;package&gt; &lt;package&gt;::&lt;namespace&gt;)
+</code></pre>
               
             </div>
           </div>
@@ -311,10 +298,10 @@ git clone -b init_windows http://github.com/ms-iot/&lt;project&gt;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="PortingANode.html" class="btn btn-neutral float-right" title="Porting a ROS Package">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="AddingVCPKG.html" class="btn btn-neutral float-right" title="Porting a C++ Depdendency">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="SetupCI.html" class="btn btn-neutral" title="Continuous Integration Template"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="PortingANode.html" class="btn btn-neutral" title="Porting a ROS Package"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -342,10 +329,10 @@ git clone -b init_windows http://github.com/ms-iot/&lt;project&gt;
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="SetupCI.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="PortingANode.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="PortingANode.html" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="AddingVCPKG.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

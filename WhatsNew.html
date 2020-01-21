@@ -7,16 +7,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="shortcut icon" href="./img/favicon.ico">
-  <title>ROS on Windows</title>
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>What's New - ROS on Windows</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
-  <script src="./js/jquery-2.1.1.min.js" defer></script>
-  <script src="./js/modernizr-2.8.3.min.js" defer></script>
+  <script>
+    // Current page data
+    var mkdocs_page_name = "What's New";
+    var mkdocs_page_input_path = "WhatsNew.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
@@ -29,7 +36,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="./index.html" class="icon icon-home"> ROS on Windows</a>
+        <a href="index.html" class="icon icon-home"> ROS on Windows</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -43,17 +50,31 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="./index.html">Home</a>
+    <a class="" href="index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="WhatsNew.html">What's New</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#whats-new">What's New</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#january-2020">January 2020</a></li>
+        
+            <li><a class="toctree-l3" href="#state-of-ros-on-windows">State of ROS on Windows</a></li>
+        
+        </ul>
+    
+
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="./WhatsNew.html">What's New</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="./Build/buildfarm.html">Build Status</a>
+    <a class="" href="Build/buildfarm.html">Build Status</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -62,7 +83,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="./GettingStarted/Setup.html">Binary Installation</a>
+    <a class="" href="GettingStarted/Setup.html">Binary Installation</a>
                 </li>
     </ul>
 	    </li>
@@ -73,7 +94,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="./GettingStarted/NewToROS.html">For new ROS Users</a>
+    <a class="" href="GettingStarted/NewToROS.html">For new ROS Users</a>
                 </li>
     </ul>
 	    </li>
@@ -88,15 +109,15 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="./Moveit/moveit_tutorials.html">MoveIt</a>
+    <a class="" href="Moveit/moveit_tutorials.html">MoveIt</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="./Moveit/UR3.html">Universal Robot UR3</a>
+    <a class="" href="Moveit/UR3.html">Universal Robot UR3</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="./Turtlebot/Turtlebot3.html">TurtuleBot 3</a>
+    <a class="" href="Turtlebot/Turtlebot3.html">TurtuleBot 3</a>
                 </li>
     </ul>
 	    </li>
@@ -107,7 +128,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="./GettingStarted/SetupCI.html">Continuous Integration Template</a>
+    <a class="" href="GettingStarted/SetupCI.html">Continuous Integration Template</a>
                 </li>
     </ul>
 	    </li>
@@ -118,23 +139,23 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="./GettingStarted/UsingROSonWindows.html">Consuming a ROS Package</a>
+    <a class="" href="GettingStarted/UsingROSonWindows.html">Consuming a ROS Package</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="./GettingStarted/PortingANode.html">Porting a ROS Package</a>
+    <a class="" href="GettingStarted/PortingANode.html">Porting a ROS Package</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="./GettingStarted/UsingVCPKG.html">Using a C++ Depdendency</a>
+    <a class="" href="GettingStarted/UsingVCPKG.html">Using a C++ Depdendency</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="./GettingStarted/AddingVCPKG.html">Porting a C++ Depdendency</a>
+    <a class="" href="GettingStarted/AddingVCPKG.html">Porting a C++ Depdendency</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="./Porting/Cookbook.html">Porting Cookbook</a>
+    <a class="" href="Porting/Cookbook.html">Porting Cookbook</a>
                 </li>
     </ul>
 	    </li>
@@ -145,11 +166,11 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="./ROSAtMS/ROS1AzureVM.html">ROS 1 Azure VM</a>
+    <a class="" href="ROSAtMS/ROS1AzureVM.html">ROS 1 Azure VM</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="./ROSAtMS/WinML.html">Windows ML ROS Node</a>
+    <a class="" href="ROSAtMS/WinML.html">Windows ML ROS Node</a>
                 </li>
                 <li class="">
                     
@@ -172,7 +193,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="./Build/source.html">Source Installation</a>
+    <a class="" href="Build/source.html">Source Installation</a>
                 </li>
     </ul>
 	    </li>
@@ -183,7 +204,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="./GettingStarted/Troubleshooting.html">Troubleshooting</a>
+    <a class="" href="GettingStarted/Troubleshooting.html">Troubleshooting</a>
                 </li>
     </ul>
 	    </li>
@@ -198,7 +219,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="./index.html">ROS on Windows</a>
+        <a href="index.html">ROS on Windows</a>
       </nav>
 
       
@@ -206,10 +227,15 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="./index.html">Docs</a> &raquo;</li>
+    <li><a href="index.html">Docs</a> &raquo;</li>
     
+      
     
+    <li>What's New</li>
     <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/WhatsNew.md"
+          class="icon icon-github"> Edit on GitHub</a>
       
     </li>
   </ul>
@@ -218,22 +244,25 @@
           <div role="main">
             <div class="section">
               
-
-  <h1 id="search">Search Results</h1>
-
-  <form id="content_search" action="search.html">
-    <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-    <input name="q" id="mkdocs-search-query" type="text" class="search_input search-query ui-autocomplete-input" placeholder="Search the Docs" autocomplete="off" autofocus title="Type search term here">
-  </form>
-
-  <div id="mkdocs-search-results" class="search-results">
-    Searching...
-  </div>
-
-
+                <h1 id="whats-new">What's New</h1>
+<h2 id="january-2020">January 2020</h2>
+<h2 id="state-of-ros-on-windows">State of ROS on Windows</h2>
+<p>ROS1 for Windows was announced generally available in May 2019. Since then it's use has continued to grow. Many companies are porting nodes to Windows. The Visual Studio Code extension has been incredibly well adopted within the community. </p>
+<h3 id="new-look-for-documents">New Look for Documents</h3>
+<p>Documentation and Developer experience are a top priority. We're starting off by refreshing the look of docs; following up with turtorials on how to bring solutions up on Windows.</p>
+              
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Build/buildfarm.html" class="btn btn-neutral float-right" title="Build Status">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -259,12 +288,16 @@
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
+        <span><a href="index.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="Build/buildfarm.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
     <script>var base_url = '.';</script>
-    <script src="./js/theme.js" defer></script>
-      <script src="./search/main.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
 
 </body>
 </html>

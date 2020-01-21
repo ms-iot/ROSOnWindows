@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Consuming a ROS Package - ROS on Windows</title>
+  <title>Porting a C++ Depdendency - ROS on Windows</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Consuming a ROS Package";
-    var mkdocs_page_input_path = "GettingStarted\\UsingROSonWindows.md";
+    var mkdocs_page_name = "Porting a C++ Depdendency";
+    var mkdocs_page_input_path = "GettingStarted\\AddingVCPKG.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -123,21 +123,9 @@
 		
     <span class="caption-text">Porting Guide</span>
     <ul class="subnav">
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="UsingROSonWindows.html">Consuming a ROS Package</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#using-a-ros-package-on-windows">Using a ROS Package on Windows</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#is-the-node-already-supported">Is the node already supported?</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="UsingROSonWindows.html">Consuming a ROS Package</a>
                 </li>
                 <li class="">
                     
@@ -147,9 +135,25 @@
                     
     <a class="" href="UsingVCPKG.html">Using a C++ Depdendency</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="AddingVCPKG.html">Porting a C++ Depdendency</a>
+    <a class="current" href="AddingVCPKG.html">Porting a C++ Depdendency</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#adding-a-new-port-to-vcpkg-for-use-in-a-ros-node">Adding a new port to VCPKG for use in a ROS Node</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#porting-a-c-dependency-with-vcpkg">Porting a C++ Dependency with vcpkg</a></li>
+        
+            <li><a class="toctree-l4" href="#patching-during-vcpkg-build">Patching during vcpkg build</a></li>
+        
+            <li><a class="toctree-l4" href="#committing-a-vcpkg">Committing a vcpkg</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
                 <li class="">
                     
@@ -233,10 +237,10 @@
         
       
     
-    <li>Consuming a ROS Package</li>
+    <li>Porting a C++ Depdendency</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/UsingROSonWindows.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/AddingVCPKG.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -246,64 +250,88 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="using-a-ros-package-on-windows">Using a ROS Package on Windows</h1>
-<p>The ROS community has many thousands of nodes which cover many different aspects of building a Robot. Many nodes have been ported by the community or build on Windows without modification. </p>
-<h2 id="is-the-node-already-supported">Is the node already supported?</h2>
-<p>To consume a ROS node, we recommend the following workflow:</p>
-<ul>
-<li>Determine if there is a binary release of the ROS node.<ul>
-<li>Using <a href="http://wiki.ros.org">ROS Wiki</a> &nearr;, locate the binary release name and attempt to install using chocolatey. </li>
-<li>If this succeeds, then you are all set!</li>
-</ul>
-</li>
-</ul>
-<pre><code>choco install ros-melodic-&lt;project&gt;
+                <h1 id="adding-a-new-port-to-vcpkg-for-use-in-a-ros-node">Adding a new port to VCPKG for use in a ROS Node</h1>
+<p>vcpkg has thousands of recipies for many different cross platform libraries. If you find that a dependency is not part of vcpkg, this walkthrough will help you get started. Every package has its own idiosyncrasies, so this is only a general ROS specific guide. Please refer to the documentation </p>
+<h2 id="porting-a-c-dependency-with-vcpkg">Porting a C++ Dependency with vcpkg</h2>
+<p>Before you begin, you'll want to fork vcpkg into your github account. Next, Fix up your the ROS environment to use your fork.</p>
+<pre><code>cd c:\opt\vcpkg
+git remote add upstream https://github.com/microsoft/vcpkg
+git remote set-url origin https://github.com/&lt;your github&gt;/vcpkg
+git fetch --all
+.\bootstrap-vcpkg.bat
 </code></pre>
 
-<ul>
-<li>
-<p>If there isn't a binary release, determine if there is a source only distribution. </p>
-<ul>
-<li>Look on <code>https://wiki.ros.org/&lt;project&gt;</code> for the node you are interested in.</li>
-<li>navigate to the project repository.</li>
-<li>Look to see if the node has a <code>windows</code>, <code>init_windows</code>, or similar branch</li>
-</ul>
-</li>
-<li>
-<p>If it has a <code>windows</code>, <code>init_windows</code> or similar branch </p>
-</li>
-<li>Clone that branch locally into a catkin workspace</li>
-</ul>
-<pre><code>mkdir c:\ws\test_ws
-cd c:\ws\test_ws
-git clone -b init_windows http://github.com/&lt;organization&gt;/&lt;project&gt;
+<p>Now we will add a port fpr the package. We will follow the process outlined on <a href="https://github.com/microsoft/vcpkg/blob/master/docs/examples/packaging-github-repos.md">Packaging a Github Repo</a> &nearr;. </p>
+<p>Create a folder for the package you'd like to port, then add <code>CONTROL</code> and <code>portfile.cmake</code> files:</p>
+<p><em>CONTROL</em></p>
+<pre><code>Source: &lt;name&gt;
+Version: &lt;latest release version&gt;
+Homepage: https://github.com/&lt;organization&gt;/&lt;project&gt;
+Description: &lt;Description from github&gt;
 </code></pre>
 
-<ul>
-<li>
-<p>If it does not have a <code>windows</code>, <code>init_windows</code> or similarly named branch, check to see if the current development branch has already enabled Windows.</p>
-</li>
-<li>
-<p>If Windows is not enabled for the ROS node, check to see if Microsoft's ms-iot Github organization has a fork of that project and working on a port.</p>
-<ul>
-<li>See if there is a <code>&lt;project&gt;</code> fork on http://github.com/ms-iot</li>
-<li>If it does, clone that into your catkin workspace</li>
-</ul>
-</li>
-</ul>
-<pre><code>mkdir c:\ws\test_ws
-cd c:\ws\test_ws
-git clone -b init_windows http://github.com/ms-iot/&lt;project&gt;
+<p><em>portfile.cmake</em></p>
+<pre><code>include(vcpkg_common_functions)
+
+vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH
+    REPO &lt;organization&gt;/&lt;project&gt;
+    REF &lt;latest release version&gt;
+    SHA512 1
+    HEAD_REF master
+)
+
+vcpkg_configure_cmake(
+    SOURCE_PATH ${SOURCE_PATH}
+    PREFER_NINJA
+)
+vcpkg_install_cmake()
+file(INSTALL ${SOURCE_PATH}/COPYING DESTINATION ${CURRENT_PACKAGES_DIR}/share/&lt;project&gt; RENAME copyright)
 </code></pre>
 
-<ul>
-<li>
-<p>If the node has not been enabled on Windows, please create an issue on the ROS node's project page asking for Windows to be supported. </p>
-</li>
-<li>
-<p>If you are able, please consider enabling the ROS node on Windows and submitting a pull request to the original repository. Please refer to the <a href="porting">ROS porting guide</a></p>
-</li>
-</ul>
+<p>Then build with <code>vcpkg build &lt;project&gt;:x64-windows</code></p>
+<p>Which will error because of the SHA512 hash mismatch:</p>
+<pre><code>  File does not have expected hash:
+
+          File path: [ C:/opt/vcpkg/downloads/temp/&lt;package&gt; ]
+      Expected hash: [ 1 ]
+        Actual hash: [ 02a61de205bd1dd116677cf4c530d7adb689442252aeafdc549d54531a62ab10e999062403ddb8aed3d89e4f248ad10c0998739b33004ec02e9914150854d47c ]
+</code></pre>
+
+<p>Which is replaced in the <em>portfile</em> above:</p>
+<pre><code>    SHA512 02a61de205bd1dd116677cf4c530d7adb689442252aeafdc549d54531a62ab10e999062403ddb8aed3d89e4f248ad10c0998739b33004ec02e9914150854d47c
+</code></pre>
+
+<p>Then build again with <code>vcpkg build &lt;package&gt;:x64-windows</code></p>
+<p>You may see errors message during the build. If so, you'll need to fix package and optionally provide a vcpkg patch file.</p>
+<h2 id="patching-during-vcpkg-build">Patching during vcpkg build</h2>
+<p>We now need to change some code in order to make mavlink build correctly on Windows. Following <a href="https://vcpkg.readthedocs.io/en/latest/examples/patching/">vcpkg patching documentation</a>, we will do the following.</p>
+<p>Seed the patch by adding the original unpacked sources (this won't be checked in):</p>
+<pre><code>cd c:\opt\vcpkg\buildtrees\&lt;package&gt;
+git init
+git add .
+git commit -m &quot;create patch&quot;
+</code></pre>
+
+<p>Next, fix the sources and attempt to build. Once builds complete and testing succeeds, you can create a vcpkg patch:</p>
+<pre><code>cd c:\opt\vcpkg\buildtrees\&lt;package&gt;\....
+git diff &gt; ..\..\..\..\ports\&lt;port&gt;\&lt;path name&gt;.patch
+</code></pre>
+
+<p>And include it in the portfile:</p>
+<pre><code>vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH
+    REPO &lt;organization&gt;/&lt;project&gt;
+    REF &lt;latest release version&gt;
+    SHA512 02a61de205bd1dd116677cf4c530d7adb689442252aeafdc549d54531a62ab10e999062403ddb8aed3d89e4f248ad10c0998739b33004ec02e9914150854d47c
+    HEAD_REF master
+    PATCHES
+      &quot;generate-msgs.patch&quot;
+)
+</code></pre>
+
+<h2 id="committing-a-vcpkg">Committing a vcpkg</h2>
+<p>Once you've successfully built and tested the vcpkg, you can submit the code and issue a pull request to the vcpkg repository.</p>
               
             </div>
           </div>
@@ -311,10 +339,10 @@ git clone -b init_windows http://github.com/ms-iot/&lt;project&gt;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="PortingANode.html" class="btn btn-neutral float-right" title="Porting a ROS Package">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Porting/Cookbook.html" class="btn btn-neutral float-right" title="Porting Cookbook">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="SetupCI.html" class="btn btn-neutral" title="Continuous Integration Template"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="UsingVCPKG.html" class="btn btn-neutral" title="Using a C++ Depdendency"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -342,10 +370,10 @@ git clone -b init_windows http://github.com/ms-iot/&lt;project&gt;
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="SetupCI.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="UsingVCPKG.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="PortingANode.html" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Porting/Cookbook.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

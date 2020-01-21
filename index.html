@@ -56,18 +56,12 @@
     <li class="toctree-l2"><a href="#ros-for-windows">ROS for Windows</a></li>
     
 
-    <li class="toctree-l2"><a href="#working-with-ros-on-windows">Working with ROS on Windows</a></li>
-    
-
-    <li class="toctree-l2"><a href="#using-ros-with-azure">Using ROS with Azure</a></li>
-    
-
     </ul>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="Porting/PortingStatus.html">What's New</a>
+    <a class="" href="WhatsNew.html">What's New</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -83,10 +77,6 @@
                     
     <a class="" href="GettingStarted/Setup.html">Binary Installation</a>
                 </li>
-                <li class="">
-                    
-    <a class="" href="Build/source.html">Source Installation</a>
-                </li>
     </ul>
 	    </li>
           
@@ -96,11 +86,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="GettingStarted/NewToROS.html">Getting Started</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="GettingStarted/UsingROSonWindows.html">Windows vs. Linux</a>
+    <a class="" href="GettingStarted/NewToROS.html">For new ROS Users</a>
                 </li>
     </ul>
 	    </li>
@@ -109,6 +95,10 @@
 		
     <span class="caption-text">Tutorials</span>
     <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="http://wiki.ros.org/ROS/Tutorials">Tutorials at ROS Wiki &nearr;</a>
+                </li>
                 <li class="">
                     
     <a class="" href="Moveit/moveit_tutorials.html">MoveIt</a>
@@ -141,11 +131,61 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="Porting/Cookbook.html">Cookbook</a>
+    <a class="" href="GettingStarted/UsingROSonWindows.html">Consuming a ROS Package</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="GettingStarted/VcpkgAsRosdep.html">Resolving Dependencies by Vcpkg</a>
+    <a class="" href="GettingStarted/PortingANode.html">Porting a ROS Package</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="GettingStarted/UsingVCPKG.html">Using a C++ Depdendency</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="GettingStarted/AddingVCPKG.html">Porting a C++ Depdendency</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="Porting/Cookbook.html">Porting Cookbook</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">ROS at Microsoft</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="ROSAtMS/ROS1AzureVM.html">ROS 1 Azure VM</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="ROSAtMS/WinML.html">Windows ML ROS Node</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/microsoft/azure_kinect_ros_driver">Azure Kinect ROS Node &nearr;</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/microsoft/ros_azure_iothub">Azure IoT Hub Node &nearr;</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://aka.ms/ros/vscode">Visual Studio Code ROS Extension &nearr;</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Advanced</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="Build/source.html">Source Installation</a>
                 </li>
     </ul>
 	    </li>
@@ -209,23 +249,9 @@ Manufacturers want to make robots more aware of their surroundings, easier to pr
 At ROSCon 2018 in Madrid, Spain, Microsoft demonstrated a Robotis Turtlebot 3 robot, running the ROS release known as Melodic Morenia, that recognized and steered toward the closest person to the robot. The robot runs Windows 10 IoT Enterprise on an Intel Coffee Lake NUC using a new ROS node which leverages hardware accelerated Windows Machine Learning. 
 Microsoft also showcased a ROS simulation environment running in Azure. It demonstrated a swarm of robots running in a virtual world connected to an orchestration system and controlled via Azure IoT Hub. 
 Microsoft will host the Windows builds for ROS1 and shortly ROS2, as well as provide documentation, development and deployment solutions for Windows.</p>
-<h1 id="working-with-ros-on-windows">Working with ROS on Windows</h1>
-<ul>
-<li><a href="GettingStarted/Setup.html">Install ROS on Windows</a></li>
-<li><a href="GettingStarted/NewToROS.html">Are you new to ROS?</a></li>
-<li><a href="GettingStarted/UsingROSonWindows.html">Learn about the differences between ROS on Windows and ROS on Linux</a></li>
-<li><a href="Porting/PortingStatus.html">Porting Status</a></li>
-<li><a href="GettingStarted/Troubleshooting.html">Help and Troubleshooting</a></li>
-<li><a href="Turtlebot/Turtlebot3.html">Getting Started with Turtlebot3</a> (UPDATED: Gazebo + Cartographer example added)</li>
-<li><a href="Moveit/UR3.html">Getting Started with Moveit! and UR3</a></li>
-<li><a href="GettingStarted/SetupCI.html">Continuous Integration with ROS on Windows</a></li>
-<li><a href="Build/buildfarm.html">About the Azure DevOps buildfarm for ROS on Windows</a></li>
-<li><a href="Build/fromsource.html">Buiding ROS for Windows from Source</a></li>
-</ul>
-<h1 id="using-ros-with-azure">Using ROS with Azure</h1>
-<ul>
-<li><a href="https://github.com/Microsoft/ros_azure_iothub">ROS for Azure IoT Hub</a></li>
-</ul>
+<blockquote>
+<p>ROS&trade; is a Trademark of <a href="https://www.openrobotics.org/">Open Robotics</a></p>
+</blockquote>
               
             </div>
           </div>
@@ -233,7 +259,7 @@ Microsoft will host the Windows builds for ROS1 and shortly ROS2, as well as pro
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Porting/PortingStatus.html" class="btn btn-neutral float-right" title="What's New">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="WhatsNew.html" class="btn btn-neutral float-right" title="What's New">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
     </div>
@@ -263,7 +289,7 @@ Microsoft will host the Windows builds for ROS1 and shortly ROS2, as well as pro
       
       
       
-        <span style="margin-left: 15px"><a href="Porting/PortingStatus.html" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="WhatsNew.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
@@ -276,5 +302,5 @@ Microsoft will host the Windows builds for ROS1 and shortly ROS2, as well as pro
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2020-01-21 19:40:56
+Build Date UTC : 2020-01-21 21:27:28
 -->

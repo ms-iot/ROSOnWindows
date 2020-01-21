@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Windows ML ROS Node - ROS on Windows</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Windows ML ROS Node";
+    var mkdocs_page_input_path = "ROSAtMS\\WinML.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../index.html" class="icon icon-home"> ROS on Windows</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../index.html">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../WhatsNew.html">What's New</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../Build/buildfarm.html">Build Status</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Get ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Setup.html">Binary Installation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Using ROS</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/NewToROS.html">For new ROS Users</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Tutorials</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="http://wiki.ros.org/ROS/Tutorials">Tutorials at ROS Wiki &nearr;</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Moveit/moveit_tutorials.html">MoveIt</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Moveit/UR3.html">Universal Robot UR3</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Turtlebot/Turtlebot3.html">TurtuleBot 3</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">CI/CD Practices</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/SetupCI.html">Continuous Integration Template</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Porting Guide</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/UsingROSonWindows.html">Consuming a ROS Package</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/PortingANode.html">Porting a ROS Package</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/UsingVCPKG.html">Using a C++ Depdendency</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/AddingVCPKG.html">Porting a C++ Depdendency</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Porting/Cookbook.html">Porting Cookbook</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">ROS at Microsoft</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="ROS1AzureVM.html">ROS 1 Azure VM</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="WinML.html">Windows ML ROS Node</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#windows-ml-ros-node">Windows ML ROS Node</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#consuming-winml">Consuming WinML</a></li>
+        
+            <li><a class="toctree-l4" href="#property-descriptions">Property Descriptions</a></li>
+        
+            <li><a class="toctree-l4" href="#subscriptions">Subscriptions</a></li>
+        
+            <li><a class="toctree-l4" href="#publishing">Publishing</a></li>
+        
+            <li><a class="toctree-l4" href="#tracked_objects">/tracked_objects/</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/microsoft/azure_kinect_ros_driver">Azure Kinect ROS Node &nearr;</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/microsoft/ros_azure_iothub">Azure IoT Hub Node &nearr;</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://aka.ms/ros/vscode">Visual Studio Code ROS Extension &nearr;</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Advanced</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Build/source.html">Source Installation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Support</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/Troubleshooting.html">Troubleshooting</a>
+                </li>
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">ROS on Windows</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>ROS at Microsoft &raquo;</li>
+        
+      
+    
+    <li>Windows ML ROS Node</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/ROSAtMS/WinML.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="windows-ml-ros-node">Windows ML ROS Node</h1>
+<p>The AI platform in Windows 10 enables developers to use pre-trained machine learning models in their Apps on Windows devices. This offers developers a number of benefits:</p>
+<ul>
+<li>Low latency, real-time results. Windows can perform AI evaluation tasks using the local processing capabilities of the PC, enabling real-time analysis of large local data such as images and video. Results can be delivered quickly and efficiently for use in performance intensive workloads like game engines, or background tasks such as indexing for search.</li>
+<li>Reduced operational costs. Together with Microsoft’s Cloud AI platform, developers can build affordable, end-to-end AI solutions that combine training models in Azure with deployment to Windows devices for evaluation. Significant savings can be realized by reducing or eliminating costs associated with bandwidth due to ingestion of large data sets, such as camera footage or sensor telemetry. Complex workloads can be processed in real-time on the edge, with minimal sample data sent to the cloud for improved training on observations.</li>
+<li>Flexibility. Developers can choose to perform AI tasks on device or in the cloud based on what their customers &amp; scenarios need. AI processing can happen on the device if it becomes disconnected, or in scenarios where data cannot be sent to the cloud due to cost, size, policy or customer preference. </li>
+</ul>
+<h2 id="consuming-winml">Consuming WinML</h2>
+<p>Requirements:
+* Install Visual Studio 2019 with UWP development
+* ROS melodic for Windows</p>
+<p>The WinML ROS Node is distrubted as source. To consume it in your robot, clone the winml_tracker sources into your workspace.</p>
+<p>For example:</p>
+<pre><code>mkdir c:\workspace\winml_demo\src
+cd c:\workspace\winml_demo\src
+catkin_init_workspace
+git clone https://github.com/ms-iot/winml_tracker
+</code></pre>
+
+<p>Find or construct a suitible onnx model. For example, you can download <a href="https://github.com/onnx/models/tree/master/vision/object_detection_segmentation/tiny_yolov2">TinyYOLO from the Onnx Model Zoo</a>. </p>
+<pre><code>choco upgrade curl
+curl https://onnxzoo.blob.core.windows.net/models/opset_8/tiny_yolov2/tiny_yolov2.tar.gz --output tiny_yolov2.tar.gz
+tar -xf tiny_yolov2.tar.gz
+</code></pre>
+
+<p>Create a Launch file, which references the model.onnx file:</p>
+<pre><code class="xml">&lt;launch&gt;
+  &lt;arg name=&quot;onnx_model_path_arg&quot; default=&quot;$(find winml_tracker)/testdata/model.onnx&quot;/&gt;
+  &lt;node pkg=&quot;winml_tracker&quot; type=&quot;winml_tracker_node&quot; name=&quot;winml_tracker&quot; output=&quot;screen&quot;&gt;
+    &lt;param name=&quot;onnx_model_path&quot; value=&quot;$(arg onnx_model_path_arg)&quot;/&gt;
+    &lt;param name=&quot;confidence&quot; value=&quot;0.5&quot;/&gt;
+    &lt;param name=&quot;tensor_width&quot; value=&quot;416&quot;/&gt;
+    &lt;param name=&quot;tensor_height&quot; value=&quot;416&quot;/&gt;
+    &lt;param name=&quot;tracker_type&quot; value=&quot;yolo&quot;/&gt;
+    &lt;param name=&quot;image_processing&quot; value=&quot;resize&quot;/&gt;
+    &lt;param name=&quot;debug&quot; value=&quot;true&quot;/&gt;
+    &lt;param name=&quot;image_topic&quot; value=&quot;/cv_camera/image_raw&quot; /&gt;
+  &lt;/node&gt;
+
+  &lt;!-- NOTE: The image properties need to be valid for the camera, or the node will auto select the closest values --&gt;
+  &lt;node pkg=&quot;cv_camera&quot; type=&quot;cv_camera_node&quot; name=&quot;cv_camera&quot; output=&quot;screen&quot;&gt;
+    &lt;param name=&quot;rate&quot; type=&quot;double&quot; value=&quot;5.0&quot;/&gt;
+    &lt;param name=&quot;image_width&quot; type=&quot;double&quot; value=&quot;640&quot;/&gt;
+    &lt;param name=&quot;image_height&quot; type=&quot;double&quot; value=&quot;480&quot;/&gt;
+  &lt;/node&gt;
+
+  &lt;node pkg=&quot;tf&quot; type=&quot;static_transform_publisher&quot; name=&quot;winml_link&quot;
+    args=&quot;0 -0.02  0 0 0 0 map base_link 100&quot; /&gt;  
+
+&lt;/launch&gt;
+</code></pre>
+
+<blockquote>
+<p>While 'Pose' processing is enabled, the service required to generate the model has not been published as of October 2020</p>
+</blockquote>
+<h2 id="property-descriptions">Property Descriptions</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onnx_model_path</td>
+<td>Path to the model.onnx file</td>
+</tr>
+<tr>
+<td>confidence</td>
+<td>Minimum confidence before publishing an event. 0 to 1</td>
+</tr>
+<tr>
+<td>tensor_width</td>
+<td>The Width of the input to the model.</td>
+</tr>
+<tr>
+<td>tensor_height</td>
+<td>The Height of the input to the model.</td>
+</tr>
+<tr>
+<td>tracker_type</td>
+<td>Currently enabled - <code>yolo</code> or <code>pose</code>.</td>
+</tr>
+<tr>
+<td>image_processing</td>
+<td><code>resize</code>, <code>scale</code> or <code>crop</code></td>
+</tr>
+<tr>
+<td>debug</td>
+<td><code>true</code> or <code>false</code> determines if a debug image is published</td>
+</tr>
+<tr>
+<td>image_topic</td>
+<td>The image topic to subscribe to</td>
+</tr>
+<tr>
+<td>label</td>
+<td>used to filter the found object to a specific label</td>
+</tr>
+<tr>
+<td>mesh_rotation</td>
+<td>The orientation of the mesh when debug rendering pose</td>
+</tr>
+<tr>
+<td>mesh_scale</td>
+<td>The scale of the mesh when debug rendering pose</td>
+</tr>
+<tr>
+<td>mesh_resource</td>
+<td>The mesh used for debug rendering pose</td>
+</tr>
+<tr>
+<td>model_bounds</td>
+<td>9 coordinates used to perform the point in perspective caluclation for pose</td>
+</tr>
+<tr>
+<td>calibration</td>
+<td>Path to the OpenCV calibration file for point in persective</td>
+</tr>
+</tbody>
+</table>
+<h2 id="subscriptions">Subscriptions</h2>
+<p>WinML subscribes to the topic listed in the <code>image_topic</code> property, or <code>/cv_camera/image_raw</code></p>
+<h2 id="publishing">Publishing</h2>
+<p>The WinML Publishes the following topics:</p>
+<h3 id="tracked_objectsimage">/tracked_objects/image</h3>
+<p>Outputs an image with highlighing if the debug property is set</p>
+<h2 id="tracked_objects">/tracked_objects/</h2>
+<p>An array of <code>visualization_msgs::Marker</code> for found objects</p>
+<h3 id="detected_object">/detected_object</h3>
+<p>A single instance of the DetectedObjectPose message, which is output when tracker_type is set to pose.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Build/source.html" class="btn btn-neutral float-right" title="Source Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="ROS1AzureVM.html" class="btn btn-neutral" title="ROS 1 Azure VM"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="ROS1AzureVM.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../Build/source.html" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

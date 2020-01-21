@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Consuming a ROS Package - ROS on Windows</title>
+  <title>Porting a ROS Package - ROS on Windows</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Consuming a ROS Package";
-    var mkdocs_page_input_path = "GettingStarted\\UsingROSonWindows.md";
+    var mkdocs_page_name = "Porting a ROS Package";
+    var mkdocs_page_input_path = "GettingStarted\\PortingANode.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -123,25 +123,34 @@
 		
     <span class="caption-text">Porting Guide</span>
     <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="UsingROSonWindows.html">Consuming a ROS Package</a>
+                </li>
                 <li class=" current">
                     
-    <a class="current" href="UsingROSonWindows.html">Consuming a ROS Package</a>
+    <a class="current" href="PortingANode.html">Porting a ROS Package</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#using-a-ros-package-on-windows">Using a ROS Package on Windows</a></li>
+    <li class="toctree-l3"><a href="#porting-a-ros-package-to-windows">Porting a ROS Package to Windows</a></li>
     
-        <ul>
-        
-            <li><a class="toctree-l4" href="#is-the-node-already-supported">Is the node already supported?</a></li>
-        
-        </ul>
+
+    <li class="toctree-l3"><a href="#porting-a-ros-node">Porting a ROS Node</a></li>
+    
+
+    <li class="toctree-l3"><a href="#forking-cloning">Forking &amp; Cloning.</a></li>
+    
+
+    <li class="toctree-l3"><a href="#resolve-dependencies">Resolve Dependencies</a></li>
+    
+
+    <li class="toctree-l3"><a href="#missing-ros-messages">Missing ROS Messages</a></li>
+    
+
+    <li class="toctree-l3"><a href="#fixing-build-breaks">Fixing Build breaks</a></li>
     
 
     </ul>
-                </li>
-                <li class="">
-                    
-    <a class="" href="PortingANode.html">Porting a ROS Package</a>
                 </li>
                 <li class="">
                     
@@ -233,10 +242,10 @@
         
       
     
-    <li>Consuming a ROS Package</li>
+    <li>Porting a ROS Package</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/UsingROSonWindows.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/PortingANode.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -246,64 +255,63 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="using-a-ros-package-on-windows">Using a ROS Package on Windows</h1>
-<p>The ROS community has many thousands of nodes which cover many different aspects of building a Robot. Many nodes have been ported by the community or build on Windows without modification. </p>
-<h2 id="is-the-node-already-supported">Is the node already supported?</h2>
-<p>To consume a ROS node, we recommend the following workflow:</p>
-<ul>
-<li>Determine if there is a binary release of the ROS node.<ul>
-<li>Using <a href="http://wiki.ros.org">ROS Wiki</a> &nearr;, locate the binary release name and attempt to install using chocolatey. </li>
-<li>If this succeeds, then you are all set!</li>
-</ul>
-</li>
-</ul>
-<pre><code>choco install ros-melodic-&lt;project&gt;
+                <h1 id="porting-a-ros-package-to-windows">Porting a ROS Package to Windows</h1>
+<p>A C++ ROS node on Windows is an executable or dll in the case of a nodelet. Often, a ROS node is a wrapper around one or more libraries or applications, which may require a separate Software Development Kit (SDK) or other download. This page will walk through supporting a ROS node on Windows, from porting from Linux to build and publish.</p>
+<p>ROS1 Core is supported on Windows starting with the Melodic Morenia release. 
+ROS 2 has supported Windows since its first releases.</p>
+<h1 id="porting-a-ros-node">Porting a ROS Node</h1>
+<p>To port a ROS node to Windows, we recommend the following general formula. </p>
+<ol>
+<li>Determine if the ROS node supports Windows has a binary or source deployment using the <a href="UsingROSonWindows.html">Using ROS Node</a> guide.</li>
+<li>Create a fork, clone locally and create a branch</li>
+<li>Resolve dependencies</li>
+<li><code>catkin_make</code> in the workspace</li>
+<li>Fix Build breaks</li>
+<li>Fix linker breaks</li>
+<li>Fix runtime bugs</li>
+<li>Commit and issue a pull request</li>
+</ol>
+<h1 id="forking-cloning">Forking &amp; Cloning.</h1>
+<p>ROS1 on Windows is enabled starting in the Melodic release of ROS. Windows builds are enabled on all ROS2 distributions. </p>
+<p>In order for a ROS1 node to be ported to Windows, it must first support ROS Melodic. ROS packages typically have a tagged branch for the ROS release if there are release specific changes. Fork the repository into your account and clone the melodic branch into a workspace created for the port. </p>
+<ol>
+<li>On github.com, fork <code>https://github.com/&lt;organization&gt;/&lt;project&gt;</code> into your personal github repo</li>
+<li>Create a workspace and clone:</li>
+</ol>
+<pre><code>mkdir c:\ws\ros_ws\src
+cd c:\ws\ros_ws\src
+git clone https://github.com/&lt;your github&gt;/&lt;project&gt;
+cd ..
 </code></pre>
 
-<ul>
-<li>
-<p>If there isn't a binary release, determine if there is a source only distribution. </p>
-<ul>
-<li>Look on <code>https://wiki.ros.org/&lt;project&gt;</code> for the node you are interested in.</li>
-<li>navigate to the project repository.</li>
-<li>Look to see if the node has a <code>windows</code>, <code>init_windows</code>, or similar branch</li>
-</ul>
-</li>
-<li>
-<p>If it has a <code>windows</code>, <code>init_windows</code> or similar branch </p>
-</li>
-<li>Clone that branch locally into a catkin workspace</li>
-</ul>
-<pre><code>mkdir c:\ws\test_ws
-cd c:\ws\test_ws
-git clone -b init_windows http://github.com/&lt;organization&gt;/&lt;project&gt;
+<h1 id="resolve-dependencies">Resolve Dependencies</h1>
+<p>Many ROS packages require dependent libraries. After checking out the sources for a ROS package, the tool <a href="http://wiki.ros.org/rosdep">rosdep</a> &nearr; is run, which will attempt to resolve package dependencies with binary and source distribution managers.</p>
+<p>On Windows, the Binary package manager <a href="https://chocolatey.org/">Chocolatey</a> &nearr; is used. For Source-code only distributions or dependent libraries, <a href="https://github.com/microsoft/vcpkg">Micrsoft's VCPkg manager</a> &nearr; manager is used. When you install the desktop_full package, vcpkg is automatically installed and built for you.</p>
+<p>In the workspace, use <code>rosdep</code> to resolve dependencies</p>
+<pre><code>rosdep update
+rosdep install --from-paths src --ignore-src -r -y
 </code></pre>
 
-<ul>
-<li>
-<p>If it does not have a <code>windows</code>, <code>init_windows</code> or similarly named branch, check to see if the current development branch has already enabled Windows.</p>
-</li>
-<li>
-<p>If Windows is not enabled for the ROS node, check to see if Microsoft's ms-iot Github organization has a fork of that project and working on a port.</p>
-<ul>
-<li>See if there is a <code>&lt;project&gt;</code> fork on http://github.com/ms-iot</li>
-<li>If it does, clone that into your catkin workspace</li>
-</ul>
-</li>
-</ul>
-<pre><code>mkdir c:\ws\test_ws
-cd c:\ws\test_ws
-git clone -b init_windows http://github.com/ms-iot/&lt;project&gt;
+<p>You may see the following output indicating missing dependencies:</p>
+<pre><code>ERROR: the following packages/stacks could not have their rosdep keys resolved
+to system dependencies:
+&lt;package: No definition of [&lt;dependent library&gt;] for OS [windows]
+#All required rosdeps installed successfully
 </code></pre>
 
-<ul>
-<li>
-<p>If the node has not been enabled on Windows, please create an issue on the ROS node's project page asking for Windows to be supported. </p>
-</li>
-<li>
-<p>If you are able, please consider enabling the ROS node on Windows and submitting a pull request to the original repository. Please refer to the <a href="porting">ROS porting guide</a></p>
-</li>
-</ul>
+<p>If there are missing dependencies, follow the steps in <a href="UsingVCPKG.html">Using VCPKG</a> to resolve them with existing ports or add a port using <a href="AddingVCPKG.html">Add VCPKG</a> as needed.</p>
+<p>Take note of special instructions printed while running <code>rosdep</code> - these may be needed in order to link correctly on Windows.</p>
+<h1 id="missing-ros-messages">Missing ROS Messages</h1>
+<p>Many ROS Messages are not packaged as binary distributions. These can simply be cloned into the repo. </p>
+<pre><code>cd c:\ws\ros_ws\src
+git clone https://github.com/&lt;dependent package organization&gt;/&lt;depdnent package&gt;
+cd ..
+rosdep install --from-paths src --ignore-src -r -y
+</code></pre>
+
+<h1 id="fixing-build-breaks">Fixing Build breaks</h1>
+<p>While building you may encouter build breaks. Often, nodes depend on platform specific header files or features. In order to port these, it is recommended to leverage the cross platform equivelent in Boost, STL and cross platform libaries as part of the migration.</p>
+<p>Please refer to <a href="/Porting/Cookbook.md">Porting Guide: Platform Differences</a> for general help on porting.</p>
               
             </div>
           </div>
@@ -311,10 +319,10 @@ git clone -b init_windows http://github.com/ms-iot/&lt;project&gt;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="PortingANode.html" class="btn btn-neutral float-right" title="Porting a ROS Package">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="UsingVCPKG.html" class="btn btn-neutral float-right" title="Using a C++ Depdendency">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="SetupCI.html" class="btn btn-neutral" title="Continuous Integration Template"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="UsingROSonWindows.html" class="btn btn-neutral" title="Consuming a ROS Package"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -342,10 +350,10 @@ git clone -b init_windows http://github.com/ms-iot/&lt;project&gt;
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="SetupCI.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="UsingROSonWindows.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="PortingANode.html" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="UsingVCPKG.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

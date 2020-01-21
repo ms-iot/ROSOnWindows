@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Resolving Dependencies by Vcpkg - ROS on Windows</title>
+  <title>VcpkgAsRosdep - ROS on Windows</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Resolving Dependencies by Vcpkg";
+    var mkdocs_page_name = "VcpkgAsRosdep";
     var mkdocs_page_input_path = "GettingStarted\\VcpkgAsRosdep.md";
     var mkdocs_page_url = null;
   </script>
@@ -55,7 +55,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../Porting/PortingStatus.html">What's New</a>
+    <a class="" href="../WhatsNew.html">What's New</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -71,10 +71,6 @@
                     
     <a class="" href="Setup.html">Binary Installation</a>
                 </li>
-                <li class="">
-                    
-    <a class="" href="../Build/source.html">Source Installation</a>
-                </li>
     </ul>
 	    </li>
           
@@ -84,11 +80,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="NewToROS.html">Getting Started</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="UsingROSonWindows.html">Windows vs. Linux</a>
+    <a class="" href="NewToROS.html">For new ROS Users</a>
                 </li>
     </ul>
 	    </li>
@@ -97,6 +89,10 @@
 		
     <span class="caption-text">Tutorials</span>
     <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="http://wiki.ros.org/ROS/Tutorials">Tutorials at ROS Wiki &nearr;</a>
+                </li>
                 <li class="">
                     
     <a class="" href="../Moveit/moveit_tutorials.html">MoveIt</a>
@@ -129,26 +125,61 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../Porting/Cookbook.html">Cookbook</a>
+    <a class="" href="UsingROSonWindows.html">Consuming a ROS Package</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="VcpkgAsRosdep.html">Resolving Dependencies by Vcpkg</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#why-we-marry-vcpkg-with-rosdep">Why we marry Vcpkg with Rosdep</a></li>
-    
-
-    <li class="toctree-l3"><a href="#example-workflow">Example Workflow</a></li>
-    
-
-    <li class="toctree-l3"><a href="#how-do-i-try-it-out">How do I try it out</a></li>
-    
-
-    <li class="toctree-l3"><a href="#feedback">Feedback</a></li>
-    
-
+    <a class="" href="PortingANode.html">Porting a ROS Package</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="UsingVCPKG.html">Using a C++ Depdendency</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="AddingVCPKG.html">Porting a C++ Depdendency</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Porting/Cookbook.html">Porting Cookbook</a>
+                </li>
     </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">ROS at Microsoft</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ROSAtMS/ROS1AzureVM.html">ROS 1 Azure VM</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ROSAtMS/WinML.html">Windows ML ROS Node</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/microsoft/azure_kinect_ros_driver">Azure Kinect ROS Node &nearr;</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/microsoft/ros_azure_iothub">Azure IoT Hub Node &nearr;</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://aka.ms/ros/vscode">Visual Studio Code ROS Extension &nearr;</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Advanced</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Build/source.html">Source Installation</a>
                 </li>
     </ul>
 	    </li>
@@ -185,12 +216,8 @@
     <li><a href="../index.html">Docs</a> &raquo;</li>
     
       
-        
-          <li>Porting Guide &raquo;</li>
-        
-      
     
-    <li>Resolving Dependencies by Vcpkg</li>
+    <li>VcpkgAsRosdep</li>
     <li class="wy-breadcrumbs-aside">
       
         <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/VcpkgAsRosdep.md"
@@ -224,15 +251,6 @@
           </div>
           <footer>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="Troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../Porting/Cookbook.html" class="btn btn-neutral" title="Cookbook"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
-  
 
   <hr/>
 
@@ -257,10 +275,6 @@
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../Porting/Cookbook.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="Troubleshooting.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

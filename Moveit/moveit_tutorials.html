@@ -55,7 +55,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../Porting/PortingStatus.html">What's New</a>
+    <a class="" href="../WhatsNew.html">What's New</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -71,10 +71,6 @@
                     
     <a class="" href="../GettingStarted/Setup.html">Binary Installation</a>
                 </li>
-                <li class="">
-                    
-    <a class="" href="../Build/source.html">Source Installation</a>
-                </li>
     </ul>
 	    </li>
           
@@ -84,11 +80,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../GettingStarted/NewToROS.html">Getting Started</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../GettingStarted/UsingROSonWindows.html">Windows vs. Linux</a>
+    <a class="" href="../GettingStarted/NewToROS.html">For new ROS Users</a>
                 </li>
     </ul>
 	    </li>
@@ -97,6 +89,10 @@
 		
     <span class="caption-text">Tutorials</span>
     <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="http://wiki.ros.org/ROS/Tutorials">Tutorials at ROS Wiki &nearr;</a>
+                </li>
                 <li class=" current">
                     
     <a class="current" href="moveit_tutorials.html">MoveIt</a>
@@ -145,11 +141,61 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../Porting/Cookbook.html">Cookbook</a>
+    <a class="" href="../GettingStarted/UsingROSonWindows.html">Consuming a ROS Package</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../GettingStarted/VcpkgAsRosdep.html">Resolving Dependencies by Vcpkg</a>
+    <a class="" href="../GettingStarted/PortingANode.html">Porting a ROS Package</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/UsingVCPKG.html">Using a C++ Depdendency</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../GettingStarted/AddingVCPKG.html">Porting a C++ Depdendency</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Porting/Cookbook.html">Porting Cookbook</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">ROS at Microsoft</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../ROSAtMS/ROS1AzureVM.html">ROS 1 Azure VM</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ROSAtMS/WinML.html">Windows ML ROS Node</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/microsoft/azure_kinect_ros_driver">Azure Kinect ROS Node &nearr;</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/microsoft/ros_azure_iothub">Azure IoT Hub Node &nearr;</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://aka.ms/ros/vscode">Visual Studio Code ROS Extension &nearr;</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Advanced</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../Build/source.html">Source Installation</a>
                 </li>
     </ul>
 	    </li>
@@ -207,26 +253,26 @@
                 <h1 id="moveit-tutorials-on-windows">Moveit! Tutorials on Windows</h1>
 <p>This guide is to show you how to prepare a workspace (for ROS on Windows) for your Moveit! tutorials. Find out more about Moveit!, visit <a href="https://ros-planning.github.io/moveit_tutorials/index.html">here</a>.</p>
 <h2 id="moveit-binary-installation-on-windows">Moveit! Binary Installation on Windows</h2>
-<p>First, download the ROS on Windows with Moveit! packages.</p>
-<pre><code>(open a command prompt as admin)
-&gt; choco upgrade ros-melodic-moveit -y
+<p>First, download the ROS on Windows with Moveit! packages.
+(open a command prompt as admin)</p>
+<pre><code>choco upgrade ros-melodic-moveit -y
 </code></pre>
 
 <h2 id="create-workspace-for-moveit-tutorials">Create Workspace for Moveit! Tutorials</h2>
 <p>Then, let's download the example code to your workspace.</p>
-<pre><code>(open a command prompt as admin)
-&gt; mkdir c:\moveit_ws\src
-&gt; cd c:\moveit_ws\src
-&gt; catkin_init_workspace
-&gt; git clone https://github.com/ms-iot/moveit_tutorials -b init_windows
-&gt; git clone https://github.com/ms-iot/panda_moveit_config -b init_windows
-&gt; git clone https://github.com/frankaemika/franka_ros-release -b release/kinetic/franka_description
-&gt; cd c:\moveit_ws
-&gt; catkin_make
+<p>(open a command prompt as admin)</p>
+<pre><code>mkdir c:\moveit_ws\src
+cd c:\moveit_ws\src
+catkin_init_workspace
+git clone https://github.com/ms-iot/moveit_tutorials -b init_windows
+git clone https://github.com/ms-iot/panda_moveit_config -b init_windows
+git clone https://github.com/frankaemika/franka_ros-release -b release/kinetic/franka_description
+cd c:\moveit_ws
+catkin_make
 </code></pre>
 
 <p>After it is built, source the catkin workspace.</p>
-<pre><code>&gt; c:\moveit_ws\devel\setup.bat
+<pre><code>c:\moveit_ws\devel\setup.bat
 </code></pre>
 
 <h2 id="getting-started-with-moveit-tutorials">Getting Started with Moveit! Tutorials</h2>
@@ -241,7 +287,7 @@
         <a href="UR3.html" class="btn btn-neutral float-right" title="Universal Robot UR3">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../GettingStarted/UsingROSonWindows.html" class="btn btn-neutral" title="Windows vs. Linux"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../GettingStarted/NewToROS.html" class="btn btn-neutral" title="For new ROS Users"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -269,7 +315,7 @@
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../GettingStarted/UsingROSonWindows.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../GettingStarted/NewToROS.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="UR3.html" style="color: #fcfcfc">Next &raquo;</a></span>
