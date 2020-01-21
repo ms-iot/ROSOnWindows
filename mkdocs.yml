@@ -3,24 +3,34 @@ repo_url: https://github.com/ms-iot/rosonwindows/
 edit_uri: edit/mkdocs/docs/
 nav:
     - Home: index.md
-    - What's New: Porting/PortingStatus.md
+    - What's New: WhatsNew.md
     - Build Status: Build/buildfarm.md
     - Get ROS:
         - Binary Installation: GettingStarted/Setup.md
-        - Source Installation: Build/source.md
     - Using ROS:
-        - Getting Started: GettingStarted/NewToROS.md
-        - Windows vs. Linux: GettingStarted/UsingROSonWindows.md
+        - For new ROS Users: GettingStarted/NewToROS.md
     - Tutorials:
+        - Tutorials at ROS Wiki &nearr;: http://wiki.ros.org/ROS/Tutorials
         - MoveIt: Moveit/moveit_tutorials.md
         - Universal Robot UR3: Moveit/UR3.md
         - TurtuleBot 3: Turtlebot/Turtlebot3.md
     - CI/CD Practices:
         - Continuous Integration Template: GettingStarted/SetupCI.md
     - Porting Guide:
-        - Cookbook: Porting/Cookbook.md
-        - Resolving Dependencies by Vcpkg: GettingStarted/VcpkgAsRosdep.md
+        - Consuming a ROS Package: GettingStarted/UsingROSonWindows.md
+        - Porting a ROS PAckage: GettingStarted/PortingANode.md
+        - Using a C++ Depdendency: GettingStarted/UsingVCPKG.md
+        - Porting a C++ Depdendency: GettingStarted/AddingVCPKG.md
+        - Porting Cookbook: Porting/Cookbook.md
+    - ROS at Microsoft:
+        - ROS 1 Azure VM: ROSAtMS/ROS1AzureVM.md
+        - Windows ML ROS Node: ROSAtMS/WinML.md
+        - Azure Kinect ROS Node &nearr;: https://github.com/microsoft/azure_kinect_ros_driver
+        - Azure IoT Hub Node &nearr;: https://github.com/microsoft/ros_azure_iothub
+        - Visual Studio Code ROS Extension &nearr;: https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros
     - Support:
         - Troubleshooting: GettingStarted/Troubleshooting.md
+    - Advanced:
+        - Source Installation: Build/source.md
 theme: readthedocs
 use_directory_urls: false

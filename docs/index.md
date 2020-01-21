@@ -16,17 +16,4 @@ At ROSCon 2018 in Madrid, Spain, Microsoft demonstrated a Robotis Turtlebot 3 ro
 Microsoft also showcased a ROS simulation environment running in Azure. It demonstrated a swarm of robots running in a virtual world connected to an orchestration system and controlled via Azure IoT Hub. 
 Microsoft will host the Windows builds for ROS1 and shortly ROS2, as well as provide documentation, development and deployment solutions for Windows.
 
-# Working with ROS on Windows
-+ [Install ROS on Windows](GettingStarted/Setup.md)
-+ [Are you new to ROS?](GettingStarted/NewToROS.md)
-+ [Learn about the differences between ROS on Windows and ROS on Linux](GettingStarted/UsingROSonWindows.md)
-+ [Porting Status](Porting/PortingStatus.md)
-+ [Help and Troubleshooting](GettingStarted/Troubleshooting.md)
-+ [Getting Started with Turtlebot3](Turtlebot/Turtlebot3.md) (UPDATED: Gazebo + Cartographer example added)
-+ [Getting Started with Moveit! and UR3](Moveit/UR3.md)
-+ [Continuous Integration with ROS on Windows](GettingStarted/SetupCI.md)
-+ [About the Azure DevOps buildfarm for ROS on Windows](Build/buildfarm.md)
-+ [Buiding ROS for Windows from Source](Build/fromsource.md)
-
-# Using ROS with Azure
-+ [ROS for Azure IoT Hub](https://github.com/Microsoft/ros_azure_iothub)
+> ROS&trade; is a Trademark of [Open Robotics](https://www.openrobotics.org/)
