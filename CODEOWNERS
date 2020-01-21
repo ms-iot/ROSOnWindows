@@ -1,0 +1,4 @@
+# These owners are the default owners for everything in the repo.
+# Unless a later match takes precedence, @ms-iot/ros will be 
+# requested for review when someone opens a pull request.
+* @ms-iot/ros
