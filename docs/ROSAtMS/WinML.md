@@ -14,7 +14,7 @@ Requirements:
 The WinML ROS Node is distrubted as source. To consume it in your robot, clone the winml_tracker sources into your workspace.
 
 For example:
-```
+```no-highlight
 mkdir c:\workspace\winml_demo\src
 cd c:\workspace\winml_demo\src
 catkin_init_workspace
@@ -23,14 +23,14 @@ git clone https://github.com/ms-iot/winml_tracker
 
 Find or construct a suitible onnx model. For example, you can download [TinyYOLO from the Onnx Model Zoo](https://github.com/onnx/models/tree/master/vision/object_detection_segmentation/tiny_yolov2). 
 
-```
+```no-highlight
 choco upgrade curl
 curl https://onnxzoo.blob.core.windows.net/models/opset_8/tiny_yolov2/tiny_yolov2.tar.gz --output tiny_yolov2.tar.gz
 tar -xf tiny_yolov2.tar.gz
 ```
 
 Create a Launch file, which references the model.onnx file:
-``` xml
+```xml
 <launch>
   <arg name="onnx_model_path_arg" default="$(find winml_tracker)/testdata/model.onnx"/>
   <node pkg="winml_tracker" type="winml_tracker_node" name="winml_tracker" output="screen">
@@ -89,7 +89,7 @@ The WinML Publishes the following topics:
 ### /tracked_objects/image
 Outputs an image with highlighing if the debug property is set
 
-##/tracked_objects/
+### /tracked_objects/
 An array of `visualization_msgs::Marker` for found objects
 
 ### /detected_object

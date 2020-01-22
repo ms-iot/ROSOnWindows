@@ -16,25 +16,35 @@ These tools are used to facilitate the download and management of ROS packages a
 
 If you are using a non-Debian system you need to make sure that you have all build tools (compiler, CMake, etc.) installed. You can install all ROS Python tools via PIP:
 
-    pip install -U rosdep rosinstall_generator wstool rosinstall
-    curl --output requirements.txt -L https://raw.githubusercontent.com/ms-iot/rosdistro-db/init_windows/rosdistro_cache/catkin-requirements.txt
-    pip install -U --no-deps --force-reinstall -r requirements.txt
+```no-highlight
+pip install -U rosdep rosinstall_generator wstool rosinstall
+curl --output requirements.txt -L https://raw.githubusercontent.com/ms-iot/rosdistro-db/init_windows/rosdistro_cache/catkin-requirements.txt
+pip install -U --no-deps --force-reinstall -r requirements.txt
+```
 
 If there are errors with this or the rosdep step below, your system's version of pip may be out-of-date. Use your system's package management to update it, or use it to update itself:
-    
-    python -m pip install -U pip setuptools
+
+```no-highlight
+python -m pip install -U pip setuptools
+```
 
 ### Initializing rosdep
-    rosdep init
-    curl --output 10-ms-iot.list -L https://raw.githubusercontent.com/ms-iot/rosdistro-db/init_windows/rosdep/sources.list.d/10-ms-iot.list
-    copy 10-ms-iot.list c:\etc\ros\rosdep\sources.list.d
-    rosdep update
+
+```no-highlight
+rosdep init
+curl --output 10-ms-iot.list -L https://raw.githubusercontent.com/ms-iot/rosdistro-db/init_windows/rosdep/sources.list.d/10-ms-iot.list
+copy 10-ms-iot.list c:\etc\ros\rosdep\sources.list.d
+rosdep update
+```
 
 The `10-ms-iot.list` points to the rosdep database of ROS for Windows and it will be evaulated before the default source list.
 
 ### Configure Chocolatey sources
-    choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1
-    choco source disable -n=chocolatey
+
+```no-highlight
+choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1
+choco source disable -n=chocolatey
+```
 
 This will add roswin Chocolatey server as a source to discover libraries and tools. Also disable the default one to avoid any potential package naming conflicts.
 
@@ -44,29 +54,37 @@ Start by building the core ROS packages.
 ### Create a catkin Workspace
 In order to build the core packages, you will need a catkin workspace. Create one now:
 
-    mkdir c:\ros_catkin_ws
-    cd c:\ros_catkin_ws
+```no-highlight
+mkdir c:\ros_catkin_ws
+cd c:\ros_catkin_ws
+```
 
 Next we will want to fetch the core packages so we can build them. We will use wstool for this. Select the wstool command for the particular variant you want to install:
 
 **Desktop Install (recommended):** ROS, rqt, rviz, and robot-generic libraries
 
-    set ROSDISTRO_INDEX_URL=https://raw.githubusercontent.com/ms-iot/rosdistro-db/init_windows/index.yaml
-    rosinstall_generator desktop --rosdistro melodic --deps --upstream-development > melodic-desktop.rosinstall
-    wstool init src melodic-desktop.rosinstall
+```no-highlight
+set ROSDISTRO_INDEX_URL=https://raw.githubusercontent.com/ms-iot/rosdistro-db/init_windows/index.yaml
+rosinstall_generator desktop --rosdistro melodic --deps --upstream-development > melodic-desktop.rosinstall
+wstool init src melodic-desktop.rosinstall
+```
 
 **ROS-Comm: (Bare Bones)** ROS package, build, and communication libraries. No GUI tools.
 
-    set ROSDISTRO_INDEX_URL=https://raw.githubusercontent.com/ms-iot/rosdistro-db/init_windows/index.yaml
-    rosinstall_generator ros_comm --rosdistro melodic --deps --upstream-development > melodic-ros_comm.rosinstall
-    wstool init src melodic-ros_comm.rosinstall
+```no-highlight
+set ROSDISTRO_INDEX_URL=https://raw.githubusercontent.com/ms-iot/rosdistro-db/init_windows/index.yaml
+rosinstall_generator ros_comm --rosdistro melodic --deps --upstream-development > melodic-ros_comm.rosinstall
+wstool init src melodic-ros_comm.rosinstall
+```
 
 This will add all of the catkin packages in the given variant and then fetch the sources into the ~/ros_catkin_ws/src directory. The command will take a few minutes to download all of the core ROS packages into the src folder.
 
 ### Resolving Dependencies
 Before you can build your catkin workspace you need to make sure that you have all the required dependencies. We use the rosdep tool for this:
 
-    rosdep install --from-paths src --ignore-src --rosdistro melodic -r -y
+```no-highlight
+rosdep install --from-paths src --ignore-src --rosdistro melodic -r -y
+```
 
 This will look at all of the packages in the src directory and find all of the dependencies they have. Then it will recursively install the dependencies.
 
@@ -79,7 +97,7 @@ Once it has completed downloading the packages and resolving the dependencies yo
 
 Invoke catkin_make_isolated:
 
-```
+```no-highlight
 set PATH=c:\opt\rosdeps\x64\bin;%PATH%
 
 copy ".\src\catkin\bin\catkin_make_isolated" ".\src\catkin\bin\catkin_make_isolated.py"
@@ -93,8 +111,6 @@ python .\src\catkin\bin\catkin_make_isolated.py --use-nmake --install ^
 
 Now the packages should have been installed to `c:/opt/ros/melodic/x64` or to wherever you specified with the --install-space argument. If you look in that directory you will see that a setup.bash file have been generated. To utilize the things installed there simply source that file like so:
  
-```
+```no-highlight
 c:\opt\ros\melodic\x64\setup.bat
 ```
-
-

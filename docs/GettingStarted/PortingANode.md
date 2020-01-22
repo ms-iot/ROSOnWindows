@@ -25,7 +25,7 @@ In order for a ROS1 node to be ported to Windows, it must first support ROS Melo
 
 1. On github.com, fork `https://github.com/<organization>/<project>` into your personal github repo
 1. Create a workspace and clone:
-```
+```no-highlight
 mkdir c:\ws\ros_ws\src
 cd c:\ws\ros_ws\src
 git clone https://github.com/<your github>/<project>
@@ -40,13 +40,13 @@ On Windows, the Binary package manager [Chocolatey](https://chocolatey.org/) &ne
 
 In the workspace, use `rosdep` to resolve dependencies
 
-```
+```no-highlight
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 ```
 
 You may see the following output indicating missing dependencies:
-```
+```no-highlight
 ERROR: the following packages/stacks could not have their rosdep keys resolved
 to system dependencies:
 <package: No definition of [<dependent library>] for OS [windows]
@@ -61,7 +61,7 @@ Take note of special instructions printed while running `rosdep` - these may be 
 # Missing ROS Messages
 Many ROS Messages are not packaged as binary distributions. These can simply be cloned into the repo. 
 
-```
+```no-highlight
 cd c:\ws\ros_ws\src
 git clone https://github.com/<dependent package organization>/<depdnent package>
 cd ..
