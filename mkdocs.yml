@@ -13,7 +13,7 @@ nav:
         - Tutorials at ROS Wiki &nearr;: http://wiki.ros.org/ROS/Tutorials
         - MoveIt: Moveit/moveit_tutorials.md
         - Universal Robot UR3: Moveit/UR3.md
-        - TurtuleBot 3: Turtlebot/Turtlebot3.md
+        - TurtleBot 3: Turtlebot/Turtlebot3.md
         - SICK S300: tutorials/sick_s300/getting_started.md
     - CI/CD Practices:
         - Continuous Integration Template: GettingStarted/SetupCI.md
