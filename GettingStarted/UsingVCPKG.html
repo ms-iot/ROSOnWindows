@@ -293,11 +293,27 @@ yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_win
 rosdep install --from-paths src --ignore-src -r -y
 </code></pre>
 
-<p>You'll see that the dependency resolves correctly. However, you may be provided with specific instructions for using that library in ROS nodes:</p>
+<p>You'll see that the dependency resolves correctly. However, you may be provided with instructions for using that library in ROS nodes:</p>
 <pre><code class="no-highlight">The package &lt;library&gt;:x64-windows provides CMake targets:
 
     find_package(&lt;package&gt; CONFIG REQUIRED)
     target_link_libraries(main PRIVATE &lt;package&gt; &lt;package&gt;::&lt;namespace&gt;)
+</code></pre>
+
+<p>These may differ from how linkage happes on Linux. To link this library, to support both Windows and Linux, you can wrap it:</p>
+<pre><code class="no-highlight">if (MSVC)
+    target_link_libraries(main PRIVATE &lt;package&gt; &lt;package&gt;::&lt;namespace&gt;)
+else()
+    target_link_libraries(main ... &lt;original&gt;)
+endif
+</code></pre>
+
+<ul>
+<li>Handling RelWithDebinfo
+ROS on Windows is delivered with Release binaries that have been built with Debug Info (using cmake's RelWithDebInfo target). When interacting with vcpkg, cmake will map RelWithDebInfo built binaries to Debug binaries. This mismatch will cause problems.</li>
+</ul>
+<p>To correct this, add the following to the cmake for the ROS node:</p>
+<pre><code class="no-highlight">set_target_properties(${&lt;dependency_LIBRARIES} PROPERTIES MAP_IMPORTED_CONFIG_RELWITHDEBINFO RELEASE)
 </code></pre>
               
             </div>
