@@ -7,7 +7,7 @@ Often the name of a a library on Linux differs from the name on vcpkg. In order 
 * Fork [https://github.com/ms-iot/rosdistro-db](https://github.com/ms-iot/rosdistro-db) &nearr; into your github account, if you haven't already
 * Create a file called `0-update.list` in `c:\opt\ros\melodic\x64\etc\ros\rosdep\sources.list.d`
 * In this file, add a line which points to your fork.
-```
+```no-highlight
 # os-specific listings first
 yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
 yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
@@ -16,14 +16,14 @@ yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/r
   The format of the vcpkg.yaml:
 
 `Python`
-```
+```no-highlight
 <python-package-name>:
     windows:
       pip:
         packages: [<python-package-name-in-pip>]
 ```
   `C++`
-```
+```no-highlight
   <linux--package-name>:
     windows:
       vcpkg:
@@ -31,12 +31,12 @@ yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/r
 ```
 
 * Update rosdeps on your computer.
-```
+```no-highlight
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 ```
 You'll see that the dependency resolves correctly. However, you may be provided with specific instructions for using that library in ROS nodes:
-```
+```no-highlight
 The package <library>:x64-windows provides CMake targets:
 
     find_package(<package> CONFIG REQUIRED)

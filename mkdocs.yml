@@ -33,5 +33,6 @@ nav:
         - Source Installation: Build/source.md
     - Support:
         - Troubleshooting: GettingStarted/Troubleshooting.md
+        - Create Issue: https://github.com/ms-iot/rosonwindows/issues
 theme: readthedocs
 use_directory_urls: false

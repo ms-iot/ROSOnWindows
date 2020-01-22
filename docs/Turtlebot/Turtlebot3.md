@@ -10,7 +10,7 @@ The Turtlebot 3 uses a Lidar which requires the following driver.
 # Guide
 ## General notes
 The turtlebot documentation uses the unix command 'export' to set environment variables, instead use the following:
-```
+```no-highlight
 set TURTLEBOT3_MODEL=waffle
 ```
 > NOTE: The value of %TURTLEBOT3_MODEL% is case-sensitive.
@@ -39,7 +39,7 @@ ROS on Windows requires a x64 bit Windows 10 Desktop or Windows 10 IoT Enterpris
 ## Create a new workspace
 In a Command Window set up with the ROS environment, create a directory for your robot workspaces and a workspace for turtlebot.
 
-```
+```no-highlight
 mkdir c:\ws\turtlebot3\src
 cd c:\ws\turtlebot3\src
 catkin_init_workspace
@@ -63,14 +63,14 @@ Enter the COM port in the correct fields in the launch files below:
 
 *turtlebot3_bringup/launch/turtlebot3_core-win.launch*
 
-```
+```xml
 <node pkg="rosserial_python" type="serial_node.py" name="turtlebot3_core" output="screen">
     <param name="port" value="COMx"/>
 ```
 
 *turtlebot3_bringup/launch/turtlebot3_lidar-win.launch*
 
-```
+```xml
   <node pkg="hls_lfcd_lds_driver" type="hlds_laser_publisher" name="turtlebot3_lds" output="screen">
     <param name="port" value="COMy"/>
 ```
@@ -78,12 +78,12 @@ Enter the COM port in the correct fields in the launch files below:
 
 ## Build Nodes
 To build the turtlebot packages, enter the turtlebot3 workspace and build using the catkin build system.
-```
+```no-highlight
 :: make sure all required binaries installed.
 choco upgrade ros-melodic-desktop_full -y
 ```
 
-```
+```no-highlight
 :: build Turtlebot3 workspace.
 cd c:\ws\turtlebot3
 catkin_make
@@ -91,7 +91,7 @@ catkin_make
 
 Now inform ROS where to find your turtlebot code by merging the turtlebot install environment with the ROS environment. Please ensure you do this every time you open a command window. 
 
-```
+```no-highlight
 c:\ws\turtlebot3\devel\setup.bat
 ```
 
@@ -105,7 +105,7 @@ rViz is tool which allows you to visualize a representation of a robot, and proj
 
 To start the simulation, open one elevated command prompt:
 
-```
+```no-highlight
 c:\opt\ros\melodic\x64\setup.bat
 c:\ws\turtlebot3\devel\setup.bat
 set TURTLEBOT3_MODEL=waffle
@@ -114,7 +114,7 @@ roslaunch turtlebot3_fake turtlebot3_fake.launch
 
 Then, open another elevated command prompt:
 
-```
+```no-highlight
 c:\opt\ros\melodic\x64\setup.bat
 c:\ws\turtlebot3\devel\setup.bat
 set TURTLEBOT3_MODEL=waffle
@@ -128,13 +128,13 @@ SLAM (Simultaneous localization and mapping) is a very popular application in th
 
 To start this demo, open an evelated command prompt:
 
-```
+```no-highlight
 :: make sure all required binaries installed.
 choco upgrade ros-melodic-desktop_full -y
 choco upgrade ros-melodic-cartographer_ros -y
 ```
 
-```
+```no-highlight
 :: run the demo.
 c:\opt\ros\melodic\x64\setup.bat
 c:\ws\turtlebot3\devel\setup.bat
@@ -154,8 +154,6 @@ In one command window, start `roscore`.
 
 In another command window, launch the turtlebot robot code.
 
-```
+```no-highlight
 roslaunch turtlebot3_bringup turtlebot3_robot.launch
 ```
-
-

@@ -7,7 +7,7 @@ To consume a ROS node, we recommend the following workflow:
 * Determine if there is a binary release of the ROS node.
     * Using [ROS Wiki](http://wiki.ros.org) &nearr;, locate the binary release name and attempt to install using chocolatey. 
     * If this succeeds, then you are all set!
-```
+```no-highlight
 choco install ros-melodic-<project>
 ```
 * If there isn't a binary release, determine if there is a source only distribution. 
@@ -17,7 +17,7 @@ choco install ros-melodic-<project>
 
 * If it has a `windows`, `init_windows` or similar branch 
    * Clone that branch locally into a catkin workspace
-```
+```no-highlight
 mkdir c:\ws\test_ws
 cd c:\ws\test_ws
 git clone -b init_windows http://github.com/<organization>/<project>
@@ -28,7 +28,7 @@ git clone -b init_windows http://github.com/<organization>/<project>
   * If Windows is not enabled for the ROS node, check to see if Microsoft's ms-iot Github organization has a fork of that project and working on a port.
       * See if there is a `<project>` fork on http://github.com/ms-iot
       * If it does, clone that into your catkin workspace
-```
+```no-highlight
 mkdir c:\ws\test_ws
 cd c:\ws\test_ws
 git clone -b init_windows http://github.com/ms-iot/<project>
