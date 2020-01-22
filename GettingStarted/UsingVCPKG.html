@@ -208,6 +208,10 @@
                     
     <a class="" href="Troubleshooting.html">Troubleshooting</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/ms-iot/rosonwindows/issues">Create Issue</a>
+                </li>
     </ul>
 	    </li>
           
@@ -259,7 +263,7 @@
 <li>Create a file called <code>0-update.list</code> in <code>c:\opt\ros\melodic\x64\etc\ros\rosdep\sources.list.d</code></li>
 <li>In this file, add a line which points to your fork.</li>
 </ul>
-<pre><code># os-specific listings first
+<pre><code class="no-highlight"># os-specific listings first
 yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
 yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
 </code></pre>
@@ -269,14 +273,14 @@ yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_win
   The format of the vcpkg.yaml:</li>
 </ul>
 <p><code>Python</code></p>
-<pre><code>&lt;python-package-name&gt;:
+<pre><code class="no-highlight">&lt;python-package-name&gt;:
     windows:
       pip:
         packages: [&lt;python-package-name-in-pip&gt;]
 </code></pre>
 
 <p><code>C++</code></p>
-<pre><code>  &lt;linux--package-name&gt;:
+<pre><code class="no-highlight">  &lt;linux--package-name&gt;:
     windows:
       vcpkg:
         packages: [&lt;vcpkg-name&gt;]
@@ -285,12 +289,12 @@ yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_win
 <ul>
 <li>Update rosdeps on your computer.</li>
 </ul>
-<pre><code>rosdep update
+<pre><code class="no-highlight">rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 </code></pre>
 
 <p>You'll see that the dependency resolves correctly. However, you may be provided with specific instructions for using that library in ROS nodes:</p>
-<pre><code>The package &lt;library&gt;:x64-windows provides CMake targets:
+<pre><code class="no-highlight">The package &lt;library&gt;:x64-windows provides CMake targets:
 
     find_package(&lt;package&gt; CONFIG REQUIRED)
     target_link_libraries(main PRIVATE &lt;package&gt; &lt;package&gt;::&lt;namespace&gt;)

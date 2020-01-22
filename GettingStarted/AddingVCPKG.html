@@ -212,6 +212,10 @@
                     
     <a class="" href="Troubleshooting.html">Troubleshooting</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/ms-iot/rosonwindows/issues">Create Issue</a>
+                </li>
     </ul>
 	    </li>
           
@@ -258,7 +262,7 @@
 <p>vcpkg has thousands of recipies for many different cross platform libraries. If you find that a dependency is not part of vcpkg, this walkthrough will help you get started. Every package has its own idiosyncrasies, so this is only a general ROS specific guide. Please refer to the documentation </p>
 <h2 id="porting-a-c-dependency-with-vcpkg">Porting a C++ Dependency with vcpkg</h2>
 <p>Before you begin, you'll want to fork vcpkg into your github account. Next, Fix up your the ROS environment to use your fork.</p>
-<pre><code>cd c:\opt\vcpkg
+<pre><code class="no-highlight">cd c:\opt\vcpkg
 git remote add upstream https://github.com/microsoft/vcpkg
 git remote set-url origin https://github.com/&lt;your github&gt;/vcpkg
 git fetch --all
@@ -268,14 +272,14 @@ git fetch --all
 <p>Now we will add a port fpr the package. We will follow the process outlined on <a href="https://github.com/microsoft/vcpkg/blob/master/docs/examples/packaging-github-repos.md">Packaging a Github Repo</a> &nearr;. </p>
 <p>Create a folder for the package you'd like to port, then add <code>CONTROL</code> and <code>portfile.cmake</code> files:</p>
 <p><em>CONTROL</em></p>
-<pre><code>Source: &lt;name&gt;
+<pre><code class="no-highlight">Source: &lt;name&gt;
 Version: &lt;latest release version&gt;
 Homepage: https://github.com/&lt;organization&gt;/&lt;project&gt;
 Description: &lt;Description from github&gt;
 </code></pre>
 
 <p><em>portfile.cmake</em></p>
-<pre><code>include(vcpkg_common_functions)
+<pre><code class="no-highlight">include(vcpkg_common_functions)
 
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
@@ -295,7 +299,7 @@ file(INSTALL ${SOURCE_PATH}/COPYING DESTINATION ${CURRENT_PACKAGES_DIR}/share/&l
 
 <p>Then build with <code>vcpkg build &lt;project&gt;:x64-windows</code></p>
 <p>Which will error because of the SHA512 hash mismatch:</p>
-<pre><code>  File does not have expected hash:
+<pre><code class="no-highlight">  File does not have expected hash:
 
           File path: [ C:/opt/vcpkg/downloads/temp/&lt;package&gt; ]
       Expected hash: [ 1 ]
@@ -303,7 +307,7 @@ file(INSTALL ${SOURCE_PATH}/COPYING DESTINATION ${CURRENT_PACKAGES_DIR}/share/&l
 </code></pre>
 
 <p>Which is replaced in the <em>portfile</em> above:</p>
-<pre><code>    SHA512 02a61de205bd1dd116677cf4c530d7adb689442252aeafdc549d54531a62ab10e999062403ddb8aed3d89e4f248ad10c0998739b33004ec02e9914150854d47c
+<pre><code class="no-highlight">    SHA512 02a61de205bd1dd116677cf4c530d7adb689442252aeafdc549d54531a62ab10e999062403ddb8aed3d89e4f248ad10c0998739b33004ec02e9914150854d47c
 </code></pre>
 
 <p>Then build again with <code>vcpkg build &lt;package&gt;:x64-windows</code></p>
@@ -311,19 +315,19 @@ file(INSTALL ${SOURCE_PATH}/COPYING DESTINATION ${CURRENT_PACKAGES_DIR}/share/&l
 <h2 id="patching-during-vcpkg-build">Patching during vcpkg build</h2>
 <p>We now need to change some code in order to make mavlink build correctly on Windows. Following <a href="https://vcpkg.readthedocs.io/en/latest/examples/patching/">vcpkg patching documentation</a>, we will do the following.</p>
 <p>Seed the patch by adding the original unpacked sources (this won't be checked in):</p>
-<pre><code>cd c:\opt\vcpkg\buildtrees\&lt;package&gt;
+<pre><code class="no-highlight">cd c:\opt\vcpkg\buildtrees\&lt;package&gt;
 git init
 git add .
 git commit -m &quot;create patch&quot;
 </code></pre>
 
 <p>Next, fix the sources and attempt to build. Once builds complete and testing succeeds, you can create a vcpkg patch:</p>
-<pre><code>cd c:\opt\vcpkg\buildtrees\&lt;package&gt;\....
+<pre><code class="no-highlight">cd c:\opt\vcpkg\buildtrees\&lt;package&gt;\....
 git diff &gt; ..\..\..\..\ports\&lt;port&gt;\&lt;path name&gt;.patch
 </code></pre>
 
 <p>And include it in the portfile:</p>
-<pre><code>vcpkg_from_github(
+<pre><code class="no-highlight">vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO &lt;organization&gt;/&lt;project&gt;
     REF &lt;latest release version&gt;

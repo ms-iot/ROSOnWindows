@@ -175,8 +175,6 @@
         
             <li><a class="toctree-l4" href="#publishing">Publishing</a></li>
         
-            <li><a class="toctree-l4" href="#tracked_objects">/tracked_objects/</a></li>
-        
         </ul>
     
 
@@ -215,6 +213,10 @@
                 <li class="">
                     
     <a class="" href="../GettingStarted/Troubleshooting.html">Troubleshooting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/ms-iot/rosonwindows/issues">Create Issue</a>
                 </li>
     </ul>
 	    </li>
@@ -271,14 +273,14 @@
 * ROS melodic for Windows</p>
 <p>The WinML ROS Node is distrubted as source. To consume it in your robot, clone the winml_tracker sources into your workspace.</p>
 <p>For example:</p>
-<pre><code>mkdir c:\workspace\winml_demo\src
+<pre><code class="no-highlight">mkdir c:\workspace\winml_demo\src
 cd c:\workspace\winml_demo\src
 catkin_init_workspace
 git clone https://github.com/ms-iot/winml_tracker
 </code></pre>
 
 <p>Find or construct a suitible onnx model. For example, you can download <a href="https://github.com/onnx/models/tree/master/vision/object_detection_segmentation/tiny_yolov2">TinyYOLO from the Onnx Model Zoo</a>. </p>
-<pre><code>choco upgrade curl
+<pre><code class="no-highlight">choco upgrade curl
 curl https://onnxzoo.blob.core.windows.net/models/opset_8/tiny_yolov2/tiny_yolov2.tar.gz --output tiny_yolov2.tar.gz
 tar -xf tiny_yolov2.tar.gz
 </code></pre>
@@ -386,7 +388,7 @@ tar -xf tiny_yolov2.tar.gz
 <p>The WinML Publishes the following topics:</p>
 <h3 id="tracked_objectsimage">/tracked_objects/image</h3>
 <p>Outputs an image with highlighing if the debug property is set</p>
-<h2 id="tracked_objects">/tracked_objects/</h2>
+<h3 id="tracked_objects">/tracked_objects/</h3>
 <p>An array of <code>visualization_msgs::Marker</code> for found objects</p>
 <h3 id="detected_object">/detected_object</h3>
 <p>A single instance of the DetectedObjectPose message, which is output when tracker_type is set to pose.</p>

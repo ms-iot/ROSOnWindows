@@ -98,15 +98,15 @@
     <a class="current" href="moveit_tutorials.html">MoveIt</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#moveit-tutorials-on-windows">Moveit! Tutorials on Windows</a></li>
+    <li class="toctree-l3"><a href="#moveit-tutorials-on-windows">MoveIt Tutorials on Windows</a></li>
     
         <ul>
         
-            <li><a class="toctree-l4" href="#moveit-binary-installation-on-windows">Moveit! Binary Installation on Windows</a></li>
+            <li><a class="toctree-l4" href="#moveit-binary-installation-on-windows">MoveIt Binary Installation on Windows</a></li>
         
-            <li><a class="toctree-l4" href="#create-workspace-for-moveit-tutorials">Create Workspace for Moveit! Tutorials</a></li>
+            <li><a class="toctree-l4" href="#create-workspace-for-moveit-tutorials">Create Workspace for MoveIt Tutorials</a></li>
         
-            <li><a class="toctree-l4" href="#getting-started-with-moveit-tutorials">Getting Started with Moveit! Tutorials</a></li>
+            <li><a class="toctree-l4" href="#getting-started-with-moveit-tutorials">Getting Started with MoveIt Tutorials</a></li>
         
         </ul>
     
@@ -212,6 +212,10 @@
                     
     <a class="" href="../GettingStarted/Troubleshooting.html">Troubleshooting</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/ms-iot/rosonwindows/issues">Create Issue</a>
+                </li>
     </ul>
 	    </li>
           
@@ -254,18 +258,18 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="moveit-tutorials-on-windows">Moveit! Tutorials on Windows</h1>
-<p>This guide is to show you how to prepare a workspace (for ROS on Windows) for your Moveit! tutorials. Find out more about Moveit!, visit <a href="https://ros-planning.github.io/moveit_tutorials/index.html">here</a>.</p>
-<h2 id="moveit-binary-installation-on-windows">Moveit! Binary Installation on Windows</h2>
-<p>First, download the ROS on Windows with Moveit! packages.
+                <h1 id="moveit-tutorials-on-windows">MoveIt Tutorials on Windows</h1>
+<p>This guide is to show you how to prepare a workspace (for ROS on Windows) for your MoveIt tutorials. Find out more about MoveIt, visit <a href="https://ros-planning.github.io/moveit_tutorials/index.html">here</a>.</p>
+<h2 id="moveit-binary-installation-on-windows">MoveIt Binary Installation on Windows</h2>
+<p>First, download the ROS on Windows with MoveIt packages.
 (open a command prompt as admin)</p>
-<pre><code>choco upgrade ros-melodic-moveit -y
+<pre><code class="no-highlight">choco upgrade ros-melodic-moveit -y
 </code></pre>
 
-<h2 id="create-workspace-for-moveit-tutorials">Create Workspace for Moveit! Tutorials</h2>
+<h2 id="create-workspace-for-moveit-tutorials">Create Workspace for MoveIt Tutorials</h2>
 <p>Then, let's download the example code to your workspace.</p>
 <p>(open a command prompt as admin)</p>
-<pre><code>mkdir c:\moveit_ws\src
+<pre><code class="no-highlight">mkdir c:\moveit_ws\src
 cd c:\moveit_ws\src
 catkin_init_workspace
 git clone https://github.com/ms-iot/moveit_tutorials -b init_windows
@@ -276,11 +280,11 @@ catkin_make
 </code></pre>
 
 <p>After it is built, source the catkin workspace.</p>
-<pre><code>c:\moveit_ws\devel\setup.bat
+<pre><code class="no-highlight">c:\moveit_ws\devel\setup.bat
 </code></pre>
 
-<h2 id="getting-started-with-moveit-tutorials">Getting Started with Moveit! Tutorials</h2>
-<p>Now you are ready to continue the journal on <a href="https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html">Moveit! Tutorials</a>.</p>
+<h2 id="getting-started-with-moveit-tutorials">Getting Started with MoveIt Tutorials</h2>
+<p>Now you are ready to continue the journal on <a href="https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html">MoveIt Tutorials</a>.</p>
               
             </div>
           </div>

@@ -154,12 +154,6 @@
         
             <li><a class="toctree-l4" href="#windows-and-linux-differences">Windows and Linux Differences</a></li>
         
-            <li><a class="toctree-l4" href="#c-17">C++ 17</a></li>
-        
-            <li><a class="toctree-l4" href="#directory-separators">Directory Separators</a></li>
-        
-            <li><a class="toctree-l4" href="#user-directory">User directory</a></li>
-        
             <li><a class="toctree-l4" href="#quote-handling-in-command-window">Quote handling in command window</a></li>
         
             <li><a class="toctree-l4" href="#python">Python</a></li>
@@ -224,6 +218,10 @@
                     
     <a class="" href="../GettingStarted/Troubleshooting.html">Troubleshooting</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/ms-iot/rosonwindows/issues">Create Issue</a>
+                </li>
     </ul>
 	    </li>
           
@@ -270,17 +268,17 @@
 <p>While every effort has been made to reduce the effort needed to support ROS nodes on Windows, 
 there will inevitably be required changes between platforms. This cookbook is intended to collect common issues and recommended solutions.</p>
 <h2 id="windows-and-linux-differences">Windows and Linux Differences</h2>
-<h2 id="c-17">C++ 17</h2>
+<h3 id="c-17">C++ 17</h3>
 <p>In your CMakeLists.txt add the compile option:
 <code>add_compile_options(/std:c++latest)</code></p>
-<h2 id="directory-separators">Directory Separators</h2>
+<h3 id="directory-separators">Directory Separators</h3>
 <p>Windows uses backslash <code>\</code> whereas Linux uses forward slash <code>/</code>. As we encounter path processing, we've been replacing them with the Python or Boost equivelents.</p>
-<h2 id="user-directory">User directory</h2>
+<h3 id="user-directory">User directory</h3>
 <p>Linux has a neat shortcut for refering to the users' home directory <code>~</code>. </p>
 <p>Windows uses the environment variable <code>%USERPROFILE%</code> - use this whenever you see <code>~</code> in ROS documentation.</p>
 <h2 id="quote-handling-in-command-window">Quote handling in command window</h2>
 <p>Cmd.exe is the command processor of command window.  Single quotes are not used at all by the cmd.exe except in batch file to enclose the command to run within a FOR /F statement.  Cmd.exe handles quoting with double quotes.  This is different from Linux that uses single quote as quote character.  As encounter quoting on Windows, please use double quote.  The following example shows using double quotes around the message contents:</p>
-<pre><code>rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- &quot;[2.0, 0.0, 0.0]&quot; &quot;[0.0, 0.0, 1.8]&quot;
+<pre><code class="no-highlight">rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- &quot;[2.0, 0.0, 0.0]&quot; &quot;[0.0, 0.0, 1.8]&quot;
 </code></pre>
 
 <h3 id="paths-and-ros-commands">Paths and ROS commands</h3>
@@ -289,13 +287,13 @@ there will inevitably be required changes between platforms. This cookbook is in
   * Put all of your ROS workspaces on the C:\ drive
   * Link folders from your C:\ drive to your workspaces.</p>
 <p>To link a folder on Windows, use the mklink to create a filesystem link from one drive to another.:</p>
-<pre><code>mkdir d:\workspaces
+<pre><code class="no-highlight">mkdir d:\workspaces
 mklink c:\workspaces d:\workspaces
 </code></pre>
 
 <h3 id="symbol-visibility">Symbol Visibility</h3>
 <p>Windows and Linux handle symbol visibility differently. You may encounter a build error of the form:</p>
-<pre><code>error C2448: '__attribute__': function-style initializer appears to be a function definition
+<pre><code class="no-highlight">error C2448: '__attribute__': function-style initializer appears to be a function definition
 'visibility': identifier not found
 </code></pre>
 
@@ -304,7 +302,7 @@ mklink c:\workspaces d:\workspaces
 <p>Please visit the Microsoft Documentation for more information on <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/setting-and-clearing-image-file-flags">Gflags</a> and  <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/show-loader-snaps">Loaders snaps</a>.</p>
 <h3 id="install-library-targets-given-no-destination">install Library TARGETS given no DESTINATION!</h3>
 <p>Windows will generate separate archives and librarys. To handle this, add an ARCHIVE destination:</p>
-<pre><code>install(
+<pre><code class="no-highlight">install(
     TARGETS ${PROJECT_NAME}
     ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
     LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
@@ -312,7 +310,7 @@ mklink c:\workspaces d:\workspaces
 
 <h3 id="all-warnings">All Warnings</h3>
 <p>Warnings are good. The options for selecting warning level are different. If you add specific compiler options for warnings, please add an MSVC selection. For the Visual Studio compiler, you'll use <code>/W3</code> for warning level 3 (or <code>/W4</code> which offers more warning options). If you would like to treat warnings as errors pass <code>/WX</code>. However, these warnings would need to be corrected before the compile will succeed.</p>
-<pre><code>if(MSVC)
+<pre><code class="no-highlight">if(MSVC)
   add_compile_options(/W3 /WX)
 else()
   add_compile_options(-Wall -Wextra)
@@ -320,7 +318,7 @@ endif()
 </code></pre>
 
 <p>You can disable specific warnings using <code>#pragma</code>:</p>
-<pre><code>#ifdef _MSC_VER
+<pre><code class="c">#ifdef _MSC_VER
   #pragma warning(disable: 4244)
   #pragma warning(disable: 4661)
 #endif
@@ -328,17 +326,17 @@ endif()
 
 <h3 id="security-warnings">Security Warnings</h3>
 <p>Windows deprecates certain C APIs because they are inherently insecure. You will receive a message of the form:</p>
-<pre><code>warning C4996: 'xxx': This function or variable may be unsafe. Consider using xxx_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+<pre><code class="no-highlight">warning C4996: 'xxx': This function or variable may be unsafe. Consider using xxx_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 </code></pre>
 
 <p>Consider using modern equivelents. If you cannot use a modern equivelent, you can add the following to your cmake files:</p>
-<pre><code>add_definitions(&quot;/D_CRT_SECURE_NO_WARNINGS&quot;)
+<pre><code class="no-highlight">add_definitions(&quot;/D_CRT_SECURE_NO_WARNINGS&quot;)
 add_definitions(&quot;/D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS&quot;)
 </code></pre>
 
 <h3 id="c-versioning">C++ versioning</h3>
 <p>Use CMake to set the C++ version:</p>
-<pre><code>if(NOT CMAKE_CXX_STANDARD)
+<pre><code class="no-highlight">if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 11)
 endif()
 </code></pre>
@@ -348,7 +346,7 @@ endif()
 <h3 id="unresolved-external"><code>Unresolved External</code></h3>
 <p>Linux automatically exports symbols. Windows, symbols are private by default. <a href="https://cmake.org/cmake/help/v3.4/prop_tgt/WINDOWS_EXPORT_ALL_SYMBOLS.html">CMake provides a facility for this</a>.</p>
 <p>In your cmake:</p>
-<pre><code>set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+<pre><code class="no-highlight">set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 </code></pre>
 
 <p>However, you may encounter a problem with static class members, i.e. global data symbols, as discussed in https://blog.kitware.com/create-dlls-on-windows-without-declspec-using-new-cmake-export-all-feature/. In this case you need to manually handle visibility of the static class members, using the <a href="https://cmake.org/cmake/help/v3.4/module/GenerateExportHeader.html"><code>GenerateExportHeader</code></a> CMake module. </p>
@@ -378,7 +376,7 @@ class myclass
 <p>The Microsoft compiler will optimize agressively. This can manifest in strange ways. One instance was in turtlebot3 fake code, is a ROS_ASSERT with a function that only returns true. Nothing else executed.</p>
 <h3 id="case-sensitivity">Case sensitivity</h3>
 <p>Linux is case sensitive, whereas Windows is not. We are trying to locate case sensitive areas and isolate them. This manifests in odd errors like this: </p>
-<pre><code>RLException: multiple files named [turtlebot3_robot.launch] in package [turtlebot3_bringup]:
+<pre><code class="no-highlight">RLException: multiple files named [turtlebot3_robot.launch] in package [turtlebot3_bringup]:
 - C:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
 - c:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
 </code></pre>
@@ -394,7 +392,7 @@ class myclass
 <h2 id="errors">Errors</h2>
 <h3 id="gtest-notfound">gtest-NOTFOUND</h3>
 <p>This occurs when linking against gtest instead of ${GTEST_LIBRARIES}</p>
-<pre><code>  target_link_libraries( rtest
+<pre><code class="no-highlight">  target_link_libraries( rtest
       ${GTEST_LIBRARIES}
       ${catkin_LIBRARIES}
   )
@@ -417,7 +415,7 @@ class myclass
 <h2 id="missing-symbols">Missing Symbols</h2>
 <h3 id="m_pi">'M_PI'</h3>
 <p>Add the following to the top of your file:</p>
-<pre><code class="C++">#define _USE_MATH_DEFINES 
+<pre><code class="C++">#define _USE_MATH_DEFINES
 </code></pre>
 
 <p>or define it in the CMakeFile.exe</p>

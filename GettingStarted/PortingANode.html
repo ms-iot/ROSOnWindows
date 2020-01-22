@@ -217,6 +217,10 @@
                     
     <a class="" href="Troubleshooting.html">Troubleshooting</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="https://github.com/ms-iot/rosonwindows/issues">Create Issue</a>
+                </li>
     </ul>
 	    </li>
           
@@ -282,7 +286,7 @@ ROS 2 has supported Windows since its first releases.</p>
 <li>On github.com, fork <code>https://github.com/&lt;organization&gt;/&lt;project&gt;</code> into your personal github repo</li>
 <li>Create a workspace and clone:</li>
 </ol>
-<pre><code>mkdir c:\ws\ros_ws\src
+<pre><code class="no-highlight">mkdir c:\ws\ros_ws\src
 cd c:\ws\ros_ws\src
 git clone https://github.com/&lt;your github&gt;/&lt;project&gt;
 cd ..
@@ -292,12 +296,12 @@ cd ..
 <p>Many ROS packages require dependent libraries. After checking out the sources for a ROS package, the tool <a href="http://wiki.ros.org/rosdep">rosdep</a> &nearr; is run, which will attempt to resolve package dependencies with binary and source distribution managers.</p>
 <p>On Windows, the Binary package manager <a href="https://chocolatey.org/">Chocolatey</a> &nearr; is used. For Source-code only distributions or dependent libraries, <a href="https://github.com/microsoft/vcpkg">Micrsoft's VCPkg manager</a> &nearr; manager is used. When you install the desktop_full package, vcpkg is automatically installed and built for you.</p>
 <p>In the workspace, use <code>rosdep</code> to resolve dependencies</p>
-<pre><code>rosdep update
+<pre><code class="no-highlight">rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 </code></pre>
 
 <p>You may see the following output indicating missing dependencies:</p>
-<pre><code>ERROR: the following packages/stacks could not have their rosdep keys resolved
+<pre><code class="no-highlight">ERROR: the following packages/stacks could not have their rosdep keys resolved
 to system dependencies:
 &lt;package: No definition of [&lt;dependent library&gt;] for OS [windows]
 #All required rosdeps installed successfully
@@ -307,7 +311,7 @@ to system dependencies:
 <p>Take note of special instructions printed while running <code>rosdep</code> - these may be needed in order to link correctly on Windows.</p>
 <h1 id="missing-ros-messages">Missing ROS Messages</h1>
 <p>Many ROS Messages are not packaged as binary distributions. These can simply be cloned into the repo. </p>
-<pre><code>cd c:\ws\ros_ws\src
+<pre><code class="no-highlight">cd c:\ws\ros_ws\src
 git clone https://github.com/&lt;dependent package organization&gt;/&lt;depdnent package&gt;
 cd ..
 rosdep install --from-paths src --ignore-src -r -y
