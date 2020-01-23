@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>SICK S300 - ROS on Windows</title>
+  <title>Simple Open EtherCAT Master - ROS on Windows</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "SICK S300";
-    var mkdocs_page_input_path = "tutorials\\sick_s300\\getting_started.md";
+    var mkdocs_page_name = "Simple Open EtherCAT Master";
+    var mkdocs_page_input_path = "tutorials\\ethercat\\soem.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -105,26 +105,32 @@
                     
     <a class="" href="../../Turtlebot/Turtlebot3.html">TurtleBot 3</a>
                 </li>
+                <li class="">
+                    
+    <a class="" href="../sick_s300/getting_started.html">SICK S300</a>
+                </li>
                 <li class=" current">
                     
-    <a class="current" href="getting_started.html">SICK S300</a>
+    <a class="current" href="soem.html">Simple Open EtherCAT Master</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#sick-s300-safety-laser-scanner">SICK S300 Safety Laser Scanner</a></li>
+    <li class="toctree-l3"><a href="#getting-started-with-soem-application">Getting Started with SOEM Application</a></li>
     
         <ul>
         
             <li><a class="toctree-l4" href="#prerequisite">Prerequisite</a></li>
         
-            <li><a class="toctree-l4" href="#step-1-clone-the-driver-package">Step 1: Clone the Driver Package</a></li>
+            <li><a class="toctree-l4" href="#step-1-add-soem-library-to-your-workspace">Step 1: Add SOEM Library to your Workspace</a></li>
         
-            <li><a class="toctree-l4" href="#step-2-create-your-owned-package">Step 2: Create your owned Package</a></li>
+            <li><a class="toctree-l4" href="#step-2-create-your-own-package">Step 2: Create your own Package</a></li>
         
-            <li><a class="toctree-l4" href="#step-3-build-the-workspace">Step 3: Build the Workspace</a></li>
+            <li><a class="toctree-l4" href="#step-3-add-soem-application-code">Step 3: Add SOEM Application Code</a></li>
         
-            <li><a class="toctree-l4" href="#step-4-write-a-ros-launch-file-running-laser-scanner-node">Step 4: Write a ROS Launch file running Laser Scanner node</a></li>
+            <li><a class="toctree-l4" href="#step-4-edit-cmakeliststxt">Step 4: Edit CMakeLists.txt</a></li>
         
-            <li><a class="toctree-l4" href="#step-5-start-to-run-ros-application">Step 5: Start to Run ROS application</a></li>
+            <li><a class="toctree-l4" href="#step-5-build-the-workspace">Step 5: Build the Workspace</a></li>
+        
+            <li><a class="toctree-l4" href="#step-6-check-ethercat-network">Step 6: Check EtherCAT Network</a></li>
         
         </ul>
     
@@ -133,10 +139,6 @@
     
 
     </ul>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../ethercat/soem.html">Simple Open EtherCAT Master</a>
                 </li>
     </ul>
 	    </li>
@@ -258,10 +260,10 @@
         
       
     
-    <li>SICK S300</li>
+    <li>Simple Open EtherCAT Master</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/tutorials/sick_s300/getting_started.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/tutorials/ethercat/soem.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -271,109 +273,163 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="sick-s300-safety-laser-scanner">SICK S300 Safety Laser Scanner</h1>
-<p>In this post, I will show you how to get started with <strong>SICK S300 Safety Laser Scanner</strong> in a ROS workspace.
-I will begin with an empty workspace, add required ROS packages, define and run an exmaple ROS application, and check laser scan in the ROS visualization tools.</p>
-<p>In this tutorial, I will be using <strong>cob_sick_s300</strong>, a community ROS package, to drive <strong>SICK S300</strong> to get the laser scan messages into ROS topics.</p>
-<p>For more information, see <a href="http://wiki.ros.org/cob_sick_s300">http://wiki.ros.org/cob_sick_s300</a>.</p>
+                <h1 id="getting-started-with-soem-application">Getting Started with SOEM Application</h1>
+<p><a href="https://www.ethercat.org/"><code>EtherCAT</code> (Ethernet for Control Automation Technology)</a> is an Ethernet-based fieldbus system.
+It is a widely used protocol for industrial applications.
+In this tutorial, I will show you how to install and consume an open source <code>EtherCAT</code> master implementation, <code>SOEM</code> (Simple Open EtherCAT Master), and discover devices on a <code>EtherCAT</code> network in a <code>ROS</code> workspace.</p>
+<p>For more information, visit <a href="https://github.com/OpenEtherCATsociety/SOEM">https://github.com/OpenEtherCATsociety/SOEM</a>.</p>
 <h2 id="prerequisite">Prerequisite</h2>
 <ul>
 <li>You have a machine with <code>Windows 10</code> installed.</li>
 <li>You have <a href="https://wiki.ros.org/Installation/Windows"><code>ROS Melodic Desktop Full</code></a> installed.</li>
-<li>You have a <strong>SICK S300 Safety Laser Scanner</strong> commissioned to operate and connected to your host machine over a serial port.</li>
-<li>This tutorial applies to:<ul>
-<li><a href="http://www.sick.com/s300_standard"><code>S300 Standard</code></a></li>
-<li><a href="http://www.sick.com/s300_advanced"><code>S300 Advanced</code></a></li>
-<li><a href="http://www.sick.com/s300_professional"><code>S300 Professional</code></a></li>
-<li><a href="http://www.sick.com/s300_expert"><code>S300 Expert</code></a></li>
+<li>You have a <code>EtherCAT</code> slave controller commissioned to work.</li>
+<li>You have a <code>EtherCAT</code> network topology configured physically.</li>
+<li>You have basic knowledge to <code>EtherCAT</code> technology.</li>
 </ul>
-</li>
-</ul>
-<h2 id="step-1-clone-the-driver-package">Step 1: Clone the Driver Package</h2>
-<p>Firstly, you will need a <code>catkin</code> workspace to contain the driver package.
-Let's assume you are working on a empty workspace under <code>c:\s300_ws</code> and now you need to clone the driver package and its dependencies into the source folder:</p>
-<pre><code class="no-highlight">:: change the directory to the source subfolder.
-c:\s300_ws&gt; cd src
-
-:: checkout the driver package code.
-c:\s300_ws\src&gt; git clone https://github.com/seanyen/cob_sick_s300
-c:\s300_ws\src&gt; git clone https://github.com/wjwwood/serial
+<h2 id="step-1-add-soem-library-to-your-workspace">Step 1: Add SOEM Library to your Workspace</h2>
+<p>Firstly, you will need a <code>catkin</code> workspace to begin with.
+Let's assume you are working on an empty workspace under <code>c:\ethercat_ws</code>.
+You can install <code>SOEM</code> from <code>vcpkg</code>:</p>
+<pre><code class="no-highlight">:: install vcpkg SOEM port
+c:\ethercat_ws&gt; vcpkg install SOEM:x64-windows
 </code></pre>
 
-<h2 id="step-2-create-your-owned-package">Step 2: Create your owned Package</h2>
-<p>Now you have the required packages in your workspace.
-By ROS convention, it is common to manage the peripheral nodes in ROS launch files.
-However, since we begin this tutorial with an empty workspace, let's create a new package so we can add the ROS launch files later.</p>
+<h2 id="step-2-create-your-own-package">Step 2: Create your own Package</h2>
+<p>Now you have the required libraries.
+Let's begin with a new package and build with <code>SOEM</code>.</p>
 <pre><code class="no-highlight">:: change the directory to the source subfolder.
-c:\s300_ws&gt; cd src
+c:\ethercat_ws&gt; cd src
 
 :: create your owned package
-c:\s300_ws\src&gt; catkin_create_pkg my_pkg
+c:\ethercat_ws\src&gt; catkin_create_pkg my_pkg
 </code></pre>
 
-<h2 id="step-3-build-the-workspace">Step 3: Build the Workspace</h2>
+<h2 id="step-3-add-soem-application-code">Step 3: Add SOEM Application Code</h2>
+<p>Copy <a href="https://raw.githubusercontent.com/OpenEtherCATsociety/SOEM/master/test/linux/slaveinfo/slaveinfo.c"><code>slaveinfo.c</code></a> into the new package as the <code>SOEM</code> application code to run.</p>
+<pre><code class="no-highlight">:: make the directory to store the source.
+c:\ethercat_ws&gt; mkdir src\my_pkg\src
+
+:: download the source of `slaveinfo.c`
+c:\ethercat_ws&gt; curl https://raw.githubusercontent.com/OpenEtherCATsociety/SOEM/master/test/linux/slaveinfo/slaveinfo.c -o src\my_pkg\src\slaveinfo.c
+</code></pre>
+
+<h2 id="step-4-edit-cmakeliststxt">Step 4: Edit CMakeLists.txt</h2>
+<p>You will also needs to edit the <code>src\my_pkg\CMakeLists.txt</code> to author the new executable and to be explicit on <code>SOEM</code> as dependency.</p>
+<p>Here is the <code>CMake</code> recipe to add to look for <code>SOEM</code>:</p>
+<pre><code class="cmake">find_path(winpcap_INCLUDE_DIRS NAMES pcap.h)
+find_library(winpcap_LIBRARY NAMES wpcap)
+find_library(packet_LIBRARY NAMES packet)
+find_path(soem_INCLUDE_DIRS NAMES ethercat.h PATH_SUFFIXES soem)
+find_library(soem_LIBRARY NAMES soem)
+</code></pre>
+
+<p>Here is the recipe to author the <code>slaveinfo.c</code> as an excutable:</p>
+<pre><code class="cmake">include_directories(
+  ${catkin_INCLUDE_DIRS}
+  ${soem_INCLUDE_DIRS}
+  ${winpcap_INCLUDE_DIRS}
+)
+
+add_executable(${PROJECT_NAME}_node src/slaveinfo.c)
+
+set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME slaveinfo PREFIX &quot;&quot;)
+
+add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(${PROJECT_NAME}_node
+  ${catkin_LIBRARIES}
+  ${soem_LIBRARY}
+  ${winpcap_LIBRARY}
+  ${packet_LIBRARY}
+  Ws2_32.lib Winmm.lib
+)
+</code></pre>
+
+<h2 id="step-5-build-the-workspace">Step 5: Build the Workspace</h2>
 <p>Let's build the workspace to produce the executables and binaries.
 And remember to run <code>setup.bat</code> to add the development space into the current environment.</p>
 <pre><code class="no-highlight">:: Build the workspace
-c:\s300_ws&gt; catkin_make
+c:\ethercat_ws&gt; catkin_make
 
 :: Add the development space into the current environment.
-c:\s300_ws&gt; devel\setup.bat
+c:\ethercat_ws&gt; devel\setup.bat
 </code></pre>
 
-<h2 id="step-4-write-a-ros-launch-file-running-laser-scanner-node">Step 4: Write a ROS Launch file running Laser Scanner node</h2>
-<p>At this moment, you are ready to add new ROS launch file for the new package.
-Let's add a new one called <code>my_pkg.launch</code>:</p>
-<pre><code class="no-highlight">:: Change the directory to new package
-c:\s300_ws&gt; roscd my_pkg
+<h2 id="step-6-check-ethercat-network">Step 6: Check EtherCAT Network</h2>
+<p>Let's check the <code>EtherCAT</code> network to make sure the <code>SOEM</code> and the <code>EtherCAT</code> network is working.</p>
+<p>First, retrieve the list of ethernet adapter discovered on your machine.</p>
+<pre><code class="no-highlight">c:\ethercat_ws&gt; rosrun my_pkg slaveinfo
 
-:: Create the ROS launch file
-C:\workspace\s300_ws\src\my_pkg&gt; mkdir launch &amp;&amp; notepad launch\my_pkg.launch
+SOEM (Simple Open EtherCAT Master)
+Slaveinfo
+Usage: slaveinfo ifname [options]
+ifname = eth0 for example
+Options :
+ -sdo : print SDO info
+ -map : print mapping
+Available adapters
+Description : Microsoft, Device to use for wpcap: \Device\NPF_{7B78D297-ED15-4C1B-BC32-8EDB9E41E5AB}
+Description : VMware Virtual Ethernet Adapter, Device to use for wpcap: \Device\NPF_{8BBA06A7-8AAB-48B5-90E3-DC2DB31D86F6}
+Description : Microsoft, Device to use for wpcap: \Device\NPF_{BF10C5FD-EF74-4D93-B32E-D0D2A040BA87}
+Description : Microsoft Corporation, Device to use for wpcap: \Device\NPF_{894B5E76-A359-4AAF-8F7C-41FAD68773E3}
+Description : Microsoft, Device to use for wpcap: \Device\NPF_{A54146EA-CD6F-4A95-93E4-0919C4B2D685}
+Description : VMware Virtual Ethernet Adapter, Device to use for wpcap: \Device\NPF_{144028BF-951B-4209-B8D4-30E888BFB4CB}
+End program
 </code></pre>
 
-<p>Once the <code>notepad</code> gets launched, copy and paste the following text into the new file, save it, and close the notepad:</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;launch&gt;
-    &lt;!-- start laser driver --&gt;
-    &lt;node name=&quot;laser_front&quot; pkg=&quot;cob_sick_s300&quot; type=&quot;cob_sick_s300&quot; respawn=&quot;false&quot; output=&quot;screen&quot;&gt;
-        &lt;rosparam subst_value=&quot;true&quot;&gt;
-            port: COM1
-            baud: 115200
-            scan_duration: 0.025 #no info about that in SICK-docu, but 0.025 is believable and looks good in rviz
-            scan_cycle_time: 0.040 #SICK-docu says S300 scans every 40ms
-            inverted: true
-            scan_id: 7
-            frame_id: /base_laser_link
-            scan_intervals: [[-1.3526, 1.361357]] #[rad] these intervals are included to the scan
-        &lt;/rosparam&gt;
-    &lt;/node&gt;
+<p>Look for the ethernet adapter for your <code>EtherCAT</code> network and take a note of the path, for example, <code>\Device\NPF_{A54146EA-CD6F-4A95-93E4-0919C4B2D685}</code>.</p>
+<p>Now run the <code>slaveinfo</code> with the ethernet device path again to list what <code>EtherCAT</code> slave controllers are discovered on the network.
+You should see information similar to the below and check that the details make sense to your environment.</p>
+<pre><code class="no-highlight">c:\ethercat_ws&gt; rosrun soem slaveinfo \Device\NPF_{A54146EA-CD6F-4A95-93E4-0919C4B2D685}
 
-    &lt;!-- start ROS visualization tools --&gt;
-    &lt;node name=&quot;rqt_gui&quot; pkg=&quot;rqt_gui&quot; type=&quot;rqt_gui&quot;/&gt;
-    &lt;node name=&quot;rviz&quot; pkg=&quot;rviz&quot; type=&quot;rviz&quot;/&gt;
-&lt;/launch&gt;
+Slave:1
+ Name:simco drive 40028083-00-0
+ Output size: 48bits
+ Input size: 48bits
+ State: 4
+ Delay: 0[ns]
+ Has DC: 0
+ Activeports:1.1.0.0
+ Configured address: 1002
+ Man: 0000010a ID: 0262c7b3 Rev: 00010211
+ SM0 A:1000 L: 512 F:00010026 Type:1
+ SM1 A:1400 L: 512 F:00010022 Type:2
+ SM2 A:1800 L:   6 F:00010064 Type:3
+ SM3 A:1950 L:   6 F:00010020 Type:4
+ FMMU0 Ls:0000000a Ll:   6 Lsb:0 Leb:7 Ps:1800 Psb:0 Ty:02 Act:01
+ FMMU1 Ls:00000027 Ll:   6 Lsb:0 Leb:7 Ps:1950 Psb:0 Ty:01 Act:01
+ FMMUfunc 0:1 1:2 2:0 3:0
+ MBX length wr: 512 rd: 512 MBX protocols : 0c
+ CoE details: 27 FoE details: 01 EoE details: 00 SoE details: 00
+ Ebus current: 0[mA]
+ only LRD/LWR:0
+PDO mapping according to CoE :
+  SM2 outputs
+     addr b   index: sub bitl data_type    name
+  [0x000A.0] 0x6040:0x00 0x10 UNSIGNED16   Controlword
+  [0x000C.0] 0x60FF:0x00 0x20 INTEGER32    Target Velocity
+  [0x0010.0] 0x0000:0x00 0x00
+  [0x0010.0] 0x0000:0x00 0x00
+  [0x0010.0] 0x0000:0x00 0x00
+  [0x0010.0] 0x0000:0x00 0x00
+  [0x0010.0] 0x0000:0x00 0x00
+  [0x0010.0] 0x0000:0x00 0x00
+  SM3 inputs
+     addr b   index: sub bitl data_type    name
+  [0x0027.0] 0x6041:0x00 0x10 UNSIGNED16   Statusword
+  [0x0029.0] 0x6064:0x00 0x20 INTEGER32    Position Actual Value
+  [0x002D.0] 0x0000:0x00 0x00
+  [0x002D.0] 0x0000:0x00 0x00
+  [0x002D.0] 0x0000:0x00 0x00
+  [0x002D.0] 0x0000:0x00 0x00
+  [0x002D.0] 0x0000:0x00 0x00
+  [0x002D.0] 0x0000:0x00 0x00
 </code></pre>
 
-<p>Before we move forward, let's take a look some important parameters to accommodate your environment:</p>
-<ul>
-<li><code>port</code> should be pointed to where the <code>SICK S300</code> connnected to your host machine.</li>
-<li><code>baud</code> should be the baudrate configured by the <code>SICK S300</code>.</li>
-</ul>
-<h2 id="step-5-start-to-run-ros-application">Step 5: Start to Run ROS application</h2>
-<p>After everything is correctly configured, you are ready to run it.</p>
-<pre><code class="no-highlight">:: Run the ROS launch file
-c:\s300_ws&gt; roslaunch my_pkg my_pkg.launch
-</code></pre>
-
-<p>A few moments later, you will see <code>rqt</code> and <code>rviz</code> tools running.
-On the <code>rqt</code>, you can turn on the real-time monitoring on the topic <code>/laser_front/scan</code>.
-<img alt="" src="./rqt.PNG" /></p>
-<p>And on the <code>rviz</code>, you can add built-in <code>LaserScan</code> display by topic and visualize <code>/laser_front/scan</code> in the 3D view port.
-<img alt="" src="./rviz.PNG" /></p>
 <h1 id="summary">Summary</h1>
-<p>Now you have an initial bring-up for <strong>SICK S300 Safety Laser Scanner</strong>.
-You may need to tweak other parameters to reflect the settings of your laser scanner.
-For more information, visit <a href="http://wiki.ros.org/cob_sick_s300">http://wiki.ros.org/cob_sick_s300</a> for the complete guidance.</p>
+<p>Now you have a workspace to continue the learning of <code>SOEM</code>.
+In this tutorial, I walk through the steps of installing <code>SOEM</code> from <code>vcpkg</code>, how to edit catkin package to consume <code>SOEM</code>, and how to run <code>slaveinfo</code> to exercise your EtherCAT network.
+I encourge you to read on the official <code>SOEM</code> <a href="https://openethercatsociety.github.io/doc/soem/tutorial_8txt.html">tutorial</a> to learn more about how to program <code>SOEM</code> application.</p>
               
             </div>
           </div>
@@ -381,10 +437,10 @@ For more information, visit <a href="http://wiki.ros.org/cob_sick_s300">http://w
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../ethercat/soem.html" class="btn btn-neutral float-right" title="Simple Open EtherCAT Master">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../GettingStarted/SetupCI.html" class="btn btn-neutral float-right" title="Continuous Integration Template">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../Turtlebot/Turtlebot3.html" class="btn btn-neutral" title="TurtleBot 3"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../sick_s300/getting_started.html" class="btn btn-neutral" title="SICK S300"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -412,10 +468,10 @@ For more information, visit <a href="http://wiki.ros.org/cob_sick_s300">http://w
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../Turtlebot/Turtlebot3.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../sick_s300/getting_started.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../ethercat/soem.html" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../GettingStarted/SetupCI.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
