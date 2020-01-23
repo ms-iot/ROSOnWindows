@@ -1,4 +1,4 @@
-Getting Started with EtherCAT SOEM Application
+Getting Started with SOEM Application
 ==============================================
 
 [`EtherCAT` (Ethernet for Control Automation Technology)](https://www.ethercat.org/) is an Ethernet-based fieldbus system.
