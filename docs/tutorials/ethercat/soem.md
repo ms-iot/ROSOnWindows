@@ -26,7 +26,7 @@ You can install `SOEM` from `vcpkg`:
 c:\ethercat_ws> vcpkg install SOEM:x64-windows
 ```
 
-## Step 2: Create your owned Package
+## Step 2: Create your own Package
 
 Now you have the required libraries.
 Let's begin with a new package and build with `SOEM`.
@@ -39,7 +39,7 @@ c:\ethercat_ws> cd src
 c:\ethercat_ws\src> catkin_create_pkg my_pkg
 ```
 
-## Step 3: Add SOME Application Code
+## Step 3: Add SOEM Application Code
 
 Copy [`slaveinfo.c`](https://raw.githubusercontent.com/OpenEtherCATsociety/SOEM/master/test/linux/slaveinfo/slaveinfo.c) into the new package as the `SOEM` application code to run.
 
