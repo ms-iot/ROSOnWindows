@@ -1,15 +1,16 @@
-pr: none
+pr:
+  - master
 trigger:
   - master
 
 jobs:
-- job: 'Build'
+- job: 'BuildAndDeploy'
   pool:
     vmImage: 'vs2017-win2016'
   variables:
     gh_name: $(gh_username)
     gh_email: $(gh_useremail)
-
+  condition: nq(variables['Build.Reason'], 'PullRequest')
   steps:
   - task: UsePythonVersion@0
     inputs:
@@ -25,3 +26,16 @@ jobs:
       pip install mkdocs
       mkdocs --version
       mkdocs gh-deploy
+
+- job: 'BuildOnly'
+  pool:
+    vmImage: 'vs2017-win2016'
+  condition: eq(variables['Build.Reason'], 'PullRequest')
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.7.x'
+  - script: |
+      pip install mkdocs
+      mkdocs --version
+      mkdocs build
