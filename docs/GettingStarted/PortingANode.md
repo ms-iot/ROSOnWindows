@@ -36,7 +36,7 @@ cd ..
 # Resolve Dependencies
 Many ROS packages require dependent libraries. After checking out the sources for a ROS package, the tool [rosdep](http://wiki.ros.org/rosdep) &nearr; is run, which will attempt to resolve package dependencies with binary and source distribution managers.
 
-On Windows, the Binary package manager [Chocolatey](https://chocolatey.org/) &nearr; is used. For Source-code only distributions or dependent libraries, [Micrsoft's VCPkg manager](https://github.com/microsoft/vcpkg) &nearr; manager is used. When you install the desktop_full package, vcpkg is automatically installed and built for you.
+On Windows, the Binary package manager [Chocolatey](https://chocolatey.org/) &nearr; is used. For Source-code only distributions or dependent libraries, [Microsoft's VCPkg manager](https://github.com/microsoft/vcpkg) &nearr; manager is used. When you install the desktop_full package, vcpkg is automatically installed and built for you.
 
 In the workspace, use `rosdep` to resolve dependencies
 
@@ -71,6 +71,4 @@ rosdep install --from-paths src --ignore-src -r -y
 # Fixing Build breaks
 While building you may encouter build breaks. Often, nodes depend on platform specific header files or features. In order to port these, it is recommended to leverage the cross platform equivelent in Boost, STL and cross platform libaries as part of the migration.
 
-Please refer to [Porting Guide: Platform Differences](/Porting/Cookbook.md) for general help on porting.
-
-
+Please refer to [Porting Guide: Platform Differences](../Porting/Cookbook.md) for general help on porting.

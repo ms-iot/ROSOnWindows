@@ -37,3 +37,4 @@ nav:
         - Create Issue: https://github.com/ms-iot/rosonwindows/issues
 theme: readthedocs
 use_directory_urls: false
+strict: true

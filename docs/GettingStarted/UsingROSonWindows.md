@@ -36,9 +36,4 @@ git clone -b init_windows http://github.com/ms-iot/<project>
 
 * If the node has not been enabled on Windows, please create an issue on the ROS node's project page asking for Windows to be supported. 
 
-* If you are able, please consider enabling the ROS node on Windows and submitting a pull request to the original repository. Please refer to the [ROS porting guide](porting)
-
-
-
-
-
+* If you are able, please consider enabling the ROS node on Windows and submitting a pull request to the original repository. Please refer to the [ROS porting guide](../Porting/Cookbook.md)
