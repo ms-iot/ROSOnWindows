@@ -114,10 +114,10 @@ c:\s300_ws> roslaunch my_pkg my_pkg.launch
 
 A few moments later, you will see `rqt` and `rviz` tools running.
 On the `rqt`, you can turn on the real-time monitoring on the topic `/laser_front/scan`.
-![](./rqt.PNG)
+![](./rqt.png)
 
 And on the `rviz`, you can add built-in `LaserScan` display by topic and visualize `/laser_front/scan` in the 3D view port.
-![](./rviz.PNG)
+![](./rviz.png)
 
 # Summary
 
