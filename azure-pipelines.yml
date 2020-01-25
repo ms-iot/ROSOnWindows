@@ -10,7 +10,7 @@ jobs:
   variables:
     gh_name: $(gh_username)
     gh_email: $(gh_useremail)
-  condition: nq(variables['Build.Reason'], 'PullRequest')
+  condition: ne(variables['Build.Reason'], 'PullRequest')
   steps:
   - task: UsePythonVersion@0
     inputs:
