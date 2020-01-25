@@ -298,7 +298,7 @@ cd ..
 
 <h1 id="resolve-dependencies">Resolve Dependencies</h1>
 <p>Many ROS packages require dependent libraries. After checking out the sources for a ROS package, the tool <a href="http://wiki.ros.org/rosdep">rosdep</a> &nearr; is run, which will attempt to resolve package dependencies with binary and source distribution managers.</p>
-<p>On Windows, the Binary package manager <a href="https://chocolatey.org/">Chocolatey</a> &nearr; is used. For Source-code only distributions or dependent libraries, <a href="https://github.com/microsoft/vcpkg">Micrsoft's VCPkg manager</a> &nearr; manager is used. When you install the desktop_full package, vcpkg is automatically installed and built for you.</p>
+<p>On Windows, the Binary package manager <a href="https://chocolatey.org/">Chocolatey</a> &nearr; is used. For Source-code only distributions or dependent libraries, <a href="https://github.com/microsoft/vcpkg">Microsoft's VCPkg manager</a> &nearr; manager is used. When you install the desktop_full package, vcpkg is automatically installed and built for you.</p>
 <p>In the workspace, use <code>rosdep</code> to resolve dependencies</p>
 <pre><code class="no-highlight">rosdep update
 rosdep install --from-paths src --ignore-src -r -y
@@ -323,7 +323,7 @@ rosdep install --from-paths src --ignore-src -r -y
 
 <h1 id="fixing-build-breaks">Fixing Build breaks</h1>
 <p>While building you may encouter build breaks. Often, nodes depend on platform specific header files or features. In order to port these, it is recommended to leverage the cross platform equivelent in Boost, STL and cross platform libaries as part of the migration.</p>
-<p>Please refer to <a href="/Porting/Cookbook.md">Porting Guide: Platform Differences</a> for general help on porting.</p>
+<p>Please refer to <a href="../Porting/Cookbook.html">Porting Guide: Platform Differences</a> for general help on porting.</p>
               
             </div>
           </div>
