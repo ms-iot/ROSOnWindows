@@ -7,9 +7,11 @@ The BuildFarm is a public service which is made of a set of tools and Azure DevO
 | Build Pipeline | Build Status |
 |-----|-----|
 | ros-catkin-build(melodic) | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/ros-catkin-build%20(melodic)?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=54&branchName=master) |
-| ros-colon-build(melodic) | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/ros-colcon-build%20(melodic)?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=59&branchName=master) |
+| ros-colon-build(noetic) | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/ros-colcon-build%20(noetic)?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=75&branchName=master) |
 | ros-colon-build(crystal) | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/ros-colcon-build%20(crystal)?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=60&branchName=master) |
 | ros-colon-build(dashing) | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/ros-colcon-build%20(dashing)?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=61&branchName=master) |
+| ros-colon-build(eloquent) | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/ros-colcon-build%20(eloquent)?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=74&branchName=master) |
+| ros-colon-build(foxy) | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/ros-colcon-build%20(foxy)?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=80&branchName=master) |
 | rosdep-au-packages | [![Build Status](https://ros-win.visualstudio.com/ros-win/_apis/build/status/rosdep-au-packages/rosdep-au-packages%20CI?branchName=master)](https://ros-win.visualstudio.com/ros-win/_build/latest?definitionId=26&branchName=master) |
 
 ## Test Results
