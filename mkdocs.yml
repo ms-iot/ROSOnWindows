@@ -21,8 +21,8 @@ nav:
     - Porting Guide:
         - Consuming a ROS Package: GettingStarted/UsingROSonWindows.md
         - Porting a ROS Package: GettingStarted/PortingANode.md
-        - Using a C++ Depdendency: GettingStarted/UsingVCPKG.md
-        - Porting a C++ Depdendency: GettingStarted/AddingVCPKG.md
+        - Using a C++ Dependency: GettingStarted/UsingVCPKG.md
+        - Porting a C++ Dependency: GettingStarted/AddingVCPKG.md
         - Porting Cookbook: Porting/Cookbook.md
     - ROS at Microsoft:
         - ROS 1 Azure VM: ROSAtMS/ROS1AzureVM.md
