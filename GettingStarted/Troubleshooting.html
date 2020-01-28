@@ -283,17 +283,18 @@
 </code></pre>
 
 <p>To correct this situation, please delete the devel, build and install directories and rebuild:</p>
-<pre><code>cd c:\catkin_ws
+<pre><code class="bash">cd c:\catkin_ws
 rd /s build devel install
 </code></pre>
 
 <h1 id="failures-during-chocolatey-install-or-upgrade">Failures during Chocolatey install or upgrade</h1>
 <p>We have seen reports of transient errors during install or upgrade of chocolatey packages or dependencies. If you hit a bug such as :</p>
-<blockquote>
-<p>ERROR: The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Exception: The upgrade of ros-catkin-tools was NOT successful. Error while running 'C:\ProgramData\chocolatey\lib\ros-catkin-tools\tools\chocolateyinstall.ps1'. See log for details.</p>
-</blockquote>
+<pre><code class="no-highlight">ERROR: The running command stopped because the preference variable &quot;ErrorActionPreference&quot; or common parameter is set to Stop: Exception: The upgrade of ros-catkin-tools was NOT successful. Error while running 'C:\ProgramData\chocolatey\lib\ros-catkin-tools\tools\chocolateyinstall.ps1'. See log for details.
+</code></pre>
+
 <p>Please try running chocolatey upgrade directly on that package:</p>
-<p><code>choco upgrade ros-catkin-tools</code></p>
+<pre><code class="bash">choco upgrade ros-catkin-tools
+</code></pre>
               
             </div>
           </div>
