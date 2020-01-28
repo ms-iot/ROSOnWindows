@@ -29,7 +29,7 @@ Let's assume you are working on a empty workspace under `c:\s300_ws` and now you
 c:\s300_ws> cd src
 
 :: checkout the driver package code.
-c:\s300_ws\src> git clone https://github.com/seanyen/cob_sick_s300
+c:\s300_ws\src> git clone https://github.com/ms-iot/cob_sick_s300
 c:\s300_ws\src> git clone https://github.com/wjwwood/serial
 ```
 

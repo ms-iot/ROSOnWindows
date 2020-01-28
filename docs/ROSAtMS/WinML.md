@@ -7,6 +7,7 @@ The AI platform in Windows 10 enables developers to use pre-trained machine lear
 
 ## Consuming WinML
 Requirements:
+
 * Install Visual Studio 2019 with UWP development
 * ROS melodic for Windows
 
