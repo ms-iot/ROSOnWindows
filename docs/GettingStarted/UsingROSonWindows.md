@@ -2,7 +2,7 @@
 title: Using a ROS Package on Windows
 ---
 
-The ROS community has many thousands of [packages][package stats] which cover many different aspects of building a Robot.
+The ROS community has many thousands of [packages][package stats] which cover different aspects of building a Robot.
 Many packages have been ported by the community or build on Windows without modification.
 
 ## Is the package already available?
@@ -53,7 +53,7 @@ rosdep install --from-paths src --ignore-src -r -y
 catkin_make
 ```
 
-If everything goes well, now you can activate the development space and use the package.
+If everything goes well, now you can activate the development space - by calling `devel/setup.bat` - and use the package.
 
 ```
 :: activate the development space
@@ -65,9 +65,9 @@ rospack find <package_name>
 
 ## Tips for Source Installation
 
-If something is not successfully built, you can try to the following steps:
+If something has not successfully been built, you can try to the following steps:
 
-* In such case where the Windows port is not yet released for a package, you can repeat [Soruce Installation](#source-installation) but ask `rosinstall_generator` to use the development branch this time.
+* If a Windows port has not yet been released, you can repeat [Soruce Installation](#source-installation) but ask `rosinstall_generator` to use the development branch this time.
 ```bash
 :: use the development branch
 rosinstall_generator <package> --upstream-development --deps --exclude RPP > pkg.rosinstall
@@ -75,7 +75,7 @@ rosinstall_generator <package> --upstream-development --deps --exclude RPP > pkg
 
 * If using the upstream development branch doesn't help, you can edit `pkg.rosinstall` to switch the `version:` of the broken package to other branch, like `windows` or `init_windows`, if it exists.
 
-* In additions to consuming the upstream repositories, you can check to see if [Microsoft's ms-iot Github organization][ms-iot ros repos] has a fork of that project and is working on a port.
+* In addition to consuming the upstream repositories, you can check to see if [Microsoft's ms-iot Github organization][ms-iot ros repos] has a fork of that project and is working on a port.
   If it does, you can edit `pkg.rosinstall` to point `uri:` to the different fork.
 
 * For the package not registered to the [ROS distributions][rosdistro], you can manually create a [`.rosinstall`][rosinstall] file to maintain a list of repositories to consume.
