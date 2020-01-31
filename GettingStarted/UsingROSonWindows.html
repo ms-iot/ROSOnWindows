@@ -136,13 +136,19 @@
     <a class="current" href="UsingROSonWindows.html">Consuming a ROS Package</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#using-a-ros-package-on-windows">Using a ROS Package on Windows</a></li>
+    <li class="toctree-l3"><a href="#is-the-package-already-available">Is the package already available?</a></li>
     
-        <ul>
-        
-            <li><a class="toctree-l4" href="#is-the-node-already-supported">Is the node already supported?</a></li>
-        
-        </ul>
+
+    <li class="toctree-l3"><a href="#binary-installation">Binary Installation</a></li>
+    
+
+    <li class="toctree-l3"><a href="#source-installation">Source Installation</a></li>
+    
+
+    <li class="toctree-l3"><a href="#tips-for-source-installation">Tips for Source Installation</a></li>
+    
+
+    <li class="toctree-l3"><a href="#contribute">Contribute</a></li>
     
 
     </ul>
@@ -258,64 +264,85 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="using-a-ros-package-on-windows">Using a ROS Package on Windows</h1>
-<p>The ROS community has many thousands of nodes which cover many different aspects of building a Robot. Many nodes have been ported by the community or build on Windows without modification. </p>
-<h2 id="is-the-node-already-supported">Is the node already supported?</h2>
-<p>To consume a ROS node, we recommend the following workflow:</p>
+                <p>The ROS community has many thousands of <a href="https://index.ros.org/stats/">packages</a> which cover different aspects of building a Robot.
+Many packages have been ported by the community or build on Windows without modification.</p>
+<h2 id="is-the-package-already-available">Is the package already available?</h2>
+<p>To consume a ROS package, we recommend the following workflow:</p>
+<h2 id="binary-installation">Binary Installation</h2>
+<p>Determine if there is a binary release of the ROS node.</p>
 <ul>
-<li>Determine if there is a binary release of the ROS node.<ul>
-<li>Using <a href="http://wiki.ros.org">ROS Wiki</a> &nearr;, locate the binary release name and attempt to install using chocolatey. </li>
+<li>Using <a href="http://wiki.ros.org">ROS Wiki</a> &nearr;, locate the binary release name and attempt to install using <code>Chocolatey</code>.</li>
 <li>If this succeeds, then you are all set!</li>
 </ul>
-</li>
+<pre><code class="no-highlight">choco install ros-melodic-&lt;pacakge_name&gt;
+</code></pre>
+
+<h2 id="source-installation">Source Installation</h2>
+<p>If there isn't a binary release, determine if there is a source only distribution.
+Here is an example workflow how to create a workspace to test the availability:</p>
+<pre><code class="bash">:: activate the ROS environment
+c:\opt\ros\melodic\x64\setup.bat
+
+:: create a empty workspace
+mkdir c:\catkin_ws\src
+cd c:\catkin_ws
+
+:: generate the released package sources list and its ROS dependencies
+:: you can customize the command line to checkout the sources from different channels
+:: see the tips section for more details
+rosinstall_generator &lt;package_name&gt; --deps --exclude RPP --tar --flat &gt; pkg.rosinstall
+
+:: you can manually edit the pkg.rosinstall for more customizations.
+:: see the tips section for more details
+
+:: checkout the sources for real
+wstool init src
+wstool merge -r -y -t src pkg.rosinstall
+wstool update -t src
+
+:: attempt to acquire the external dependencies
+rosdep update
+rosdep install --from-paths src --ignore-src -r -y
+
+:: now catkin make to build the workspace
+catkin_make
+</code></pre>
+
+<p>If everything goes well, now you can activate the development space - by calling <code>devel/setup.bat</code> - and use the package.</p>
+<pre><code>:: activate the development space
+devel\setup.bat
+
+:: test the new package is discoverable
+rospack find &lt;package_name&gt;
+</code></pre>
+
+<h2 id="tips-for-source-installation">Tips for Source Installation</h2>
+<p>If something has not successfully been built, you can try to the following steps:</p>
+<ul>
+<li>If a Windows port has not yet been released, you can repeat <a href="#source-installation">Soruce Installation</a> but ask <code>rosinstall_generator</code> to use the development branch this time.</li>
 </ul>
-<pre><code class="no-highlight">choco install ros-melodic-&lt;project&gt;
+<pre><code class="bash">:: use the development branch
+rosinstall_generator &lt;package&gt; --upstream-development --deps --exclude RPP &gt; pkg.rosinstall
 </code></pre>
 
 <ul>
 <li>
-<p>If there isn't a binary release, determine if there is a source only distribution. </p>
-<ul>
-<li>Look on <code>https://wiki.ros.org/&lt;project&gt;</code> for the node you are interested in.</li>
-<li>navigate to the project repository.</li>
-<li>Look to see if the node has a <code>windows</code>, <code>init_windows</code>, or similar branch</li>
-</ul>
+<p>If using the upstream development branch doesn't help, you can edit <code>pkg.rosinstall</code> to switch the <code>version:</code> of the broken package to other branch, like <code>windows</code> or <code>init_windows</code>, if it exists.</p>
 </li>
 <li>
-<p>If it has a <code>windows</code>, <code>init_windows</code> or similar branch </p>
-</li>
-<li>Clone that branch locally into a catkin workspace</li>
-</ul>
-<pre><code class="no-highlight">mkdir c:\ws\test_ws
-cd c:\ws\test_ws
-git clone -b init_windows http://github.com/&lt;organization&gt;/&lt;project&gt;
-</code></pre>
-
-<ul>
-<li>
-<p>If it does not have a <code>windows</code>, <code>init_windows</code> or similarly named branch, check to see if the current development branch has already enabled Windows.</p>
+<p>In addition to consuming the upstream repositories, you can check to see if <a href="https://github.com/search?p=7&amp;q=topic%3Aros+fork%3Atrue+org%3Ams-iot&amp;type=Repositories">Microsoft's ms-iot Github organization</a> has a fork of that project and is working on a port.
+  If it does, you can edit <code>pkg.rosinstall</code> to point <code>uri:</code> to the different fork.</p>
 </li>
 <li>
-<p>If Windows is not enabled for the ROS node, check to see if Microsoft's ms-iot Github organization has a fork of that project and working on a port.</p>
-<ul>
-<li>See if there is a <code>&lt;project&gt;</code> fork on http://github.com/ms-iot</li>
-<li>If it does, clone that into your catkin workspace</li>
-</ul>
-</li>
-</ul>
-<pre><code class="no-highlight">mkdir c:\ws\test_ws
-cd c:\ws\test_ws
-git clone -b init_windows http://github.com/ms-iot/&lt;project&gt;
-</code></pre>
-
-<ul>
-<li>
-<p>If the node has not been enabled on Windows, please create an issue on the ROS node's project page asking for Windows to be supported. </p>
+<p>For the package not registered to the <a href="https://github.com/ros/rosdistro">ROS distributions</a>, you can manually create a <a href="https://www.ros.org/reps/rep-0126.html"><code>.rosinstall</code></a> file to maintain a list of repositories to consume.</p>
 </li>
 <li>
-<p>If you are able, please consider enabling the ROS node on Windows and submitting a pull request to the original repository. Please refer to the <a href="../Porting/Cookbook.html">ROS porting guide</a></p>
+<p><a href="https://wiki.ros.org/">ROS Wiki</a> or <a href="https://index.ros.org/">ROS Index</a> are also good resources to search for the package repository.</p>
 </li>
 </ul>
+<h2 id="contribute">Contribute</h2>
+<p>If the package has not been enabled on Windows, please create an issue on the ROS package's project page asking for Windows to be supported. </p>
+<p>If you are able, please consider enabling the ROS package on Windows and submitting a pull request to the original repository. <a href="PortingANode.html">Porting a ROS Package</a> is a good resource to learn the how-to.</p>
               
             </div>
           </div>
