@@ -11,7 +11,7 @@ To consume a ROS package, we recommend the following workflow:
 
 ## Binary Installation
 
-Determine if there is a binary release of the ROS node.
+Determine if there is a binary release of the ROS package.
 
 * Using [ROS Wiki](http://wiki.ros.org) &nearr;, locate the binary release name and attempt to install using `Chocolatey`.
 * If this succeeds, then you are all set!
