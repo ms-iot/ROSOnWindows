@@ -168,6 +168,8 @@
         
             <li><a class="toctree-l4" href="#warnings">Warnings</a></li>
         
+            <li><a class="toctree-l4" href="#start-ros-on-boot">Start ROS on Boot</a></li>
+        
         </ul>
     
 
@@ -433,6 +435,30 @@ Use appropriate casts ensuring accuracy of the conversion.</p>
 <pre><code class="c++">uint8_t unused;
 unused;
 </code></pre>
+
+<h2 id="start-ros-on-boot">Start ROS on Boot</h2>
+<p>Once you are done developing your robot and want it to automatically start on boot, you'll want to use the <a href="https://docs.microsoft.com/en-us/windows/win32/taskschd">Windows Task Scheduler</a> to start the task.</p>
+<ul>
+<li>Create a Windows command file, which includes the ROS environment and Install environment,</li>
+</ul>
+<p><code>c:\catkin_ws\start_ros.bat</code></p>
+<pre><code class="Batchfile">call c:\opt\ros\melodic\x64\setup.bat
+call c:\catkin_ws\install\setup.bat
+roslaunch &lt;package&gt; &lt;launch file&gt;
+</code></pre>
+
+<ul>
+<li>Use the command <a href="https://docs.microsoft.com/en-us/windows/win32/taskschd/schtasks">Schtasks</a>, to add a task which calls this script:</li>
+</ul>
+<pre><code class="Batchfile">schtasks /Create /RU &lt;User&gt; /RP &lt;password&gt; /SC ONLOGON /TN ROS /TR &quot;c:\catkin_ws\start_ros.bat&quot;
+</code></pre>
+
+<ul>
+<li>Enable Windows Auto logon
+Use the <a href="https://support.microsoft.com/en-us/help/324737/how-to-turn-on-automatic-logon-in-windows">Autologon documentation at Microsoft's Support website</a> to conigure autologon.</li>
+</ul>
+<p>Alternatively use the <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/autologon">Autologon Sysinternals tool</a> to configure autologon from the command line.</p>
+<p>The next time the system starts, the ROS task will run.</p>
               
             </div>
           </div>
