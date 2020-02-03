@@ -212,8 +212,8 @@ uint8_t unused;
 unused;
 ```
 
-### Start ROS on Boot
-Once you are done developing your robot and want it to automatically start on boot, you'll want to use the Windows Task Scheduler to start the task.
+## Start ROS on Boot
+Once you are done developing your robot and want it to automatically start on boot, you'll want to use the [Windows Task Scheduler][taskschd] to start the task.
 
 * Create a Windows command file, which includes the ROS environment and Install environment,
 
@@ -235,3 +235,4 @@ Alternatively use the [Autologon Sysinternals tool](https://docs.microsoft.com/e
 
 The next time the system starts, the ROS task will run.
 
+[taskschd]: https://docs.microsoft.com/en-us/windows/win32/taskschd
