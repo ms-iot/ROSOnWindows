@@ -35,6 +35,7 @@ nav:
     - Support:
         - Troubleshooting: GettingStarted/Troubleshooting.md
         - Create Issue: https://github.com/ms-iot/rosonwindows/issues
+        - Paid Support: https://support.microsoft.com/en-us/supportforbusiness/productselection?sapId=b14ec663-0080-7dbc-b053-fb0abcf2dccb
 theme: readthedocs
 use_directory_urls: false
 strict: true
