@@ -1,16 +1,19 @@
 ---
-title: Using PEAK-System SDK on Windows
+title: Using PEAK-System&reg; SDK on Windows
 ---
 
-[Controller Area Network (CAN) Bus][can] is one of the widely used field bus protocols in industrial automation.
-In this tutorial, we will show you an example how to begin with a ROS package, integrate with a CAN adapter device on PC, and perform the basic I/O with your CAN Bus.
+[Controller Area Network (CAN)][can] is one of the widely used [Fieldbus][fieldbus] protocols in industrial automation.
+On Linux, applications can talk to a CAN bus over SocketCAN. On Windows, applications talk to a CAN bus using vendor-provided libraries.
 
-In this example, we will be using PEAK-System PCAN-Basic API. For more details, visit [PEAK-System][peak].
+Today we are demonstrate how to use a CAN library, [PCAN-Basic][pcan-basic], from [PEAK-System Technik GmbH][peak].
+In this tutorial, we will show you an example how to begin with a ROS package, integrate with the CAN library, and perform the basic I/O to a CAN Bus.
+
+For more details, visit [PEAK-System][peak].
 
 ## Prerequisite
   * You have a machine with `Windows 10` installed.
   * You have [`ROS Melodic Desktop Full`](https://wiki.ros.org/Installation/Windows) installed.
-  * You have PEAK-Basic supported CAN adapters.
+  * You have PCAN adapters.
     We use `PCAN-miniPCIe` in this tutorial.
   * You have the CAN adapters connected to a CAN network and all devices are commissioned to work.
   * You have a ROS command prompt ready to use.
@@ -103,8 +106,6 @@ Now you go to the editor, create a file of `src/my_pkg/src/my_pkg_node.cpp` unde
 #include <ros/ros.h>
 #include <ros/callback_queue.h>
 #include <ros/console.h>
-
-typedef boost::chrono::steady_clock time_source;
 
 class PCANLoop
 {
@@ -214,7 +215,7 @@ We will explain the code later.
 We need to describe the new node and its dependency in `CMakeLists.txt` and `package.xml`.
 Now open and edit the `src\my_pkg\CMakeLists.txt` file under the workspace.
 
-### `src\my_pkg\CMakeLists.txt`
+**`src\my_pkg\CMakeLists.txt`**
 
 Below is an example to describe a new node in `CMake`.
 
@@ -273,7 +274,7 @@ install(TARGETS ${PROJECT_NAME}_node
 )
 ```
 
-### `src\my_pkg\package.xml`
+**`src\my_pkg\package.xml`**
 
 Make sure `roscpp` in the `<depend>` list.
 
@@ -308,7 +309,7 @@ c:\can_ws> install\setup.bat
 
 ## Step 5: Running the ROS Application
 
-Before we are ready to launch the application, we need to make sure `rosmaster` is up and running.
+Before we launch the application, we need to make sure `rosmaster` is up and running.
 Start another ROS command prompt and run `roscore`.
 Now we are ready to run this application.
 
@@ -318,12 +319,13 @@ c:\can_ws> rosrun my_pkg node
 
 ## Summary
 
-In this tutorial, I walk through the steps of integrate `PCAN-Basic` library into your ROS package, how to consume it by an simple CAN read/write loop application.
-I encourge you to proceed on the official `PCAN-Basic` [documentation][pcan-basic] to learn more.
+In this tutorial, we walk through the steps of integrate `PCAN-Basic` library into your ROS package, how to consume it by an simple CAN read/write loop application.
+You are encouraged to proceed on the official `PCAN-Basic` [documentation][pcan-basic] to learn more.
 
 
 
-[can]: https://en.wikipedia.org/wiki/CAN_bus
+[can]: https://www.can-cia.org/
 [peak]: https://www.peak-system.com/?&L=1
 [pcan-basic]: https://www.peak-system.com/PCAN-Basic.239.0.html?&L=1
 [callback-spinning]: http://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning
+[fieldbus]: http://www.fieldbus.org/

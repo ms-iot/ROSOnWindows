@@ -16,7 +16,7 @@ nav:
         - TurtleBot 3: Turtlebot/Turtlebot3.md
         - SICK S300: tutorials/sick_s300/getting_started.md
         - Simple Open EtherCAT Master: tutorials/ethercat/soem.md
-        - PEAK-System PCAN&reg;-Basic: tutorials/peak/peak.md
+        - PEAK-System&reg; PCAN&reg;-Basic: tutorials/peak/peak.md
     - CI/CD Practices:
         - Continuous Integration Template: GettingStarted/SetupCI.md
     - Porting Guide:
