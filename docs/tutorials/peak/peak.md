@@ -13,6 +13,7 @@ In this example, we will be using PEAK-System PCAN-Basic API. For more details, 
   * You have PEAK-Basic supported CAN adapters.
     We use `PCAN-miniPCIe` in this tutorial.
   * You have the CAN adapters connected to a CAN network and all devices are commissioned to work.
+  * You have a ROS command prompt ready to use.
 
 ## Step 1: Creating a ROS package
 
@@ -96,7 +97,6 @@ Now you go to the editor, create a file of `src/my_pkg/src/my_pkg_node.cpp` unde
 #include <windows.h>
 #include <PCANBasic.h>
 
-#include <boost/chrono.hpp>
 #include <exception>
 #include <iostream>
 
@@ -190,7 +190,6 @@ int main(int argc, char **argv)
         ros::CallbackQueue queue;
         ros::AsyncSpinner spinner(1, &queue);
 
-        time_source::time_point last_time = time_source::now();
         ros::TimerOptions control_timer(
             ros::Duration(1 / control_frequency),
             boost::bind(controlLoop, boost::ref(loop)),
@@ -226,9 +225,6 @@ Below is an example to describe a new node in `CMake`.
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS roscpp)
 
-## System dependencies are found with CMake's conventions
-find_package(Boost REQUIRED COMPONENTS system chrono)
-
 ...
 
 ###########
@@ -238,7 +234,6 @@ find_package(Boost REQUIRED COMPONENTS system chrono)
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-  ${Boost_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
   ${pcan_INCLUDE_DIRS}
 )
@@ -292,6 +287,12 @@ Make sure `roscpp` in the `<depend>` list.
 </package>
 ```
 
+### Simple CAN Read/Write Loop
+
+In this example, we use [`Callback and Spinning`][callback-spinning] from `roscpp` to set up a control loop running at 50Hz.
+In the callback, we read all the messages from the PCAN message queue and send a empty message to the CAN Bus.
+Depending on your CAN devices, you may need to add more protocol-specific implementation on top of the basic I/O.
+
 ## Step 4: Building the Workspace
 
 Now we have all the code in place.
@@ -307,7 +308,7 @@ c:\can_ws> install\setup.bat
 
 ## Step 5: Running the ROS Application
 
-One required step is to make sure `rosmaster` is up and running.
+Before we are ready to launch the application, we need to make sure `rosmaster` is up and running.
 Start another ROS command prompt and run `roscore`.
 Now we are ready to run this application.
 
@@ -315,5 +316,14 @@ Now we are ready to run this application.
 c:\can_ws> rosrun my_pkg node
 ```
 
+## Summary
+
+In this tutorial, I walk through the steps of integrate `PCAN-Basic` library into your ROS package, how to consume it by an simple CAN read/write loop application.
+I encourge you to proceed on the official `PCAN-Basic` [documentation][pcan-basic] to learn more.
+
+
+
 [can]: https://en.wikipedia.org/wiki/CAN_bus
 [peak]: https://www.peak-system.com/?&L=1
+[pcan-basic]: https://www.peak-system.com/PCAN-Basic.239.0.html?&L=1
+[callback-spinning]: http://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning
