@@ -33,6 +33,7 @@ nav:
         - Visual Studio Code ROS Extension &nearr;: https://aka.ms/ros/vscode
     - Advanced:
         - Source Installation: Build/source.md
+        - Optimizing Performance: Advanced/Performance.md
     - Support:
         - Troubleshooting: GettingStarted/Troubleshooting.md
         - Create Issue: https://github.com/ms-iot/rosonwindows/issues

@@ -1,4 +1,12 @@
 # What's New
+This page tracks changes to the ROS on Windows Documentation.
+
+## February 2020
+### Cross platform ROS node updates
+We have been adding notes to the porting *cookbook* based on customer feedback. 
+
+### Performance
+We've added a section on optimizing performance of Windows for Robotics scenarios. Windows 10 IoT Enterprise LTSC (Long Term Support Channel) is our recommended operating system for Robotics, as it offers the smallest footprint, and includes 10 years of support.
 
 ## January 2020
 ### State of ROS on Windows
