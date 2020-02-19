@@ -186,6 +186,27 @@ Add the following before boost/asio.hpp:
 
 #include <boost/asio.hpp>
 ```
+### Syntax error: 'constant' (windows.h included before conflicting dependency)
+
+#### Cause:
+
+Windows.h defines some macros which may conflict with variables defined in ROS packages. This causes build breaks if windows.h is included before a conflicting dependency.
+
+The error for this may be misleading as it may not identify the specific redeclaration as the issue. 
+#### Example:
+C:\ws_moveit\src\moveit_tutorials\doc\perception_pipeline\src\cylinder_segment.cpp
+
+In this file in the movit tutorials, a file which included the window.h header (pcl) was included before a file which included (marker.h via planning_scene_interface.h).
+This is problematic because marker.h defines DELETE as an enum member while DELETE is also defined as a macro in windows.h.
+
+In this case the build error was:
+``` Batchfile
+C:\opt\ros\melodic\x64\include\visualization_msgs/Marker.h(132): error C2059: syntax error: 'constant'
+```
+#### Fix:
+
+Include any headers which define the conflicting variable (i.e. DELETE) above/before any headers which include windows.h.
+
 
 ## Missing Symbols
 ### 'M_PI'
