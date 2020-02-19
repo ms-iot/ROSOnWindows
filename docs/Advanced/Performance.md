@@ -31,7 +31,7 @@ After you start a rosgraph with `roslaunch`, you can modify the priority of spec
 (get-process ros_winml_node).PriorityClass='AboveNormal'
 ```
 
-### Ingegrating cross platform prioritization directly into ROSLaunch files.
+### Integrating cross platform prioritization directly into ROSLaunch files.
 Wouldn't that be cool? [Upvote if you think so.](https://github.com/ms-iot/ROSOnWindows/issues/194)
 
 ## Disabling Services
