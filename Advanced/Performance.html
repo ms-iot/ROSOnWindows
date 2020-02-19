@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Continuous Integration Template - ROS on Windows</title>
+  <title>Optimizing Performance - ROS on Windows</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Continuous Integration Template";
-    var mkdocs_page_input_path = "GettingStarted\\SetupCI.md";
+    var mkdocs_page_name = "Optimizing Performance";
+    var mkdocs_page_input_path = "Advanced\\Performance.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -69,7 +69,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="Setup.html">Binary Installation</a>
+    <a class="" href="../GettingStarted/Setup.html">Binary Installation</a>
                 </li>
     </ul>
 	    </li>
@@ -80,7 +80,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="NewToROS.html">For new ROS Users</a>
+    <a class="" href="../GettingStarted/NewToROS.html">For new ROS Users</a>
                 </li>
     </ul>
 	    </li>
@@ -124,23 +124,9 @@
 		
     <span class="caption-text">CI/CD Practices</span>
     <ul class="subnav">
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="SetupCI.html">Continuous Integration Template</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#continuous-integation-with-azure-devops">Continuous Integation with Azure DevOps</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#prerequisite">Prerequisite</a></li>
-        
-            <li><a class="toctree-l4" href="#how-to-use-this-template">How to use this template</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../GettingStarted/SetupCI.html">Continuous Integration Template</a>
                 </li>
     </ul>
 	    </li>
@@ -151,19 +137,19 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="UsingROSonWindows.html">Consuming a ROS Package</a>
+    <a class="" href="../GettingStarted/UsingROSonWindows.html">Consuming a ROS Package</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="PortingANode.html">Porting a ROS Package</a>
+    <a class="" href="../GettingStarted/PortingANode.html">Porting a ROS Package</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="UsingVCPKG.html">Using a C++ Dependency</a>
+    <a class="" href="../GettingStarted/UsingVCPKG.html">Using a C++ Dependency</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="AddingVCPKG.html">Porting a C++ Dependency</a>
+    <a class="" href="../GettingStarted/AddingVCPKG.html">Porting a C++ Dependency</a>
                 </li>
                 <li class="">
                     
@@ -207,9 +193,29 @@
                     
     <a class="" href="../Build/source.html">Source Installation</a>
                 </li>
-                <li class="">
+                <li class=" current">
                     
-    <a class="" href="../Advanced/Performance.html">Optimizing Performance</a>
+    <a class="current" href="Performance.html">Optimizing Performance</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#performance">Performance</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#windows-10-iot-enterprise-ltsc">Windows 10 IoT Enterprise LTSC</a></li>
+        
+            <li><a class="toctree-l4" href="#fair-process-scheduling">Fair Process Scheduling</a></li>
+        
+            <li><a class="toctree-l4" href="#per-process-priority">Per process priority</a></li>
+        
+            <li><a class="toctree-l4" href="#disabling-services">Disabling Services</a></li>
+        
+            <li><a class="toctree-l4" href="#high-resolution-time">High Resolution Time</a></li>
+        
+        </ul>
+    
+
+    </ul>
                 </li>
     </ul>
 	    </li>
@@ -220,7 +226,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="Troubleshooting.html">Troubleshooting</a>
+    <a class="" href="../GettingStarted/Troubleshooting.html">Troubleshooting</a>
                 </li>
                 <li class="">
                     
@@ -255,14 +261,14 @@
     
       
         
-          <li>CI/CD Practices &raquo;</li>
+          <li>Advanced &raquo;</li>
         
       
     
-    <li>Continuous Integration Template</li>
+    <li>Optimizing Performance</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/SetupCI.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/Advanced/Performance.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -272,38 +278,63 @@
           <div role="main">
             <div class="section">
               
-                <!-- ![ROS Logo](http://www.ros.org/wp-content/uploads/2013/10/rosorg-logo1.png) -->
-
-<h1 id="continuous-integation-with-azure-devops">Continuous Integation with Azure DevOps</h1>
-<p>This template helps you to do CI build for your ROS repository with ROS on Windows.</p>
-<h2 id="prerequisite">Prerequisite</h2>
-<ul>
-<li>Make sure you have an Azure DevOps pipeline setup. If you don't, visit <a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/get-started/pipelines-sign-up">here</a> &nearr; for getting started.</li>
-<li>Learn how to create Azure DevOps pipeline from <a href="https://www.youtube.com/watch?v=NuYDAs3kNV8">here</a> &nearr;.</li>
-</ul>
-<h2 id="how-to-use-this-template">How to use this template</h2>
-<p>First, go to your Azure DevOps project and create a new pipeline. As walking through the wizard, select <code>starter pipeline</code> and it will create a file of <code>azure-pipelines.yml</code> under the root of your ROS repository. </p>
-<p>Replace <code>azure-pipelines.yml</code> with the following content:</p>
-<pre><code class="yaml">resources:
-  repositories:
-    - repository: templates
-      type: github
-      name: ms-iot/rosonwindows_ci
-      endpoint: &lt;your github account&gt;
-
-jobs:
-- template: build.yml@templates  # Template reference
-  parameters:
-    ros_metapackage: 'ros-melodic-desktop'
+                <h1 id="performance">Performance</h1>
+<p>This page covers guidelines for optimizing on Robot performance on Windows.</p>
+<h2 id="windows-10-iot-enterprise-ltsc">Windows 10 IoT Enterprise LTSC</h2>
+<p>Windows 10 IoT Enterprise is version of Windows intended for embedded applications. <em>IoT</em> isn't just about Lightbulbs and Thermostats (Windows 10 IoT Core is good for that), it's about network connected devices - including Robots. Windows 10 IoT Enterprise is a full desktop version of Windows, with a license to use on dedicated purpose devices. </p>
+<p>Windows 10 IoT Enterprise offers a Long Term Support Channel (also called LTSC), which allows you to lock a version with 10 years of support for a fixed up front cost. The LTSC version of Windows 10 IoT Enterprise offers an overall smaller on-disk and runtime footprint.</p>
+<p>You can <a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-10-enterprise">try an evaluation of Windows 10 IoT Enterprise</a>, then talk to a <a href="https://go.microsoft.com/fwlink/?linkid=2094697">Windows 10 IoT Enterprise distributor to commercialize</a>.</p>
+<h2 id="fair-process-scheduling">Fair Process Scheduling</h2>
+<p>By default, Windows prioritizes foreground applications. This can cause a 'unfair' scheduling of ROS nodes, which can impact throughput in a ROS composition. To make scheduling more fair, consider setting the priority control flag to prioritize background applications (<code>0x18</code>):</p>
+<pre><code class="no-highlight">reg add HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl /v Win32PrioritySeparation /t REG_DWORD /d 0x18 /f
 </code></pre>
 
-<p><code>resources</code> defines where to look for this common template. In this example, it defines a Github repository reference to <code>ms-iot\rosonwindows_ci</code> and use an <code>endpoint</code> to access it. </p>
-<p>Replace <code>endpoint</code> to your Github account (or your GitHub service connection name).</p>
-<p><code>jobs\template</code> defines what template to be included. In this example, include <code>build.yml@templates</code>, which means to refer to the <code>build.yml</code> under <code>ms-iot\rosonwindows_ci</code> GitHub repository.</p>
-<p>Under <code>template</code>, there are some parameters to customize your CI build:
-* <code>ros_metapackage</code>: It is the basic image to check out for CI build. In this example, it will install <code>ros-melodic-desktop</code> before the CI build.
-* <code>custom_test_target</code>: For projects which do not have  <code>run_tests</code> as default test target, it can be set to a customized test target.</p>
-<p>Once the wizard finishes, now you have your own ROS on Windows CI build.</p>
+<h2 id="per-process-priority">Per process priority</h2>
+<p>Adjusting the process scheduler can dramatically improve the flow of messages through a ROS composition. However, some ROS nodes might require a higher scheduling priority than others. To address this, there are two models you can use - If you have source access, you can tune the process scheduling using the <code>SetPriorityClass</code> API; otherwise you can use command line tool per process.</p>
+<h3 id="priority-class-api">Priority Class API</h3>
+<p>Please refer to the documentation on <a href="https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-setpriorityclass">SetPriorityClass</a>. This API allows you to adjust the scheduling priority of a process from the ROS sources. </p>
+<blockquote>
+<p>NOTE: While tempting, it is best to avoid the <code>REALTIME_PRIORITY_CLASS</code> as this setting can be detemental to overall system performance.</p>
+</blockquote>
+<h3 id="command-line">Command Line</h3>
+<p>After you start a rosgraph with <code>roslaunch</code>, you can modify the priority of specific nodes using a PowerShell script.</p>
+<pre><code class="powershell">(get-process ros_winml_node).PriorityClass='AboveNormal'
+</code></pre>
+
+<h3 id="ingegrating-cross-platform-prioritization-directly-into-roslaunch-files">Ingegrating cross platform prioritization directly into ROSLaunch files.</h3>
+<p>Wouldn't that be cool?</p>
+<h2 id="disabling-services">Disabling Services</h2>
+<p>Using Windows 10 Desktop or Windows 10 IoT Enterprise comes with many services which are useful for general computing and enterprise scenarios. </p>
+<p>For Robotics, many services are not required. All services consume resources, so disabling unnessesary services would improve performance. During deployment, you should evaluate shich services are required by your scenario on a case by case basis. </p>
+<p>Please refer to this documentation for <a href="https://docs.microsoft.com/en-us/windows-server/security/windows-services/security-guidelines-for-disabling-system-services-in-windows-server">disabling Windows Services</a> (guidance is applicable to Windows 10 IoT).</p>
+<h2 id="high-resolution-time">High Resolution Time</h2>
+<p>Windows Provides APIs for time using <code>QueryPerformanceFrequency</code> and <code>QueryPerformanceCounter</code> which returns the raw timer values. ROS time uses these APIs internally; however, you can use these high resolution timing outside of the ROS APIs.</p>
+<p>for more information, please refer to the <a href="https://docs.microsoft.com/en-us/windows/win32/sysinfo/acquiring-high-resolution-time-stamps">High Resolution timestamp documentation</a>.</p>
+<pre><code class="C++">LARGE_INTEGER StartingTime, EndingTime, ElapsedMicroseconds;
+LARGE_INTEGER Frequency;
+
+QueryPerformanceFrequency(&amp;Frequency); 
+QueryPerformanceCounter(&amp;StartingTime);
+
+// Activity to be timed
+
+QueryPerformanceCounter(&amp;EndingTime);
+ElapsedMicroseconds.QuadPart = EndingTime.QuadPart - StartingTime.QuadPart;
+
+
+//
+// We now have the elapsed number of ticks, along with the
+// number of ticks-per-second. We use these values
+// to convert to the number of elapsed microseconds.
+// To guard against loss-of-precision, we convert
+// to microseconds *before* dividing by ticks-per-second.
+//
+
+ElapsedMicroseconds.QuadPart *= 1000000;
+ElapsedMicroseconds.QuadPart /= Frequency.QuadPart;
+</code></pre>
+
+<p>Additionally, STL has been enlightened with QueryPerformanceCounter. For more information, please visit the <a href="https://docs.microsoft.com/en-us/cpp/standard-library/chrono?view=vs-2019"><code>&lt;chrono&gt;</code> docs</a> for <code>steady_clock</code>.</p>
               
             </div>
           </div>
@@ -311,10 +342,10 @@ jobs:
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="UsingROSonWindows.html" class="btn btn-neutral float-right" title="Consuming a ROS Package">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../GettingStarted/Troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../tutorials/peak/peak.html" class="btn btn-neutral" title="PEAK-System&reg; PCAN&reg;-Basic"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Build/source.html" class="btn btn-neutral" title="Source Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -342,10 +373,10 @@ jobs:
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../tutorials/peak/peak.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Build/source.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="UsingROSonWindows.html" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../GettingStarted/Troubleshooting.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
