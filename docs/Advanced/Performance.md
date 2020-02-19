@@ -72,3 +72,6 @@ ElapsedMicroseconds.QuadPart *= 1000000;
 ElapsedMicroseconds.QuadPart /= Frequency.QuadPart;
 ```
 
+Additionally, STL has been enlightened with QueryPerformanceCounter. For more information, please visit the [`<chrono>` docs](https://docs.microsoft.com/en-us/cpp/standard-library/chrono?view=vs-2019) for `steady_clock`.
+
+
