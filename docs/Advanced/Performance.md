@@ -32,7 +32,7 @@ After you start a rosgraph with `roslaunch`, you can modify the priority of spec
 ```
 
 ### Ingegrating cross platform prioritization directly into ROSLaunch files.
-Wouldn't that be cool?
+Wouldn't that be cool? [Upvote if you think so.](https://github.com/ms-iot/ROSOnWindows/issues/194)
 
 ## Disabling Services
 Using Windows 10 Desktop or Windows 10 IoT Enterprise comes with many services which are useful for general computing and enterprise scenarios. 
