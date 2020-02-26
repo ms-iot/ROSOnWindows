@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Porting a ROS Package - ROS on Windows</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,7 +25,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -35,8 +36,9 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="../index.html" class="icon icon-home"> ROS on Windows</a>
+        <a href=".." class="icon icon-home"> ROS on Windows</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -45,204 +47,96 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../index.html">Home</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../WhatsNew.html">What's New</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../Build/buildfarm.html">Build Status</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Get ROS</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="Setup.html">Binary Installation</a>
-                </li>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../WhatsNew.html">What's New</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../Build/buildfarm.html">Build Status</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Get ROS</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="Setup.html">Binary Installation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Using ROS</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="NewToROS.html">For new ROS Users</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Tutorials</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="http://wiki.ros.org/ROS/Tutorials">Tutorials at ROS Wiki &nearr;</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Moveit/moveit_tutorials.html">MoveIt</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Moveit/UR3.html">Universal Robot UR3</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Turtlebot/Turtlebot3.html">TurtleBot 3</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../tutorials/sick_s300/getting_started.html">SICK S300</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../tutorials/ethercat/soem.html">Simple Open EtherCAT Master</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../tutorials/peak/peak.html">PEAK-System&reg; PCAN&reg;-Basic</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">CI/CD Practices</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="SetupCI.html">Continuous Integration Template</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Porting Guide</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="UsingROSonWindows.html">Consuming a ROS Package</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="PortingANode.html">Porting a ROS Package</a>
+    <ul class="current">
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Using ROS</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="NewToROS.html">For new ROS Users</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Tutorials</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="http://wiki.ros.org/ROS/Tutorials">Tutorials at ROS Wiki &nearr;</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../Moveit/moveit_tutorials.html">MoveIt</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../Moveit/UR3.html">Universal Robot UR3</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../Turtlebot/Turtlebot3.html">TurtleBot 3</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../tutorials/sick_s300/getting_started.html">SICK S300</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../tutorials/ethercat/soem.html">Simple Open EtherCAT Master</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../tutorials/peak/peak.html">PEAK-System&reg; PCAN&reg;-Basic</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">CI/CD Practices</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="SetupCI.html">Continuous Integration Template</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Porting Guide</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="UsingROSonWindows.html">Consuming a ROS Package</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="PortingANode.html">Porting a ROS Package</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#porting-a-ros-package-to-windows">Porting a ROS Package to Windows</a></li>
-    
-
-    <li class="toctree-l3"><a href="#porting-a-ros-node">Porting a ROS Node</a></li>
-    
-
-    <li class="toctree-l3"><a href="#forking-cloning">Forking &amp; Cloning.</a></li>
-    
-
-    <li class="toctree-l3"><a href="#resolve-dependencies">Resolve Dependencies</a></li>
-    
-
-    <li class="toctree-l3"><a href="#missing-ros-messages">Missing ROS Messages</a></li>
-    
-
-    <li class="toctree-l3"><a href="#fixing-build-breaks">Fixing Build breaks</a></li>
-    
-
-    </ul>
-                </li>
-                <li class="">
-                    
-    <a class="" href="UsingVCPKG.html">Using a C++ Dependency</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="AddingVCPKG.html">Porting a C++ Dependency</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../Porting/Cookbook.html">Porting Cookbook</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">ROS at Microsoft</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../ROSAtMS/ROS1AzureVM.html">ROS 1 Azure VM</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../ROSAtMS/WinML.html">Windows ML ROS Node</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="https://github.com/microsoft/azure_kinect_ros_driver">Azure Kinect ROS Node &nearr;</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="https://github.com/microsoft/ros_azure_iothub">Azure IoT Hub Node &nearr;</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="https://aka.ms/ros/vscode">Visual Studio Code ROS Extension &nearr;</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Advanced</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../Build/source.html">Source Installation</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../Advanced/Performance.html">Optimizing Performance</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Support</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="Troubleshooting.html">Troubleshooting</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="https://github.com/ms-iot/rosonwindows/issues">Create Issue</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="https://aka.ms/ros/support">Paid Support</a>
-                </li>
-    </ul>
-	    </li>
-          
-        </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="UsingVCPKG.html">Using a C++ Dependency</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="AddingVCPKG.html">Porting a C++ Dependency</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Porting/Cookbook.html">Porting Cookbook</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">ROS at Microsoft</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ROSAtMS/ROS1AzureVM.html">ROS 1 Azure VM</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ROSAtMS/WinML.html">Windows ML ROS Node</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="https://github.com/microsoft/azure_kinect_ros_driver">Azure Kinect ROS Node &nearr;</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="https://github.com/microsoft/ros_azure_iothub">Azure IoT Hub Node &nearr;</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="https://aka.ms/ros/vscode">Visual Studio Code ROS Extension &nearr;</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Advanced</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../Build/source.html">Source Installation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Advanced/Performance.html">Optimizing Performance</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Support</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="Troubleshooting.html">Troubleshooting</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="https://github.com/ms-iot/rosonwindows/issues">Create Issue</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="https://aka.ms/ros/support">Paid Support</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -250,7 +144,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../index.html">ROS on Windows</a>
+        <a href="..">ROS on Windows</a>
       </nav>
 
       
@@ -258,7 +152,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../index.html">Docs</a> &raquo;</li>
+    <li><a href="..">Docs</a> &raquo;</li>
     
       
         
@@ -274,6 +168,7 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
@@ -358,7 +253,7 @@ rosdep install --from-paths src --ignore-src -r -y
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -368,7 +263,7 @@ rosdep install --from-paths src --ignore-src -r -y
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
@@ -384,6 +279,11 @@ rosdep install --from-paths src --ignore-src -r -y
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
