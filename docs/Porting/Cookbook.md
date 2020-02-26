@@ -196,7 +196,7 @@ The error for this may be misleading as it may not identify the specific redecla
 #### Example:
 C:\ws_moveit\src\moveit_tutorials\doc\perception_pipeline\src\cylinder_segment.cpp
 
-In this file in the movit tutorials, a file which included the window.h header (pcl) was included before a file which included (marker.h via planning_scene_interface.h).
+In this file in the **MoveIt** tutorials, a file which included the `window.h` header (pcl) was included before a file which included (marker.h via planning_scene_interface.h).
 This is problematic because marker.h defines `DELETE` as an enum member while `DELETE` is also defined as a macro in `windows.h`.
 
 In this case the build error was:
