@@ -75,9 +75,9 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="moveit_tutorials.html">MoveIt</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#moveit-binary-installation-on-windows">MoveIt Binary Installation on Windows</a>
+    <li class="toctree-l2"><a class="reference internal" href="#install-ros-on-windows">Install ROS on Windows</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#create-workspace-for-moveit-tutorials">Create Workspace for MoveIt Tutorials</a>
+    <li class="toctree-l2"><a class="reference internal" href="#moveit-binary-installation-on-windows">MoveIt Binary Installation on Windows</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#getting-started-with-moveit-tutorials">Getting Started with MoveIt Tutorials</a>
     </li>
@@ -182,20 +182,32 @@
               
                 <h1 id="moveit-tutorials-on-windows">MoveIt Tutorials on Windows</h1>
 <p>This guide is to show you how to prepare a workspace (for ROS on Windows) for your MoveIt tutorials. Find out more about MoveIt, visit <a href="https://ros-planning.github.io/moveit_tutorials/index.html">here</a>.</p>
+<h2 id="install-ros-on-windows">Install ROS on Windows</h2>
+<p>Follow the ROS on Windows installation istructions. You may skip the Binary Package Installation step and install the ros-melodic-moveit binary instead of ros-melodic-desktop_full or ros-eloquent-desktop (as shown in the next section).
+http://wiki.ros.org/Installation/Windows</p>
 <h2 id="moveit-binary-installation-on-windows">MoveIt Binary Installation on Windows</h2>
-<p>First, download the ROS on Windows with MoveIt packages.
-(open a command prompt as admin)</p>
-<pre><code class="no-highlight">choco upgrade ros-melodic-moveit -y
+<p>Download the ROS on Windows with MoveIt packages.
+(open an elevated ROS Command Window as described in the installation instructions)</p>
+<pre><code class="no-highlight">mkdir c:\opt\chocolatey
+set ChocolateyInstall=c:\opt\chocolatey
+choco source add -n=ros-win -s=&quot;https://roswin.azurewebsites.net/api/v2&quot; --priority=1
+choco upgrade ros-melodic-moveit -y --execution-timeout=0
 </code></pre>
 
-<h2 id="create-workspace-for-moveit-tutorials">Create Workspace for MoveIt Tutorials</h2>
-<p>Then, let's download the example code to your workspace.</p>
-<p>(open a command prompt as admin)</p>
-<pre><code class="no-highlight">mkdir c:\moveit_ws\src
+<p>Close the window and open a new ROS Command Window. Make sure you have the most up to date packages:
+```rosdep update</p>
+<pre><code>
+## Create Workspace for MoveIt Tutorials
+Then, create a workspace and download the example code.
+
+(open a command prompt as admin)
+
+```no-highlight
+mkdir c:\moveit_ws\src
 cd c:\moveit_ws\src
 catkin_init_workspace
-git clone https://github.com/ms-iot/moveit_tutorials -b init_windows
-git clone https://github.com/ms-iot/panda_moveit_config -b init_windows
+git clone https://github.com/ros-planning/moveit_tutorials.git -b melodic-devel
+git clone https://github.com/ros-planning/panda_moveit_config.git -b melodic-devel
 git clone https://github.com/frankaemika/franka_ros-release -b release/kinetic/franka_description
 cd c:\moveit_ws
 catkin_make
@@ -206,7 +218,7 @@ catkin_make
 </code></pre>
 
 <h2 id="getting-started-with-moveit-tutorials">Getting Started with MoveIt Tutorials</h2>
-<p>Now you are ready to continue the journal on <a href="https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html">MoveIt Tutorials</a>.</p>
+<p>Now you are ready to continue to the MoveIt Quickstart in RViz section of the tutrials <a href="https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html">MoveIt Tutorials</a>.</p>
               
             </div>
           </div>
