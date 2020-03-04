@@ -43,4 +43,4 @@ c:\moveit_ws\devel\setup.bat
 ```
 
 ## Getting Started with MoveIt Tutorials
-Now you are ready to continue to the MoveIt Quickstart in RViz section of the tutrials [MoveIt Tutorials](https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html).
+Now you are ready to continue to the MoveIt Quickstart in RViz section of the tutorials [MoveIt Tutorials](https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html).
