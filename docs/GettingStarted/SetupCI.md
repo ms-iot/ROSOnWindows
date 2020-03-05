@@ -1,7 +1,33 @@
 <!-- ![ROS Logo](http://www.ros.org/wp-content/uploads/2013/10/rosorg-logo1.png) -->
 
+# Continuous Integration with Github Actions
+Actions are a feature of Github which allows you to easily integrate continuous integration into your builds. The Tooling Working Group of the ROS2 technical steering committee has built a [Github action](https://github.com/ros-tooling/action-ros-ci) &nearr;  which allows you to build ROS packages. Microsoft is contributing to this action.
+
+The ROS action has different setups for ROS1 and ROS2, which will be covered below.
+
+## ROS1 Setup
+To configure your project for CI, you'll need to install the buildtime dependencies. The ROS action leverages the [vcs tool](https://github.com/vcstools/vcstools) &nearr; , which clones repositories specified in a *.rosinstall file.
+
+Initialize Dependencies and Toolchain
+
+  * On github, select the `Create new file` button.
+  * Name the file `ci/deps.rosinstall`
+  * In that file, place the contents of [deps.rosinstall](deps.md) into the newly created file
+  * On github, slect the `Create new file` button.
+  * Name the file `ci/defaults.yaml`
+  * In that file, place the contents of [defaults.yaml](defaults.md) into the newly created file
+
+
+Now create the action
+
+  * On github, select the `Action` tab.
+  * Create a new workflow
+  * In the new workflow, copy the contents of [main.yaml](workflow.md) to the newly created workflow file.
+  * Replace `<your package name here>` with the ROS package you are generating
+
+
 # Continuous Integation with Azure DevOps
-This template helps you to do CI build for your ROS repository with ROS on Windows.
+This template helps you to set up a continuous integration (CI) build for your ROS repository with ROS on Windows. Use this template if you are not hosting your code in Github, if Github Actions are not sufficient or if you need to leverage Azure DevOps features.
 
 ## Prerequisite
   * Make sure you have an Azure DevOps pipeline setup. If you don't, visit [here](https://docs.microsoft.com/en-us/azure/devops/pipelines/get-started/pipelines-sign-up) &nearr; for getting started.

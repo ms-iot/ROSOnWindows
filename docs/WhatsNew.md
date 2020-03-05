@@ -1,6 +1,13 @@
 # What's New
 This page tracks changes to the ROS on Windows Documentation.
 
+## March 2020
+### ROS Github Action
+From within Github, you can set up Continuous integration using a Github Action, brought to you by the Tooling Working Group of the ROS2 Technical Steering Committee, with contributions from Microsoft.
+
+### MoveIt Updates
+MoveIt Tutorials have been updated to work on Windows.
+
 ## February 2020
 ### Cross platform ROS node updates
 We have been adding notes to the porting *cookbook* based on customer feedback. 
