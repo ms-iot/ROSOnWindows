@@ -123,4 +123,12 @@
     local-name: xacro
     uri: https://github.com/ros/xacro.git
     version: melodic-devel
+- git:
+    local-name: geometry
+    uri: https://github.com/ms-iot/geometry.git
+    version: init_windows
+- git:
+    local-name: interactive_markers
+    uri: https://github.com/ms-iot/interactive_markers.git
+    version: init_windows
 ```

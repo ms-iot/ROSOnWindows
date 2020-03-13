@@ -16,16 +16,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-          os: [windows-latest]
+          os: [ubuntu-latest, windows-latest]
     steps:
-    - uses: ros-tooling/setup-ros@master
+    - uses: ros-tooling/setup-ros@0.0.15
     - uses: ros-tooling/action-ros-ci@master
       with:
-        package-name: <your package name>
-        vcs-repo-file-url: ${{ github.workspace }}/ci/deps.rosinstall
-      env:
-        COLCON_DEFAULTS_FILE: ${{ github.workspace }}/ci/defaults.yaml
-        ROS_PYTHON_VERSION: 3
-        CC: cl.exe
-        CXX: cl.exe
+        package-name: <ros package>
+    - uses: actions/upload-artifact@master
+      with:
+        name: colcon-logs
+        path: ros_ws/log
+
 ```

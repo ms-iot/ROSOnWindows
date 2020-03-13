@@ -1,14 +1,13 @@
 ```yaml
-name: <ros package> CI
+name: Build CI
 on:
   pull_request:
   push:
     branches:
       - master
   schedule:
-    # Run every hour. This helps detect flakiness,
-    # and broken external dependencies.
-    - cron:  '0 * * * *'
+    # Run it regularly to detect flaky build breaks.
+    - cron:  '0 0 */3 * *'
 
 jobs:
   build_and_test:

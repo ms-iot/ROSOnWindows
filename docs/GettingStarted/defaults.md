@@ -2,14 +2,14 @@
 {
     "build": {
         "symlink-install": true,
-        "cmake-args": [
-            "-G",
-            "Ninja",
-            "-DCATKIN_SKIP_TESTING=ON",
-            "-DCMAKE_BUILD_TYPE=Release"],
         "event-handlers": ["console_cohesion+"],
+        "install-base": "c:\\miniconda\\envs\\myenv\\library",
         "parallel-workers" : 1,
         "merge-install": true
+    },
+    "test": {
+        "merge-install": true,
+        "install-base": "c:\\miniconda\\envs\\myenv\\library"
     }
 }
 ```
