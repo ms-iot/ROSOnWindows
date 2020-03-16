@@ -97,10 +97,10 @@ if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 11)
 endif()
 ```
-### ____attribute____
-____attribute____ is not suppported on MSVC. You can use a macro replacement or use a cross platform convention.
+### `__attribute____`
+`__attribute__` is not suppported with Microsoft compilers. You can use a macro replacement or use a cross platform convention.
 
-### `Unresolved External`
+### Unresolved External
 Linux automatically exports symbols. Windows, symbols are private by default. [CMake provides a facility for this](https://cmake.org/cmake/help/v3.4/prop_tgt/WINDOWS_EXPORT_ALL_SYMBOLS.html).
 
 In your cmake:
@@ -170,22 +170,6 @@ This occurs when linking against gtest instead of ${GTEST_LIBRARIES}
   )
 ```
 
-### Boost::asio Winsock.h has already been included
-
-#### Cause:
-ROS includes Windows.h, but explicitly excludes Winsock.h. Boost's socket_types.h checks for this flag and assumes winsock.h was included.
-
-#### Fix:
-Add the following before boost/asio.hpp:
-``` C++
-#include <ros/ros.h>
-
-#ifdef WIN32
-#include <winsock2.h>
-#endif
-
-#include <boost/asio.hpp>
-```
 ### Syntax error: 'constant' (windows.h included before conflicting dependency)
 
 #### Cause:
@@ -232,6 +216,20 @@ Either remove the variable, or reference it in a noop block
 uint8_t unused;
 unused;
 ```
+
+## CMAKE_C_COMPILER or CMAKE_CXX_COMPILER error
+When Visual Studio upgrades, it changes the path to the compilers. If you have previously built a ROS workspace, you'll see an error like this:
+```
+CMake Error in CMakeLists.txt:
+  The CMAKE_CXX_COMPILER:
+
+    C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.22.27905/bin/Hostx64/x64/cl.exe
+```
+### Cause
+This is caused by a stale CMake cache.
+
+### Fix
+Remove the build, devel and install directories and rebuild.
 
 ## Start ROS on Boot
 Once you are done developing your robot and want it to automatically start on boot, you'll want to use the [Windows Task Scheduler][taskschd] to start the task.
