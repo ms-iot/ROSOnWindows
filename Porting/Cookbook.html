@@ -127,7 +127,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#c-versioning">C++ versioning</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#_attribute_">_attribute_</a>
+    <li class="toctree-l3"><a class="reference internal" href="#__attribute____">__attribute____</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#unresolved-external">Unresolved External</a>
     </li>
@@ -153,21 +153,13 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#gtest-notfound">gtest-NOTFOUND</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#boostasio-winsockh-has-already-been-included">Boost::asio Winsock.h has already been included</a>
+    <li class="toctree-l3"><a class="reference internal" href="#syntax-error-constant-windowsh-included-before-conflicting-dependency">Syntax error: 'constant' (windows.h included before conflicting dependency)</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#cause">Cause:</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#fix">Fix:</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#syntax-error-constant-windowsh-included-before-conflicting-dependency">Syntax error: 'constant' (windows.h included before conflicting dependency)</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#cause_1">Cause:</a>
-    </li>
     <li class="toctree-l4"><a class="reference internal" href="#example">Example:</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#fix_1">Fix:</a>
+    <li class="toctree-l4"><a class="reference internal" href="#fix">Fix:</a>
     </li>
         </ul>
     </li>
@@ -184,6 +176,14 @@
     <li class="toctree-l3"><a class="reference internal" href="#truncation">Truncation</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#unreferenced-parameters">unreferenced parameters</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cmake_c_compiler-or-cmake_cxx_compiler-error">CMAKE_C_COMPILER or CMAKE_CXX_COMPILER error</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#cause_1">Cause</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fix_1">Fix</a>
     </li>
         </ul>
     </li>
@@ -337,9 +337,9 @@ add_definitions(&quot;/D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS&quot;)
 endif()
 </code></pre>
 
-<h3 id="_attribute_"><strong><em>_attribute</em></strong>_</h3>
-<p><strong><em>_attribute</em></strong>_ is not suppported on MSVC. You can use a macro replacement or use a cross platform convention.</p>
-<h3 id="unresolved-external"><code>Unresolved External</code></h3>
+<h3 id="__attribute____"><code>__attribute____</code></h3>
+<p><code>__attribute__</code> is not suppported with Microsoft compilers. You can use a macro replacement or use a cross platform convention.</p>
+<h3 id="unresolved-external">Unresolved External</h3>
 <p>Linux automatically exports symbols. Windows, symbols are private by default. <a href="https://cmake.org/cmake/help/v3.4/prop_tgt/WINDOWS_EXPORT_ALL_SYMBOLS.html">CMake provides a facility for this</a>.</p>
 <p>In your cmake:</p>
 <pre><code class="no-highlight">set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
@@ -394,22 +394,8 @@ class myclass
   )
 </code></pre>
 
-<h3 id="boostasio-winsockh-has-already-been-included">Boost::asio Winsock.h has already been included</h3>
-<h4 id="cause">Cause:</h4>
-<p>ROS includes Windows.h, but explicitly excludes Winsock.h. Boost's socket_types.h checks for this flag and assumes winsock.h was included.</p>
-<h4 id="fix">Fix:</h4>
-<p>Add the following before boost/asio.hpp:</p>
-<pre><code class="C++">#include &lt;ros/ros.h&gt;
-
-#ifdef WIN32
-#include &lt;winsock2.h&gt;
-#endif
-
-#include &lt;boost/asio.hpp&gt;
-</code></pre>
-
 <h3 id="syntax-error-constant-windowsh-included-before-conflicting-dependency">Syntax error: 'constant' (windows.h included before conflicting dependency)</h3>
-<h4 id="cause_1">Cause:</h4>
+<h4 id="cause">Cause:</h4>
 <p><code>Windows.h</code> defines some macros which may conflict with variables defined in ROS packages. This causes build breaks if <code>windows.h</code> is included before a conflicting dependency.</p>
 <p>The error for this may be misleading as it may not identify the specific redeclaration as the issue. </p>
 <h4 id="example">Example:</h4>
@@ -420,7 +406,7 @@ This is problematic because marker.h defines <code>DELETE</code> as an enum memb
 <pre><code class="Batchfile">C:\opt\ros\melodic\x64\include\visualization_msgs/Marker.h(132): error C2059: syntax error: 'constant'
 </code></pre>
 
-<h4 id="fix_1">Fix:</h4>
+<h4 id="fix">Fix:</h4>
 <p>Include any headers which define the conflicting variable (i.e. <code>DELETE</code>) above/before any headers which include <code>windows.h</code>.</p>
 <h2 id="missing-symbols">Missing Symbols</h2>
 <h3 id="m_pi">'M_PI'</h3>
@@ -440,6 +426,18 @@ Use appropriate casts ensuring accuracy of the conversion.</p>
 unused;
 </code></pre>
 
+<h2 id="cmake_c_compiler-or-cmake_cxx_compiler-error">CMAKE_C_COMPILER or CMAKE_CXX_COMPILER error</h2>
+<p>When Visual Studio upgrades, it changes the path to the compilers. If you have previously built a ROS workspace, you'll see an error like this:</p>
+<pre><code>CMake Error in CMakeLists.txt:
+  The CMAKE_CXX_COMPILER:
+
+    C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.22.27905/bin/Hostx64/x64/cl.exe
+</code></pre>
+
+<h3 id="cause_1">Cause</h3>
+<p>This is caused by a stale CMake cache.</p>
+<h3 id="fix_1">Fix</h3>
+<p>Remove the build, devel and install directories and rebuild.</p>
 <h2 id="start-ros-on-boot">Start ROS on Boot</h2>
 <p>Once you are done developing your robot and want it to automatically start on boot, you'll want to use the <a href="https://docs.microsoft.com/en-us/windows/win32/taskschd">Windows Task Scheduler</a> to start the task.</p>
 <ul>
