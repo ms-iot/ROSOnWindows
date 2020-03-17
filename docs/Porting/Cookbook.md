@@ -3,10 +3,6 @@ While every effort has been made to reduce the effort needed to support ROS node
 there will inevitably be required changes between platforms. This cookbook is intended to collect common issues and recommended solutions.
 
 ## Windows and Linux Differences
-### C++ 17
-In your CMakeLists.txt add the compile option:
-`add_compile_options(/std:c++latest)`
-
 ### Directory Separators
 Windows uses backslash `\` whereas Linux uses forward slash `/`. As we encounter path processing, we've been replacing them with the Python or Boost equivelents.
 
@@ -97,6 +93,15 @@ if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 11)
 endif()
 ```
+or 
+```no-highlight
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+endif()
+```
+
+> NOTE: Boost 1.66 in the Melodic requires CMAKE_CSS_STANDARD 11
+
 ### `__attribute____`
 `__attribute__` is not suppported with Microsoft compilers. You can use a macro replacement or use a cross platform convention.
 
