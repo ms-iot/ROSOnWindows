@@ -22,9 +22,8 @@ jobs:
     - uses: ros-tooling/action-ros-ci@master
       with:
         package-name: <ros package>
-    - uses: actions/upload-artifact@master
+    - uses: actions/upload-artifact@v1
       with:
-        name: colcon-logs
-        path: ros_ws/log
-
+        name: drop
+        path: c:\opt\install
 ```

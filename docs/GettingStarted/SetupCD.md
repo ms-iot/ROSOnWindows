@@ -14,22 +14,20 @@ choco apikey --key xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxxxxx --source https://pus
 ```
 
 ## Packaging collateral
-To build a chocolatey package, the following files and structure is required in your repository.
+To build a chocolatey package, the following files and structure is recommended in your repository. The files will be described later.
 
-  * Repository Root
-    * package
-      * `package-build.yaml`
-      * `MyPackage.nuspec`
-      * `build.bat`
-      * `tools`
-        * `chocolateyInstall.ps1`
-        * `rosdepInstall.bat`
+* Repository Root
+    * `package`
+        * `package-build.yaml`
+        * `MyPackage.nuspec`
+        * `build.bat`
+        * `chocolateyInstall_template.ps1`
+        * `tools`
+            * `rosdepInstall.bat`
 
 
-## Crafting a chocolatey package
-A Chocolatey package includes a xml descriptor of the package. 
-
-Create a file named after your package, with the contents of [template.nuspec](choco_template.md).
+## Crafting a `MyPackage.nuspec` file
+A Chocolatey package includes a xml descriptor of the package. Create a file in the `package` folder named after your ROS package, with the code contents of [template.nuspec](choco_template.md).
 
 For example, if your ROS package is called MyCoolRobot, the file should be called `MyCoolRobot.nuspec`
 
@@ -45,11 +43,10 @@ Modify the properties of the XML file based on your specific requirements. For e
     <authors>Malcom Reynolds</authors>
     <licenseUrl>http://www.github.com/ContosoRobotics/MyCoolRobot/License.txt</licenseUrl>
     <projectUrl>http://www.github.com/ContosoRobotics/MyCoolRobot</projectUrl>
-    <iconUrl></iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>MyCoolRobot for ROS on Windows.</description>
     <summary>MyCoolRobot packaged as a rosdep.</summary>
-    <tags>MyCoolRobot</tags>
+    <tags>ros MyCoolRobot</tags>
     <packageSourceUrl>http://www.github.com/ContosoRobotics/MyCoolRobot</packageSourceUrl>
     <docsUrl>http://www.github.com/ContosoRobotics/MyCoolRobot/Docs</docsUrl>
   </metadata>
@@ -57,18 +54,57 @@ Modify the properties of the XML file based on your specific requirements. For e
 ```
 
 ## Adding install scripts
-In the tools folder, create the setup files. You can use these directly, or customize them for your project. Examples of customization include custom dependencies (like fetching and installing external Msi files).
+Create these files in the tools folder, and add the code contents of each. You can use these directly, or customize them for your project. Examples of customization include custom dependencies (like fetching and installing external Msi files).
 
-Place these files into the tools folder.
-
-[chocolateyInstall.ps1](chocolateyInstall.md)
-
-[rosdepInstall.bat](rosdepInstall.bat)
+* [chocolateyInstall_template.ps1](chocolateyInstall_template.md)
+* tools
+    * [rosdepInstall.bat](rosdepInstall.md)
 
 ## Adding the build script
-In the root of the package folder, add [build.bat](choco_build.md). Replace `<ros package>` with the name of your nuspec from above.
+In the root of the package folder, add a file with the code contents of [build.bat](choco_build.md). Replace `<ros package>` with the name of your nuspec from above.
+
+## Testing the package
+In later states, the pipelines will generate a zip file containing the output of your ROS package. 
+
+To simulate archive generation for testing, in your terminal window, change directory into the workspace containing your package, then build with install target.
+
+Install 7zip using Chocolatey (You only need to do this the first time you try to build a package).
+
+```batch
+choco install 7zip
+```
+
+**Catkin**
+```batch
+catkin_make install -DCATKIN_BUILD_BINARY_PACKAGE=ON
+```
+
+**Colcon**
+```batch
+
+```
+
+```batch
+cd install
+7z a -tzip ..\src\<ros package>\package\tools\drop.zip *
+```
+If this command succeeds, you will have two nupkg files - one for pre-release in `output-pre`, and one release package in `output`.
+
+Install using the following command:
+```batch
+choco install output-pre\<ros package>.1.0.0.nupkg
+```
+
+
+**Troubleshoot**
+If the package fails to install correctly, the nupkg is a zip file. You can expand the zip file and examine the contents. Verify that names are spelled correctly and that the contents match. Once you find the error, you can recreate the package using build.bat, and reinstall using:
+
+```batch
+choco install output-pre\<ros package>.1.0.0.nupkg --force
+```
 
 ## Setting up the pipeline
+First, Ensure that you've 
 In the package folder, add [package-build.yaml](choco_pipeline_package.md). 
 
 In your Azure Pipelines or Github Workflow, add a referene to this file before your test entries;
@@ -82,4 +118,6 @@ In your Azure Pipelines or Github Workflow, add a referene to this file before y
 ```
 choco push MyPackage.1.0.nupkg --source https://push.chocolatey.org/
 ```
+
 ## Automatically Publishing chocolatey package
+**Coming soon**

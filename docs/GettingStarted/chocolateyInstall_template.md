@@ -4,7 +4,6 @@ $ErrorActionPreference = 'Stop';
 $packageName= $env:ChocolateyPackageName
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $fileLocation = Join-Path $toolsDir 'drop.zip'
-$destination = 'c:\opt\ros'
 
 $packageArgs = @{
   packageName   = $packageName
