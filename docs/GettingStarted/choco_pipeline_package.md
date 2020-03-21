@@ -5,7 +5,7 @@ parameters:
 steps:
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: 'C:\opt\ros'
+    rootFolderOrFile: 'C:\opt\install'
     includeRootFolder: false
     archiveFile: ${{ parameters.PACKAGE_BUILD_WORKING_DIRECTORY }}\tools\drop.zip
   displayName: 'Archive ROS binaries'

@@ -2,11 +2,11 @@
 # Continuous Delivery
 Once your ROS package is built, it needs to be deployed to customers. ROS on Windows leverages the Chocolatey Package manager for Delivery.
 
-Chocolatey is an Open Source package manager for Windows, with a command line interface. Chocolatey packages are zip files which contain a descriptor - based on the Nuget Library manager. Once created, Packages are published on the Chocolatey package registry. 
+Chocolatey is an Open Source package manager for Windows, with a command line interface. Chocolatey packages are zip files which contain a descriptor - based on the Nuget Library manager. Once created, Packages are published to the Chocolatey package registry. 
 
 ## Sign up to Publish packages
 Before you can publish packages, you need to acquire an API key from Chocolatey.
-To acquire an API key, youneed to sign up for an account. 
+To acquire an API key, you need to [register for an account](https://chocolatey.org/account/Register). Once you've registered for an account, you'll be assigned an API key, which you can assign to your local chocolatey install - and later as a Pipeline Secret.
 
 You can associate the API Key with your chocolatey command line tool to publish with the following command line:
 ```
@@ -18,7 +18,6 @@ To build a chocolatey package, the following files and structure is recommended 
 
 * Repository Root
     * `package`
-        * `package-build.yaml`
         * `MyPackage.nuspec`
         * `build.bat`
         * `chocolateyInstall_template.ps1`
@@ -80,13 +79,16 @@ catkin_make install -DCATKIN_BUILD_BINARY_PACKAGE=ON
 ```
 
 **Colcon**
-```batch
 
-```
+*Coming Soon*
+
+### Package
 
 ```batch
 cd install
 7z a -tzip ..\src\<ros package>\package\tools\drop.zip *
+cd ..\src\<ros package>\package
+build.bat
 ```
 If this command succeeds, you will have two nupkg files - one for pre-release in `output-pre`, and one release package in `output`.
 
@@ -95,7 +97,6 @@ Install using the following command:
 choco install output-pre\<ros package>.1.0.0.nupkg
 ```
 
-
 **Troubleshoot**
 If the package fails to install correctly, the nupkg is a zip file. You can expand the zip file and examine the contents. Verify that names are spelled correctly and that the contents match. Once you find the error, you can recreate the package using build.bat, and reinstall using:
 
@@ -103,16 +104,7 @@ If the package fails to install correctly, the nupkg is a zip file. You can expa
 choco install output-pre\<ros package>.1.0.0.nupkg --force
 ```
 
-## Setting up the pipeline
-First, Ensure that you've 
-In the package folder, add [package-build.yaml](choco_pipeline_package.md). 
-
-In your Azure Pipelines or Github Workflow, add a referene to this file before your test entries;
-
-```yaml
-  steps:
-  - template: ..\package\package-build.yml
-```
+> NOTE: Chocolatey will remove the root folder of a zip based chocolatey package - which potentially includes other zip based packages. We recommend not uninstalling a chocolatey package for this reason.
 
 ## Manually Publish a chocolatey package
 ```
@@ -121,3 +113,4 @@ choco push MyPackage.1.0.nupkg --source https://push.chocolatey.org/
 
 ## Automatically Publishing chocolatey package
 **Coming soon**
+> NOTE: The ROS CI Action currently generates the package binaries into the ROS install. 
