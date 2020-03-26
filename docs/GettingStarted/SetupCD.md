@@ -108,9 +108,21 @@ choco install output-pre\<ros package>.1.0.0.nupkg --force
 
 ## Manually Publish a chocolatey package
 ```
-choco push MyPackage.1.0.nupkg --source https://push.chocolatey.org/
+choco push MyPackage.1.0.0.nupkg --source https://push.chocolatey.org/
 ```
 
-## Automatically Publishing chocolatey package
-**Coming soon**
-> NOTE: The ROS CI Action currently generates the package binaries into the ROS install. 
+# Automatically generate chocolatey package during CI
+Once you've crafted your nuspec and tested the installation, you can generate the chocolatey package during CI and publish it as a release. 
+
+Now create the Github Action
+
+  * On github, select the `Action` tab.
+  * Create a new workflow
+  * In the new workflow, copy the contents of [CD.yaml](ros1_workflow_pub.md) to the newly created workflow file.
+  * Replace `<ros package>` with the ROS package you are generating
+  * Replace `<ros nuspec>` with the name of the nuspec you from above
+
+Whenever you create a tag in the repo, it will trigger the deployment workflow, which will publish the nupkg as a github release.  
+
+
+

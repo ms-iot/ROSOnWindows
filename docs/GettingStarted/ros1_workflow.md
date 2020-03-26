@@ -1,11 +1,10 @@
 ```yaml
-name: winml_tracker CI
+name: CI
 on:
   pull_request:
   push:
     branches:
       - master
-      - seanyen**
   schedule:
     # Run it regularly to detect flaky build breaks.
     - cron:  '0 0 */3 * *'
@@ -32,7 +31,7 @@ jobs:
         python-version: 3.7
     - uses: ros-tooling/action-ros-ci@master
       with:
-        package-name: winml_tracker
+        package-name: <ros package>
         vcs-repo-file-url: ${{ github.workspace }}/ci/deps.rosinstall
         extra-cmake-args: "-G Ninja -DCMAKE_TOOLCHAIN_FILE=c:/ci/toolchain.cmake -DCMAKE_BUILD_TYPE=Release"
       env:
@@ -40,7 +39,5 @@ jobs:
         ROS_PYTHON_VERSION: 3
         CC: cl.exe
         CXX: cl.exe
-    - uses: actions/upload-artifact@v1
-      with:
-        name: drop
-        path: c:\opt\install
+
+```
