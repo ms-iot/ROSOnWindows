@@ -36,22 +36,26 @@ jobs:
         ROS_PYTHON_VERSION: 3
         CC: cl.exe
         CXX: cl.exe
-    - name: Build Chocolatey Package
-      shell: bash
-      run: |
-        cd c:/opt/install
-        7z a -tzip c:/opt/drop.zip *
-        cp c:/opt/drop.zip $GITHUB_WORKSPACE/package/tools/drop.zip
-        cd $GITHUB_WORKSPACE/package
-        rm $GITHUB_WORKSPACE/package/tools/chocolateyInstall.ps1
-        echo $destination = 'c:\opt\ros\melodic\x64' >> $GITHUB_WORKSPACE/package/tools/chocolateyInstall.ps1
-        cat $GITHUB_WORKSPACE/package/chocolateyInstall_template.ps1 >> $GITHUB_WORKSPACE/package/tools/chocolateyInstall.ps1
-        mkdir c:/opt/output
-        choco pack --trace --out c:/opt/output <ros nuspec>.nuspec 
-    - uses: actions/upload-artifact@v1
+    - uses: ros-tooling/action-ros-ci@master
       with:
-        name: drop
-        path: c:/opt/output
+        package-name: winml_tracker
+        vcs-repo-file-url: ${{ github.workspace }}/ci/empty.rosinstall
+        extra-cmake-args: "-G Ninja -DCMAKE_TOOLCHAIN_FILE=c:/ci/toolchain.cmake -DCMAKE_BUILD_TYPE=Release"
+      env:
+        COLCON_DEFAULTS_FILE: ${{ github.workspace }}/ci/packaging.yaml
+        ROS_PYTHON_VERSION: 3
+        CC: cl.exe
+        CXX: cl.exe        
+    - name: Build Chocolatey Package
+      shell: cmd
+      run: |
+        cd c:\opt\install
+        7z a -tzip ${{ github.workspace }}\package\tools\drop.zip *
+        echo $destination = 'c:\opt\ros\melodic\x64' > ${{ github.workspace }}\package\tools\chocolateyInstall.ps1
+        type $GITHUB_WORKSPACE\package\chocolateyInstall_template.ps1 >> ${{ github.workspace }}\package\tools\chocolateyInstall.ps1
+        mkdir c:\opt\output
+        cd ${{ github.workspace }}\package
+        choco pack --trace --out c:\opt\output <ros nuspec>.nuspec 
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -69,8 +73,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} 
-        asset_path: c:/opt/output/<ros nuspec>.1.0.0.nupkg
-        asset_name: <ros nuspec>.1.0.0.nupkg
+        asset_path: c:/opt/output/<ros nuspec>.<ros version>.nupkg
+        asset_name: <ros nuspec>.<ros version>.nupkg
         asset_content_type: application/zip 
 
 ```

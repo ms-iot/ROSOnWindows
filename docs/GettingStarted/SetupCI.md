@@ -12,9 +12,13 @@ Initialize Dependencies and Toolchain
   * On github, select the `Create new file` button.
   * Name the file `ci/deps.rosinstall`
   * In that file, place the contents of [deps.rosinstall](deps.md) into the newly created file
+  * Name the file `ci/empty.rosinstall`
+  * In that file, place the contents of [empty.rosinstall](empty.md) into the newly created file
   * On github, slect the `Create new file` button.
   * Name the file `ci/defaults.yaml`
   * In that file, place the contents of [defaults.yaml](defaults.md) into the newly created file
+  * Name the file `ci/packaging.yaml`
+  * In that file, place the contents of [packaging.yaml](packaging.md) into the newly created file
   * On github, slect the `Create new file` button.
   * Name the file `ci/environment.yaml`
   * In that file, place the contents of [environment.yaml](environment.md) into the newly created file

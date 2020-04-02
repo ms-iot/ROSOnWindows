@@ -121,6 +121,7 @@ Now create the Github Action
   * In the new workflow, copy the contents of [CD.yaml](ros1_workflow_pub.md) to the newly created workflow file.
   * Replace `<ros package>` with the ROS package you are generating
   * Replace `<ros nuspec>` with the name of the nuspec you from above
+  * Replace `<ros version>` with the version from your nuspec.
 
 Whenever you create a tag in the repo, it will trigger the deployment workflow, which will publish the nupkg as a github release.  
 
