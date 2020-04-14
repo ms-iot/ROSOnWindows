@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Using a C++ Dependency - ROS on Windows</title>
+  <title>Continuous Delivery - ROS on Windows</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Using a C++ Dependency";
-    var mkdocs_page_input_path = "GettingStarted\\UsingVCPKG.md";
+    var mkdocs_page_name = "Continuous Delivery";
+    var mkdocs_page_input_path = "GettingStarted\\SetupCD.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -87,25 +87,41 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Continuous Development</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="SetupCI.html">Continuous Integration</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="SetupCD.html">Continuous Delivery</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="SetupCD.html">Continuous Delivery</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#sign-up-to-publish-packages">Sign up to Publish packages</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#packaging-collateral">Packaging collateral</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#crafting-a-mypackagenuspec-file">Crafting a MyPackage.nuspec file</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-install-scripts">Adding install scripts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#adding-the-build-script">Adding the build script</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#testing-the-package">Testing the package</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#package">Package</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#manually-publish-a-chocolatey-package">Manually Publish a chocolatey package</a>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="SetupCS.html">Continuous Simulation</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Porting Guide</span></p>
-                <ul class="current">
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="UsingROSonWindows.html">Consuming a ROS Package</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="PortingANode.html">Porting a ROS Package</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="UsingVCPKG.html">Using a C++ Dependency</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#updating-vcpkg-mappings">Updating vcpkg mappings</a>
-    </li>
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="UsingVCPKG.html">Using a C++ Dependency</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="AddingVCPKG.html">Porting a C++ Dependency</a>
                     </li>
@@ -162,14 +178,14 @@
     
       
         
-          <li>Porting Guide &raquo;</li>
+          <li>Continuous Development &raquo;</li>
         
       
     
-    <li>Using a C++ Dependency</li>
+    <li>Continuous Delivery</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/UsingVCPKG.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/SetupCD.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -180,67 +196,116 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="using-a-c-dependency-in-a-ros-node-using-vcpkg">Using a C++ Dependency in a ROS Node using vcpkg</h1>
-<p>If you find that a dependency is not met with vcpkg today, that dependency can be added by following the <a href="AddingVCPKG.html">vcpkg guide</a></p>
-<h3 id="updating-vcpkg-mappings">Updating vcpkg mappings</h3>
-<p>Often the name of a a library on Linux differs from the name on vcpkg. In order to address this, a mapping file called <code>vcpkg.yaml</code> is part of the rosditro database. This creates a mapping between the Linux name for the package and the vcpkg name.</p>
+                <h1 id="continuous-delivery">Continuous Delivery</h1>
+<p>Once your ROS package is built, it needs to be deployed to customers. ROS on Windows leverages the Chocolatey Package manager for Delivery.</p>
+<p>Chocolatey is an Open Source package manager for Windows, with a command line interface. Chocolatey packages are zip files which contain a descriptor - based on the Nuget Library manager. Once created, Packages are published to the Chocolatey package registry. </p>
+<h2 id="sign-up-to-publish-packages">Sign up to Publish packages</h2>
+<p>Before you can publish packages, you need to acquire an API key from Chocolatey.
+To acquire an API key, you need to <a href="https://chocolatey.org/account/Register">register for an account</a>. Once you've registered for an account, you'll be assigned an API key, which you can assign to your local chocolatey install - and later as a Pipeline Secret.</p>
+<p>You can associate the API Key with your chocolatey command line tool to publish with the following command line:</p>
+<pre><code>choco apikey --key xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxxxxx --source https://push.chocolatey.org/
+</code></pre>
+
+<h2 id="packaging-collateral">Packaging collateral</h2>
+<p>To build a chocolatey package, the following files and structure is recommended in your repository. The files will be described later.</p>
 <ul>
-<li>Fork <a href="https://github.com/ms-iot/rosdistro-db">https://github.com/ms-iot/rosdistro-db</a> &nearr; into your github account, if you haven't already</li>
-<li>Create a file called <code>0-update.list</code> in <code>c:\opt\ros\melodic\x64\etc\ros\rosdep\sources.list.d</code></li>
-<li>In this file, add a line which points to your fork.</li>
+<li>Repository Root<ul>
+<li><code>package</code><ul>
+<li><code>MyPackage.nuspec</code></li>
+<li><code>build.bat</code></li>
+<li><code>chocolateyInstall_template.ps1</code></li>
+<li><code>tools</code><ul>
+<li><code>rosdepInstall.bat</code></li>
 </ul>
-<pre><code class="no-highlight"># os-specific listings first
-yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
-yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="crafting-a-mypackagenuspec-file">Crafting a <code>MyPackage.nuspec</code> file</h2>
+<p>A Chocolatey package includes a xml descriptor of the package. Create a file in the <code>package</code> folder named after your ROS package, with the code contents of <a href="choco_template.html">template.nuspec</a>.</p>
+<p>For example, if your ROS package is called MyCoolRobot, the file should be called <code>MyCoolRobot.nuspec</code></p>
+<p>Modify the properties of the XML file based on your specific requirements. For example:</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;package xmlns=&quot;http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&quot;&gt;
+  &lt;metadata&gt;
+    &lt;id&gt;MyCoolRobot&lt;/id&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+    &lt;title&gt;MyCoolRobot ROS package&lt;/title&gt;
+    &lt;authors&gt;Malcom Reynolds&lt;/authors&gt;
+    &lt;licenseUrl&gt;http://www.github.com/ContosoRobotics/MyCoolRobot/License.txt&lt;/licenseUrl&gt;
+    &lt;projectUrl&gt;http://www.github.com/ContosoRobotics/MyCoolRobot&lt;/projectUrl&gt;
+    &lt;requireLicenseAcceptance&gt;false&lt;/requireLicenseAcceptance&gt;
+    &lt;description&gt;MyCoolRobot for ROS on Windows.&lt;/description&gt;
+    &lt;summary&gt;MyCoolRobot packaged as a rosdep.&lt;/summary&gt;
+    &lt;tags&gt;ros MyCoolRobot&lt;/tags&gt;
+    &lt;packageSourceUrl&gt;http://www.github.com/ContosoRobotics/MyCoolRobot&lt;/packageSourceUrl&gt;
+    &lt;docsUrl&gt;http://www.github.com/ContosoRobotics/MyCoolRobot/Docs&lt;/docsUrl&gt;
+  &lt;/metadata&gt;
+&lt;/package&gt;
 </code></pre>
 
+<h2 id="adding-install-scripts">Adding install scripts</h2>
+<p>Create these files in the tools folder, and add the code contents of each. You can use these directly, or customize them for your project. Examples of customization include custom dependencies (like fetching and installing external Msi files).</p>
 <ul>
-<li>Add a mapping from the dependency name used in the ROS package, to the name used in vcpkg. You can edit this file directly on github in your fork. 
-  The format of the vcpkg.yaml:</li>
+<li><a href="chocolateyInstall_template.html">chocolateyInstall_template.ps1</a></li>
+<li>tools<ul>
+<li><a href="rosdepInstall.html">rosdepInstall.bat</a></li>
 </ul>
-<p><code>Python</code></p>
-<pre><code class="no-highlight">&lt;python-package-name&gt;:
-    windows:
-      pip:
-        packages: [&lt;python-package-name-in-pip&gt;]
+</li>
+</ul>
+<h2 id="adding-the-build-script">Adding the build script</h2>
+<p>In the root of the package folder, add a file with the code contents of <a href="choco_build.html">build.bat</a>. Replace <code>&lt;ros package&gt;</code> with the name of your nuspec from above.</p>
+<h2 id="testing-the-package">Testing the package</h2>
+<p>In later states, the pipelines will generate a zip file containing the output of your ROS package. </p>
+<p>To simulate archive generation for testing, in your terminal window, change directory into the workspace containing your package, then build with install target.</p>
+<p>Install 7zip using Chocolatey (You only need to do this the first time you try to build a package).</p>
+<pre><code class="batch">choco install 7zip
 </code></pre>
 
-<p><code>C++</code></p>
-<pre><code class="no-highlight">  &lt;linux--package-name&gt;:
-    windows:
-      vcpkg:
-        packages: [&lt;vcpkg-name&gt;]
+<p><strong>Catkin</strong></p>
+<pre><code class="batch">catkin_make install -DCATKIN_BUILD_BINARY_PACKAGE=ON
 </code></pre>
 
+<p><strong>Colcon</strong></p>
+<p><em>Coming Soon</em></p>
+<h3 id="package">Package</h3>
+<pre><code class="batch">cd install
+7z a -tzip ..\src\&lt;ros package&gt;\package\tools\drop.zip *
+cd ..\src\&lt;ros package&gt;\package
+build.bat
+</code></pre>
+
+<p>If this command succeeds, you will have two nupkg files - one for pre-release in <code>output-pre</code>, and one release package in <code>output</code>.</p>
+<p>Install using the following command:</p>
+<pre><code class="batch">choco install output-pre\&lt;ros package&gt;.1.0.0.nupkg
+</code></pre>
+
+<p><strong>Troubleshoot</strong>
+If the package fails to install correctly, the nupkg is a zip file. You can expand the zip file and examine the contents. Verify that names are spelled correctly and that the contents match. Once you find the error, you can recreate the package using build.bat, and reinstall using:</p>
+<pre><code class="batch">choco install output-pre\&lt;ros package&gt;.1.0.0.nupkg --force
+</code></pre>
+
+<blockquote>
+<p>NOTE: Chocolatey will remove the root folder of a zip based chocolatey package - which potentially includes other zip based packages. We recommend not uninstalling a chocolatey package for this reason.</p>
+</blockquote>
+<h2 id="manually-publish-a-chocolatey-package">Manually Publish a chocolatey package</h2>
+<pre><code>choco push MyPackage.1.0.0.nupkg --source https://push.chocolatey.org/
+</code></pre>
+
+<h1 id="automatically-generate-chocolatey-package-during-ci">Automatically generate chocolatey package during CI</h1>
+<p>Once you've crafted your nuspec and tested the installation, you can generate the chocolatey package during CI and publish it as a release. </p>
+<p>Now create the Github Action</p>
 <ul>
-<li>Update rosdeps on your computer.</li>
+<li>On github, select the <code>Action</code> tab.</li>
+<li>Create a new workflow</li>
+<li>In the new workflow, copy the contents of <a href="ros1_workflow_pub.html">CD.yaml</a> to the newly created workflow file.</li>
+<li>Replace <code>&lt;ros package&gt;</code> with the ROS package you are generating</li>
+<li>Replace <code>&lt;ros nuspec&gt;</code> with the name of the nuspec you from above</li>
+<li>Replace <code>&lt;ros version&gt;</code> with the version from your nuspec.</li>
 </ul>
-<pre><code class="no-highlight">rosdep update
-rosdep install --from-paths src --ignore-src -r -y
-</code></pre>
-
-<p>You'll see that the dependency resolves correctly. However, you may be provided with instructions for using that library in ROS nodes:</p>
-<pre><code class="no-highlight">The package &lt;library&gt;:x64-windows provides CMake targets:
-
-    find_package(&lt;package&gt; CONFIG REQUIRED)
-    target_link_libraries(main PRIVATE &lt;package&gt; &lt;package&gt;::&lt;namespace&gt;)
-</code></pre>
-
-<p>These may differ from how linkage happes on Linux. To link this library, to support both Windows and Linux, you can wrap it:</p>
-<pre><code class="no-highlight">if (MSVC)
-    target_link_libraries(main PRIVATE &lt;package&gt; &lt;package&gt;::&lt;namespace&gt;)
-else()
-    target_link_libraries(main ... &lt;original&gt;)
-endif
-</code></pre>
-
-<ul>
-<li>Handling RelWithDebinfo
-ROS on Windows is delivered with Release binaries that have been built with Debug Info (using cmake's RelWithDebInfo target). When interacting with vcpkg, cmake will map RelWithDebInfo built binaries to Debug binaries. This mismatch will cause problems.</li>
-</ul>
-<p>To correct this, add the following to the cmake for the ROS node:</p>
-<pre><code class="no-highlight">set_target_properties(${&lt;dependency_LIBRARIES} PROPERTIES MAP_IMPORTED_CONFIG_RELWITHDEBINFO RELEASE)
-</code></pre>
+<p>Whenever you create a tag in the repo, it will trigger the deployment workflow, which will publish the nupkg as a github release.  </p>
               
             </div>
           </div>
@@ -248,10 +313,10 @@ ROS on Windows is delivered with Release binaries that have been built with Debu
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="AddingVCPKG.html" class="btn btn-neutral float-right" title="Porting a C++ Dependency">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="SetupCS.html" class="btn btn-neutral float-right" title="Continuous Simulation">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="PortingANode.html" class="btn btn-neutral" title="Porting a ROS Package"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="SetupCI.html" class="btn btn-neutral" title="Continuous Integration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -279,10 +344,10 @@ ROS on Windows is delivered with Release binaries that have been built with Debu
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="PortingANode.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="SetupCI.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="AddingVCPKG.html" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="SetupCS.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
