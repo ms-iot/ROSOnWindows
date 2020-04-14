@@ -17,8 +17,10 @@ nav:
         - SICK S300: tutorials/sick_s300/getting_started.md
         - Simple Open EtherCAT Master: tutorials/ethercat/soem.md
         - PEAK-System&reg; PCAN&reg;-Basic: tutorials/peak/peak.md
-    - CI/CD Practices:
-        - Continuous Integration Template: GettingStarted/SetupCI.md
+    - Continuous Development:
+        - Continuous Integration: GettingStarted/SetupCI.md
+        - Continuous Delivery: GettingStarted/SetupCD.md
+        - Continuous Simulation: GettingStarted/SetupCS.md
     - Porting Guide:
         - Consuming a ROS Package: GettingStarted/UsingROSonWindows.md
         - Porting a ROS Package: GettingStarted/PortingANode.md

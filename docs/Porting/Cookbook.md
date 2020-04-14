@@ -130,7 +130,7 @@ The `generate_export_header(mylibrary)` call creates a file called `mylibrary_ex
 
 class myclass
 {
- static mylibrary_EXPORT int GlobalCounter;
+ static MYLIBRARY_EXPORT int GlobalCounter;
 …
 ~~~
 
