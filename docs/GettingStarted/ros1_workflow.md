@@ -32,7 +32,7 @@ jobs:
         python-version: 3.7
     - uses: ros-tooling/action-ros-ci@master
       with:
-        package-name: winml_tracker
+        package-name: <ros pakage>
         vcs-repo-file-url: ${{ github.workspace }}/ci/deps.rosinstall
         extra-cmake-args: "-G Ninja -DCMAKE_TOOLCHAIN_FILE=c:/ci/toolchain.cmake -DCMAKE_BUILD_TYPE=Release"
       env:
