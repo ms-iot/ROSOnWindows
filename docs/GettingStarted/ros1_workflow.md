@@ -32,7 +32,7 @@ jobs:
         python-version: 3.7
     - uses: ros-tooling/action-ros-ci@master
       with:
-        package-name: <ros pakage>
+        package-name: <ros package>
         vcs-repo-file-url: ${{ github.workspace }}/ci/deps.rosinstall
         extra-cmake-args: "-G Ninja -DCMAKE_TOOLCHAIN_FILE=c:/ci/toolchain.cmake -DCMAKE_BUILD_TYPE=Release"
       env:
@@ -42,7 +42,7 @@ jobs:
         CXX: cl.exe
     - uses: ros-tooling/action-ros-ci@master
       with:
-        package-name: <ros pakage>
+        package-name: <ros package>
         vcs-repo-file-url: ${{ github.workspace }}/ci/empty.rosinstall
         extra-cmake-args: "-G Ninja -DCMAKE_TOOLCHAIN_FILE=c:/ci/toolchain.cmake -DCMAKE_BUILD_TYPE=Release"
       env:
