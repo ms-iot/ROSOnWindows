@@ -99,7 +99,7 @@ pip install -U cmake=3.16.3
 
 ## Build and Activate the Navigation 2 Workspace
 
-Build the workspace by colcon, and then activate the install space.
+Build the workspace by `colcon` build tool.
 
 ```Batchfile
 :: change to the root of workspace
@@ -107,7 +107,18 @@ pushd c:\nav2_ws
 
 :: build the workspace
 colcon build --cmake-args -DBUILD_TESTING=OFF --cmake-target install
+```
 
+Once the build finishes, you should see the build summary as below:
+
+```Batchfile
+Summary: 58 packages finished [10min 47s]
+  2 packages had stderr output: behaviortree_cpp_v3 cartographer
+```
+
+Activate the workspace which was built.
+
+```Batchfile
 :: activate it
 install\setup.bat
 ```
