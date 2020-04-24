@@ -2,8 +2,8 @@
 title: Navigation 2 on Windows
 ---
 
-[**Navigation 2**][nav2] is the next generation of ROS Navigation stack for ROS 2.
-Edge robotics team at Microsoft bootstraped a Windows port for **Navigation 2**.
+[**Navigation 2**][nav2] is the next generation ROS Navigation stack for ROS 2.
+Edge robotics team at Microsoft has bootstrapped a Windows port for **Navigation 2**.
 This short guide shows you how to build **Navigation 2** from source and later you can get started with **Navigation 2** exercises.
 
 ![](./nav2.gif)
