@@ -96,7 +96,7 @@ Build the workspace by colcon, and then activate the install space.
 pushd c:\nav2_ws
 
 :: build the workspace
-colcon build --cmake-args -DBUILD_TESTING=OFF --event-handlers console_cohesion+
+colcon build --cmake-args -DBUILD_TESTING=OFF --cmake-target install
 
 :: activate it
 install\setup.bat
