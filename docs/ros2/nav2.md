@@ -88,6 +88,9 @@ choco install google-test -y
 
 :: manually install sdl2-image
 vcpkg install sdl2-image:x64-windows
+
+:: manually correct a mistakenly placed graphicsmagick header.
+move "C:\opt\vcpkg\installed\x64-windows\include\Magick++\Magick++.h" "C:\opt\vcpkg\installed\x64-windows\include\"
 ```
 
 ## Build and Activate the Navigation 2 Workspace
