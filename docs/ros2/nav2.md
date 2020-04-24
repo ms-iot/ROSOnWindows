@@ -17,7 +17,7 @@ This short guide shows you how to build **Navigation 2** from source and later y
 
 > The instructions can be found on [`http://wiki.ros.org/Installation/Windows`](http://wiki.ros.org/Installation/Windows).
 
-  * ✔ An environment of `Windows 10 Desktop`.
+  * ✔ 64-bit (amd64) environment of `Windows 10 Desktop`.
   * ✔ `Visual Studio 2019` with `Desktop development with C++` workload included.
   * ✔ `Chocolatey` package manager installed.
   * ✔ `Git` source control software installed.
@@ -85,6 +85,9 @@ rosdep install --from-paths src --ignore-src -r -y
 
 :: manually install google-test
 choco install google-test -y
+
+:: manually install sdl2-image
+vcpkg install sdl2-image:x64-windows
 ```
 
 ## Build and Activate the Navigation 2 Workspace
