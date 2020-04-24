@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Using a C++ Dependency - ROS on Windows</title>
+  <title>Navigation 2 - ROS on Windows</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Using a C++ Dependency";
-    var mkdocs_page_input_path = "GettingStarted\\UsingVCPKG.md";
+    var mkdocs_page_name = "Navigation 2";
+    var mkdocs_page_input_path = "ros2\\nav2.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -61,12 +61,12 @@
                 </ul>
                 <p class="caption"><span class="caption-text">Get ROS</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="Setup.html">Binary Installation</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/Setup.html">Binary Installation</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Using ROS</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="NewToROS.html">For new ROS Users</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/NewToROS.html">For new ROS Users</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Getting Started with ROS 1</span></p>
@@ -87,32 +87,30 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Getting Started with ROS 2</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../ros2/nav2.html">Navigation 2</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="nav2.html">Navigation 2</a>
+    <ul class="current">
+    </ul>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Continuous Development</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="SetupCI.html">Continuous Integration</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/SetupCI.html">Continuous Integration</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="SetupCD.html">Continuous Delivery</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/SetupCD.html">Continuous Delivery</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="SetupCS.html">Continuous Simulation</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/SetupCS.html">Continuous Simulation</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Porting Guide</span></p>
-                <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="UsingROSonWindows.html">Consuming a ROS Package</a>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/UsingROSonWindows.html">Consuming a ROS Package</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="PortingANode.html">Porting a ROS Package</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/PortingANode.html">Porting a ROS Package</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="UsingVCPKG.html">Using a C++ Dependency</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#updating-vcpkg-mappings">Updating vcpkg mappings</a>
-    </li>
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/UsingVCPKG.html">Using a C++ Dependency</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="AddingVCPKG.html">Porting a C++ Dependency</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/AddingVCPKG.html">Porting a C++ Dependency</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../Porting/Cookbook.html">Porting Cookbook</a>
                     </li>
@@ -139,7 +137,7 @@
                 </ul>
                 <p class="caption"><span class="caption-text">Support</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="Troubleshooting.html">Troubleshooting</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/Troubleshooting.html">Troubleshooting</a>
                     </li>
                     <li class="toctree-l1"><a class="" href="https://github.com/ms-iot/rosonwindows/issues">Create Issue</a>
                     </li>
@@ -167,14 +165,14 @@
     
       
         
-          <li>Porting Guide &raquo;</li>
+          <li>Getting Started with ROS 2 &raquo;</li>
         
       
     
-    <li>Using a C++ Dependency</li>
+    <li>Navigation 2</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/UsingVCPKG.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/ros2/nav2.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -185,67 +183,116 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="using-a-c-dependency-in-a-ros-node-using-vcpkg">Using a C++ Dependency in a ROS Node using vcpkg</h1>
-<p>If you find that a dependency is not met with vcpkg today, that dependency can be added by following the <a href="AddingVCPKG.html">vcpkg guide</a></p>
-<h3 id="updating-vcpkg-mappings">Updating vcpkg mappings</h3>
-<p>Often the name of a a library on Linux differs from the name on vcpkg. In order to address this, a mapping file called <code>vcpkg.yaml</code> is part of the rosditro database. This creates a mapping between the Linux name for the package and the vcpkg name.</p>
+                <p><a href="https://ros-planning.github.io/navigation2/"><strong>Navigation 2</strong></a> is the next generation ROS Navigation stack for ROS 2.
+Edge robotics team at Microsoft has bootstrapped a Windows port for <strong>Navigation 2</strong>.
+This short guide shows you how to build <strong>Navigation 2</strong> from source and later you can get started with <strong>Navigation 2</strong> exercises.</p>
+<p><img alt="" src="nav2.gif" /></p>
+<h2 id="objectives">Objectives</h2>
 <ul>
-<li>Fork <a href="https://github.com/ms-iot/rosdistro-db">https://github.com/ms-iot/rosdistro-db</a> &nearr; into your github account, if you haven't already</li>
-<li>Create a file called <code>0-update.list</code> in <code>c:\opt\ros\melodic\x64\etc\ros\rosdep\sources.list.d</code></li>
-<li>In this file, add a line which points to your fork.</li>
+<li>Exercise the ROS 2 Windows installation.</li>
+<li>Bootstrap an environment running <strong>Navigation 2</strong> samples.</li>
 </ul>
-<pre><code class="no-highlight"># os-specific listings first
-yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
-yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
+<h2 id="prerequisites">Prerequisites</h2>
+<blockquote>
+<p>The instructions can be found on <a href="http://wiki.ros.org/Installation/Windows"><code>http://wiki.ros.org/Installation/Windows</code></a>.</p>
+</blockquote>
+<ul>
+<li>✔ 64-bit (amd64) environment of <code>Windows 10 Desktop</code>.</li>
+<li>✔ <code>Visual Studio 2019</code> with <code>Desktop development with C++</code> workload included.</li>
+<li>✔ <code>Chocolatey</code> package manager installed.</li>
+<li>✔ <code>Git</code> source control software installed.</li>
+</ul>
+<h2 id="installing-ros-2-on-windows">Installing ROS 2 on Windows</h2>
+<ol>
+<li>From the start menu, look for <a href="https://docs.microsoft.com/en-us/dotnet/framework/tools/developer-command-prompt-for-vs"><code>x64 Native Tools Command Prompt for VS 2019</code></a>.</li>
+<li>Open the command prompt as administrator.</li>
+<li>Run the following to install <code>ROS 2 Eloquent</code> and <code>Gazebo 9</code>.</li>
+</ol>
+<pre><code class="Batchfile">mkdir c:\opt\chocolatey
+set ChocolateyInstall=c:\opt\chocolatey
+choco source add -n=ros-win -s=&quot;https://roswin.azurewebsites.net/api/v2&quot; --priority=1
+choco upgrade ros-eloquent-desktop gazebo9 -y --execution-timeout=0 --pre
 </code></pre>
 
-<ul>
-<li>Add a mapping from the dependency name used in the ROS package, to the name used in vcpkg. You can edit this file directly on github in your fork. 
-  The format of the vcpkg.yaml:</li>
-</ul>
-<p><code>Python</code></p>
-<pre><code class="no-highlight">&lt;python-package-name&gt;:
-    windows:
-      pip:
-        packages: [&lt;python-package-name-in-pip&gt;]
+<p>You can close the command prompt now.</p>
+<p>✔ Now you have ROS 2 <code>ros-eloquent-desktop</code> and <code>gazebo9</code> nightly build installed. </p>
+<h2 id="create-bootstrap-script">Create bootstrap script</h2>
+<p>Open your favorite editor and create a file <code>bootstrap.bat</code> under <code>c:\opt\ros\eloquent\x64\bootstrap.bat</code> with the following content:</p>
+<pre><code class="Batchfile">set &quot;ChocolateyInstall=c:\opt\chocolatey&quot;
+set &quot;PATH=C:\opt\python37amd64\DLLs;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;c:\opt\vcpkg\installed\x64-windows\bin;c:\opt\vcpkg;c:\opt\rosdeps\x64\bin;C:\opt\rosdeps\x64\lib;%PATH%&quot;
+call &quot;C:\opt\ros\eloquent\x64\local_setup.bat&quot;
+call &quot;C:\opt\rosdeps\x64\share\gazebo-9\setup.bat&quot;
+set &quot;CMAKE_PREFIX_PATH=c:\opt\vcpkg\installed\x64-windows;c:\opt\rosdeps\x64;%CMAKE_PREFIX_PATH%&quot;
+set &quot;ROS_PACKAGE_PATH=C:\opt\ros\eloquent\x64\share&quot;
+set &quot;ROS_ETC_DIR=C:\opt\ros\eloquent\x64\etc\ros&quot;
 </code></pre>
 
-<p><code>C++</code></p>
-<pre><code class="no-highlight">  &lt;linux--package-name&gt;:
-    windows:
-      vcpkg:
-        packages: [&lt;vcpkg-name&gt;]
+<h2 id="open-a-developer-command-prompt">Open a Developer Command Prompt</h2>
+<ol>
+<li>From the start menu, look for <a href="https://docs.microsoft.com/en-us/dotnet/framework/tools/developer-command-prompt-for-vs"><code>x64 Native Tools Command Prompt for VS 2019</code></a>.</li>
+<li>Run the shortcut as administrator.</li>
+<li>Once the developer command prompt is open, run</li>
+</ol>
+<pre><code>c:\opt\ros\eloquent\x64\bootstrap.bat
 </code></pre>
 
-<ul>
-<li>Update rosdeps on your computer.</li>
-</ul>
-<pre><code class="no-highlight">rosdep update
+<p>Now you are in the ROS 2 Developer command prompt.
+Stay in this command prompt for the rest of this tutorial.</p>
+<h2 id="create-a-navigation-2-workspace">Create a Navigation 2 Workspace</h2>
+<p>Create a empty workspace to contain the Navigation 2 project, and then resolve the additional dependencies.</p>
+<pre><code class="Batchfile">:: create a empty workspace
+mkdir c:\nav2_ws\src
+pushd c:\nav2_ws
+
+:: checkout the required source code.
+wget https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2.repos
+vcs import src &lt; navigation2.repos
+
+:: evaluate and resolve any additional dependencies
+rosdep update
 rosdep install --from-paths src --ignore-src -r -y
+
+:: manually install google-test
+choco install google-test -y
+
+:: manually install sdl2-image
+vcpkg install sdl2-image:x64-windows
+
+:: manually correct a mistakenly placed graphicsmagick header.
+move &quot;C:\opt\vcpkg\installed\x64-windows\include\Magick++\Magick++.h&quot; &quot;C:\opt\vcpkg\installed\x64-windows\include\&quot;
+
+:: downgrade cmake to 3.16.3
+:: workaround some breaking changes not yet accommodated by the upstream
+pip install -U cmake=3.16.3
 </code></pre>
 
-<p>You'll see that the dependency resolves correctly. However, you may be provided with instructions for using that library in ROS nodes:</p>
-<pre><code class="no-highlight">The package &lt;library&gt;:x64-windows provides CMake targets:
+<h2 id="build-and-activate-the-navigation-2-workspace">Build and Activate the Navigation 2 Workspace</h2>
+<p>Build the workspace by <code>colcon</code> build tool.</p>
+<pre><code class="Batchfile">:: change to the root of workspace
+pushd c:\nav2_ws
 
-    find_package(&lt;package&gt; CONFIG REQUIRED)
-    target_link_libraries(main PRIVATE &lt;package&gt; &lt;package&gt;::&lt;namespace&gt;)
+:: build the workspace
+colcon build --cmake-args -DBUILD_TESTING=OFF --cmake-target install
 </code></pre>
 
-<p>These may differ from how linkage happes on Linux. To link this library, to support both Windows and Linux, you can wrap it:</p>
-<pre><code class="no-highlight">if (MSVC)
-    target_link_libraries(main PRIVATE &lt;package&gt; &lt;package&gt;::&lt;namespace&gt;)
-else()
-    target_link_libraries(main ... &lt;original&gt;)
-endif
+<p>Once the build finishes, you should see the build summary as below:</p>
+<pre><code class="Batchfile">Summary: 58 packages finished [10min 47s]
+  2 packages had stderr output: behaviortree_cpp_v3 cartographer
 </code></pre>
 
+<p>Activate the workspace which was built.</p>
+<pre><code class="Batchfile">:: activate it
+install\setup.bat
+</code></pre>
+
+<p>Now you are in the Navigation 2 activated environment.</p>
+<h2 id="explore-navigation-2-samples">Explore Navigation 2 Samples</h2>
+<p>There are many <strong>Navigation 2</strong> resources online.
+Here we share some good starting points:</p>
 <ul>
-<li>Handling RelWithDebinfo
-ROS on Windows is delivered with Release binaries that have been built with Debug Info (using cmake's RelWithDebInfo target). When interacting with vcpkg, cmake will map RelWithDebInfo built binaries to Debug binaries. This mismatch will cause problems.</li>
+<li><a href="http://emanual.robotis.com/docs/en/platform/turtlebot3/ros2_simulation/#ros-2-simulation">TurtleBot3 ROS 2 Simulation: Virtual SLAM and Virtual Navigation</a></li>
+<li><a href="https://ros-planning.github.io/navigation2/">Navigation 2</a></li>
 </ul>
-<p>To correct this, add the following to the cmake for the ROS node:</p>
-<pre><code class="no-highlight">set_target_properties(${&lt;dependency_LIBRARIES} PROPERTIES MAP_IMPORTED_CONFIG_RELWITHDEBINFO RELEASE)
-</code></pre>
               
             </div>
           </div>
@@ -253,10 +300,10 @@ ROS on Windows is delivered with Release binaries that have been built with Debu
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="AddingVCPKG.html" class="btn btn-neutral float-right" title="Porting a C++ Dependency">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../GettingStarted/SetupCI.html" class="btn btn-neutral float-right" title="Continuous Integration">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="PortingANode.html" class="btn btn-neutral" title="Porting a ROS Package"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../tutorials/peak/peak.html" class="btn btn-neutral" title="PEAK-System&reg; PCAN&reg;-Basic"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -284,10 +331,10 @@ ROS on Windows is delivered with Release binaries that have been built with Debu
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="PortingANode.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../tutorials/peak/peak.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="AddingVCPKG.html" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../GettingStarted/SetupCI.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
