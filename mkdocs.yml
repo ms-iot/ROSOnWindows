@@ -17,6 +17,7 @@ nav:
         - SICK S300: tutorials/sick_s300/getting_started.md
         - Simple Open EtherCAT Master: tutorials/ethercat/soem.md
         - PEAK-System&reg; PCAN&reg;-Basic: tutorials/peak/peak.md
+        - Navigation2 on Windows: ros2/nav2.md
     - Continuous Development:
         - Continuous Integration: GettingStarted/SetupCI.md
         - Continuous Delivery: GettingStarted/SetupCD.md

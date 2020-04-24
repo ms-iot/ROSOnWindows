@@ -1,0 +1,49 @@
+repositories:
+  behaviortree_cpp_v3:
+    type: git
+    url: https://github.com/ms-iot/BehaviorTree.CPP
+    version: 3.1.1/windows
+  image_common:
+    type: git
+    url: https://github.com/ms-iot/image_common
+    version: 2.2.1/windows
+  test_msgs:
+    type: git
+    url: https://github.com/ros2-gbp/rcl_interfaces-release.git
+    version: release/eloquent/test_msgs/0.8.0-1
+  gazebo_ros_pkgs:
+    type: git
+    url: https://github.com/ms-iot/gazebo_ros_pkgs
+    version: 3.4.3/windows
+  navigation2:
+    type: git
+    url: https://github.com/ms-iot/navigation2
+    version: ros2/windows
+  cartographer/cartographer:
+    type: git
+    url: https://github.com/ms-iot/cartographer
+    version: 1.0.0/windows
+  cartographer/cartographer_ros:
+    type: git
+    url: https://github.com/ms-iot/cartographer_ros
+    version: 1.0.9001/windows
+  turtlebot3/turtlebot3:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/turtlebot3.git
+    version: eloquent-devel
+  turtlebot3/turtlebot3_msgs:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+    version: ros2
+  turtlebot3/turtlebot3_simulations:
+    type: git
+    url: https://github.com/ms-iot/turtlebot3_simulations.git
+    version: eloquent-devel/windows
+  utils/DynamixelSDK:
+    type: git
+    url: https://github.com/ms-iot/DynamixelSDK.git
+    version: ros2-windows
+  utils/hls_lfcd_lds_driver:
+    type: git
+    url: https://github.com/ms-iot/hls_lfcd_lds_driver.git
+    version: ros2-windows
