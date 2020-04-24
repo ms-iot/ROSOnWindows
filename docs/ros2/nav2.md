@@ -22,7 +22,7 @@ Here is a checklist what's required:
   * ✔ `Visual Studio 2019` with `Desktop development with C++` workload included.
   * ✔ `Chocolatey` package manager installed.
   * ✔ `Git` source control software installed.
-  * ✔ ROS 2 `ros-eloquent-desktop` nightly build installed.
+  * ✔ ROS 2 `ros-eloquent-desktop` and `gazebo9` nightly build installed.
 
 ## Create bootstrap script
 
