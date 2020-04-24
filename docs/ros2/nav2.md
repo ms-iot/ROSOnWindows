@@ -91,6 +91,10 @@ vcpkg install sdl2-image:x64-windows
 
 :: manually correct a mistakenly placed graphicsmagick header.
 move "C:\opt\vcpkg\installed\x64-windows\include\Magick++\Magick++.h" "C:\opt\vcpkg\installed\x64-windows\include\"
+
+:: downgrade cmake to 3.16.3
+:: workaround some breaking changes not yet accommodated by the upstream
+pip install -U cmake=3.16.3
 ```
 
 ## Build and Activate the Navigation 2 Workspace
