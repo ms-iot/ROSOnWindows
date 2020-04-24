@@ -89,7 +89,7 @@ Now you are in the Navigation 2 activated environment.
 There are many **Navigation 2** resources online.
 Here we share some good starting points:
 
-* [TurtleBot3 ROS 2 Simulation][turtlebot3ros2]
+* [TurtleBot3 ROS 2 Simulation: Virtual SLAM and Virtual Navigation][turtlebot3ros2]
 * [Navigation 2][nav2]
 
 
