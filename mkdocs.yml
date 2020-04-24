@@ -9,7 +9,7 @@ nav:
         - Binary Installation: GettingStarted/Setup.md
     - Using ROS:
         - For new ROS Users: GettingStarted/NewToROS.md
-    - Tutorials:
+    - Getting Started with ROS 1:
         - Tutorials at ROS Wiki &nearr;: http://wiki.ros.org/ROS/Tutorials
         - MoveIt: Moveit/moveit_tutorials.md
         - Universal Robot UR3: Moveit/UR3.md
@@ -17,6 +17,8 @@ nav:
         - SICK S300: tutorials/sick_s300/getting_started.md
         - Simple Open EtherCAT Master: tutorials/ethercat/soem.md
         - PEAK-System&reg; PCAN&reg;-Basic: tutorials/peak/peak.md
+    - Getting Started with ROS 2:
+        - Navigation 2: ros2/nav2.md
     - Continuous Development:
         - Continuous Integration: GettingStarted/SetupCI.md
         - Continuous Delivery: GettingStarted/SetupCD.md
