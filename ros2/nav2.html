@@ -219,7 +219,7 @@ choco upgrade ros-eloquent-desktop gazebo9 -y --execution-timeout=0 --pre
 <h2 id="create-bootstrap-script">Create bootstrap script</h2>
 <p>Open your favorite editor and create a file <code>bootstrap.bat</code> under <code>c:\opt\ros\eloquent\x64\bootstrap.bat</code> with the following content:</p>
 <pre><code class="Batchfile">set &quot;ChocolateyInstall=c:\opt\chocolatey&quot;
-set &quot;PATH=C:\opt\python37amd64\DLLs;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;c:\opt\vcpkg\installed\x64-windows\bin;c:\opt\vcpkg;c:\opt\rosdeps\x64\bin;C:\opt\rosdeps\x64\lib;%PATH%&quot;
+set &quot;PATH=C:\opt\python37amd64\DLLs;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;c:\opt\vcpkg\installed\x64-windows\bin;c:\opt\vcpkg;c:\opt\rosdeps\x64\bin;C:\opt\rosdeps\x64\lib;C:\opt\rosdeps\x64\tools\protobuf;%PATH%&quot;
 call &quot;C:\opt\ros\eloquent\x64\local_setup.bat&quot;
 call &quot;C:\opt\rosdeps\x64\share\gazebo-9\setup.bat&quot;
 set &quot;CMAKE_PREFIX_PATH=c:\opt\vcpkg\installed\x64-windows;c:\opt\rosdeps\x64;%CMAKE_PREFIX_PATH%&quot;
