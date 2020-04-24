@@ -45,7 +45,7 @@ Open your favorite editor and create a file `bootstrap.bat` under `c:\opt\ros\el
 
 ```Batchfile
 set "ChocolateyInstall=c:\opt\chocolatey"
-set "PATH=C:\opt\python37amd64\DLLs;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;c:\opt\vcpkg\installed\x64-windows\bin;c:\opt\vcpkg;c:\opt\rosdeps\x64\bin;C:\opt\rosdeps\x64\lib;%PATH%"
+set "PATH=C:\opt\python37amd64\DLLs;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;c:\opt\vcpkg\installed\x64-windows\bin;c:\opt\vcpkg;c:\opt\rosdeps\x64\bin;C:\opt\rosdeps\x64\lib;C:\opt\rosdeps\x64\tools\protobuf;%PATH%"
 call "C:\opt\ros\eloquent\x64\local_setup.bat"
 call "C:\opt\rosdeps\x64\share\gazebo-9\setup.bat"
 set "CMAKE_PREFIX_PATH=c:\opt\vcpkg\installed\x64-windows;c:\opt\rosdeps\x64;%CMAKE_PREFIX_PATH%"
