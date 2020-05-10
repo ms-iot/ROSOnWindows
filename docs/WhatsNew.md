@@ -1,5 +1,23 @@
 # What's New
 This page tracks changes to the ROS on Windows Documentation.
+## May 2020
+### Simulation with Github
+Coming soon
+
+### Continuous Deployment on Azure DevOps
+
+### ROS::Time fixes
+We discovered a bug in low level time routines, which affects localization. Corrected and in testing.
+
+### Gmapping
+By popular request, we're working on gmapping
+
+## April 2020
+### Continuous Deployment on Github
+Added documentation for building Windows packages and publishing a chocolatey package as a github release.
+
+### Continuous Simulation Lab
+Added a project which describes simulation during build, and tests which validate the build in simulation.
 
 ## March 2020
 ### ROS Github Action
