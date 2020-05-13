@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Continuous Integration - ROS on Windows</title>
+  <title>Azure DevOps Continuous Integration - ROS on Windows</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Continuous Integration";
-    var mkdocs_page_input_path = "GettingStarted\\SetupCI.md";
+    var mkdocs_page_name = "Azure DevOps Continuous Integration";
+    var mkdocs_page_input_path = "GettingStarted\\AzureSetupCI.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -91,19 +91,28 @@
                     <li class="toctree-l1"><a class="reference internal" href="../ros2/nav2.html">Navigation 2</a>
                     </li>
                 </ul>
-                <p class="caption"><span class="caption-text">Continuous Development</span></p>
+                <p class="caption"><span class="caption-text">GitHub Continuous Development</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="GithubSetupCI.html">GitHub Actions Continuous Integration</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="GithubSetupCD.html">GitHub Actions Continuous Delivery</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="GithubSetupCS.html">GitHub Actions Continuous Simulation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Azure DevOps Continuous Development</span></p>
                 <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="SetupCI.html">Continuous Integration</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="AzureSetupCI.html">Azure DevOps Continuous Integration</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#ros1-setup">ROS1 Setup</a>
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisite">Prerequisite</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ros2-setup">ROS2 Setup</a>
+    <li class="toctree-l2"><a class="reference internal" href="#using-the-pipeline">Using the Pipeline</a>
     </li>
     </ul>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="SetupCD.html">Continuous Delivery</a>
+                    <li class="toctree-l1"><a class="reference internal" href="AzureSetupCD.html">Azure DevOps Continuous Delivery</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="SetupCS.html">Continuous Simulation</a>
+                    <li class="toctree-l1"><a class="reference internal" href="AzureSetupCS.html">Azure DevOps Continuous Simulation</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Porting Guide</span></p>
@@ -169,14 +178,14 @@
     
       
         
-          <li>Continuous Development &raquo;</li>
+          <li>Azure DevOps Continuous Development &raquo;</li>
         
       
     
-    <li>Continuous Integration</li>
+    <li>Azure DevOps Continuous Integration</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/SetupCI.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/AzureSetupCI.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -187,47 +196,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="continuous-integration-with-github-actions">Continuous Integration with Github Actions</h1>
-<p>Actions are a feature of Github which allows you to easily integrate continuous integration into your builds. The Tooling Working Group of the ROS2 technical steering committee has built a <a href="https://github.com/ros-tooling/action-ros-ci">Github action</a> &nearr;  which allows you to build ROS packages. Microsoft is contributing to this action.</p>
-<p>The ROS action has different setups for ROS1 and ROS2, which will be covered below.</p>
-<h2 id="ros1-setup">ROS1 Setup</h2>
-<p>To configure your ROS1 repository for CI, you'll need to install the buildtime files which configures your solution for ROS building. </p>
-<p>Initialize Dependencies and Toolchain</p>
-<ul>
-<li>On github, select the <code>Create new file</code> button.</li>
-<li>Name the file <code>ci/deps.rosinstall</code></li>
-<li>In that file, place the contents of <a href="deps.html">deps.rosinstall</a> into the newly created file</li>
-<li>Name the file <code>ci/empty.rosinstall</code></li>
-<li>In that file, place the contents of <a href="empty.html">empty.rosinstall</a> into the newly created file</li>
-<li>On github, select the <code>Create new file</code> button.</li>
-<li>Name the file <code>ci/defaults.yaml</code></li>
-<li>In that file, place the contents of <a href="defaults.html">defaults.yaml</a> into the newly created file</li>
-<li>Name the file <code>ci/packaging.yaml</code></li>
-<li>In that file, place the contents of <a href="packaging.html">packaging.yaml</a> into the newly created file</li>
-<li>On github, select the <code>Create new file</code> button.</li>
-<li>Name the file <code>ci/environment.yaml</code></li>
-<li>In that file, place the contents of <a href="environment.html">environment.yaml</a> into the newly created file</li>
-<li>On github, select the <code>Create new file</code> button.</li>
-<li>Name the file <code>ci/toolchain.cmake</code></li>
-<li>In that file, place the contents of <a href="toolchain.html">toolchain.cmake</a> into the newly created file</li>
-</ul>
-<p>Now create the Github Action</p>
-<ul>
-<li>On github, select the <code>Action</code> tab.</li>
-<li>Create a new workflow</li>
-<li>In the new workflow, copy the contents of <a href="ros1_workflow.html">main.yaml</a> to the newly created workflow file.</li>
-<li>Replace <code>&lt;ros package&gt;</code> with the ROS package you are generating</li>
-</ul>
-<h2 id="ros2-setup">ROS2 Setup</h2>
-<p>To configure your ROS2 repository for CI, you'll need to install the buildtime files which configures your solution for ROS building. </p>
-<p>Now create the Github Action</p>
-<ul>
-<li>On github, select the <code>Action</code> tab.</li>
-<li>Create a new workflow</li>
-<li>In the new workflow, copy the contents of <a href="ros2_workflow.html">main.yaml</a> to the newly created workflow file.</li>
-<li>Replace <code>&lt;ros package&gt;</code> with the ROS package you are generating</li>
-</ul>
-<h1 id="continuous-integation-with-azure-devops">Continuous Integation with Azure DevOps</h1>
+                <h1 id="continuous-integation-with-azure-devops">Continuous Integation with Azure DevOps</h1>
 <p>This template helps you to set up a continuous integration (CI) build for your ROS repository with ROS on Windows. Use this template if you are not hosting your code in Github, if Github Actions are not sufficient or if you need to leverage specific Azure DevOps features.</p>
 <h2 id="prerequisite">Prerequisite</h2>
 <ul>
@@ -235,7 +204,9 @@
 <li>Learn how to create Azure DevOps pipeline from <a href="https://www.youtube.com/watch?v=NuYDAs3kNV8">here</a> &nearr;.</li>
 </ul>
 <h2 id="using-the-pipeline">Using the Pipeline</h2>
-<p>Navigate to your Azure DevOps project and create a new pipeline. When walking through the wizard, select <code>starter pipeline</code> and it will create a file of <code>azure-pipelines.yml</code> under the root of your ROS repository. </p>
+<p>Navigate to your Azure DevOps project and create a new pipeline. </p>
+<p>Select the location of your project. If the project is hosted on GitHub, select the GitHub option and then select the repository. You may need to provide Azure Pipelines access permissions to the repository. Select the correct repository if it isn't already selected and click <code>Approve and Install</code>.</p>
+<p>When walking through the wizard, select <code>starter pipeline</code> and it will create a file of <code>azure-pipelines.yml</code> under the root of your ROS repository.</p>
 <p>Replace <code>azure-pipelines.yml</code> with the following content:</p>
 <pre><code class="yaml">resources:
   repositories:
@@ -253,9 +224,11 @@ jobs:
 <p><code>resources</code> defines where to look for this common template. In this example, it defines a Github repository reference to <code>ms-iot\rosonwindows_ci</code> and use an <code>endpoint</code> to access it. </p>
 <p>Replace <code>endpoint</code> to your Github account (or your GitHub service connection name).</p>
 <p><code>jobs\template</code> defines what template to be included. In this example, include <code>build.yml@templates</code>, which means to refer to the <code>build.yml</code> under <code>ms-iot\rosonwindows_ci</code> GitHub repository.</p>
-<p>Under <code>template</code>, there are some parameters to customize your CI build:
-* <code>ros_metapackage</code>: It is the basic image to check out for CI build. In this example, it will install <code>ros-melodic-desktop</code> before the CI build.
-* <code>custom_test_target</code>: For projects which do not have  <code>run_tests</code> as default test target, it can be set to a customized test target.</p>
+<p>Under <code>template</code>, there are some parameters to customize your CI build:</p>
+<ul>
+<li><code>ros_metapackage</code>: It is the basic image to check out for CI build. In this example, it will install <code>ros-melodic-desktop</code> before the CI build.</li>
+<li><code>custom_test_target</code>: For projects which do not have  <code>run_tests</code> as default test target, it can be set to a customized test target.</li>
+</ul>
 <p>Once the wizard finishes, your ROS package will build using the azure pipeline.</p>
               
             </div>
@@ -264,10 +237,10 @@ jobs:
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="SetupCD.html" class="btn btn-neutral float-right" title="Continuous Delivery">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="AzureSetupCD.html" class="btn btn-neutral float-right" title="Azure DevOps Continuous Delivery">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../ros2/nav2.html" class="btn btn-neutral" title="Navigation 2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="GithubSetupCS.html" class="btn btn-neutral" title="GitHub Actions Continuous Simulation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -295,10 +268,10 @@ jobs:
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../ros2/nav2.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="GithubSetupCS.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="SetupCD.html" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="AzureSetupCD.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

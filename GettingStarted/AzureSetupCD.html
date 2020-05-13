@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Continuous Delivery - ROS on Windows</title>
+  <title>Azure DevOps Continuous Delivery - ROS on Windows</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Continuous Delivery";
-    var mkdocs_page_input_path = "GettingStarted\\SetupCD.md";
+    var mkdocs_page_name = "Azure DevOps Continuous Delivery";
+    var mkdocs_page_input_path = "GettingStarted\\AzureSetupCD.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -91,11 +91,20 @@
                     <li class="toctree-l1"><a class="reference internal" href="../ros2/nav2.html">Navigation 2</a>
                     </li>
                 </ul>
-                <p class="caption"><span class="caption-text">Continuous Development</span></p>
-                <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="SetupCI.html">Continuous Integration</a>
+                <p class="caption"><span class="caption-text">GitHub Continuous Development</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="GithubSetupCI.html">GitHub Actions Continuous Integration</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="SetupCD.html">Continuous Delivery</a>
+                    <li class="toctree-l1"><a class="reference internal" href="GithubSetupCD.html">GitHub Actions Continuous Delivery</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="GithubSetupCS.html">GitHub Actions Continuous Simulation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Azure DevOps Continuous Development</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="AzureSetupCI.html">Azure DevOps Continuous Integration</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="AzureSetupCD.html">Azure DevOps Continuous Delivery</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#sign-up-to-publish-packages">Sign up to Publish packages</a>
     </li>
@@ -117,7 +126,7 @@
     </li>
     </ul>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="SetupCS.html">Continuous Simulation</a>
+                    <li class="toctree-l1"><a class="reference internal" href="AzureSetupCS.html">Azure DevOps Continuous Simulation</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Porting Guide</span></p>
@@ -183,14 +192,14 @@
     
       
         
-          <li>Continuous Development &raquo;</li>
+          <li>Azure DevOps Continuous Development &raquo;</li>
         
       
     
-    <li>Continuous Delivery</li>
+    <li>Azure DevOps Continuous Delivery</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/SetupCD.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/AzureSetupCD.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -301,16 +310,9 @@ If the package fails to install correctly, the nupkg is a zip file. You can expa
 
 <h1 id="automatically-generate-chocolatey-package-during-ci">Automatically generate chocolatey package during CI</h1>
 <p>Once you've crafted your nuspec and tested the installation, you can generate the chocolatey package during CI and publish it as a release. </p>
-<p>Now create the Github Action</p>
-<ul>
-<li>On github, select the <code>Action</code> tab.</li>
-<li>Create a new workflow</li>
-<li>In the new workflow, copy the contents of <a href="ros1_workflow_pub.html">CD.yaml</a> to the newly created workflow file.</li>
-<li>Replace <code>&lt;ros package&gt;</code> with the ROS package you are generating</li>
-<li>Replace <code>&lt;ros nuspec&gt;</code> with the name of the nuspec you from above</li>
-<li>Replace <code>&lt;ros version&gt;</code> with the version from your nuspec.</li>
-</ul>
-<p>Whenever you create a tag in the repo, it will trigger the deployment workflow, which will publish the nupkg as a github release.  </p>
+<h2 id="using-azuredevops-ci">Using AzureDevOps CI</h2>
+<p>If a file called build.bat is detected in the package directory of the repository, the pipeline will execute it. The chocolatey package will be generated and an artifact will be published.</p>
+<p>The artifact can be downloaded by navigating to the build results and selecting the artifacts option under <code>Related</code>. The text for the option will be similar to <code>1 published; 1 consumed</code>.</p>
               
             </div>
           </div>
@@ -318,10 +320,10 @@ If the package fails to install correctly, the nupkg is a zip file. You can expa
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="SetupCS.html" class="btn btn-neutral float-right" title="Continuous Simulation">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="AzureSetupCS.html" class="btn btn-neutral float-right" title="Azure DevOps Continuous Simulation">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="SetupCI.html" class="btn btn-neutral" title="Continuous Integration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="AzureSetupCI.html" class="btn btn-neutral" title="Azure DevOps Continuous Integration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -349,10 +351,10 @@ If the package fails to install correctly, the nupkg is a zip file. You can expa
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="SetupCI.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="AzureSetupCI.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="SetupCS.html" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="AzureSetupCS.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
