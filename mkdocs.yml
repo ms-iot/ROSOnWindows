@@ -19,10 +19,14 @@ nav:
         - PEAK-System&reg; PCAN&reg;-Basic: tutorials/peak/peak.md
     - Getting Started with ROS 2:
         - Navigation 2: ros2/nav2.md
-    - Continuous Development:
-        - Continuous Integration: GettingStarted/SetupCI.md
-        - Continuous Delivery: GettingStarted/SetupCD.md
-        - Continuous Simulation: GettingStarted/SetupCS.md
+    - GitHub Continuous Development:
+        - GitHub Actions Continuous Integration: GettingStarted/GithubSetupCI.md
+        - GitHub Actions Continuous Delivery: GettingStarted/GithubSetupCD.md
+        - GitHub Actions Continuous Simulation: GettingStarted/GithubSetupCS.md
+    - Azure DevOps Continuous Development:
+        - Azure DevOps Continuous Integration: GettingStarted/AzureSetupCI.md
+        - Azure DevOps Continuous Delivery: GettingStarted/AzureSetupCD.md
+        - Azure DevOps Continuous Simulation: GettingStarted/AzureSetupCS.md
     - Porting Guide:
         - Consuming a ROS Package: GettingStarted/UsingROSonWindows.md
         - Porting a ROS Package: GettingStarted/PortingANode.md
