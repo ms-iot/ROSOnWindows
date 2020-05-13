@@ -34,6 +34,7 @@ Replace `endpoint` to your Github account (or your GitHub service connection nam
 `jobs\template` defines what template to be included. In this example, include `build.yml@templates`, which means to refer to the `build.yml` under `ms-iot\rosonwindows_ci` GitHub repository.
 
 Under `template`, there are some parameters to customize your CI build:
+
 * `ros_metapackage`: It is the basic image to check out for CI build. In this example, it will install `ros-melodic-desktop` before the CI build.
 * `custom_test_target`: For projects which do not have  `run_tests` as default test target, it can be set to a customized test target.
 
