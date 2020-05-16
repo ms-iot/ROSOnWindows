@@ -125,5 +125,44 @@ Now create the Github Action
 
 Whenever you create a tag in the repo, it will trigger the deployment workflow, which will publish the nupkg as a github release.  
 
+### Updating Chocolatey rosdep mappings
+Once your chocolatey package has been published, `rosdep` needs to be informed of how to find it. `rosdep` enumerates entries in `package.xml`, then uses a yaml mapping file to locate the package. 
 
+To update that mapping file, please follow these steps:
+
+* Fork [https://github.com/ms-iot/rosdistro-db](https://github.com/ms-iot/rosdistro-db) &nearr; into your github account
+* Create a file called `0-update.list` in `c:\opt\ros\melodic\x64\etc\ros\rosdep\sources.list.d`
+* In this file, add a line which points to your fork:
+```no-highlight
+# os-specific listings first
+yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
+yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
+```
+* Add a mapping from the dependency name used in the ROS package
+
+
+
+`Python`
+```no-highlight
+<python-package-name>:
+    windows:
+      pip:
+        packages: [<python-package-name-in-pip>]
+```
+  `C++`
+```no-highlight
+  <package-name>:
+    windows:
+      chocolatey:
+        depends: [<chocolatey dependencies which aren't specified in the package.xml>]
+        packages: [<chocolatey-name>]
+```
+
+* Update rosdeps on your computer.
+```no-highlight
+rosdep update
+rosdep install --from-paths src --ignore-src -r -y
+```
+
+> You may encounder a warning about missing packages. On Windows some packages were collapsed into their metapackage hosting package due to differences in dependency behavior on Windows.
 
