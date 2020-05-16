@@ -320,6 +320,47 @@ If the package fails to install correctly, the nupkg is a zip file. You can expa
 <li>Replace <code>&lt;ros version&gt;</code> with the version from your nuspec.</li>
 </ul>
 <p>Whenever you create a tag in the repo, it will trigger the deployment workflow, which will publish the nupkg as a github release.  </p>
+<h3 id="updating-chocolatey-rosdep-mappings">Updating Chocolatey rosdep mappings</h3>
+<p>Once your chocolatey package has been published, <code>rosdep</code> needs to be informed of how to find it. <code>rosdep</code> enumerates entries in <code>package.xml</code>, then uses a yaml mapping file to locate the package. </p>
+<p>To update that mapping file, please follow these steps:</p>
+<ul>
+<li>Fork <a href="https://github.com/ms-iot/rosdistro-db">https://github.com/ms-iot/rosdistro-db</a> &nearr; into your github account</li>
+<li>Create a file called <code>0-update.list</code> in <code>c:\opt\ros\melodic\x64\etc\ros\rosdep\sources.list.d</code></li>
+<li>In this file, add a line which points to your fork:</li>
+</ul>
+<pre><code class="no-highlight"># os-specific listings first
+yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
+yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
+</code></pre>
+
+<ul>
+<li>Add a mapping from the dependency name used in the ROS package</li>
+</ul>
+<p><code>Python</code></p>
+<pre><code class="no-highlight">&lt;python-package-name&gt;:
+    windows:
+      pip:
+        packages: [&lt;python-package-name-in-pip&gt;]
+</code></pre>
+
+<p><code>C++</code></p>
+<pre><code class="no-highlight">  &lt;package-name&gt;:
+    windows:
+      chocolatey:
+        depends: [&lt;chocolatey dependencies which aren't specified in the package.xml&gt;]
+        packages: [&lt;chocolatey-name&gt;]
+</code></pre>
+
+<ul>
+<li>Update rosdeps on your computer.</li>
+</ul>
+<pre><code class="no-highlight">rosdep update
+rosdep install --from-paths src --ignore-src -r -y
+</code></pre>
+
+<blockquote>
+<p>You may encounder a warning about missing packages. On Windows some packages were collapsed into their metapackage hosting package due to differences in dependency behavior on Windows.</p>
+</blockquote>
               
             </div>
           </div>

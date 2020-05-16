@@ -311,8 +311,49 @@ If the package fails to install correctly, the nupkg is a zip file. You can expa
 <h1 id="automatically-generate-chocolatey-package-during-ci">Automatically generate chocolatey package during CI</h1>
 <p>Once you've crafted your nuspec and tested the installation, you can generate the chocolatey package during CI and publish it as a release. </p>
 <h2 id="using-azuredevops-ci">Using AzureDevOps CI</h2>
-<p>If a file called build.bat is detected in the package directory of the repository, the pipeline will execute it. The chocolatey package will be generated and an artifact will be published.</p>
+<p>If a file called <code>build.bat</code> is detected in the package directory of the repository, the pipeline will execute it. The chocolatey package will be generated and an artifact will be published.</p>
 <p>The artifact can be downloaded by navigating to the build results and selecting the artifacts option under <code>Related</code>. The text for the option will be similar to <code>1 published; 1 consumed</code>.</p>
+<h3 id="updating-chocolatey-rosdep-mappings">Updating Chocolatey rosdep mappings</h3>
+<p>Once your chocolatey package has been published, <code>rosdep</code> needs to be informed of how to find it. <code>rosdep</code> enumerates entries in <code>package.xml</code>, then uses a yaml mapping file to locate the package. </p>
+<p>To update that mapping file, please follow these steps:</p>
+<ul>
+<li>Fork <a href="https://github.com/ms-iot/rosdistro-db">https://github.com/ms-iot/rosdistro-db</a> &nearr; into your github account</li>
+<li>Create a file called <code>0-update.list</code> in <code>c:\opt\ros\melodic\x64\etc\ros\rosdep\sources.list.d</code></li>
+<li>In this file, add a line which points to your fork:</li>
+</ul>
+<pre><code class="no-highlight"># os-specific listings first
+yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
+yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
+</code></pre>
+
+<ul>
+<li>Add a mapping from the dependency name used in the ROS package</li>
+</ul>
+<p><code>Python</code></p>
+<pre><code class="no-highlight">&lt;python-package-name&gt;:
+    windows:
+      pip:
+        packages: [&lt;python-package-name-in-pip&gt;]
+</code></pre>
+
+<p><code>C++</code></p>
+<pre><code class="no-highlight">  &lt;package-name&gt;:
+    windows:
+      chocolatey:
+        depends: [&lt;chocolatey dependencies which aren't specified in the package.xml&gt;]
+        packages: [&lt;chocolatey-name&gt;]
+</code></pre>
+
+<ul>
+<li>Update rosdeps on your computer.</li>
+</ul>
+<pre><code class="no-highlight">rosdep update
+rosdep install --from-paths src --ignore-src -r -y
+</code></pre>
+
+<blockquote>
+<p>You may encounder a warning about missing packages. On Windows some packages were collapsed into their metapackage hosting package due to differences in dependency behavior on Windows.</p>
+</blockquote>
               
             </div>
           </div>
