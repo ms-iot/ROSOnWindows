@@ -29,8 +29,6 @@ Please follow the Windows instructions for the [Robotis OpenCR board in the Robo
 
 Before proceeding, make sure the motors turn by pressing the motor test buttons near the USB connector.
 
-> BUG: We're working to identify a sync error coming from rosserial, which ultimately leads to a board reset.
-
 ### Compatible devices
 ROS on Windows requires a x64 bit Windows 10 Desktop or Windows 10 IoT Enterprise, and compatible hardware. 
 
