@@ -203,6 +203,8 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cmake-tip-verbose-output">CMake Tip - verbose output</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#start-ros-on-boot">Start ROS on Boot</a>
     </li>
     </ul>
@@ -460,6 +462,11 @@ unused;
 <p>This is caused by a stale CMake cache.</p>
 <h3 id="fix_1">Fix</h3>
 <p>Remove the build, devel and install directories and rebuild.</p>
+<h2 id="cmake-tip-verbose-output">CMake Tip - verbose output</h2>
+<p>When debugging a build failure, it is sometimes helpful to have verbose logging enabled:</p>
+<pre><code>catkin_make -DCMAKE_VERBOSE_MAKEFILE=ON
+</code></pre>
+
 <h2 id="start-ros-on-boot">Start ROS on Boot</h2>
 <p>Once you are done developing your robot and want it to automatically start on boot, you'll want to use the <a href="https://docs.microsoft.com/en-us/windows/win32/taskschd">Windows Task Scheduler</a> to start the task.</p>
 <ul>
