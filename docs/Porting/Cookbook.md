@@ -1,7 +1,6 @@
 # ROS for Windows Porting Cookbook
 While every effort has been made to reduce the effort needed to support ROS nodes on Windows, 
 there will inevitably be required changes between platforms. This cookbook is intended to collect common issues and recommended solutions.
-
 ## Windows and Linux Differences
 ### Directory Separators
 Windows uses backslash `\` whereas Linux uses forward slash `/`. As we encounter path processing, we've been replacing them with the Python or Boost equivelents.
@@ -235,6 +234,14 @@ This is caused by a stale CMake cache.
 
 ### Fix
 Remove the build, devel and install directories and rebuild.
+
+## CMake Tip - verbose output
+When debugging a build failure, it is sometimes helpful to have verbose logging enabled:
+
+```
+catkin_make -DCMAKE_VERBOSE_MAKEFILE=ON
+```
+
 
 ## Start ROS on Boot
 Once you are done developing your robot and want it to automatically start on boot, you'll want to use the [Windows Task Scheduler][taskschd] to start the task.
