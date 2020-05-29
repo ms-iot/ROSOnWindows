@@ -10,7 +10,7 @@ nav:
     - Using ROS:
         - For new ROS Users: GettingStarted/NewToROS.md
     - Getting Started with ROS 1:
-        - Tutorials at ROS Wiki &nearr;: http://wiki.ros.org/ROS/Tutorials
+        - Tutorials at ROS Wiki 🔗: http://wiki.ros.org/ROS/Tutorials
         - MoveIt: Moveit/moveit_tutorials.md
         - Universal Robot UR3: Moveit/UR3.md
         - TurtleBot 3: Turtlebot/Turtlebot3.md
@@ -36,12 +36,13 @@ nav:
     - ROS at Microsoft:
         - ROS 1 Azure VM: ROSAtMS/ROS1AzureVM.md
         - Windows ML ROS Node: ROSAtMS/WinML.md
-        - Azure Kinect ROS Node &nearr;: https://github.com/microsoft/azure_kinect_ros_driver
-        - Azure IoT Hub Node &nearr;: https://github.com/microsoft/ros_azure_iothub
-        - Visual Studio Code ROS Extension &nearr;: https://aka.ms/ros/vscode
+        - Azure Kinect ROS Node 🔗: https://github.com/microsoft/azure_kinect_ros_driver
+        - Azure IoT Hub Node 🔗: https://github.com/microsoft/ros_azure_iothub
+        - Visual Studio Code ROS Extension 🔗: https://aka.ms/ros/vscode
     - Advanced:
         - Source Installation: Build/source.md
         - Optimizing Performance: Advanced/Performance.md
+        - ROS on MSIX Packaging 🔗: https://github.com/ms-iot/msix_ros
     - Support:
         - Troubleshooting: GettingStarted/Troubleshooting.md
         - Create Issue: https://github.com/ms-iot/rosonwindows/issues
