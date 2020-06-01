@@ -6,7 +6,6 @@
 Firstly, go to [ROS on Windows installation](http://wiki.ros.org/Installation/Windows) and follow the steps on the Wiki page.
 
 Now you are all set to further explore [ROS Tutorials](http://wiki.ros.org/ROS/Tutorials). 
-[Microsoft has a staging fork of the ROS tutorials](https://github.com/ms-iot/ros_tutorials) which should be used instead of the repository in the tutorials.
 
 If you are new to ROS on Windows, please visit the[ Differences between ROS on Windows and ROS on Linux page](UsingROSonWindows.md) which describes some differences you'll encounter between what you see in the ROS tutorials and running on Windows. 
 
