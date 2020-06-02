@@ -32,7 +32,7 @@ This short guide shows you how to build **Navigation 2** from source and later y
 mkdir c:\opt\chocolatey
 set ChocolateyInstall=c:\opt\chocolatey
 choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1
-choco upgrade ros-eloquent-desktop gazebo9 wget -y --execution-timeout=0 --pre
+choco upgrade ros-eloquent-desktop gazebo9 wget openssl -y --execution-timeout=0 --pre
 ```
 
 You can close the command prompt now.
