@@ -56,7 +56,7 @@ Chocolatey is a package manager for Windows. It is used to make it easy to insta
         git --version
         ```
 
-## Installing ROS 2 on Windows
+## Installing ROS 2 Binaries
 
 1. From the start menu, look for [`x64 Native Tools Command Prompt for VS 2019`][vsdevcmd].
 2. Open the command prompt as administrator.
