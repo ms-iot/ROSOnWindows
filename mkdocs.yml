@@ -6,7 +6,8 @@ nav:
     - What's New: WhatsNew.md
     - Build Status: Build/buildfarm.md
     - Get ROS:
-        - Binary Installation: GettingStarted/Setup.md
+        - ROS 1 Binary Installation: GettingStarted/Setup.md
+        - ROS 2 Binary Installation: GettingStarted/SetupRos2.md
     - Using ROS:
         - For new ROS Users: GettingStarted/NewToROS.md
     - Getting Started with ROS 1:
