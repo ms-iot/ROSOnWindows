@@ -210,7 +210,7 @@ Many packages have been ported by the community or build on Windows without modi
 <h2 id="source-installation">Source Installation</h2>
 <p>If there isn't a binary release, determine if there is a source only distribution.
 Here is an example workflow how to create a workspace to test the availability:</p>
-<pre><code class="bash">:: activate the ROS environment
+<pre><code class="Batchfile">:: activate the ROS environment
 c:\opt\ros\melodic\x64\setup.bat
 
 :: create a empty workspace
@@ -239,7 +239,7 @@ catkin_make
 </code></pre>
 
 <p>If everything goes well, now you can activate the development space - by calling <code>devel/setup.bat</code> - and use the package.</p>
-<pre><code>:: activate the development space
+<pre><code class="Batchfile">:: activate the development space
 devel\setup.bat
 
 :: test the new package is discoverable
@@ -251,7 +251,7 @@ rospack find &lt;package_name&gt;
 <ul>
 <li>If a Windows port has not yet been released, you can repeat <a href="#source-installation">Soruce Installation</a> but ask <code>rosinstall_generator</code> to use the development branch this time.</li>
 </ul>
-<pre><code class="bash">:: use the development branch
+<pre><code class="Batchfile">:: use the development branch
 rosinstall_generator &lt;package&gt; --upstream-development --deps --exclude RPP &gt; pkg.rosinstall
 </code></pre>
 
