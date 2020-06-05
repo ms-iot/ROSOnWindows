@@ -20,9 +20,10 @@ title: ROS 2 Binary Installation
 
 Building a ROS project for Windows requires Visual Studio and the Microsoft SDKs for Windows.
 
-* Download Visual Studio 2019
+* [Download Visual Studio 2019](https://docs.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=vs-2019)
+    * Vcpkg is used for managing dependent libraries. It requires that the English language pack be installed.
     * Include "Desktop development with C++" workload.
-    * If you already have Visual Studio 2019 installed, you can Modify Installation
+    * If you already have Visual Studio 2019 installed, you can [Modify Installation](https://docs.microsoft.com/en-us/visualstudio/install/modify-visual-studio?view=vs-2019)
 
 ## Install Windows Package Manager
 
@@ -66,7 +67,7 @@ Chocolatey is a package manager for Windows. It is used to make it easy to insta
 mkdir c:\opt\chocolatey
 set ChocolateyInstall=c:\opt\chocolatey
 choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1
-choco upgrade ros-eloquent-desktop gazebo9 wget openssl -y --execution-timeout=0 --pre
+choco upgrade ros-eloquent-desktop gazebo9 wget -y --execution-timeout=0 --pre
 ```
 
 You can close the command prompt now.
