@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Deps - ROS on Windows</title>
+  <title>ROS 2 - ROS on Windows</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Deps";
-    var mkdocs_page_input_path = "GettingStarted\\deps.md";
+    var mkdocs_page_name = "ROS 2";
+    var mkdocs_page_input_path = "GettingStarted\\SetupRos2.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -60,10 +60,26 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Get ROS</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="Setup.html">ROS 1</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="SetupRos2.html">ROS 2</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="SetupRos2.html">ROS 2</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#windows-operating-system">Windows Operating System</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reserve-space-for-the-installation">Reserve space for the installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-visual-studio-2019">Install Visual Studio 2019</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-windows-package-manager">Install Windows Package Manager</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installing-ros-2-binaries">Installing ROS 2 Binaries</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-bootstrap-script">Create bootstrap script</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#open-a-developer-command-prompt">Open a Developer Command Prompt</a>
+    </li>
+    </ul>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Using ROS</span></p>
@@ -175,11 +191,15 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>Get ROS &raquo;</li>
+        
+      
     
-    <li>Deps</li>
+    <li>ROS 2</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/deps.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/SetupRos2.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -190,144 +210,109 @@
           <div role="main">
             <div class="section">
               
-                <pre><code class="yaml">- git:
-    local-name: actionlib
-    uri: https://github.com/ros/actionlib.git
-    version: melodic-devel
-- git:
-    local-name: angles
-    uri: https://github.com/ros/angles.git
-    version: master
-- git:
-    local-name: bond_core
-    uri: https://github.com/ros/bond_core.git
-    version: kinetic-devel
-- git:
-    local-name: catkin
-    uri: https://github.com/ros/catkin.git
-    version: kinetic-devel
-- git:
-    local-name: class_loader
-    uri: https://github.com/ros/class_loader.git
-    version: melodic-devel
-- git:
-    local-name: cmake_modules
-    uri: https://github.com/ros/cmake_modules.git
-    version: 0.4-devel
-- git:
-    local-name: common_msgs
-    uri: https://github.com/ros/common_msgs.git
-    version: jade-devel
-- git:
-    local-name: gencpp
-    uri: https://github.com/ros/gencpp.git
-    version: kinetic-devel
-- git:
-    local-name: geneus
-    uri: https://github.com/jsk-ros-pkg/geneus.git
-    version: master
-- git:
-    local-name: genlisp
-    uri: https://github.com/ros/genlisp.git
-    version: kinetic-devel
-- git:
-    local-name: genmsg
-    uri: https://github.com/ros/genmsg.git
-    version: kinetic-devel
-- git:
-    local-name: gennodejs
-    uri: https://github.com/RethinkRobotics-opensource/gennodejs.git
-    version: kinetic-devel
-- git:
-    local-name: genpy
-    uri: https://github.com/ros/genpy.git
-    version: kinetic-devel
-- git:
-    local-name: geometry2
-    uri: https://github.com/ros/geometry2.git
-    version: melodic-devel
-- git:
-    local-name: image_common
-    uri: https://github.com/ros-perception/image_common.git
-    version: hydro-devel
-- git:
-    local-name: message_generation
-    uri: https://github.com/ros/message_generation.git
-    version: kinetic-devel
-- git:
-    local-name: message_runtime
-    uri: https://github.com/ros/message_runtime.git
-    version: kinetic-devel
-- git:
-    local-name: nodelet_core
-    uri: https://github.com/ros/nodelet_core.git
-    version: indigo-devel
-- git:
-    local-name: orocos_kinematics_dynamics
-    uri: https://github.com/orocos/orocos_kinematics_dynamics.git
-    version: master
-- git:
-    local-name: pluginlib
-    uri: https://github.com/ros/pluginlib.git
-    version: melodic-devel
-- git:
-    local-name: ros
-    uri: https://github.com/ros/ros.git
-    version: kinetic-devel
-- git:
-    local-name: ros_comm
-    uri: https://github.com/ros/ros_comm.git
-    version: melodic-devel
-- git:
-    local-name: ros_comm_msgs
-    uri: https://github.com/ros/ros_comm_msgs.git
-    version: kinetic-devel
-- git:
-    local-name: ros_environment
-    uri: https://github.com/ros/ros_environment.git
-    version: melodic
-- git:
-    local-name: rosconsole
-    uri: https://github.com/ros/rosconsole.git
-    version: melodic-devel
-- git:
-    local-name: roscpp_core
-    uri: https://github.com/ros/roscpp_core.git
-    version: kinetic-devel
-- git:
-    local-name: roslint
-    uri: https://github.com/ros/roslint.git
-    version: master
-- git:
-    local-name: rospack
-    uri: https://github.com/ros/rospack.git
-    version: melodic-devel
-- git:
-    local-name: std_msgs
-    uri: https://github.com/ros/std_msgs.git
-    version: kinetic-devel
-- git:
-    local-name: vision_opencv
-    uri: https://github.com/ms-iot/vision_opencv.git
-    version: windows_py3
-- git:
-    local-name: xacro
-    uri: https://github.com/ros/xacro.git
-    version: melodic-devel
-- git:
-    local-name: geometry
-    uri: https://github.com/ms-iot/geometry.git
-    version: init_windows
-- git:
-    local-name: interactive_markers
-    uri: https://github.com/ms-iot/interactive_markers.git
-    version: init_windows
-
+                <h1 id="ros-2-on-windows-setup">ROS 2 on Windows Setup</h1>
+<h2 id="windows-operating-system">Windows Operating System</h2>
+<ul>
+<li>ROS for Windows requires 64-bit Windows 10 Desktop or Windows 10 IoT Enterprise.</li>
+<li>Please ensure that you have Powershell installed and in the system path.</li>
+<li>Exclude c:\opt (and later your workspace folder) from real-time virus Scanners, as they can interfere with install and development.</li>
+</ul>
+<h2 id="reserve-space-for-the-installation">Reserve space for the installation</h2>
+<ul>
+<li>Clean and back up any existing data under c:\opt before proceeding.</li>
+<li>c:\opt is the required install location. Relocation is not currently enabled.</li>
+<li>Please ensure you have 10 GB of free space on the C:\ drive for the installation and development.</li>
+</ul>
+<h2 id="install-visual-studio-2019">Install Visual Studio 2019</h2>
+<p>Building a ROS project for Windows requires Visual Studio and the Microsoft SDKs for Windows.</p>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=vs-2019">Download Visual Studio 2019</a><ul>
+<li>Vcpkg is used for managing dependent libraries. It requires that the English language pack be installed.</li>
+<li>Include "Desktop development with C++" workload.</li>
+<li>If you already have Visual Studio 2019 installed, you can <a href="https://docs.microsoft.com/en-us/visualstudio/install/modify-visual-studio?view=vs-2019">Modify Installation</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="install-windows-package-manager">Install Windows Package Manager</h2>
+<p>Chocolatey is a package manager for Windows. It is used to make it easy to install tools and libraries needed for building and running ROS projects. The following instructions redirect the chocolatey install location into the c:\opt, so that you can clean or move a ROS environment from that one location.</p>
+<ol>
+<li>In the Start Menu, find the "x64 Native Tools Command Prompt for VS 2019" item.</li>
+<li>Right Click, select More then "Run as Administrator"</li>
+<li>
+<p>Copy the following command line:</p>
+<p><code>@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" &amp;&amp; SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"</code></p>
+<ul>
+<li>Paste it into the command window.</li>
+<li>Approve any prompts</li>
+<li>Once it has completed, close the command prompt to complete the install.</li>
+</ul>
+</li>
+<li>
+<p>Install Git:</p>
+<ul>
+<li>Reopen the Visual Studio Command Window as described above.</li>
+<li>
+<p>Please install Git using the command here, even if you have it installed as an application:</p>
+<p><code>choco upgrade git -y</code></p>
+</li>
+<li>
+<p>Close and Reopen the Visual Studio Command Window as described above.</p>
+</li>
+<li>
+<p>Ensure Git is now available in the Visual Studio command window:</p>
+<p><code>git --version</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="installing-ros-2-binaries">Installing ROS 2 Binaries</h2>
+<ol>
+<li>From the start menu, look for [<code>x64 Native Tools Command Prompt for VS 2019</code>][vsdevcmd].</li>
+<li>Open the command prompt as administrator.</li>
+<li>Run the following to install <code>ROS 2 Eloquent</code> and <code>Gazebo 9</code>.</li>
+</ol>
+<pre><code class="Batchfile">mkdir c:\opt\chocolatey
+set ChocolateyInstall=c:\opt\chocolatey
+choco source add -n=ros-win -s=&quot;https://roswin.azurewebsites.net/api/v2&quot; --priority=1
+choco upgrade ros-eloquent-desktop gazebo9 wget -y --execution-timeout=0 --pre
 </code></pre>
+
+<p>You can close the command prompt now.</p>
+<p>Now you have ROS 2 <code>ros-eloquent-desktop</code> and <code>gazebo9</code> nightly build installed. </p>
+<h2 id="create-bootstrap-script">Create bootstrap script</h2>
+<p>Open your favorite editor and create a file <code>bootstrap.bat</code> under <code>c:\opt\ros\eloquent\x64\bootstrap.bat</code> with the following content:</p>
+<pre><code class="Batchfile">set &quot;ChocolateyInstall=c:\opt\chocolatey&quot;
+set &quot;PATH=c:\opt\chocolatey\bin;C:\opt\python37amd64\DLLs;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;c:\opt\vcpkg\installed\x64-windows\bin;c:\opt\vcpkg;c:\opt\rosdeps\x64\bin;C:\opt\rosdeps\x64\lib;C:\opt\rosdeps\x64\tools\protobuf;%PATH%&quot;
+call &quot;C:\opt\ros\eloquent\x64\local_setup.bat&quot;
+call &quot;C:\opt\rosdeps\x64\share\gazebo-9\setup.bat&quot;
+set &quot;CMAKE_PREFIX_PATH=c:\opt\vcpkg\installed\x64-windows;c:\opt\rosdeps\x64;%CMAKE_PREFIX_PATH%&quot;
+set &quot;ROS_PACKAGE_PATH=C:\opt\ros\eloquent\x64\share&quot;
+set &quot;ROS_ETC_DIR=C:\opt\ros\eloquent\x64\etc\ros&quot;
+</code></pre>
+
+<h2 id="open-a-developer-command-prompt">Open a Developer Command Prompt</h2>
+<ol>
+<li>From the start menu, look for [<code>x64 Native Tools Command Prompt for VS 2019</code>][vsdevcmd].</li>
+<li>Run the shortcut as administrator.</li>
+<li>Once the developer command prompt is open, run</li>
+</ol>
+<pre><code>c:\opt\ros\eloquent\x64\bootstrap.bat
+</code></pre>
+
+<p>Now you are in the ROS 2 Developer command prompt.</p>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="NewToROS.html" class="btn btn-neutral float-right" title="For new ROS Users">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="Setup.html" class="btn btn-neutral" title="ROS 1"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -353,6 +338,10 @@
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
+        <span><a href="Setup.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="NewToROS.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
