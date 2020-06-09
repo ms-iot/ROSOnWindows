@@ -16,7 +16,7 @@ Determine if there is a binary release of the ROS package.
 * Using [ROS Wiki](http://wiki.ros.org) &nearr;, locate the binary release name and attempt to install using `Chocolatey`.
 * If this succeeds, then you are all set!
 ```no-highlight
-choco install ros-melodic-<pacakge_name>
+choco install ros-melodic-<package_name>
 ```
 
 ## Source Installation
