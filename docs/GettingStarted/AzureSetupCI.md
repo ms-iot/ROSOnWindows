@@ -1,4 +1,4 @@
-# Continuous Integation with Azure DevOps
+# Continuous Integration with Azure DevOps
 This template helps you to set up a continuous integration (CI) build for your ROS repository with ROS on Windows. Use this template if you are not hosting your code in Github, if Github Actions are not sufficient or if you need to leverage specific Azure DevOps features.
 
 ## Prerequisite
