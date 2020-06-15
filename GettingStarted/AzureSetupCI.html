@@ -106,7 +106,7 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="AzureSetupCI.html">Continuous Integration</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#prerequisite">Prerequisite</a>
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#using-the-pipeline">Using the Pipeline</a>
     </li>
@@ -200,18 +200,17 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="continuous-integration-with-azure-devops">Continuous Integration with Azure DevOps</h1>
-<p>This template helps you to set up a continuous integration (CI) build for your ROS repository with ROS on Windows. Use this template if you are not hosting your code in Github, if Github Actions are not sufficient or if you need to leverage specific Azure DevOps features.</p>
-<h2 id="prerequisite">Prerequisite</h2>
-<ul>
-<li>Make sure you have an Azure DevOps pipeline setup. If you don't, visit <a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/get-started/pipelines-sign-up">here</a> &nearr; for getting started.</li>
-<li>Learn how to create Azure DevOps pipeline from <a href="https://www.youtube.com/watch?v=NuYDAs3kNV8">here</a> &nearr;.</li>
-</ul>
+                <h1 id="continuous-integration-with-azure-pipelines">Continuous Integration with Azure Pipelines</h1>
+<p>This template helps you to set up a continuous integration (CI) build for your ROS repository with ROS.
+Use this template if you are not hosting your code in GitHub, if GitHub Actions are not sufficient or if you need to leverage specific Azure Pipelines features.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>✔️ Learn the basics of <a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/get-started/?view=azure-devops">Getting Started with Azure Pipelines</a>.</p>
+<p>✔️ Learn more about <a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops">Azure Pipelines</a>.</p>
 <h2 id="using-the-pipeline">Using the Pipeline</h2>
-<p>Navigate to your Azure DevOps project and create a new pipeline. </p>
+<p>Navigate to your Azure Pipelines project and create a new pipeline.</p>
 <p>Select the location of your project. If the project is hosted on GitHub, select the GitHub option and then select the repository. You may need to provide Azure Pipelines access permissions to the repository. Select the correct repository if it isn't already selected and click <code>Approve and Install</code>.</p>
 <p>When walking through the wizard, select <code>starter pipeline</code> and it will create a file of <code>azure-pipelines.yml</code> under the root of your ROS repository.</p>
-<p>Replace <code>azure-pipelines.yml</code> with the following content:</p>
+<p>Replace azure-pipelines.yml with the following content:</p>
 <pre><code class="yaml">resources:
   repositories:
     - repository: templates
@@ -222,7 +221,12 @@
 jobs:
 - template: build.yml@templates  # Template reference
   parameters:
-    ros_metapackage: 'ros-melodic-desktop'
+    rosdistro: melodic
+    metapackage: desktop
+    custom_test_target: 'run_tests'
+    platforms:
+      - linux
+      - windows
 </code></pre>
 
 <p><code>resources</code> defines where to look for this common template. In this example, it defines a Github repository reference to <code>ms-iot\rosonwindows_ci</code> and use an <code>endpoint</code> to access it. </p>
@@ -230,10 +234,17 @@ jobs:
 <p><code>jobs\template</code> defines what template to be included. In this example, include <code>build.yml@templates</code>, which means to refer to the <code>build.yml</code> under <code>ms-iot\rosonwindows_ci</code> GitHub repository.</p>
 <p>Under <code>template</code>, there are some parameters to customize your CI build:</p>
 <ul>
-<li><code>ros_metapackage</code>: It is the basic image to check out for CI build. In this example, it will install <code>ros-melodic-desktop</code> before the CI build.</li>
-<li><code>custom_test_target</code>: For projects which do not have  <code>run_tests</code> as default test target, it can be set to a customized test target.</li>
+<li>
+<p><code>rosdistro</code> and <code>metapackage</code>: You can use <code>rosdistro</code> for what ROS distro and <code>metapackage</code> for what the composition to check out for your CI build. In this example, it specifies to use <code>melodic</code> ROS distro and check out the ROS packages up to <code>desktop</code>.</p>
+</li>
+<li>
+<p><code>custom_test_target</code>: For projects which do not have  <code>run_tests</code> as default test target, it can be set to a customized test target.</p>
+</li>
+<li>
+<p><code>platforms</code>: You can use this to select what platforms to run CI builds. Currently <code>linux</code> and <code>windows</code> are supported values.</p>
+</li>
 </ul>
-<p>Once the wizard finishes, your ROS package will build using the azure pipeline.</p>
+<p>Once the wizard finishes, your ROS package will build using the Azure Pipelines.</p>
               
             </div>
           </div>
