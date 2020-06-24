@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Ros2 workflow - ROS on Windows</title>
+  <title>Continuous Simulation (Windows) - ROS on Windows</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Ros2 workflow";
-    var mkdocs_page_input_path = "GettingStarted\\ros2_workflow.md";
+    var mkdocs_page_name = "Continuous Simulation (Windows)";
+    var mkdocs_page_input_path = "GettingStarted\\GithubSetupCS_Windows.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -94,12 +94,36 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Using Github Actions</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="GithubSetupCI.html">Continuous Integration</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="GithubSetupCD.html">Continuous Delivery</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="GithubSetupCS_Windows.html">Continuous Simulation (Windows)</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="GithubSetupCS_Windows.html">Continuous Simulation (Windows)</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#objectives">Objectives</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercise-1-build-and-run-autonomous-car-simulation-locally">Exercise 1: Build And Run Autonomous Car Simulation Locally</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercise-2-run-rostest-with-autonomous-car-simulation-locally">Exercise 2: Run ROSTest With Autonomous Car Simulation Locally</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exercise-3-provision-cloud-ci-environment-with-github-actions">Exercise 3: Provision Cloud CI Environment With GitHub Actions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#task-1-fork-this-github-project">Task 1: Fork this GitHub Project</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#task-2-prepare-permission-for-self-hosted-github-runner">Task 2: Prepare Permission For Self-Hosted GitHub Runner</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#task-3-deploy-virtual-machine-and-register-as-self-hosted-github-runner">Task 3: Deploy Virtual Machine and Register as Self-Hosted GitHub Runner</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#task-4-observe-the-github-actions">Task 4: Observe the GitHub Actions</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="GithubSetupCS_Linux.html">Continuous Simulation (Linux)</a>
                     </li>
@@ -179,11 +203,15 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
+        
+          <li>Using Github Actions &raquo;</li>
+        
+      
     
-    <li>Ros2 workflow</li>
+    <li>Continuous Simulation (Windows)</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/ros2_workflow.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/GithubSetupCS_Windows.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -194,38 +222,133 @@
           <div role="main">
             <div class="section">
               
-                <pre><code class="yaml">name: Build
-on:
-  pull_request:
-  push:
-    branches:
-      - master
-  schedule:
-    # Run every hour. This helps detect flakiness,
-    # and broken external dependencies.
-    - cron:  '0 * * * *'
+                <h1 id="continuous-simulation-lab-with-github-actions-windows">Continuous Simulation Lab with GitHub Actions (Windows)</h1>
+<h2 id="overview">Overview</h2>
+<p>After defining your robot behavior, it is important to ensure the robot running as expected as the project iterates.
+The traditional unit tests and integration tests usually use the static data to exercise your code.
+Continous simulation demonstrates how you make use of <code>GitHub Actions</code> and <a href="https://azure.microsoft.com/en-us/resources/templates/ros-vm-windows/"><code>ROS on Azure with Windows VM</code></a> to run your code in Hardware-in-the-loop simulation and virtual environments.
+In this lab, we begin with self-driving car project with Gazebo simulation, test it on the rostest framework, and then cloud-host the continuous simulation on Azure Pipelines.</p>
+<p>This lab uses the <a href="https://github.com/Autonomous-Racing-PG/ar-tu-do">software</a> developed by the Autonomous Racing Project Group of <a href="https://ls12-www.cs.tu-dortmund.de/daes/">TU Dortmund</a>.
+Credit goes to all the <a href="https://github.com/Autonomous-Racing-PG/ar-tu-do/graphs/contributors">contributors</a>.</p>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>
+<p>Run and observe the autonomous racecar simulation locally.</p>
+</li>
+<li>
+<p>Deploy and register a ROS on Windows GPU optimized virtual machine on Azure.</p>
+</li>
+<li>
+<p>Integrate a GitHub project with GitHub Actions.</p>
+</li>
+<li>
+<p>Observe the simulation runs and test results on the pipeline.</p>
+</li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>
+<p>An Microsoft Azure account from https://portal.azure.com.</p>
+</li>
+<li>
+<p>A GitHub account from https://github.com.</p>
+</li>
+</ul>
+<h2 id="exercise-1-build-and-run-autonomous-car-simulation-locally">Exercise 1: Build And Run Autonomous Car Simulation Locally</h2>
+<ol>
+<li>Fork <a href="https://github.com/ms-iot/ros_simulation_lab"><code>ms-iot/ros_simulation_lab</code></a> repository into your GitHub account.</li>
+<li>Follow this ROS Wiki <a href="http://wiki.ros.org/Installation/Windows">page</a> to install ROS Melodic on Windows.</li>
+<li>Open the ROS command prompt, and run the following to build the project.</li>
+</ol>
+<pre><code class="Batchfile">:: Clone the github project
+git clone https://github.com/&lt;your account&gt;/ros_simulation_lab --recursive
+cd ros_simulation_lab
 
-jobs:
-  build_and_test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-          os: [ubuntu-latest, windows-latest]
-    steps:
-    - uses: ros-tooling/setup-ros@0.0.15
-    - uses: ros-tooling/action-ros-ci@master
-      with:
-        package-name: &lt;ros package&gt;
-    - uses: actions/upload-artifact@v1
-      with:
-        name: drop
-        path: c:\opt\install
+:: install required components
+vcpkg install sdl2:x64-windows
+pip install circle-fit
+
+:: build it
+cd catkin_ws
+catkin_make --use-ninja -DCMAKE_BUILD_TYPE=RELEASE
 </code></pre>
+
+<ol>
+<li>Run the autonomous car simulation.</li>
+</ol>
+<pre><code class="Batchfile">:: source the ROS devel space.
+devel\setup.bat
+
+:: run the application
+roslaunch src\ar-tu-do\ros_ws\launch\gazebo.launch world:=racetrack mode_override:=2
+</code></pre>
+
+<p>This launch file runs a racecar in a simulated track in Gazebo and runs autonomous driving.</p>
+<p><img alt="simulation" src="https://github.com/ms-iot/ros_simulation_lab/raw/master/docs/simulation.png" /></p>
+<h2 id="exercise-2-run-rostest-with-autonomous-car-simulation-locally">Exercise 2: Run ROSTest With Autonomous Car Simulation Locally</h2>
+<ol>
+<li>End the previous exercise and run the following rostest file:</li>
+</ol>
+<pre><code class="Batchfile">:: source the ROS devel space.
+devel\setup.bat
+
+:: run the rostest
+rostest demo demo.test
+</code></pre>
+
+<p>This <a href="https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo/test/demo.test"><code>demo.test</code></a> runs the same task as the previous exercise but in headless mode.
+Additonally, it runs a <a href="https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo/nodes/demo.py"><code>demo.py</code></a> node to kick off a validation on the latest lap time.
+The <a href="https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo"><code>demo</code></a> package demonstrates an example how to organize your robot simulation with the rostest framework.
+Now let's move this exercise to cloud-hosted environment with Azure Pipelines.</p>
+<h2 id="exercise-3-provision-cloud-ci-environment-with-github-actions">Exercise 3: Provision Cloud CI Environment With GitHub Actions</h2>
+<h3 id="task-1-fork-this-github-project">Task 1: Fork this GitHub Project</h3>
+<ol>
+<li>Fork <a href="https://github.com/ms-iot/ros_simulation_lab"><code>ms-iot/ros_simulation_lab</code></a> repository into your GitHub account.</li>
+<li>Go to your forked repository and navigate to the <code>Actions</code> tab.</li>
+<li>Make sure it is enabled by your permission.
+   <img alt="github-actions" src="https://github.com/ms-iot/ros_simulation_lab/raw/master/docs/github-actions.png" /></li>
+</ol>
+<h3 id="task-2-prepare-permission-for-self-hosted-github-runner">Task 2: Prepare Permission For Self-Hosted GitHub Runner</h3>
+<ol>
+<li>Create a GitHub <a href="https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line">personal access token</a> and select the scope of <code>repo</code>.</li>
+<li>Take a note of the personal access token (PAT).</li>
+</ol>
+<h3 id="task-3-deploy-virtual-machine-and-register-as-self-hosted-github-runner">Task 3: Deploy Virtual Machine and Register as Self-Hosted GitHub Runner</h3>
+<p>This <a href="https://azure.microsoft.com/en-us/resources/templates/ros-vm-windows/"><code>ROS on Azure with Windows VM</code></a> is a Azure quickstart template to help setup an Azure virtual machine with ROS installed.</p>
+<ol>
+<li>Navigate to the template. Click <code>Deploy to Azure</code>.</li>
+<li>A form will be brought to you and here are some important parameters for this exercise.</li>
+<li><strong>Virtual Machine Size</strong>: Select <code>Standard_NV*</code> for GPU optimized virtual machine. This is required for Gazebo.</li>
+<li><strong>Vm Image</strong>: Select <code>Visual Studio 2019</code> for the required toolchain to build project.</li>
+<li><strong>Pipeline Provider</strong>: Select <code>GitHubRunner</code> to use Azure DevOps.</li>
+<li><strong>GitHub Repo</strong>: This is your GitHub account and the repository name seperated by a forward slash. For example, <code>&lt;your GitHub account&gt;/ros_simulation_lab</code> is the value of this fork.</li>
+<li><strong>GitHub Personal Access Token</strong>: This is the PAT noted from the previous section.</li>
+</ol>
+<h3 id="task-4-observe-the-github-actions">Task 4: Observe the GitHub Actions</h3>
+<ol>
+<li>
+<p>Navigate to the <code>Actions</code> tab and make sure workflows are listed there.
+   <img alt="github-actions-summary" src="https://github.com/ms-iot/ros_simulation_lab/raw/master/docs/github-actions-summary.png" /></p>
+</li>
+<li>
+<p>Push some changes to the fork.</p>
+</li>
+<li>Observe the runs of the workflows.
+   And you can explore more on <a href="https://help.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow#about-workflows">GitHub Help</a>.</li>
+</ol>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="GithubSetupCS_Linux.html" class="btn btn-neutral float-right" title="Continuous Simulation (Linux)">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="GithubSetupCD.html" class="btn btn-neutral" title="Continuous Delivery"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -251,6 +374,10 @@ jobs:
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
+        <span><a href="GithubSetupCD.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="GithubSetupCS_Linux.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
