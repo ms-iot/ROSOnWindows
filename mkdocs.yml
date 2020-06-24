@@ -23,11 +23,13 @@ nav:
     - Using Github Actions:
         - Continuous Integration: GettingStarted/GithubSetupCI.md
         - Continuous Delivery: GettingStarted/GithubSetupCD.md
-        - Continuous Simulation: GettingStarted/GithubSetupCS.md
-    - Using Azure DevOps Pipelines:
+        - Continuous Simulation (Windows): GettingStarted/GithubSetupCS_Windows.md
+        - Continuous Simulation (Linux): GettingStarted/GithubSetupCS_Linux.md
+    - Using Azure Pipelines:
         - Continuous Integration: GettingStarted/AzureSetupCI.md
         - Continuous Delivery: GettingStarted/AzureSetupCD.md
-        - Continuous Simulation: GettingStarted/AzureSetupCS.md
+        - Continuous Simulation (Windows): GettingStarted/AzureSetupCS_Windows.md
+        - Continuous Simulation (Linux): GettingStarted/AzureSetupCS_Linux.md
     - Porting Guide:
         - Consuming a ROS Package: GettingStarted/UsingROSonWindows.md
         - Porting a ROS Package: GettingStarted/PortingANode.md
