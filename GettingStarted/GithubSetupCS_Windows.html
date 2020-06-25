@@ -227,7 +227,7 @@
 <p>After defining your robot behavior, it is important to ensure the robot running as expected as the project iterates.
 The traditional unit tests and integration tests usually use the static data to exercise your code.
 Continous simulation demonstrates how you make use of <code>GitHub Actions</code> and <a href="https://azure.microsoft.com/en-us/resources/templates/ros-vm-windows/"><code>ROS on Azure with Windows VM</code></a> to run your code in Hardware-in-the-loop simulation and virtual environments.
-In this lab, we begin with self-driving car project with Gazebo simulation, test it on the rostest framework, and then cloud-host the continuous simulation on Azure Pipelines.</p>
+In this lab, we begin with self-driving car project with Gazebo simulation, test it on the rostest framework, and then cloud-host the continuous simulation on GitHub Actions.</p>
 <p>This lab uses the <a href="https://github.com/Autonomous-Racing-PG/ar-tu-do">software</a> developed by the Autonomous Racing Project Group of <a href="https://ls12-www.cs.tu-dortmund.de/daes/">TU Dortmund</a>.
 Credit goes to all the <a href="https://github.com/Autonomous-Racing-PG/ar-tu-do/graphs/contributors">contributors</a>.</p>
 <h2 id="objectives">Objectives</h2>
@@ -299,7 +299,7 @@ rostest demo demo.test
 <p>This <a href="https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo/test/demo.test"><code>demo.test</code></a> runs the same task as the previous exercise but in headless mode.
 Additonally, it runs a <a href="https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo/nodes/demo.py"><code>demo.py</code></a> node to kick off a validation on the latest lap time.
 The <a href="https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo"><code>demo</code></a> package demonstrates an example how to organize your robot simulation with the rostest framework.
-Now let's move this exercise to cloud-hosted environment with Azure Pipelines.</p>
+Now let's move this exercise to cloud-hosted environment with GitHub Actions.</p>
 <h2 id="exercise-3-provision-cloud-ci-environment-with-github-actions">Exercise 3: Provision Cloud CI Environment With GitHub Actions</h2>
 <h3 id="task-1-fork-this-github-project">Task 1: Fork this GitHub Project</h3>
 <ol>
@@ -320,7 +320,7 @@ Now let's move this exercise to cloud-hosted environment with Azure Pipelines.</
 <li>A form will be brought to you and here are some important parameters for this exercise.</li>
 <li><strong>Virtual Machine Size</strong>: Select <code>Standard_NV*</code> for GPU optimized virtual machine. This is required for Gazebo.</li>
 <li><strong>Vm Image</strong>: Select <code>Visual Studio 2019</code> for the required toolchain to build project.</li>
-<li><strong>Pipeline Provider</strong>: Select <code>GitHubRunner</code> to use Azure DevOps.</li>
+<li><strong>Pipeline Provider</strong>: Select <code>GitHubRunner</code> to register as GitHub Self-hosted Runner.</li>
 <li><strong>GitHub Repo</strong>: This is your GitHub account and the repository name seperated by a forward slash. For example, <code>&lt;your GitHub account&gt;/ros_simulation_lab</code> is the value of this fork.</li>
 <li><strong>GitHub Personal Access Token</strong>: This is the PAT noted from the previous section.</li>
 </ol>
