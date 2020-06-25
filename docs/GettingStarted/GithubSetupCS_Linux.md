@@ -5,7 +5,7 @@
 After defining your robot behavior, it is important to ensure the robot running as expected as the project iterates.
 The traditional unit tests and integration tests usually use the static data to exercise your code.
 Continous simulation demonstrates how you make use of `GitHub Actions` and [`ROS on Azure with Linux VM`](https://azure.microsoft.com/en-us/resources/templates/ros-vm-linux/) to run your code in Hardware-in-the-loop simulation and virtual environments.
-In this lab, we begin with self-driving car project with Gazebo simulation, test it on the rostest framework, and then cloud-host the continuous simulation on Azure Pipelines.
+In this lab, we begin with self-driving car project with Gazebo simulation, test it on the rostest framework, and then cloud-host the continuous simulation on GitHub Actions.
 
 This lab uses the [software](https://github.com/Autonomous-Racing-PG/ar-tu-do) developed by the Autonomous Racing Project Group of [TU Dortmund](https://ls12-www.cs.tu-dortmund.de/daes/).
 Credit goes to all the [contributors](https://github.com/Autonomous-Racing-PG/ar-tu-do/graphs/contributors).
@@ -77,7 +77,7 @@ rostest demo demo.test
 This [`demo.test`](https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo/test/demo.test) runs the same task as the previous exercise but in headless mode.
 Additonally, it runs a [`demo.py`](https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo/nodes/demo.py) node to kick off a validation on the latest lap time.
 The [`demo`](https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo) package demonstrates an example how to organize your robot simulation with the rostest framework.
-Now let's move this exercise to cloud-hosted environment with Azure Pipelines.
+Now let's move this exercise to cloud-hosted environment with GitHub Actions.
 
 ## Exercise 3: Provision Cloud CI Environment With GitHub Actions
 
@@ -99,7 +99,7 @@ This [`ROS on Azure with Linux VM`](https://azure.microsoft.com/en-us/resources/
 
 1. Navigate to the template. Click `Deploy to Azure`.
 2. A form will be brought to you and here are some important parameters for this exercise.
-   * **Pipeline Provider**: Select `GitHubRunner` to use Azure DevOps.
+   * **Pipeline Provider**: Select `GitHubRunner` to register as GitHub Self-hosted Runner.
    * **GitHub Repo**: This is your GitHub account and the repository name seperated by a forward slash. For example, `<your GitHub account>/ros_simulation_lab` is the value of this fork.
    * **GitHub Personal Access Token**: This is the PAT noted from the previous section.
 
