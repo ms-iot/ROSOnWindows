@@ -75,7 +75,7 @@ rostest demo demo.test
 This [`demo.test`](https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo/test/demo.test) runs the same task as the previous exercise but in headless mode.
 Additonally, it runs a [`demo.py`](https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo/nodes/demo.py) node to kick off a validation on the latest lap time.
 The [`demo`](https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo) package demonstrates an example how to organize your robot simulation with the rostest framework.
-Now let's move this exercise to cloud-hosted environment with Azure Pipelines.
+Now let's move this exercise to cloud-hosted environment with GitHub Actions.
 
 ## Exercise 3: Provision Cloud CI Environment With GitHub Actions
 
