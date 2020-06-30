@@ -135,8 +135,8 @@ cd c:\nav2_ws
 set GAZEBO_MODEL_PATH=C:\nav2_ws\install\turtlebot3_gazebo\share\turtlebot3_gazebo\models;%GAZEBO_MODEL_PATH%
 set TURTLEBOT3_MODEL=waffle
 
-curl -o map.pgm https://github.com/ROBOTIS-GIT/turtlebot3/raw/master/turtlebot3_navigation/maps/map.pgm
-curl -o map.yaml https://github.com/ROBOTIS-GIT/turtlebot3/raw/master/turtlebot3_navigation/maps/map.yaml
+curl -o map.pgm https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/master/turtlebot3_navigation/maps/map.pgm
+curl -o map.yaml https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/master/turtlebot3_navigation/maps/map.yaml
 
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=c:\nav2_ws\map.yaml
