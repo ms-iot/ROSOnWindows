@@ -123,7 +123,26 @@ Activate the workspace which was built.
 install\setup.bat
 ```
 
+## Verify your environment with Gazebo and TurtleBot3
+
 Now you are in the Navigation 2 activated environment.
+Before you explore more, let's run a little exercise to make sure your environment ready to go.
+
+```Batchfile
+cd c:\nav2_ws
+
+set GAZEBO_MODEL_PATH=C:\nav2_ws\install\turtlebot3_gazebo\share\turtlebot3_gazebo\models;%GAZEBO_MODEL_PATH%
+set TURTLEBOT3_MODEL=waffle
+
+curl -o map.pgm https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/master/turtlebot3_navigation/maps/map.pgm
+curl -o map.yaml https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/master/turtlebot3_navigation/maps/map.yaml
+
+start ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+start ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=c:\nav2_ws\map.yaml
+```
+
+After a few moment, you should see `TurtleBot3` in a simulation world and the respective map shows in `RViz`.
+You can use `2D pose` in `RViz` to give a estimate location to intialize your robot, and use `2D goal` to see Navigation 2 planning a path in action.
 
 ## Explore Navigation 2 Samples
 
