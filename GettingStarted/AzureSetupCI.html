@@ -227,7 +227,8 @@ jobs:
   parameters:
     rosdistro: melodic
     metapackage: desktop
-    custom_test_target: 'run_tests'
+    custom_version: '20200607.1.0'  # Optional; default is `latest`.
+    custom_test_target: 'run_tests'  # Optional; default is `run_tests`.
     platforms:
       - linux
       - windows
@@ -240,6 +241,9 @@ jobs:
 <ul>
 <li>
 <p><code>rosdistro</code> and <code>metapackage</code>: You can use <code>rosdistro</code> for what ROS distro and <code>metapackage</code> for what the composition to check out for your CI build. In this example, it specifies to use <code>melodic</code> ROS distro and check out the ROS packages up to <code>desktop</code>.</p>
+</li>
+<li>
+<p><code>custom_version</code>: You can use this to specify what's the metapackage version to checkout. This is currently supported only for Windows builds.</p>
 </li>
 <li>
 <p><code>custom_test_target</code>: For projects which do not have  <code>run_tests</code> as default test target, it can be set to a customized test target.</p>
