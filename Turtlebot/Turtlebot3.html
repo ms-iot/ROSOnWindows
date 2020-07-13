@@ -200,16 +200,18 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="turtlebot-3">TurtleBot 3</h1>
-<p>Getting Started with the TurtleBot 3 running Windows. The ROS for Ubuntu documentation is located at the <a href="http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/">Robotis website</a>. 
+                <h1 id="turtlebot3">TurtleBot3</h1>
+<p>Getting Started with the TurtleBot3 running Windows. The ROS for Ubuntu documentation is located at the <a href="http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/">Robotis website</a>. 
 The documentation on this page will describe the differences between Ubuntu and Windows.</p>
 <h1 id="windows-requirements">Windows Requirements</h1>
 <h2 id="windows-software">Windows Software</h2>
-<p>The TurtleBot 3 uses a Lidar which requires the following driver.
-+ <a href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">CP2102 Driver</a></p>
+<p>The TurtleBot3 uses a Lidar which requires the following driver.</p>
+<ul>
+<li><a href="https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers">CP2102 Driver</a></li>
+</ul>
 <h1 id="guide">Guide</h1>
 <h2 id="general-notes">General notes</h2>
-<p>The TurtleBot documentation uses the unix command 'export' to set environment variables, instead use the following:</p>
+<p>The TurtleBot3 documentation uses the unix command 'export' to set environment variables, instead use the following:</p>
 <pre><code class="no-highlight">set TURTLEBOT3_MODEL=waffle
 </code></pre>
 
@@ -231,7 +233,7 @@ The documentation on this page will describe the differences between Ubuntu and 
 <p>ROS on Windows was brought up using <a href="http://www.up-board.org/upsquared">Up2</a> and an Intel Nuc.</p>
 </blockquote>
 <h2 id="create-a-new-workspace">Create a new workspace</h2>
-<p>In a Command Window set up with the ROS environment, create a directory for your robot workspaces and a workspace for TurtleBot.</p>
+<p>In a Command Window set up with the ROS environment, create a directory for your robot workspaces and a workspace for TurtleBot3.</p>
 <pre><code class="no-highlight">mkdir c:\ws\turtlebot3\src
 cd c:\ws\turtlebot3\src
 catkin_init_workspace
@@ -244,12 +246,12 @@ rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 </code></pre>
 
-<h2 id="customize-turtlebot-launch-files">Customize TurtleBot Launch Files</h2>
+<h2 id="customize-turtlebot3-launch-files">Customize TurtleBot3 Launch Files</h2>
 <p>Modify the ROS Launch files to map the devices to the correct COM port. To determine which COM ports you require, right click on the Windows Start Menu, Select Device Manager.</p>
 <p>Under the <code>Ports (COM &amp; LPT)</code> node:</p>
 <ul>
-<li>USB Serial Debice (COMx) is the OpenCR board.</li>
-<li>Silicon Labs CP210x USB to UART Bridge (COMy) is the Lidar.</li>
+<li><code>USB Serial Device (COMx)</code> is the OpenCR board.</li>
+<li><code>Silicon Labs CP210x USB to UART Bridge (COMy)</code> is the Lidar.</li>
 </ul>
 <p>Enter the COM port in the correct fields in the launch files below:</p>
 <p><em>turtlebot3_bringup/launch/turtlebot3_core-win.launch</em></p>
@@ -263,7 +265,7 @@ rosdep install --from-paths src --ignore-src -r -y
 </code></pre>
 
 <h2 id="build-nodes">Build Nodes</h2>
-<p>To build the TurtleBot packages, enter the TurtleBot workspace and build using the catkin build system.</p>
+<p>To build the TurtleBot3 packages, enter the TurtleBot3 workspace and build using the catkin build system.</p>
 <pre><code class="no-highlight">:: make sure all required binaries installed.
 choco upgrade ros-melodic-desktop_full -y
 </code></pre>
@@ -273,17 +275,17 @@ cd c:\ws\turtlebot3
 catkin_make
 </code></pre>
 
-<p>Now inform ROS where to find your TurtleBot code by merging the TurtleBot install environment with the ROS environment. Please ensure you do this every time you open a command window. </p>
+<p>Now inform ROS where to find your TurtleBot code by merging the TurtleBot3 install environment with the ROS environment. Please ensure you do this every time you open a command window. </p>
 <pre><code class="no-highlight">c:\ws\turtlebot3\devel\setup.bat
 </code></pre>
 
 <blockquote>
-<p>If you forget to merge the TurtleBot environment by calling the setup batch file, you'll get an error such as this:
+<p>If you forget to merge the TurtleBot3 environment by calling the setup batch file, you'll get an error such as this:
 <code>RLException: [turtlebot3_robot.launch] is neither a launch file in package [turtlebot3_bringup] nor is [turtlebot3_bringup] a launch file name</code></p>
 </blockquote>
 <h1 id="running-turtlebot">Running TurtleBot</h1>
 <h2 id="no-robot-no-problem">No Robot - No Problem!</h2>
-<p>rViz is tool which allows you to visualize a representation of a robot, and project fake data in order to exerise or develop logic. The TurtleBot simulation is in the <code>turtlebot3_simulations</code> package.</p>
+<p>rViz is tool which allows you to visualize a representation of a robot, and project fake data in order to exerise or develop logic. The TurtleBot3 simulation is in the <code>turtlebot3_simulations</code> package.</p>
 <p>To start the simulation, open one elevated command prompt:</p>
 <pre><code class="no-highlight">c:\opt\ros\melodic\x64\setup.bat
 c:\ws\turtlebot3\devel\setup.bat
@@ -314,14 +316,14 @@ set TURTLEBOT3_MODEL=waffle
 roslaunch turtlebot3_gazebo turtlebot3_gazebo_cartographer_demo.launch
 </code></pre>
 
-<p>After a few moments, you will see Gazebo running a simulated world with your simulated TurtleBot, RViz running the mapping progress, and a simulation node to drive the TurtleBot random walking.</p>
+<p>After a few moments, you will see Gazebo running a simulated world with your simulated TurtleBot3, RViz running the mapping progress, and a simulation node to drive the TurtleBot3 random walking.</p>
 <p><img alt="" src="../Assets/Turtlebot3_Gazebo_SLAM.gif" /></p>
 <h2 id="run-turtlebot3-with-sensors-connected-to-your-development-machine">Run TurtleBot3 with Sensors connected to your development machine.</h2>
 <p>If you have TurtleBot3 hardware, you can plug the sensors directly into your development machine to iterate on fuctionality with 
 your development machine. Perform the steps to set up the launch file for your development system.</p>
 <p>In one command window, start <code>roscore</code>.</p>
 <p>In another command window, launch the TurtleBot robot code.</p>
-<pre><code class="no-highlight">roslaunch turtlebot3_bringup turtlebot3_robot.launch
+<pre><code class="no-highlight">roslaunch turtlebot3_bringup turtlebot3_robot-win.launch
 </code></pre>
               
             </div>
