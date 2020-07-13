@@ -1,15 +1,16 @@
-# TurtleBot 3
-Getting Started with the TurtleBot 3 running Windows. The ROS for Ubuntu documentation is located at the [Robotis website](http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/). 
+# TurtleBot3
+Getting Started with the TurtleBot3 running Windows. The ROS for Ubuntu documentation is located at the [Robotis website](http://emanual.robotis.com/docs/en/platform/turtlebot3/overview/). 
 The documentation on this page will describe the differences between Ubuntu and Windows.
 
 # Windows Requirements
 ## Windows Software
-The TurtleBot 3 uses a Lidar which requires the following driver.
-+ [CP2102 Driver](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
+The TurtleBot3 uses a Lidar which requires the following driver.
+
+ * [CP2102 Driver](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
 
 # Guide
 ## General notes
-The TurtleBot documentation uses the unix command 'export' to set environment variables, instead use the following:
+The TurtleBot3 documentation uses the unix command 'export' to set environment variables, instead use the following:
 ```no-highlight
 set TURTLEBOT3_MODEL=waffle
 ```
@@ -35,7 +36,7 @@ ROS on Windows requires a x64 bit Windows 10 Desktop or Windows 10 IoT Enterpris
 > ROS on Windows was brought up using [Up2](http://www.up-board.org/upsquared) and an Intel Nuc.
 
 ## Create a new workspace
-In a Command Window set up with the ROS environment, create a directory for your robot workspaces and a workspace for TurtleBot.
+In a Command Window set up with the ROS environment, create a directory for your robot workspaces and a workspace for TurtleBot3.
 
 ```no-highlight
 mkdir c:\ws\turtlebot3\src
@@ -50,13 +51,13 @@ rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 ```
 
-## Customize TurtleBot Launch Files
+## Customize TurtleBot3 Launch Files
 Modify the ROS Launch files to map the devices to the correct COM port. To determine which COM ports you require, right click on the Windows Start Menu, Select Device Manager.
 
 Under the `Ports (COM & LPT)` node:
 
- * USB Serial Debice (COMx) is the OpenCR board.
- * Silicon Labs CP210x USB to UART Bridge (COMy) is the Lidar.
+ * `USB Serial Device (COMx)` is the OpenCR board.
+ * `Silicon Labs CP210x USB to UART Bridge (COMy)` is the Lidar.
 
 Enter the COM port in the correct fields in the launch files below:
 
@@ -76,7 +77,7 @@ Enter the COM port in the correct fields in the launch files below:
 
 
 ## Build Nodes
-To build the TurtleBot packages, enter the TurtleBot workspace and build using the catkin build system.
+To build the TurtleBot3 packages, enter the TurtleBot3 workspace and build using the catkin build system.
 ```no-highlight
 :: make sure all required binaries installed.
 choco upgrade ros-melodic-desktop_full -y
@@ -88,19 +89,19 @@ cd c:\ws\turtlebot3
 catkin_make
 ```
 
-Now inform ROS where to find your TurtleBot code by merging the TurtleBot install environment with the ROS environment. Please ensure you do this every time you open a command window. 
+Now inform ROS where to find your TurtleBot code by merging the TurtleBot3 install environment with the ROS environment. Please ensure you do this every time you open a command window. 
 
 ```no-highlight
 c:\ws\turtlebot3\devel\setup.bat
 ```
 
-> If you forget to merge the TurtleBot environment by calling the setup batch file, you'll get an error such as this:
+> If you forget to merge the TurtleBot3 environment by calling the setup batch file, you'll get an error such as this:
 > `RLException: [turtlebot3_robot.launch] is neither a launch file in package [turtlebot3_bringup] nor is [turtlebot3_bringup] a launch file name`
 
 # Running TurtleBot
 
 ## No Robot - No Problem!
-rViz is tool which allows you to visualize a representation of a robot, and project fake data in order to exerise or develop logic. The TurtleBot simulation is in the `turtlebot3_simulations` package.
+rViz is tool which allows you to visualize a representation of a robot, and project fake data in order to exerise or develop logic. The TurtleBot3 simulation is in the `turtlebot3_simulations` package.
 
 To start the simulation, open one elevated command prompt:
 
@@ -141,7 +142,7 @@ set TURTLEBOT3_MODEL=waffle
 roslaunch turtlebot3_gazebo turtlebot3_gazebo_cartographer_demo.launch
 ```
 
-After a few moments, you will see Gazebo running a simulated world with your simulated TurtleBot, RViz running the mapping progress, and a simulation node to drive the TurtleBot random walking.
+After a few moments, you will see Gazebo running a simulated world with your simulated TurtleBot3, RViz running the mapping progress, and a simulation node to drive the TurtleBot3 random walking.
 
 ![](../Assets/Turtlebot3_Gazebo_SLAM.gif)
 
@@ -154,5 +155,5 @@ In one command window, start `roscore`.
 In another command window, launch the TurtleBot robot code.
 
 ```no-highlight
-roslaunch turtlebot3_bringup turtlebot3_robot.launch
+roslaunch turtlebot3_bringup turtlebot3_robot-win.launch
 ```
