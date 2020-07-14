@@ -31,7 +31,7 @@ This short guide shows you how to build **Navigation 2** from source and later y
 ```Batchfile
 mkdir c:\opt\chocolatey
 set ChocolateyInstall=c:\opt\chocolatey
-choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1
+choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
 choco upgrade ros-eloquent-desktop gazebo9 wget openssl -y --execution-timeout=0 --pre
 ```
 
