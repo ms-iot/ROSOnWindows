@@ -66,7 +66,7 @@ Chocolatey is a package manager for Windows. It is used to make it easy to insta
 ```Batchfile
 mkdir c:\opt\chocolatey
 set ChocolateyInstall=c:\opt\chocolatey
-choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1
+choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
 choco upgrade ros-eloquent-desktop gazebo9 wget -y --execution-timeout=0 --pre
 ```
 

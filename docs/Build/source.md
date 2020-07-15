@@ -42,7 +42,7 @@ The `10-ms-iot.list` points to the rosdep database of ROS for Windows and it wil
 ### Configure Chocolatey sources
 
 ```no-highlight
-choco source add -n=ros-win -s="https://roswin.azurewebsites.net/api/v2" --priority=1
+choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
 choco source disable -n=chocolatey
 ```
 
