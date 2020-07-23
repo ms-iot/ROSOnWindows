@@ -237,12 +237,6 @@ catkin_init_workspace
 git clone https://github.com/ms-iot/winml_tracker
 </code></pre>
 
-<p>Find or construct a suitible onnx model. For example, you can download <a href="https://github.com/onnx/models/tree/master/vision/object_detection_segmentation/tiny_yolov2">TinyYOLO from the Onnx Model Zoo</a>. </p>
-<pre><code class="no-highlight">choco upgrade curl
-curl https://onnxzoo.blob.core.windows.net/models/opset_8/tiny_yolov2/tiny_yolov2.tar.gz --output tiny_yolov2.tar.gz
-tar -xf tiny_yolov2.tar.gz
-</code></pre>
-
 <p>Create a Launch file, which references the model.onnx file:</p>
 <pre><code class="xml">&lt;launch&gt;
   &lt;arg name=&quot;onnx_model_path_arg&quot; default=&quot;$(find winml_tracker)/testdata/model.onnx&quot;/&gt;
