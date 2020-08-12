@@ -2,7 +2,7 @@
 
 Azure Virtual Machines (VM) is one of several types of [on-demand, scalable computing resources](https://docs.microsoft.com/en-us/azure/architecture/guide/technology-choices/compute-decision-tree) that Azure offers.
 
-Microsoft provides many Azure VM templates to bootstrap ROS (and ROS 2) environments.
+Microsoft provides many Azure VM templates to bootstrap ROS and ROS 2 environments.
 
 For Windows VM, see [ROS on Azure with Windows VM](https://azure.microsoft.com/en-us/resources/templates/ros-vm-windows/).
 
