@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>ROS 1 Azure VM - ROS on Windows</title>
+  <title>Azure VM with ROS - ROS on Windows</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "ROS 1 Azure VM";
-    var mkdocs_page_input_path = "ROSAtMS\\ROS1AzureVM.md";
+    var mkdocs_page_name = "Azure VM with ROS";
+    var mkdocs_page_input_path = "ROSAtMS\\AzureVM.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -130,7 +130,7 @@
                 </ul>
                 <p class="caption"><span class="caption-text">ROS at Microsoft</span></p>
                 <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="ROS1AzureVM.html">ROS 1 Azure VM</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="AzureVM.html">Azure VM with ROS</a>
     <ul class="current">
     </ul>
                     </li>
@@ -186,10 +186,10 @@
         
       
     
-    <li>ROS 1 Azure VM</li>
+    <li>Azure VM with ROS</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/ROSAtMS/ROS1AzureVM.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/ROSAtMS/AzureVM.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -200,19 +200,12 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="ros1-azure-vm">ROS1 Azure VM</h1>
-<p>Microsoft provides a Azure VM with the latest version of ROS for Windows.</p>
-<blockquote>
-<p>A ROS2 VM is in the works</p>
-</blockquote>
-<p>To install the ROS VM in your Azure Account</p>
-<ul>
-<li>visit the <a href="https://azure.microsoft.com/en-us/resources/templates/ros-vm-windows/">VM template</a> </li>
-<li>Select <code>Deploy to Azure</code></li>
-<li>Create an accound if required</li>
-<li>Select a Resource Group</li>
-<li>If you are using rViz or Gazebo, please select a VM Size with a GPU <code>Standard_NV6</code>, <code>Standard_NV12</code> or <code>Standard_NV24</code></li>
-</ul>
+                <h1 id="azure-virtual-machine-templates">Azure Virtual Machine Templates</h1>
+<p>Azure Virtual Machines (VM) is one of several types of <a href="https://docs.microsoft.com/en-us/azure/architecture/guide/technology-choices/compute-decision-tree">on-demand, scalable computing resources</a> that Azure offers.</p>
+<p>Microsoft provides many Azure VM templates to bootstrap ROS and ROS 2 environments.</p>
+<p>For Windows VM, see <a href="https://azure.microsoft.com/en-us/resources/templates/ros-vm-windows/">ROS on Azure with Windows VM</a>.</p>
+<p>For Linux VM, see <a href="https://azure.microsoft.com/en-us/resources/templates/ros-vm-linux/">ROS on Azure with Linux VM</a>.</p>
+<p>Also, you can find more template ideas on <a href="https://azure.microsoft.com/en-us/resources/templates/">Azure Quickstart Templates</a>.</p>
               
             </div>
           </div>
