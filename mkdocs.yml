@@ -37,7 +37,7 @@ nav:
         - Porting a C++ Dependency: GettingStarted/AddingVCPKG.md
         - Porting Cookbook: Porting/Cookbook.md
     - ROS at Microsoft:
-        - ROS 1 Azure VM: ROSAtMS/ROS1AzureVM.md
+        - Azure VM with ROS: ROSAtMS/AzureVM.md
         - Windows ML ROS Node: ROSAtMS/WinML.md
         - Azure Kinect ROS Node 🔗: https://github.com/microsoft/azure_kinect_ros_driver
         - Azure IoT Hub Node 🔗: https://github.com/microsoft/ros_azure_iothub
