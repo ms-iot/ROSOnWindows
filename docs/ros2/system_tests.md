@@ -95,7 +95,7 @@ colcon test --packages-select nav2_system_tests
 colcon test-result
 ```
 
-## Create and Register Scale Set Agents with Azure Pipelines
+## Exercise 2: Create and Register Scale Set Agents with Azure Pipelines
 
 One of the advantages to use `Scale Set Agents` is that the machine usage can scale out on demend and scale in when idle.
 It is managed by Azure DevOps, and the cost saving can be more optimized.
@@ -113,7 +113,7 @@ It is managed by Azure DevOps, and the cost saving can be more optimized.
 
 > Keep a note of your agent pool name.
 
-## Integrate GitHub projects with Azure Pipelines
+## Exercise 3: Integrate GitHub projects with Azure Pipelines
 
 1. Create a repository into your GitHub account.
 
