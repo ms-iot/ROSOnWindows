@@ -107,9 +107,14 @@ It is managed by Azure DevOps, and the cost saving can be more optimized.
 
     * The image URN is `microsoftvisualstudio:visualstudio2019latest:vs-2019-ent-latest-ws2019:latest`.
 
-    * The virtual machine size is `Standard_NV6`.
+    * The virtual machine size is `Standard_NV6`. GPU-accelerated VM is required to run the simulation.
 
-3. Now, a new agent pool should be registered for your Azure DevOps organization and project.
+3. In this example, we use GPU accelerated VM and the corresponding driver is required in the Virtual Machine Scale Set.
+   Navigate to the `Extension` settings for your Virtual Machine Scale Set and add the following extension.
+
+![extension](./NVIDIA_Extension.PNG)
+
+4. Now, a new agent pool should be registered for your Azure DevOps organization and project.
 
 > Keep a note of your agent pool name.
 
