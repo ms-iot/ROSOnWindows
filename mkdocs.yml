@@ -30,6 +30,7 @@ nav:
         - Continuous Delivery: GettingStarted/AzureSetupCD.md
         - Continuous Simulation (Windows): GettingStarted/AzureSetupCS_Windows.md
         - Continuous Simulation (Linux): GettingStarted/AzureSetupCS_Linux.md
+        - Continuous Simulation for Navigation2 System Tests: ros2/system_tests.md
     - Porting Guide:
         - Consuming a ROS Package: GettingStarted/UsingROSonWindows.md
         - Porting a ROS Package: GettingStarted/PortingANode.md
