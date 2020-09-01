@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Windows ML ROS Node - ROS on Windows</title>
+  <title>Continuous Simulation for Navigation2 System Tests - ROS on Windows</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Windows ML ROS Node";
-    var mkdocs_page_input_path = "ROSAtMS\\WinML.md";
+    var mkdocs_page_name = "Continuous Simulation for Navigation2 System Tests";
+    var mkdocs_page_input_path = "ros2\\system_tests.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -90,7 +90,7 @@
                 </ul>
                 <p class="caption"><span class="caption-text">Getting Started with ROS 2</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../ros2/nav2.html">Navigation 2</a>
+                    <li class="toctree-l1"><a class="reference internal" href="nav2.html">Navigation 2</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Using Github Actions</span></p>
@@ -105,7 +105,7 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Using Azure Pipelines</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/AzureSetupCI.html">Continuous Integration</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/AzureSetupCD.html">Continuous Delivery</a>
@@ -114,7 +114,9 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/AzureSetupCS_Linux.html">Continuous Simulation (Linux)</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../ros2/system_tests.html">Continuous Simulation for Navigation2 System Tests</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="system_tests.html">Continuous Simulation for Navigation2 System Tests</a>
+    <ul class="current">
+    </ul>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Porting Guide</span></p>
@@ -131,28 +133,10 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">ROS at Microsoft</span></p>
-                <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="AzureVM.html">Azure VM with ROS</a>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ROSAtMS/AzureVM.html">Azure VM with ROS</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="WinML.html">Windows ML ROS Node</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#consuming-winml">Consuming WinML</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#property-descriptions">Property Descriptions</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#subscriptions">Subscriptions</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#publishing">Publishing</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#tracked_objectsimage">/tracked_objects/image</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#tracked_objects">/tracked_objects/</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#detected_object">/detected_object</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ROSAtMS/WinML.html">Windows ML ROS Node</a>
                     </li>
                     <li class="toctree-l1"><a class="" href="https://github.com/microsoft/azure_kinect_ros_driver">Azure Kinect ROS Node 🔗</a>
                     </li>
@@ -200,14 +184,14 @@
     
       
         
-          <li>ROS at Microsoft &raquo;</li>
+          <li>Using Azure Pipelines &raquo;</li>
         
       
     
-    <li>Windows ML ROS Node</li>
+    <li>Continuous Simulation for Navigation2 System Tests</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/ROSAtMS/WinML.md"
+        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/ros2/system_tests.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -218,134 +202,189 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="windows-ml-ros-node">Windows ML ROS Node</h1>
-<p>The AI platform in Windows 10 enables developers to use pre-trained machine learning models in their Apps on Windows devices. This offers developers a number of benefits:</p>
+                <p>This tutorial is to show how to use <code>Azure Pielines</code> with <code>Scale Set Agents</code> to exercise the <a href="https://github.com/ros-planning/navigation2/tree/main/nav2_system_tests">Navigation2 System Tests</a>.
+It is a comprehensive End-to-End test pass with Gazebo simulation.
+This project is a good example for ROS 2 developers how to organize a End-to-End tests across multiple packages and tools.</p>
+<h2 id="objectives">Objectives</h2>
 <ul>
-<li>Low latency, real-time results. Windows can perform AI evaluation tasks using the local processing capabilities of the PC, enabling real-time analysis of large local data such as images and video. Results can be delivered quickly and efficiently for use in performance intensive workloads like game engines, or background tasks such as indexing for search.</li>
-<li>Reduced operational costs. Together with Microsoft’s Cloud AI platform, developers can build affordable, end-to-end AI solutions that combine training models in Azure with deployment to Windows devices for evaluation. Significant savings can be realized by reducing or eliminating costs associated with bandwidth due to ingestion of large data sets, such as camera footage or sensor telemetry. Complex workloads can be processed in real-time on the edge, with minimal sample data sent to the cloud for improved training on observations.</li>
-<li>Flexibility. Developers can choose to perform AI tasks on device or in the cloud based on what their customers &amp; scenarios need. AI processing can happen on the device if it becomes disconnected, or in scenarios where data cannot be sent to the cloud due to cost, size, policy or customer preference. </li>
+<li>
+<p>Run and observe the Nav2 system tests running locally.</p>
+</li>
+<li>
+<p>Register a scale set agent with your Azure DevOps orgnization.</p>
+</li>
+<li>
+<p>Integrate a GitHub project with Azure Pipelines.</p>
+</li>
 </ul>
-<h2 id="consuming-winml">Consuming WinML</h2>
-<p>Requirements:</p>
-<ul>
-<li>Install Visual Studio 2019 with UWP development</li>
-<li>ROS melodic for Windows</li>
-</ul>
-<p>The WinML ROS Node is distrubted as source. To consume it in your robot, clone the winml_tracker sources into your workspace.</p>
-<p>For example:</p>
-<pre><code class="no-highlight">mkdir c:\workspace\winml_demo\src
-cd c:\workspace\winml_demo\src
-catkin_init_workspace
-git clone https://github.com/ms-iot/winml_tracker
+<h2 id="prerequisites">Prerequisites</h2>
+<p>An Microsoft Azure account from <a href="https://portal.azure.com">https://portal.azure.com</a>.</p>
+<p>An Azure DevOps account from <a href="https://dev.azure.com">https://dev.azure.com</a>.</p>
+<p>A GitHub account from <a href="https://github.com">https://github.com</a>.</p>
+<h2 id="exercise-1-build-and-run-nav2-system-tests-locally">Exercise 1: Build And Run Nav2 System Tests Locally</h2>
+<ol>
+<li>
+<p><a href="../GettingStarted/SetupRos2.html"><code>Install ROS2</code></a>. <code>Foxy</code> is recommended.</p>
+</li>
+<li>
+<p>Open the ROS 2 command prompt.</p>
+</li>
+<li>
+<p>Create an empty workspace and clone the Navigation2 repositories. For example,</p>
+</li>
+</ol>
+<pre><code class="Batchfile">:: create an empty workspace
+mkdir c:\nav2_ws\src
+cd c:\nav2_ws
+
+:: clone the Navigation2
+curl https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos -o navigation2_foxy.repos
+vcs import src &lt; navigation2_foxy.repos
 </code></pre>
 
-<p>Create a Launch file, which references the model.onnx file:</p>
-<pre><code class="xml">&lt;launch&gt;
-  &lt;arg name=&quot;onnx_model_path_arg&quot; default=&quot;$(find winml_tracker)/testdata/model.onnx&quot;/&gt;
-  &lt;node pkg=&quot;winml_tracker&quot; type=&quot;winml_tracker_node&quot; name=&quot;winml_tracker&quot; output=&quot;screen&quot;&gt;
-    &lt;param name=&quot;onnx_model_path&quot; value=&quot;$(arg onnx_model_path_arg)&quot;/&gt;
-    &lt;param name=&quot;confidence&quot; value=&quot;0.5&quot;/&gt;
-    &lt;param name=&quot;tensor_width&quot; value=&quot;416&quot;/&gt;
-    &lt;param name=&quot;tensor_height&quot; value=&quot;416&quot;/&gt;
-    &lt;param name=&quot;tracker_type&quot; value=&quot;yolo&quot;/&gt;
-    &lt;param name=&quot;image_processing&quot; value=&quot;resize&quot;/&gt;
-    &lt;param name=&quot;debug&quot; value=&quot;true&quot;/&gt;
-    &lt;param name=&quot;image_topic&quot; value=&quot;/cv_camera/image_raw&quot; /&gt;
-  &lt;/node&gt;
+<p>And you can use <code>rosdep</code> to help install additional dependencies.</p>
+<pre><code class="Batchfile">rosdep update
+rosdep install --from-paths src --ignore-src -r -y
+</code></pre>
 
-  &lt;!-- NOTE: The image properties need to be valid for the camera, or the node will auto select the closest values --&gt;
-  &lt;node pkg=&quot;cv_camera&quot; type=&quot;cv_camera_node&quot; name=&quot;cv_camera&quot; output=&quot;screen&quot;&gt;
-    &lt;param name=&quot;rate&quot; type=&quot;double&quot; value=&quot;5.0&quot;/&gt;
-    &lt;param name=&quot;image_width&quot; type=&quot;double&quot; value=&quot;640&quot;/&gt;
-    &lt;param name=&quot;image_height&quot; type=&quot;double&quot; value=&quot;480&quot;/&gt;
-  &lt;/node&gt;
+<ol>
+<li>Build the Navigation2 projects.</li>
+</ol>
+<pre><code class="Batchfile">:: set additional CMAKE_PREFIX_PATH and PATH to consume Vcpkg packages
+set PATH=c:\opt\vcpkg;c:\opt\rosdeps\x64\tools\protobuf;%PATH%
+set CMAKE_PREFIX_PATH=c:\opt\ros\foxy\x64;c:\opt\vcpkg\installed\x64-windows;C:\opt\rosdeps\x64
 
-  &lt;node pkg=&quot;tf&quot; type=&quot;static_transform_publisher&quot; name=&quot;winml_link&quot;
-    args=&quot;0 -0.02  0 0 0 0 map base_link 100&quot; /&gt;  
+:: now build the projects (with BUILD_TESTING=OFF)
+colcon build --packages-ignore nav2_system_tests --cmake-args -DBUILD_TESTING=OFF
+</code></pre>
 
-&lt;/launch&gt;
+<p>After a moment, a similar output should be displayed to indicate a successful build:</p>
+<pre><code>Summary: 50 packages finished [12min 1s]
+  6 packages had stderr output: behaviortree_cpp_v3 cartographer cartographer_ros gazebo_plugins gazebo_ros pcl_conversions
+</code></pre>
+
+<p>Now move on building Navigation2 System Tests.</p>
+<pre><code class="Batchfile">:: then, build the nav2_system_tests
+colcon build --packages-select nav2_system_tests
+</code></pre>
+
+<p>A few moment later, a similar message should be put to indicate a successful build:</p>
+<pre><code>Summary: 1 package finished [2min 10s]
 </code></pre>
 
 <blockquote>
-<p>While 'Pose' processing is enabled, the service required to generate the model has not been published as of October 2020</p>
+<p>In cases of any build failures, <code>Log</code> folder can be found under the workspace. Detailed information can be found there.</p>
 </blockquote>
-<h2 id="property-descriptions">Property Descriptions</h2>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>onnx_model_path</td>
-<td>Path to the model.onnx file</td>
-</tr>
-<tr>
-<td>confidence</td>
-<td>Minimum confidence before publishing an event. 0 to 1</td>
-</tr>
-<tr>
-<td>tensor_width</td>
-<td>The Width of the input to the model.</td>
-</tr>
-<tr>
-<td>tensor_height</td>
-<td>The Height of the input to the model.</td>
-</tr>
-<tr>
-<td>tracker_type</td>
-<td>Currently enabled - <code>yolo</code> or <code>pose</code>.</td>
-</tr>
-<tr>
-<td>image_processing</td>
-<td><code>resize</code>, <code>scale</code> or <code>crop</code></td>
-</tr>
-<tr>
-<td>debug</td>
-<td><code>true</code> or <code>false</code> determines if a debug image is published</td>
-</tr>
-<tr>
-<td>image_topic</td>
-<td>The image topic to subscribe to</td>
-</tr>
-<tr>
-<td>label</td>
-<td>used to filter the found object to a specific label</td>
-</tr>
-<tr>
-<td>mesh_rotation</td>
-<td>The orientation of the mesh when debug rendering pose</td>
-</tr>
-<tr>
-<td>mesh_scale</td>
-<td>The scale of the mesh when debug rendering pose</td>
-</tr>
-<tr>
-<td>mesh_resource</td>
-<td>The mesh used for debug rendering pose</td>
-</tr>
-<tr>
-<td>model_bounds</td>
-<td>9 coordinates used to perform the point in perspective caluclation for pose</td>
-</tr>
-<tr>
-<td>calibration</td>
-<td>Path to the OpenCV calibration file for point in persective</td>
-</tr>
-</tbody>
-</table>
-<h2 id="subscriptions">Subscriptions</h2>
-<p>WinML subscribes to the topic listed in the <code>image_topic</code> property, or <code>/cv_camera/image_raw</code></p>
-<h2 id="publishing">Publishing</h2>
-<p>The WinML Publishes the following topics:</p>
-<h3 id="tracked_objectsimage">/tracked_objects/image</h3>
-<p>Outputs an image with highlighing if the debug property is set</p>
-<h3 id="tracked_objects">/tracked_objects/</h3>
-<p>An array of <code>visualization_msgs::Marker</code> for found objects</p>
-<h3 id="detected_object">/detected_object</h3>
-<p>A single instance of the DetectedObjectPose message, which is output when tracker_type is set to pose.</p>
+<ol>
+<li>Run the Nav2 System Tests</li>
+</ol>
+<pre><code class="Batchfile">:: activate Gazebo environment
+c:\opt\rosdeps\x64\share\gazebo\setup.bat
+
+colcon test --packages-select nav2_system_tests
+</code></pre>
+
+<ol>
+<li>Verify the test result.</li>
+</ol>
+<pre><code class="Batchfile">colcon test-result
+</code></pre>
+
+<h2 id="exercise-2-create-and-register-scale-set-agents-with-azure-pipelines">Exercise 2: Create and Register Scale Set Agents with Azure Pipelines</h2>
+<p>One of the advantages to use <code>Scale Set Agents</code> is that the machine usage can scale out on demend and scale in when idle.
+It is managed by Azure DevOps, and the cost saving can be more optimized.</p>
+<ol>
+<li>
+<p>Navigate to <a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/scale-set-agents?view=azure-devops">Azure virtual machine scale set agents</a>.</p>
+</li>
+<li>
+<p>In the instructions, you will be asked to create a <code>Virtual Machine Scale Set</code>.
+   Use <code>Visual Studio Enterprise 2019</code> image and <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/nv-series"><code>NV-series</code></a> virtual machines.</p>
+<ul>
+<li>
+<p>The image URN is <code>microsoftvisualstudio:visualstudio2019latest:vs-2019-ent-latest-ws2019:latest</code>.</p>
+</li>
+<li>
+<p>The virtual machine size is <code>Standard_NV6</code>. GPU-accelerated VM is required to run the simulation.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>In this example, we use GPU accelerated VM and the corresponding driver is required in the Virtual Machine Scale Set.
+   Navigate to the <code>Extension</code> settings for your Virtual Machine Scale Set and add the following extension.</p>
+</li>
+</ol>
+<p><img alt="extension" src="NVIDIA_Extension.PNG" /></p>
+<ol>
+<li>Now, a new agent pool should be registered for your Azure DevOps organization and project.</li>
+</ol>
+<blockquote>
+<p>Keep a note of your agent pool name.</p>
+</blockquote>
+<h2 id="exercise-3-integrate-github-projects-with-azure-pipelines">Exercise 3: Integrate GitHub projects with Azure Pipelines</h2>
+<ol>
+<li>
+<p>Create a repository into your GitHub account.</p>
+</li>
+<li>
+<p>Create a file <code>azure-pipelines.yml</code> under the repository root with the following content.
+   (Replace the pool with your agent pool name.)</p>
+</li>
+</ol>
+<pre><code class="yaml">jobs:
+- job: Nav2SystemTests
+  pool: 'VS2019-GPU'
+  timeoutInMinutes: 360
+  workspace:
+    clean: all
+  steps:
+  - powershell: |
+      Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    displayName: 'Install Chocolatey'
+  - script: |
+      choco sources add -n=roswin -s https://aka.ms/ros/public --priority 1
+      choco upgrade ros-foxy-desktop -y
+    displayName: 'Install ROS 2 Foxy'
+  - script: |
+      mkdir C:\Users\AzDevOps\.gazebo\models
+      call &quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat&quot;
+      call &quot;c:\opt\ros\foxy\x64\setup.bat&quot;
+      call &quot;c:\opt\rosdeps\x64\share\gazebo\setup.bat&quot;
+      set PATH=c:\opt\vcpkg;c:\opt\rosdeps\x64\tools\protobuf;%PATH%
+      set CMAKE_PREFIX_PATH=c:\opt\ros\foxy\x64;c:\opt\vcpkg\installed\x64-windows;C:\opt\rosdeps\x64
+      mkdir nav_ws\src
+      cd nav_ws
+      curl https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos -o navigation2_foxy.repos
+      vcs import --force src &lt; navigation2_foxy.repos
+      rosdep update
+      rosdep install --from-paths src --ignore-src -r -y
+      colcon build --packages-ignore nav2_system_tests --cmake-args -DBUILD_TESTING=OFF
+      colcon build --packages-select nav2_system_tests
+      colcon test --packages-select nav2_system_tests --event-handlers console_direct+
+      colcon test-result
+    displayName: 'Build and run tests'
+    continueOnError: true
+    timeoutInMinutes: 30
+  - task: PublishTestResults@2
+    inputs:
+      testRunner: 'jUnit'
+      testResultsFiles: '**\*.xml'
+      searchFolder: $(System.DefaultWorkingDirectory)/nav_ws/build/nav2_system_tests/test_results
+    condition: always()
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: .\nav_ws\log
+      artifactName: 'logs'
+    condition: always()
+</code></pre>
+
+<ol>
+<li>The <a href="https://www.azuredevopslabs.com/labs/azuredevops/github-integration/"><code>Integrate Your GitHub Projects With Azure Pipelines</code></a> guides you how to create a pipeline for a GitHub project in Task 1 &amp; 2.
+   Use your fork as the target repository.</li>
+<li>Navigate to the "Existing Azure Pipelines YAML file" and select <code>azure-pipelines.yml</code>.</li>
+<li>Now you should have a pipeline running (or ready to run).</li>
+</ol>
+<p>In the meanwhile, you can observe the pipeline running. Once the build finishes, you can inspect the test results.</p>
               
             </div>
           </div>
@@ -353,10 +392,10 @@ git clone https://github.com/ms-iot/winml_tracker
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Build/source.html" class="btn btn-neutral float-right" title="Source Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../GettingStarted/UsingROSonWindows.html" class="btn btn-neutral float-right" title="Consuming a ROS Package">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="AzureVM.html" class="btn btn-neutral" title="Azure VM with ROS"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../GettingStarted/AzureSetupCS_Linux.html" class="btn btn-neutral" title="Continuous Simulation (Linux)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -384,10 +423,10 @@ git clone https://github.com/ms-iot/winml_tracker
           <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="AzureVM.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../GettingStarted/AzureSetupCS_Linux.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Build/source.html" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../GettingStarted/UsingROSonWindows.html" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
