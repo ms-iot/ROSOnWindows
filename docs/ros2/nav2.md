@@ -26,32 +26,18 @@ This short guide shows you how to build **Navigation 2** from source and later y
 
 1. From the start menu, look for [`x64 Native Tools Command Prompt for VS 2019`][vsdevcmd].
 2. Open the command prompt as administrator.
-3. Run the following to install `ROS 2 Eloquent` and `Gazebo 9`.
+3. Run the following to install `ROS 2 Foxy`.
 
 ```Batchfile
 mkdir c:\opt\chocolatey
 set ChocolateyInstall=c:\opt\chocolatey
 choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
-choco upgrade ros-eloquent-desktop gazebo9 wget openssl -y --execution-timeout=0 --pre
+choco upgrade ros-foxy-desktop -y --execution-timeout=0 --pre
 ```
 
 You can close the command prompt now.
 
-✔ Now you have ROS 2 `ros-eloquent-desktop` and `gazebo9` nightly build installed. 
-
-## Create bootstrap script
-
-Open your favorite editor and create a file `bootstrap.bat` under `c:\opt\ros\eloquent\x64\bootstrap.bat` with the following content:
-
-```Batchfile
-set "ChocolateyInstall=c:\opt\chocolatey"
-set "PATH=c:\opt\chocolatey\bin;C:\opt\python37amd64\DLLs;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;c:\opt\vcpkg\installed\x64-windows\bin;c:\opt\vcpkg;c:\opt\rosdeps\x64\bin;C:\opt\rosdeps\x64\lib;C:\opt\rosdeps\x64\tools\protobuf;%PATH%"
-call "C:\opt\ros\eloquent\x64\local_setup.bat"
-call "C:\opt\rosdeps\x64\share\gazebo-9\setup.bat"
-set "CMAKE_PREFIX_PATH=c:\opt\vcpkg\installed\x64-windows;c:\opt\rosdeps\x64;%CMAKE_PREFIX_PATH%"
-set "ROS_PACKAGE_PATH=C:\opt\ros\eloquent\x64\share"
-set "ROS_ETC_DIR=C:\opt\ros\eloquent\x64\etc\ros"
-```
+✔ Now you have ROS 2 `ros-foxy-desktop` installed.
 
 ## Open a Developer Command Prompt
 
@@ -60,7 +46,12 @@ set "ROS_ETC_DIR=C:\opt\ros\eloquent\x64\etc\ros"
 3. Once the developer command prompt is open, run
 
 ```
-c:\opt\ros\eloquent\x64\bootstrap.bat
+:: activate the ROS 2 environment
+c:\opt\ros\foxy\x64\setup.bat
+
+:: activate the Gazebo simulation environment
+c:\opt\ros\foxy\x64\share\gazebo\setup.bat
+set "SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6"
 ```
 
 Now you are in the ROS 2 Developer command prompt.
@@ -76,25 +67,8 @@ mkdir c:\nav2_ws\src
 pushd c:\nav2_ws
 
 :: checkout the required source code.
-wget https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2.repos
+wget https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos
 vcs import src < navigation2.repos
-
-:: evaluate and resolve any additional dependencies
-rosdep update
-rosdep install --from-paths src --ignore-src -r -y
-
-:: manually install google-test
-choco install google-test -y
-
-:: manually install sdl2-image
-vcpkg install sdl2-image:x64-windows
-
-:: manually correct a mistakenly placed graphicsmagick header.
-move "C:\opt\vcpkg\installed\x64-windows\include\Magick++\Magick++.h" "C:\opt\vcpkg\installed\x64-windows\include\"
-
-:: downgrade cmake to 3.16.3
-:: workaround some breaking changes not yet accommodated by the upstream
-pip install -U cmake==3.16.3
 ```
 
 ## Build and Activate the Navigation 2 Workspace
@@ -106,14 +80,7 @@ Build the workspace by `colcon` build tool.
 pushd c:\nav2_ws
 
 :: build the workspace
-colcon build --cmake-args -DBUILD_TESTING=OFF --cmake-target install
-```
-
-Once the build finishes, you should see the build summary as below:
-
-```Batchfile
-Summary: 58 packages finished [10min 47s]
-  2 packages had stderr output: behaviortree_cpp_v3 cartographer
+colcon build --cmake-args -DBUILD_TESTING=OFF
 ```
 
 Activate the workspace which was built.
