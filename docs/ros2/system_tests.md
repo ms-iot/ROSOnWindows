@@ -111,27 +111,27 @@ jobs:
   workspace:
     clean: all
   steps:
-  - powershell: |
-      Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-    displayName: 'Install Chocolatey'
   - script: |
+      rd /s /q c:\opt 2>&1
+      exit 0
+    displayName: 'Remove opt folder'
+  - powershell: |
+      $env:ChocolateyInstall="c:\opt\chocolatey"
+      Set-ExecutionPolicy Bypass -Scope Process -Force;
+      iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
       choco sources add -n=roswin -s https://aka.ms/ros/public --priority 1
-      choco upgrade ros-foxy-desktop -y
+      choco install ros-foxy-desktop -y --pre --no-progress -i
     displayName: 'Install ROS 2 Foxy'
   - script: |
       mkdir C:\Users\AzDevOps\.gazebo\models
       call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
       call "c:\opt\ros\foxy\x64\setup.bat"
-      call "c:\opt\rosdeps\x64\share\gazebo\setup.bat"
-      set PATH=c:\opt\vcpkg;c:\opt\rosdeps\x64\tools\protobuf;%PATH%
-      set CMAKE_PREFIX_PATH=c:\opt\ros\foxy\x64;c:\opt\vcpkg\installed\x64-windows;C:\opt\rosdeps\x64
+      call "c:\opt\ros\foxy\x64\share\gazebo\setup.bat"
+      set "SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6"
       mkdir nav_ws\src
       cd nav_ws
       curl https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos -o navigation2_foxy.repos
       vcs import --force src < navigation2_foxy.repos
-      rosdep update
-      rosdep install --from-paths src --ignore-src -r -y
-      colcon build --packages-ignore nav2_system_tests --cmake-args -DBUILD_TESTING=OFF
       colcon build --packages-select nav2_system_tests
       colcon test --packages-select nav2_system_tests --event-handlers console_direct+
       colcon test-result
