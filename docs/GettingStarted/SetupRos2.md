@@ -61,32 +61,18 @@ Chocolatey is a package manager for Windows. It is used to make it easy to insta
 
 1. From the start menu, look for [`x64 Native Tools Command Prompt for VS 2019`][vsdevcmd].
 2. Open the command prompt as administrator.
-3. Run the following to install `ROS 2 Eloquent` and `Gazebo 9`.
+3. Run the following to install `ROS 2 Foxy`.
 
 ```Batchfile
 mkdir c:\opt\chocolatey
 set ChocolateyInstall=c:\opt\chocolatey
 choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
-choco upgrade ros-eloquent-desktop gazebo9 wget -y --execution-timeout=0 --pre
+choco upgrade ros-foxy-desktop -y --execution-timeout=0 --pre
 ```
 
 You can close the command prompt now.
 
-Now you have ROS 2 `ros-eloquent-desktop` and `gazebo9` nightly build installed. 
-
-## Create bootstrap script
-
-Open your favorite editor and create a file `bootstrap.bat` under `c:\opt\ros\eloquent\x64\bootstrap.bat` with the following content:
-
-```Batchfile
-set "ChocolateyInstall=c:\opt\chocolatey"
-set "PATH=c:\opt\chocolatey\bin;C:\opt\python37amd64\DLLs;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;c:\opt\vcpkg\installed\x64-windows\bin;c:\opt\vcpkg;c:\opt\rosdeps\x64\bin;C:\opt\rosdeps\x64\lib;C:\opt\rosdeps\x64\tools\protobuf;%PATH%"
-call "C:\opt\ros\eloquent\x64\local_setup.bat"
-call "C:\opt\rosdeps\x64\share\gazebo-9\setup.bat"
-set "CMAKE_PREFIX_PATH=c:\opt\vcpkg\installed\x64-windows;c:\opt\rosdeps\x64;%CMAKE_PREFIX_PATH%"
-set "ROS_PACKAGE_PATH=C:\opt\ros\eloquent\x64\share"
-set "ROS_ETC_DIR=C:\opt\ros\eloquent\x64\etc\ros"
-```
+Now you have ROS 2 `ros-foxy-desktop` installed. 
 
 ## Open a Developer Command Prompt
 
@@ -94,9 +80,15 @@ set "ROS_ETC_DIR=C:\opt\ros\eloquent\x64\etc\ros"
 2. Run the shortcut as administrator.
 3. Once the developer command prompt is open, run
 
-```
-c:\opt\ros\eloquent\x64\bootstrap.bat
+```Batchfile
+:: activate the ROS 2 environment
+c:\opt\ros\foxy\x64\setup.bat
+
+:: activate the Gazebo simulation environment
+c:\opt\ros\foxy\x64\share\gazebo\setup.bat
+set "SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6"
 ```
 
 Now you are in the ROS 2 Developer command prompt.
 
+[vsdevcmd]: https://docs.microsoft.com/en-us/dotnet/framework/tools/developer-command-prompt-for-vs

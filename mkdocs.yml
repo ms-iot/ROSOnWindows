@@ -25,6 +25,7 @@ nav:
         - Continuous Delivery: GettingStarted/GithubSetupCD.md
         - Continuous Simulation (Windows): GettingStarted/GithubSetupCS_Windows.md
         - Continuous Simulation (Linux): GettingStarted/GithubSetupCS_Linux.md
+        - Continuous Simulation for Navigation2 System Tests: GettingStarted/GithubSetupCS_Windows_Nav2.md
     - Using Azure Pipelines:
         - Continuous Integration: GettingStarted/AzureSetupCI.md
         - Continuous Delivery: GettingStarted/AzureSetupCD.md
