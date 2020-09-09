@@ -103,6 +103,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/GithubSetupCS_Linux.html">Continuous Simulation (Linux)</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/GithubSetupCS_Windows_Nav2.html">Continuous Simulation for Navigation2 System Tests</a>
+                    </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Using Azure Pipelines</span></p>
                 <ul class="current">
@@ -227,11 +229,16 @@ This project is a good example for ROS 2 developers how to organize a End-to-End
 <p><a href="../GettingStarted/SetupRos2.html"><code>Install ROS2</code></a>. <code>Foxy</code> is recommended.</p>
 </li>
 <li>
-<p>Open the ROS 2 command prompt.</p>
+<p>Open the ROS 2 command prompt and activate the Gazebo environment.</p>
 </li>
-<li>
-<p>Create an empty workspace and clone the Navigation2 repositories. For example,</p>
-</li>
+</ol>
+<pre><code class="Batchfile">c:\opt\ros\foxy\x64\setup.bat
+c:\opt\ros\foxy\x64\share\gazebo\setup.bat
+set SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6
+</code></pre>
+
+<ol>
+<li>Create an empty workspace and clone the Navigation2 repositories. For example,</li>
 </ol>
 <pre><code class="Batchfile">:: create an empty workspace
 mkdir c:\nav2_ws\src
@@ -242,28 +249,9 @@ curl https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navi
 vcs import src &lt; navigation2_foxy.repos
 </code></pre>
 
-<p>And you can use <code>rosdep</code> to help install additional dependencies.</p>
-<pre><code class="Batchfile">rosdep update
-rosdep install --from-paths src --ignore-src -r -y
-</code></pre>
-
 <ol>
-<li>Build the Navigation2 projects.</li>
+<li>Build the Navigation2 System Tests projects.</li>
 </ol>
-<pre><code class="Batchfile">:: set additional CMAKE_PREFIX_PATH and PATH to consume Vcpkg packages
-set PATH=c:\opt\vcpkg;c:\opt\rosdeps\x64\tools\protobuf;%PATH%
-set CMAKE_PREFIX_PATH=c:\opt\ros\foxy\x64;c:\opt\vcpkg\installed\x64-windows;C:\opt\rosdeps\x64
-
-:: now build the projects (with BUILD_TESTING=OFF)
-colcon build --packages-ignore nav2_system_tests --cmake-args -DBUILD_TESTING=OFF
-</code></pre>
-
-<p>After a moment, a similar output should be displayed to indicate a successful build:</p>
-<pre><code>Summary: 50 packages finished [12min 1s]
-  6 packages had stderr output: behaviortree_cpp_v3 cartographer cartographer_ros gazebo_plugins gazebo_ros pcl_conversions
-</code></pre>
-
-<p>Now move on building Navigation2 System Tests.</p>
 <pre><code class="Batchfile">:: then, build the nav2_system_tests
 colcon build --packages-select nav2_system_tests
 </code></pre>
@@ -278,10 +266,7 @@ colcon build --packages-select nav2_system_tests
 <ol>
 <li>Run the Nav2 System Tests</li>
 </ol>
-<pre><code class="Batchfile">:: activate Gazebo environment
-c:\opt\rosdeps\x64\share\gazebo\setup.bat
-
-colcon test --packages-select nav2_system_tests
+<pre><code class="Batchfile">colcon test --packages-select nav2_system_tests
 </code></pre>
 
 <ol>
@@ -338,27 +323,27 @@ It is managed by Azure DevOps, and the cost saving can be more optimized.</p>
   workspace:
     clean: all
   steps:
-  - powershell: |
-      Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-    displayName: 'Install Chocolatey'
   - script: |
+      rd /s /q c:\opt 2&gt;&amp;1
+      exit 0
+    displayName: 'Remove opt folder'
+  - powershell: |
+      $env:ChocolateyInstall=&quot;c:\opt\chocolatey&quot;
+      Set-ExecutionPolicy Bypass -Scope Process -Force;
+      iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
       choco sources add -n=roswin -s https://aka.ms/ros/public --priority 1
-      choco upgrade ros-foxy-desktop -y
+      choco install ros-foxy-desktop -y --pre --no-progress -i
     displayName: 'Install ROS 2 Foxy'
   - script: |
       mkdir C:\Users\AzDevOps\.gazebo\models
       call &quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat&quot;
       call &quot;c:\opt\ros\foxy\x64\setup.bat&quot;
-      call &quot;c:\opt\rosdeps\x64\share\gazebo\setup.bat&quot;
-      set PATH=c:\opt\vcpkg;c:\opt\rosdeps\x64\tools\protobuf;%PATH%
-      set CMAKE_PREFIX_PATH=c:\opt\ros\foxy\x64;c:\opt\vcpkg\installed\x64-windows;C:\opt\rosdeps\x64
+      call &quot;c:\opt\ros\foxy\x64\share\gazebo\setup.bat&quot;
+      set &quot;SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6&quot;
       mkdir nav_ws\src
       cd nav_ws
       curl https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos -o navigation2_foxy.repos
       vcs import --force src &lt; navigation2_foxy.repos
-      rosdep update
-      rosdep install --from-paths src --ignore-src -r -y
-      colcon build --packages-ignore nav2_system_tests --cmake-args -DBUILD_TESTING=OFF
       colcon build --packages-select nav2_system_tests
       colcon test --packages-select nav2_system_tests --event-handlers console_direct+
       colcon test-result

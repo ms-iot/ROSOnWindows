@@ -105,6 +105,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/GithubSetupCS_Linux.html">Continuous Simulation (Linux)</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/GithubSetupCS_Windows_Nav2.html">Continuous Simulation for Navigation2 System Tests</a>
+                    </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Using Azure Pipelines</span></p>
                 <ul>
@@ -225,34 +227,28 @@ This short guide shows you how to build <strong>Navigation 2</strong> from sourc
 <ol>
 <li>From the start menu, look for <a href="https://docs.microsoft.com/en-us/dotnet/framework/tools/developer-command-prompt-for-vs"><code>x64 Native Tools Command Prompt for VS 2019</code></a>.</li>
 <li>Open the command prompt as administrator.</li>
-<li>Run the following to install <code>ROS 2 Eloquent</code> and <code>Gazebo 9</code>.</li>
+<li>Run the following to install <code>ROS 2 Foxy</code>.</li>
 </ol>
 <pre><code class="Batchfile">mkdir c:\opt\chocolatey
 set ChocolateyInstall=c:\opt\chocolatey
 choco source add -n=ros-win -s=&quot;https://aka.ms/ros/public&quot; --priority=1
-choco upgrade ros-eloquent-desktop gazebo9 wget openssl -y --execution-timeout=0 --pre
+choco upgrade ros-foxy-desktop -y --execution-timeout=0 --pre
 </code></pre>
 
 <p>You can close the command prompt now.</p>
-<p>✔ Now you have ROS 2 <code>ros-eloquent-desktop</code> and <code>gazebo9</code> nightly build installed. </p>
-<h2 id="create-bootstrap-script">Create bootstrap script</h2>
-<p>Open your favorite editor and create a file <code>bootstrap.bat</code> under <code>c:\opt\ros\eloquent\x64\bootstrap.bat</code> with the following content:</p>
-<pre><code class="Batchfile">set &quot;ChocolateyInstall=c:\opt\chocolatey&quot;
-set &quot;PATH=c:\opt\chocolatey\bin;C:\opt\python37amd64\DLLs;C:\opt\python37amd64\;C:\opt\python37amd64\Scripts;c:\opt\vcpkg\installed\x64-windows\bin;c:\opt\vcpkg;c:\opt\rosdeps\x64\bin;C:\opt\rosdeps\x64\lib;C:\opt\rosdeps\x64\tools\protobuf;%PATH%&quot;
-call &quot;C:\opt\ros\eloquent\x64\local_setup.bat&quot;
-call &quot;C:\opt\rosdeps\x64\share\gazebo-9\setup.bat&quot;
-set &quot;CMAKE_PREFIX_PATH=c:\opt\vcpkg\installed\x64-windows;c:\opt\rosdeps\x64;%CMAKE_PREFIX_PATH%&quot;
-set &quot;ROS_PACKAGE_PATH=C:\opt\ros\eloquent\x64\share&quot;
-set &quot;ROS_ETC_DIR=C:\opt\ros\eloquent\x64\etc\ros&quot;
-</code></pre>
-
+<p>✔ Now you have ROS 2 <code>ros-foxy-desktop</code> installed.</p>
 <h2 id="open-a-developer-command-prompt">Open a Developer Command Prompt</h2>
 <ol>
 <li>From the start menu, look for <a href="https://docs.microsoft.com/en-us/dotnet/framework/tools/developer-command-prompt-for-vs"><code>x64 Native Tools Command Prompt for VS 2019</code></a>.</li>
 <li>Run the shortcut as administrator.</li>
 <li>Once the developer command prompt is open, run</li>
 </ol>
-<pre><code>c:\opt\ros\eloquent\x64\bootstrap.bat
+<pre><code>:: activate the ROS 2 environment
+c:\opt\ros\foxy\x64\setup.bat
+
+:: activate the Gazebo simulation environment
+c:\opt\ros\foxy\x64\share\gazebo\setup.bat
+set &quot;SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6&quot;
 </code></pre>
 
 <p>Now you are in the ROS 2 Developer command prompt.
@@ -264,25 +260,8 @@ mkdir c:\nav2_ws\src
 pushd c:\nav2_ws
 
 :: checkout the required source code.
-wget https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2.repos
+wget https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos
 vcs import src &lt; navigation2.repos
-
-:: evaluate and resolve any additional dependencies
-rosdep update
-rosdep install --from-paths src --ignore-src -r -y
-
-:: manually install google-test
-choco install google-test -y
-
-:: manually install sdl2-image
-vcpkg install sdl2-image:x64-windows
-
-:: manually correct a mistakenly placed graphicsmagick header.
-move &quot;C:\opt\vcpkg\installed\x64-windows\include\Magick++\Magick++.h&quot; &quot;C:\opt\vcpkg\installed\x64-windows\include\&quot;
-
-:: downgrade cmake to 3.16.3
-:: workaround some breaking changes not yet accommodated by the upstream
-pip install -U cmake==3.16.3
 </code></pre>
 
 <h2 id="build-and-activate-the-navigation-2-workspace">Build and Activate the Navigation 2 Workspace</h2>
@@ -291,12 +270,7 @@ pip install -U cmake==3.16.3
 pushd c:\nav2_ws
 
 :: build the workspace
-colcon build --cmake-args -DBUILD_TESTING=OFF --cmake-target install
-</code></pre>
-
-<p>Once the build finishes, you should see the build summary as below:</p>
-<pre><code class="Batchfile">Summary: 58 packages finished [10min 47s]
-  2 packages had stderr output: behaviortree_cpp_v3 cartographer
+colcon build --cmake-args -DBUILD_TESTING=OFF
 </code></pre>
 
 <p>Activate the workspace which was built.</p>
