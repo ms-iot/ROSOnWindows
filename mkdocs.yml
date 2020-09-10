@@ -52,6 +52,6 @@ nav:
         - Troubleshooting: GettingStarted/Troubleshooting.md
         - Create Issue: https://github.com/ms-iot/rosonwindows/issues
         - Paid Support: https://aka.ms/ros/support
-theme: material
+theme: readthedocs
 use_directory_urls: false
 strict: true
