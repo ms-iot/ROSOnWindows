@@ -1,209 +1,1140 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Continuous Simulation for Navigation2 System Tests - ROS on Windows</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Continuous Simulation for Navigation2 System Tests";
-    var mkdocs_page_input_path = "GettingStarted\\GithubSetupCS_Windows_Nav2.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
-</head>
 
-<body class="wy-body-for-nav" role="document">
 
-  <div class="wy-grid-for-nav">
-
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> ROS on Windows</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>System Tests with Continuous Simulation on GitHub Actions (Windows) - ROS on Windows</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="ROS on Windows" class="md-header-nav__button md-logo" aria-label="ROS on Windows">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../WhatsNew.html">What's New</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../Build/buildfarm.html">Build Status</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Get ROS</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="Setup.html">ROS 1</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="SetupRos2.html">ROS 2</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Using ROS</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="NewToROS.html">For new ROS Users</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Getting Started with ROS 1</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="" href="http://wiki.ros.org/ROS/Tutorials">Tutorials at ROS Wiki 🔗</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../Moveit/moveit_tutorials.html">MoveIt</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../Moveit/UR3.html">Universal Robot UR3</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../Turtlebot/Turtlebot3.html">TurtleBot 3</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../tutorials/sick_s300/getting_started.html">SICK S300</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../tutorials/ethercat/soem.html">Simple Open EtherCAT Master</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../tutorials/peak/peak.html">PEAK-System&reg; PCAN&reg;-Basic</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Getting Started with ROS 2</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../ros2/nav2.html">Navigation 2</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Using Github Actions</span></p>
-                <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="GithubSetupCI.html">Continuous Integration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="GithubSetupCD.html">Continuous Delivery</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="GithubSetupCS_Windows.html">Continuous Simulation (Windows)</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="GithubSetupCS_Linux.html">Continuous Simulation (Linux)</a>
-                    </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="GithubSetupCS_Windows_Nav2.html">Continuous Simulation for Navigation2 System Tests</a>
-    <ul class="current">
-    </ul>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Using Azure Pipelines</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="AzureSetupCI.html">Continuous Integration</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="AzureSetupCD.html">Continuous Delivery</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="AzureSetupCS_Windows.html">Continuous Simulation (Windows)</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="AzureSetupCS_Linux.html">Continuous Simulation (Linux)</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../ros2/system_tests.html">Continuous Simulation for Navigation2 System Tests</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Porting Guide</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="UsingROSonWindows.html">Consuming a ROS Package</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="PortingANode.html">Porting a ROS Package</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="UsingVCPKG.html">Using a C++ Dependency</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="AddingVCPKG.html">Porting a C++ Dependency</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../Porting/Cookbook.html">Porting Cookbook</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">ROS at Microsoft</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../ROSAtMS/AzureVM.html">Azure VM with ROS</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../ROSAtMS/WinML.html">Windows ML ROS Node</a>
-                    </li>
-                    <li class="toctree-l1"><a class="" href="https://github.com/microsoft/azure_kinect_ros_driver">Azure Kinect ROS Node 🔗</a>
-                    </li>
-                    <li class="toctree-l1"><a class="" href="https://github.com/microsoft/ros_azure_iothub">Azure IoT Hub Node 🔗</a>
-                    </li>
-                    <li class="toctree-l1"><a class="" href="https://aka.ms/ros/vscode">Visual Studio Code ROS Extension 🔗</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Advanced</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../Build/source.html">Source Installation</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../Advanced/Performance.html">Optimizing Performance</a>
-                    </li>
-                    <li class="toctree-l1"><a class="" href="https://github.com/ms-iot/msix_ros">ROS on MSIX Packaging 🔗</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Support</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="Troubleshooting.html">Troubleshooting</a>
-                    </li>
-                    <li class="toctree-l1"><a class="" href="https://github.com/ms-iot/rosonwindows/issues">Create Issue</a>
-                    </li>
-                    <li class="toctree-l1"><a class="" href="https://aka.ms/ros/support">Paid Support</a>
-                    </li>
-                </ul>
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            ROS on Windows
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              System Tests with Continuous Simulation on GitHub Actions (Windows)
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
       </div>
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">ROS on Windows</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-        
-          <li>Using Github Actions &raquo;</li>
-        
-      
-    
-    <li>Continuous Simulation for Navigation2 System Tests</li>
-    <li class="wy-breadcrumbs-aside">
-      
-        <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/GithubSetupCS_Windows_Nav2.md"
-          class="icon icon-github"> Edit on GitHub</a>
-      
-    </li>
-  </ul>
-  
-  <hr/>
+  </div>
 </div>
-          <div role="main">
-            <div class="section">
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/ms-iot/rosonwindows/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ROS on Windows" class="md-nav__button md-logo" aria-label="ROS on Windows">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    ROS on Windows
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/ms-iot/rosonwindows/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../index.html" title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WhatsNew.html" title="What's New" class="md-nav__link">
+      What's New
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../Build/buildfarm.html" title="Build Status" class="md-nav__link">
+      Build Status
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Get ROS
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Get ROS" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Get ROS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="Setup.html" title="ROS 1" class="md-nav__link">
+      ROS 1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="SetupRos2.html" title="ROS 2" class="md-nav__link">
+      ROS 2
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Using ROS
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Using ROS" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Using ROS
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="NewToROS.html" title="For new ROS Users" class="md-nav__link">
+      For new ROS Users
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Getting Started with ROS 1
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Getting Started with ROS 1" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Getting Started with ROS 1
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="http://wiki.ros.org/ROS/Tutorials" title="Tutorials at ROS Wiki 🔗" class="md-nav__link">
+      Tutorials at ROS Wiki 🔗
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Moveit/moveit_tutorials.html" title="MoveIt" class="md-nav__link">
+      MoveIt
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Moveit/UR3.html" title="Universal Robot UR3" class="md-nav__link">
+      Universal Robot UR3
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
+      TurtleBot 3
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorials/sick_s300/getting_started.html" title="SICK S300" class="md-nav__link">
+      SICK S300
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorials/ethercat/soem.html" title="Simple Open EtherCAT Master" class="md-nav__link">
+      Simple Open EtherCAT Master
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorials/peak/peak.html" title="PEAK-System® PCAN®-Basic" class="md-nav__link">
+      PEAK-System&reg; PCAN&reg;-Basic
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Getting Started with ROS 2
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Getting Started with ROS 2" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        <span class="md-nav__icon md-icon"></span>
+        Getting Started with ROS 2
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ros2/nav2.html" title="Navigation 2" class="md-nav__link">
+      Navigation 2
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+    
+    <label class="md-nav__link" for="nav-8">
+      Using Github Actions
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Using Github Actions" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        <span class="md-nav__icon md-icon"></span>
+        Using Github Actions
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="GithubSetupCI.html" title="Continuous Integration" class="md-nav__link">
+      Continuous Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="GithubSetupCD.html" title="Continuous Delivery" class="md-nav__link">
+      Continuous Delivery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="GithubSetupCS_Windows.html" title="Continuous Simulation (Windows)" class="md-nav__link">
+      Continuous Simulation (Windows)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="GithubSetupCS_Linux.html" title="Continuous Simulation (Linux)" class="md-nav__link">
+      Continuous Simulation (Linux)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Continuous Simulation for Navigation2 System Tests
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="GithubSetupCS_Windows_Nav2.html" title="Continuous Simulation for Navigation2 System Tests" class="md-nav__link md-nav__link--active">
+      Continuous Simulation for Navigation2 System Tests
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-build-and-run-nav2-system-tests-locally" class="md-nav__link">
+    Exercise 1: Build And Run Nav2 System Tests Locally
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-provision-cloud-ci-environment-with-github-actions" class="md-nav__link">
+    Exercise 2: Provision Cloud CI Environment With GitHub Actions
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise 2: Provision Cloud CI Environment With GitHub Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-1-create-a-github-repository" class="md-nav__link">
+    Task 1: Create a GitHub Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-2-prepare-permission-for-self-hosted-github-runner" class="md-nav__link">
+    Task 2: Prepare Permission For Self-Hosted GitHub Runner
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-3-deploy-virtual-machine-and-register-as-self-hosted-github-runner" class="md-nav__link">
+    Task 3: Deploy Virtual Machine and Register as Self-Hosted GitHub Runner
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-4-create-the-github-workflow-files" class="md-nav__link">
+    Task 4: Create the GitHub Workflow Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-4-observe-the-github-actions" class="md-nav__link">
+    Task 4: Observe the GitHub Actions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Using Azure Pipelines
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Using Azure Pipelines" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        <span class="md-nav__icon md-icon"></span>
+        Using Azure Pipelines
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="AzureSetupCI.html" title="Continuous Integration" class="md-nav__link">
+      Continuous Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="AzureSetupCD.html" title="Continuous Delivery" class="md-nav__link">
+      Continuous Delivery
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="AzureSetupCS_Windows.html" title="Continuous Simulation (Windows)" class="md-nav__link">
+      Continuous Simulation (Windows)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="AzureSetupCS_Linux.html" title="Continuous Simulation (Linux)" class="md-nav__link">
+      Continuous Simulation (Linux)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ros2/system_tests.html" title="Continuous Simulation for Navigation2 System Tests" class="md-nav__link">
+      Continuous Simulation for Navigation2 System Tests
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Porting Guide
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Porting Guide" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        <span class="md-nav__icon md-icon"></span>
+        Porting Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="UsingROSonWindows.html" title="Consuming a ROS Package" class="md-nav__link">
+      Consuming a ROS Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="PortingANode.html" title="Porting a ROS Package" class="md-nav__link">
+      Porting a ROS Package
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="UsingVCPKG.html" title="Using a C++ Dependency" class="md-nav__link">
+      Using a C++ Dependency
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="AddingVCPKG.html" title="Porting a C++ Dependency" class="md-nav__link">
+      Porting a C++ Dependency
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Porting/Cookbook.html" title="Porting Cookbook" class="md-nav__link">
+      Porting Cookbook
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      ROS at Microsoft
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="ROS at Microsoft" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        <span class="md-nav__icon md-icon"></span>
+        ROS at Microsoft
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ROSAtMS/AzureVM.html" title="Azure VM with ROS" class="md-nav__link">
+      Azure VM with ROS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ROSAtMS/WinML.html" title="Windows ML ROS Node" class="md-nav__link">
+      Windows ML ROS Node
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/microsoft/azure_kinect_ros_driver" title="Azure Kinect ROS Node 🔗" class="md-nav__link">
+      Azure Kinect ROS Node 🔗
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/microsoft/ros_azure_iothub" title="Azure IoT Hub Node 🔗" class="md-nav__link">
+      Azure IoT Hub Node 🔗
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://aka.ms/ros/vscode" title="Visual Studio Code ROS Extension 🔗" class="md-nav__link">
+      Visual Studio Code ROS Extension 🔗
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+    
+    <label class="md-nav__link" for="nav-12">
+      Advanced
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Advanced" data-md-level="1">
+      <label class="md-nav__title" for="nav-12">
+        <span class="md-nav__icon md-icon"></span>
+        Advanced
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Build/source.html" title="Source Installation" class="md-nav__link">
+      Source Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Advanced/Performance.html" title="Optimizing Performance" class="md-nav__link">
+      Optimizing Performance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/ms-iot/msix_ros" title="ROS on MSIX Packaging 🔗" class="md-nav__link">
+      ROS on MSIX Packaging 🔗
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-13" type="checkbox" id="nav-13">
+    
+    <label class="md-nav__link" for="nav-13">
+      Support
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Support" data-md-level="1">
+      <label class="md-nav__title" for="nav-13">
+        <span class="md-nav__icon md-icon"></span>
+        Support
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="Troubleshooting.html" title="Troubleshooting" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/ms-iot/rosonwindows/issues" title="Create Issue" class="md-nav__link">
+      Create Issue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="https://aka.ms/ros/support" title="Paid Support" class="md-nav__link">
+      Paid Support
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    Objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-build-and-run-nav2-system-tests-locally" class="md-nav__link">
+    Exercise 1: Build And Run Nav2 System Tests Locally
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-provision-cloud-ci-environment-with-github-actions" class="md-nav__link">
+    Exercise 2: Provision Cloud CI Environment With GitHub Actions
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise 2: Provision Cloud CI Environment With GitHub Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-1-create-a-github-repository" class="md-nav__link">
+    Task 1: Create a GitHub Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-2-prepare-permission-for-self-hosted-github-runner" class="md-nav__link">
+    Task 2: Prepare Permission For Self-Hosted GitHub Runner
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-3-deploy-virtual-machine-and-register-as-self-hosted-github-runner" class="md-nav__link">
+    Task 3: Deploy Virtual Machine and Register as Self-Hosted GitHub Runner
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-4-create-the-github-workflow-files" class="md-nav__link">
+    Task 4: Create the GitHub Workflow Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-4-observe-the-github-actions" class="md-nav__link">
+    Task 4: Observe the GitHub Actions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
               
+                
+                  <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/GettingStarted/GithubSetupCS_Windows_Nav2.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                  <h1>Continuous Simulation for Navigation2 System Tests</h1>
+                
                 <h2 id="overview">Overview</h2>
 <p>After defining your robot behavior, it is important to ensure the robot running as expected as the project iterates.
 The traditional unit tests and integration tests usually use the static data to exercise your code.
@@ -374,59 +1305,87 @@ jobs:
    And you can explore more on <a href="https://help.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow#about-workflows">GitHub Help</a>.</p>
 </li>
 </ol>
+                
+                  
+                
               
-            </div>
+              
+                
+
+
+              
+            </article>
           </div>
-          <footer>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="AzureSetupCI.html" class="btn btn-neutral float-right" title="Continuous Integration">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="GithubSetupCS_Linux.html" class="btn btn-neutral" title="Continuous Simulation (Linux)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="GithubSetupCS_Linux.html" title="Continuous Simulation (Linux)" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Continuous Simulation (Linux)
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="AzureSetupCI.html" title="Continuous Integration" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Continuous Integration
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     </div>
   
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
   </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
+    </div>
+    
+      <script src="../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-          <a href="https://github.com/ms-iot/rosonwindows/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
-      
-        <span><a href="GithubSetupCS_Linux.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="AzureSetupCI.html" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
-</div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
-
-</body>
+    
+  </body>
 </html>
