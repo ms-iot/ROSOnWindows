@@ -14,7 +14,7 @@ nav:
         - Tutorials at ROS Wiki 🔗: http://wiki.ros.org/ROS/Tutorials
         - MoveIt: Moveit/moveit_tutorials.md
         - Universal Robot UR3: Moveit/UR3.md
-        - TurtleBot 3: Turtlebot/Turtlebot3.md
+        - TurtleBot3: Turtlebot/Turtlebot3.md
         - SICK S300: tutorials/sick_s300/getting_started.md
         - Simple Open EtherCAT Master: tutorials/ethercat/soem.md
         - PEAK-System&reg; PCAN&reg;-Basic: tutorials/peak/peak.md
@@ -53,5 +53,10 @@ nav:
         - Create Issue: https://github.com/ms-iot/rosonwindows/issues
         - Paid Support: https://aka.ms/ros/support
 theme: material
+markdown_extensions:
+  - pymdownx.tabbed
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      use_pygments: true
 use_directory_urls: false
 strict: true

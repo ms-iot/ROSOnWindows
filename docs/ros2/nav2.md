@@ -17,18 +17,21 @@ This short guide shows you how to build **Navigation 2** from source and later y
 
 > The instructions can be found on [`http://wiki.ros.org/Installation/Windows`](http://wiki.ros.org/Installation/Windows).
 
-  * ✔ 64-bit (amd64) environment of `Windows 10 Desktop`.
-  * ✔ `Visual Studio 2019` with `Desktop development with C++` workload included.
-  * ✔ `Chocolatey` package manager installed.
-  * ✔ `Git` source control software installed.
-  
+✔️ 64-bit (amd64) environment of `Windows 10 Desktop`.
+
+✔️ `Visual Studio 2019` with `Desktop development with C++` workload included.
+
+✔️ `Chocolatey` package manager installed.
+
+✔️ `Git` source control software installed.
+
 ## Installing ROS 2 on Windows
 
 1. From the start menu, look for [`x64 Native Tools Command Prompt for VS 2019`][vsdevcmd].
 2. Open the command prompt as administrator.
 3. Run the following to install `ROS 2 Foxy`.
 
-```Batchfile
+```bat
 mkdir c:\opt\chocolatey
 set ChocolateyInstall=c:\opt\chocolatey
 choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
@@ -37,7 +40,7 @@ choco upgrade ros-foxy-desktop -y --execution-timeout=0 --pre
 
 You can close the command prompt now.
 
-✔ Now you have ROS 2 `ros-foxy-desktop` installed.
+✔️ Now you have ROS 2 `ros-foxy-desktop` installed.
 
 ## Open a Developer Command Prompt
 
@@ -45,7 +48,7 @@ You can close the command prompt now.
 2. Run the shortcut as administrator.
 3. Once the developer command prompt is open, run
 
-```
+```bat
 :: activate the ROS 2 environment
 c:\opt\ros\foxy\x64\setup.bat
 
@@ -61,7 +64,7 @@ Stay in this command prompt for the rest of this tutorial.
 
 Create a empty workspace to contain the Navigation 2 project, and then resolve the additional dependencies.
 
-```Batchfile
+```bat
 :: create a empty workspace
 mkdir c:\nav2_ws\src
 pushd c:\nav2_ws
@@ -75,7 +78,7 @@ vcs import src < navigation2.repos
 
 Build the workspace by `colcon` build tool.
 
-```Batchfile
+```bat
 :: change to the root of workspace
 pushd c:\nav2_ws
 
@@ -85,7 +88,7 @@ colcon build --cmake-args -DBUILD_TESTING=OFF
 
 Activate the workspace which was built.
 
-```Batchfile
+```bat
 :: activate it
 install\setup.bat
 ```
@@ -95,7 +98,7 @@ install\setup.bat
 Now you are in the Navigation 2 activated environment.
 Before you explore more, let's run a little exercise to make sure your environment ready to go.
 
-```Batchfile
+```bat
 cd c:\nav2_ws
 
 set GAZEBO_MODEL_PATH=C:\nav2_ws\install\turtlebot3_gazebo\share\turtlebot3_gazebo\models;%GAZEBO_MODEL_PATH%

@@ -12,7 +12,7 @@ Windows uses the environment variable `%USERPROFILE%` - use this whenever you se
 
 ## Quote handling in command window
 Cmd.exe is the command processor of command window.  Single quotes are not used at all by the cmd.exe except in batch file to enclose the command to run within a FOR /F statement.  Cmd.exe handles quoting with double quotes.  This is different from Linux that uses single quote as quote character.  As encounter quoting on Windows, please use double quote.  The following example shows using double quotes around the message contents:
-```no-highlight
+```bat
 rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- "[2.0, 0.0, 0.0]" "[0.0, 0.0, 1.8]"
 ```
 
@@ -24,14 +24,14 @@ To address this either:
   * Link folders from your C:\ drive to your workspaces.
 
 To link a folder on Windows, use the mklink to create a filesystem link from one drive to another.:
-```no-highlight
+```bat
 mkdir d:\workspaces
 mklink c:\workspaces d:\workspaces
 ```
 
 ### Symbol Visibility
 Windows and Linux handle symbol visibility differently. You may encounter a build error of the form:
-```no-highlight
+```bat
 error C2448: '__attribute__': function-style initializer appears to be a function definition
 'visibility': identifier not found
 ```
@@ -45,7 +45,7 @@ Please visit the Microsoft Documentation for more information on [Gflags](https:
 ### install Library TARGETS given no DESTINATION! 
 
 Windows will generate separate archives and librarys. To handle this, add an ARCHIVE destination:
-```no-highlight
+```bat
 install(
     TARGETS ${PROJECT_NAME}
     ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
@@ -54,7 +54,7 @@ install(
 ### All Warnings
 Warnings are good. The options for selecting warning level are different. If you add specific compiler options for warnings, please add an MSVC selection. For the Visual Studio compiler, you'll use `/W3` for warning level 3 (or `/W4` which offers more warning options). If you would like to treat warnings as errors pass `/WX`. However, these warnings would need to be corrected before the compile will succeed.
 
-```no-highlight
+```bat
 if(MSVC)
   add_compile_options(/W3 /WX)
 else()
@@ -73,13 +73,13 @@ You can disable specific warnings using `#pragma`:
 ### Security Warnings
 Windows deprecates certain C APIs because they are inherently insecure. You will receive a message of the form:
 
-```no-highlight
+```bat
 warning C4996: 'xxx': This function or variable may be unsafe. Consider using xxx_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 ```
 
 Consider using modern equivelents. If you cannot use a modern equivelent, you can add the following to your cmake files:
 
-```no-highlight
+```bat
 add_definitions("/D_CRT_SECURE_NO_WARNINGS")
 add_definitions("/D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS")
 ```
@@ -87,13 +87,13 @@ add_definitions("/D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS")
 ### C++ versioning
 Use CMake to set the C++ version:
 
-```no-highlight
+```bat
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 11)
 endif()
 ```
 or 
-```no-highlight
+```bat
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 17)
 endif()
@@ -109,7 +109,7 @@ Linux automatically exports symbols. Windows, symbols are private by default. [C
 
 In your cmake:
 
-```no-highlight
+```bat
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 ```
 
@@ -147,7 +147,7 @@ The Microsoft compiler will optimize agressively. This can manifest in strange w
 ### Case sensitivity
 Linux is case sensitive, whereas Windows is not. We are trying to locate case sensitive areas and isolate them. This manifests in odd errors like this: 
 
-```no-highlight
+```bat
 RLException: multiple files named [turtlebot3_robot.launch] in package [turtlebot3_bringup]:
 - C:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
 - c:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
@@ -167,7 +167,7 @@ If you are producing a command line application which will be installed with Pip
 ## Errors
 ### gtest-NOTFOUND
 This occurs when linking against gtest instead of ${GTEST_LIBRARIES}
-```no-highlight
+```bat
   target_link_libraries( rtest
       ${GTEST_LIBRARIES}
       ${catkin_LIBRARIES}

@@ -23,7 +23,7 @@ For more details, visit [PEAK-System][peak].
 Firstly, you will need a `catkin` workspace to begin with.
 Assuming you have an empty workspace under `c:\can_ws`, now create a new package.
 
-```Batchfile
+```bat
 :: change the directory to the source subfolder.
 c:\can_ws> cd src
 
@@ -82,7 +82,7 @@ install(FILES
 
 And now you can build the package and see if everything is set up correctly.
 
-```Batchfile
+```bat
 :: Build the workspace
 c:\can_ws> catkin_make install
 
@@ -299,7 +299,7 @@ Depending on your CAN devices, you may need to add more protocol-specific implem
 Now we have all the code in place.
 Let's rebuild the workspace again to ensure everything built.
 
-```Batchfile
+```bat
 :: Build the workspace
 c:\can_ws> catkin_make install
 
@@ -313,7 +313,7 @@ Before we launch the application, we need to make sure `rosmaster` is up and run
 Start another ROS command prompt and run `roscore`.
 Now we are ready to run this application.
 
-```Batchfile
+```bat
 c:\can_ws> rosrun my_pkg node
 ```
 

@@ -28,7 +28,7 @@ A GitHub account from [https://github.com](https://github.com).
 
 2. Open the ROS 2 command prompt and activate the Gazebo environment.
 
-```Batchfile
+```bat
 c:\opt\ros\foxy\x64\setup.bat
 c:\opt\ros\foxy\x64\share\gazebo\setup.bat
 set SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6
@@ -36,7 +36,7 @@ set SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6
 
 3. Create an empty workspace and clone the Navigation2 repositories. For example,
 
-```Batchfile
+```bat
 :: create an empty workspace
 mkdir c:\nav2_ws\src
 cd c:\nav2_ws
@@ -48,7 +48,7 @@ vcs import src < navigation2_foxy.repos
 
 4. Build the Navigation2 System Tests projects.
 
-```Batchfile
+```bat
 :: then, build the nav2_system_tests
 colcon build --packages-select nav2_system_tests
 ```
@@ -63,13 +63,13 @@ Summary: 1 package finished [2min 10s]
 
 5. Run the Nav2 System Tests
 
-```Batchfile
+```bat
 colcon test --packages-select nav2_system_tests
 ```
 
 6. Verify the test result.
 
-```Batchfile
+```bat
 colcon test-result
 ```
 

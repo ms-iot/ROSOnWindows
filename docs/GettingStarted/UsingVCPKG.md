@@ -7,7 +7,7 @@ Often the name of a a library on Linux differs from the name on vcpkg. In order 
 * Fork [https://github.com/ms-iot/rosdistro-db](https://github.com/ms-iot/rosdistro-db) &nearr; into your github account, if you haven't already
 * Create a file called `0-update.list` in `c:\opt\ros\melodic\x64\etc\ros\rosdep\sources.list.d`
 * In this file, add a line which points to your fork.
-```no-highlight
+```bat
 # os-specific listings first
 yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
 yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
@@ -16,14 +16,14 @@ yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/r
   The format of the vcpkg.yaml:
 
 `Python`
-```no-highlight
+```bat
 <python-package-name>:
     windows:
       pip:
         packages: [<python-package-name-in-pip>]
 ```
   `C++`
-```no-highlight
+```bat
   <linux--package-name>:
     windows:
       vcpkg:
@@ -31,12 +31,12 @@ yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/r
 ```
 
 * Update rosdeps on your computer.
-```no-highlight
+```bat
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 ```
 You'll see that the dependency resolves correctly. However, you may be provided with instructions for using that library in ROS nodes:
-```no-highlight
+```bat
 The package <library>:x64-windows provides CMake targets:
 
     find_package(<package> CONFIG REQUIRED)
@@ -45,7 +45,7 @@ The package <library>:x64-windows provides CMake targets:
 
 These may differ from how linkage happes on Linux. To link this library, to support both Windows and Linux, you can wrap it:
 
-```no-highlight
+```bat
 if (MSVC)
     target_link_libraries(main PRIVATE <package> <package>::<namespace>)
 else()
@@ -57,7 +57,7 @@ endif
 ROS on Windows is delivered with Release binaries that have been built with Debug Info (using cmake's RelWithDebInfo target). When interacting with vcpkg, cmake will map RelWithDebInfo built binaries to Debug binaries. This mismatch will cause problems.
 
 To correct this, add the following to the cmake for the ROS node:
-```no-highlight
+```bat
 set_target_properties(${<dependency_LIBRARIES} PROPERTIES MAP_IMPORTED_CONFIG_RELWITHDEBINFO RELEASE)
 ```
 

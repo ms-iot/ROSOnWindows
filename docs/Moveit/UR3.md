@@ -9,14 +9,14 @@ Getting Started with the MoveIt and UR3 on Windows. If you are new to MoveIt or 
 ## MoveIt and UR3 on Windows Installation
 First, you can get started by installing moveit related packages from ROSOnWindows Chocolatey server.
 (open a command prompt as admin)
-```no-highlight
+```bat
 choco upgrade ros-melodic-desktop_full -y
 choco upgrade ros-melodic-moveit -y
 ```
 
 Then, create a workspace, checkout and build the Universal Robot Driver for UR3.
 (open a command prompt as admin)
-```no-highlight
+```bat
 c:\opt\ros\melodic\x64\setup.bat
 mkdir c:\catkin_ws\src
 cd c:\catkin_ws\src
@@ -34,7 +34,7 @@ Now let's run it! In this example, it requires three launch files to run: One is
 
 Let's start the UR3 driver stack:
 (open a command prompt as admin)
-```no-highlight
+```bat
 c:\opt\ros\melodic\x64\setup.bat
 c:\catkin_ws\devel\setup.bat
 roslaunch ur_modern_driver ur3_bringup.launch robot_ip:=IP_OF_THE_ROBOT use_lowbandwidth_trajectory_follower:=true
@@ -42,7 +42,7 @@ roslaunch ur_modern_driver ur3_bringup.launch robot_ip:=IP_OF_THE_ROBOT use_lowb
 
 Second, run the UR3 motion planning:
 (open a command prompt as admin)
-```no-highlight
+```bat
 c:\opt\ros\melodic\x64\setup.bat
 c:\catkin_ws\devel\setup.bat
 roslaunch ur3_moveit_config ur3_moveit_planning_execution.launch
@@ -50,7 +50,7 @@ roslaunch ur3_moveit_config ur3_moveit_planning_execution.launch
 
 Finally, run the visualization tool:
 (open a command prompt as admin)
-```no-highlight
+```bat
 c:\opt\ros\melodic\x64\setup.bat
 c:\catkin_ws\devel\setup.bat
 roslaunch ur3_moveit_config moveit_rviz.launch config:=true

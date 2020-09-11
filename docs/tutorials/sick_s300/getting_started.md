@@ -24,7 +24,7 @@ For more information, see [http://wiki.ros.org/cob_sick_s300](http://wiki.ros.or
 Firstly, you will need a `catkin` workspace to contain the driver package.
 Let's assume you are working on a empty workspace under `c:\s300_ws` and now you need to clone the driver package and its dependencies into the source folder:
 
-```no-highlight
+```bat
 :: change the directory to the source subfolder.
 c:\s300_ws> cd src
 
@@ -39,7 +39,7 @@ Now you have the required packages in your workspace.
 By ROS convention, it is common to manage the peripheral nodes in ROS launch files.
 However, since we begin this tutorial with an empty workspace, let's create a new package so we can add the ROS launch files later.
 
-```no-highlight
+```bat
 :: change the directory to the source subfolder.
 c:\s300_ws> cd src
 
@@ -52,7 +52,7 @@ c:\s300_ws\src> catkin_create_pkg my_pkg
 Let's build the workspace to produce the executables and binaries.
 And remember to run `setup.bat` to add the development space into the current environment.
 
-```no-highlight
+```bat
 :: Build the workspace
 c:\s300_ws> catkin_make
 
@@ -65,7 +65,7 @@ c:\s300_ws> devel\setup.bat
 At this moment, you are ready to add new ROS launch file for the new package.
 Let's add a new one called `my_pkg.launch`:
 
-```no-highlight
+```bat
 :: Change the directory to new package
 c:\s300_ws> roscd my_pkg
 
@@ -107,7 +107,7 @@ Before we move forward, let's take a look some important parameters to accommoda
 
 After everything is correctly configured, you are ready to run it.
 
-```no-highlight
+```bat
 :: Run the ROS launch file
 c:\s300_ws> roslaunch my_pkg my_pkg.launch
 ```
