@@ -358,8 +358,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1111,40 +1111,38 @@
 <li>ROS melodic for Windows</li>
 </ul>
 <p>The WinML ROS Node is distrubted as source. To consume it in your robot, clone the winml_tracker sources into your workspace.</p>
-<p>For example:</p>
-<pre><code class="no-highlight">mkdir c:\workspace\winml_demo\src
-cd c:\workspace\winml_demo\src
+<p>For example:
+<div class="highlight"><pre><span></span><code><span class="k">mkdir</span> c:\workspace\winml_demo\src
+<span class="k">cd</span> c:\workspace\winml_demo\src
 catkin_init_workspace
 git clone https://github.com/ms-iot/winml_tracker
-</code></pre>
+</code></pre></div></p>
+<p>Create a Launch file, which references the model.onnx file:
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;launch&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;onnx_model_path_arg&quot;</span> <span class="na">default=</span><span class="s">&quot;$(find winml_tracker)/testdata/model.onnx&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">&quot;winml_tracker&quot;</span> <span class="na">type=</span><span class="s">&quot;winml_tracker_node&quot;</span> <span class="na">name=</span><span class="s">&quot;winml_tracker&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;onnx_model_path&quot;</span> <span class="na">value=</span><span class="s">&quot;$(arg onnx_model_path_arg)&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;confidence&quot;</span> <span class="na">value=</span><span class="s">&quot;0.5&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;tensor_width&quot;</span> <span class="na">value=</span><span class="s">&quot;416&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;tensor_height&quot;</span> <span class="na">value=</span><span class="s">&quot;416&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;tracker_type&quot;</span> <span class="na">value=</span><span class="s">&quot;yolo&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;image_processing&quot;</span> <span class="na">value=</span><span class="s">&quot;resize&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;debug&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;image_topic&quot;</span> <span class="na">value=</span><span class="s">&quot;/cv_camera/image_raw&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
 
-<p>Create a Launch file, which references the model.onnx file:</p>
-<pre><code class="xml">&lt;launch&gt;
-  &lt;arg name=&quot;onnx_model_path_arg&quot; default=&quot;$(find winml_tracker)/testdata/model.onnx&quot;/&gt;
-  &lt;node pkg=&quot;winml_tracker&quot; type=&quot;winml_tracker_node&quot; name=&quot;winml_tracker&quot; output=&quot;screen&quot;&gt;
-    &lt;param name=&quot;onnx_model_path&quot; value=&quot;$(arg onnx_model_path_arg)&quot;/&gt;
-    &lt;param name=&quot;confidence&quot; value=&quot;0.5&quot;/&gt;
-    &lt;param name=&quot;tensor_width&quot; value=&quot;416&quot;/&gt;
-    &lt;param name=&quot;tensor_height&quot; value=&quot;416&quot;/&gt;
-    &lt;param name=&quot;tracker_type&quot; value=&quot;yolo&quot;/&gt;
-    &lt;param name=&quot;image_processing&quot; value=&quot;resize&quot;/&gt;
-    &lt;param name=&quot;debug&quot; value=&quot;true&quot;/&gt;
-    &lt;param name=&quot;image_topic&quot; value=&quot;/cv_camera/image_raw&quot; /&gt;
-  &lt;/node&gt;
+  <span class="c">&lt;!-- NOTE: The image properties need to be valid for the camera, or the node will auto select the closest values --&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">&quot;cv_camera&quot;</span> <span class="na">type=</span><span class="s">&quot;cv_camera_node&quot;</span> <span class="na">name=</span><span class="s">&quot;cv_camera&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;rate&quot;</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span> <span class="na">value=</span><span class="s">&quot;5.0&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;image_width&quot;</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span> <span class="na">value=</span><span class="s">&quot;640&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;image_height&quot;</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span> <span class="na">value=</span><span class="s">&quot;480&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/node&gt;</span>
 
-  &lt;!-- NOTE: The image properties need to be valid for the camera, or the node will auto select the closest values --&gt;
-  &lt;node pkg=&quot;cv_camera&quot; type=&quot;cv_camera_node&quot; name=&quot;cv_camera&quot; output=&quot;screen&quot;&gt;
-    &lt;param name=&quot;rate&quot; type=&quot;double&quot; value=&quot;5.0&quot;/&gt;
-    &lt;param name=&quot;image_width&quot; type=&quot;double&quot; value=&quot;640&quot;/&gt;
-    &lt;param name=&quot;image_height&quot; type=&quot;double&quot; value=&quot;480&quot;/&gt;
-  &lt;/node&gt;
+  <span class="nt">&lt;node</span> <span class="na">pkg=</span><span class="s">&quot;tf&quot;</span> <span class="na">type=</span><span class="s">&quot;static_transform_publisher&quot;</span> <span class="na">name=</span><span class="s">&quot;winml_link&quot;</span>
+    <span class="na">args=</span><span class="s">&quot;0 -0.02  0 0 0 0 map base_link 100&quot;</span> <span class="nt">/&gt;</span>  
 
-  &lt;node pkg=&quot;tf&quot; type=&quot;static_transform_publisher&quot; name=&quot;winml_link&quot;
-    args=&quot;0 -0.02  0 0 0 0 map base_link 100&quot; /&gt;  
-
-&lt;/launch&gt;
-</code></pre>
-
+<span class="nt">&lt;/launch&gt;</span>
+</code></pre></div></p>
 <blockquote>
 <p>While 'Pose' processing is enabled, the service required to generate the model has not been published as of October 2020</p>
 </blockquote>

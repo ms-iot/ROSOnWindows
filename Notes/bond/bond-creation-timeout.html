@@ -358,8 +358,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -963,7 +963,7 @@
 </ol>
 <p>the bond class recognizes a connection between 2 process when its subscriber receives the first heartbeat signal from the other process. when the heartbeat signal takes too long to be received, it will mark the connection as timed out.</p>
 <p>the following is a typical network log when the bond between a nodelet manager process and the nodelet process after removing the timeout. as we can see, the connection ultimately gets established after more than 10 seconds</p>
-<pre><code>[ INFO] [1562890405.970666100]: creating bond [ed2a422e-61dc-4904-88df-2f37e511b35d] in manager process
+<div class="highlight"><pre><span></span><code>[ INFO] [1562890405.970666100]: creating bond [ed2a422e-61dc-4904-88df-2f37e511b35d] in manager process
 [ INFO] [1562890405.994268400]: starting bond [0609a515-48ac-4e2e-8a2c-6fd36ef697ff] in nodelet process
 [ INFO] [1562890406.975367400]: ed2a422e-61dc-4904-88df-2f37e511b35d: heartbeat - 1
 [ INFO] [1562890406.975669500]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890406.975161500) ed2a422e-61dc-4904-88df-2f37e511b35d
@@ -1037,7 +1037,7 @@
 [ INFO] [1562890420.100615700]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: heartbeat - 1
 [ INFO] [1562890420.100336000]: ed2a422e-61dc-4904-88df-2f37e511b35d: bond status callback - (1562890420.100524300) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
 [ INFO] [1562890420.200336100]: 0609a515-48ac-4e2e-8a2c-6fd36ef697ff: bond status callback - (1562890420.100524300) 0609a515-48ac-4e2e-8a2c-6fd36ef697ff
-</code></pre>
+</code></pre></div>
 
 <p>to simplify the explanation, we use the following aliases for the bonds and their publishers and subscribers:</p>
 <ul>
@@ -1053,7 +1053,7 @@
 </ul>
 <p>Noticing that <code>b1</code> with its publisher and subscriber are created earlier than <code>b2</code> and its publisher and subscriber, we can conclude that <code>b1-pub</code> is created earlier than <code>b2-sub</code> (this is because publisher and subscriber creation code is blocking). Meantime, however, <code>b2-pub</code> is created later than <code>b1-sub</code>. Would this be the reason for the behavior above? Searching online would lead us to <a href="https://answers.ros.org/question/10171/ros-msgs-not-received-if-publisher-starts-after-subscriber/">this question</a> that has been discussed on answers.ros. The root cause for this is that when a publisher is created later than a subscriber, the subscriber takes a long time to establish a connection with the newly emerged publisher.</p>
 <p>As explained in the "Node Environment Variables" section of <a href="http://wiki.ros.org/ROS/EnvironmentVariables">this ROS documentation</a>, when a machine has more than one network name this problem starts to emerge. To work around it, use the <code>ROS_IP</code> or <code>ROS_HOSTNAME</code> environment variable to specify a designated connection. The network log proves that it works:</p>
-<pre><code>[ INFO] [1562890762.216079700]: creating bond [469d6a4a-6f6c-40e9-a35a-05526812d10e] in manager process
+<div class="highlight"><pre><span></span><code>[ INFO] [1562890762.216079700]: creating bond [469d6a4a-6f6c-40e9-a35a-05526812d10e] in manager process
 [ INFO] [1562890763.272645100]: starting bond [260dff49-6afa-47a3-b288-fb560cd53edc] in nodelet process
 [ INFO] [1562890763.220602400]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: heartbeat - 1
 [ INFO] [1562890763.220870700]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890763.220382500) 469d6a4a-6f6c-40e9-a35a-05526812d10e
@@ -1091,7 +1091,7 @@
 [ INFO] [1562890769.382575200]: 260dff49-6afa-47a3-b288-fb560cd53edc: heartbeat - 1
 [ INFO] [1562890768.382076400]: 469d6a4a-6f6c-40e9-a35a-05526812d10e: bond status callback - (1562890769.382510900) 260dff49-6afa-47a3-b288-fb560cd53edc
 [ INFO] [1562890769.481919300]: 260dff49-6afa-47a3-b288-fb560cd53edc: bond status callback - (1562890769.382510900) 260dff49-6afa-47a3-b288-fb560cd53edc
-</code></pre>
+</code></pre></div>
 
 <!-- external links -->
                 

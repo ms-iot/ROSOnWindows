@@ -358,8 +358,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -986,48 +986,55 @@
 </li>
 <li>
 <p>(if ROS on Windows is already installed) use the following <code>choco upgrade</code> command to make sure you have the latest binaries
-    <code>choco upgrade ros-melodic-desktop -y</code></p>
+    <div class="highlight"><pre><span></span><code>choco upgrade ros-melodic-desktop -y
+</code></pre></div></p>
 </li>
 <li>
 <p>load ROS on Windows environment with <code>setup.bat</code>, similar to the following command
-    <code>C:\opt\ros\melodic\x64\setup.bat</code></p>
+    <div class="highlight"><pre><span></span><code>C:\opt\ros\melodic\x64\setup.bat
+</code></pre></div></p>
 <p><em>note: this step is critical; otherwise all the ROS CLI tools like <code>catkin_make</code> or <code>catkin_make_isolated</code> cannot be used</em></p>
 </li>
 <li>
 <p>before moving on to <code>rosserial</code> installation, check environment</p>
 <ul>
 <li>you should see this is ROS environment is loaded
-    <code>&gt;set ros
-    ROS_DISTRO=melodic
-    ROS_ETC_DIR=C:/opt/ros/melodic/x64/etc/ros
-    ROS_MASTER_URI=http://localhost:11311
-    ROS_PACKAGE_PATH=C:\opt\ros\melodic\x64\share
-    ROS_PYTHON_VERSION=2
-    ROS_ROOT=C:/opt/ros/melodic/x64/share/ros
-    ROS_VERSION=1
-    &gt;set path
-    Path=C:/opt/rosdeps/x64\bin;C:/opt/rosdeps/x64\lib;C:/opt/ros/melodic/x64\bin;C:/opt/ros/melodic/x64\lib;...</code></li>
+    <div class="highlight"><pre><span></span><code>&gt;set ros
+ROS_DISTRO=melodic
+ROS_ETC_DIR=C:/opt/ros/melodic/x64/etc/ros
+ROS_MASTER_URI=http://localhost:11311
+ROS_PACKAGE_PATH=C:\opt\ros\melodic\x64\share
+ROS_PYTHON_VERSION=2
+ROS_ROOT=C:/opt/ros/melodic/x64/share/ros
+ROS_VERSION=1
+&gt;set path
+Path=C:/opt/rosdeps/x64\bin;C:/opt/rosdeps/x64\lib;C:/opt/ros/melodic/x64\bin;C:/opt/ros/melodic/x64\lib;...
+</code></pre></div></li>
 <li>you should see this if Python (for ROS) is added to PATH
-    <code>&gt;set path
-    Path=...;C:\opt\python27amd64\;C:\opt\python27amd64\Scripts;...</code></li>
+    <div class="highlight"><pre><span></span><code>&gt;set path
+Path=...;C:\opt\python27amd64\;C:\opt\python27amd64\Scripts;...
+</code></pre></div></li>
 <li>you should be able to use call Python from command line
-    <code>&gt;python --version
-    Python 2.7.15</code></li>
+    <div class="highlight"><pre><span></span><code>&gt;python --version
+Python 2.7.15
+</code></pre></div></li>
 </ul>
 </li>
 <li>
 <p>create <code>rosserial</code> workspace, clone <code>rosserial</code>, and build</p>
 <p><em>note: please use <code>ms-iot:init_windows</code> on Windows until <code>ms-iot</code> changes are upstreamed back to ROS mainline</em>
-<code>mkdir c:\ros\catkin_ws\rosserial\src\ &amp;&amp; cd c:\ros\catkin_ws\rosserial\src\
+<div class="highlight"><pre><span></span><code>mkdir c:\ros\catkin_ws\rosserial\src\ &amp;&amp; cd c:\ros\catkin_ws\rosserial\src\
 git clone https://github.com/ms-iot/rosserial.git -b init_windows
 cd ..
-catkin_make_isolated</code></p>
+catkin_make_isolated
+</code></pre></div></p>
 </li>
 <li>
 <p>load <code>rosserial</code> environment just have just been built, and setup Arduino environment (assuming current work directory is still <code>c:\ros\catkin_ws\rosserial</code>)</p>
 <p><em>note: these steps are very similar to <a href="http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup">the steps (for Ubuntu) in <code>rosserial_arduino</code> tutorials</a></em>
-<code>.\install_isolated\setup.bat
-rosrun rosserial_arduino make_libraries.py .</code></p>
+<div class="highlight"><pre><span></span><code>.\install_isolated\setup.bat
+rosrun rosserial_arduino make_libraries.py .
+</code></pre></div></p>
 </li>
 <li>
 <p>at this point, a new folder called <code>ros_lib</code> should have been generated, copy that to the library folder for Arduino</p>

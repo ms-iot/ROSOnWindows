@@ -353,8 +353,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -928,85 +928,84 @@
                 
                   <h1>Ros1 workflow pub</h1>
                 
-                <pre><code class="yaml">name: CD
-on:
-  push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+                <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CD</span>
+<span class="nt">on</span><span class="p">:</span>
+  <span class="nt">push</span><span class="p">:</span>
+    <span class="c1"># Sequence of patterns matched against refs/tags</span>
+    <span class="nt">tags</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="s">&#39;v*&#39;</span> <span class="c1"># Push events to matching v*, i.e. v1.0, v20.15.10</span>
 
-jobs:
-  build_and_test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-          os: [windows-latest]
-    steps:
-    - uses: actions/checkout@v2
-    - name: Cleanup windows environment
-      shell: bash
-      run: |
-        rm -rf /c/hostedtoolcache/windows/Boost/1.72.0/lib/cmake/Boost-1.72.0
-        mkdir -p /c/ci
-        cp $GITHUB_WORKSPACE/ci/toolchain.cmake /c/ci
-    - uses: goanpeca/setup-miniconda@v1
-      with:
-        activate-environment: myenv
-        environment-file: ci/environment.yaml
-        python-version: 3.7
-    - uses: ros-tooling/action-ros-ci@master
-      with:
-        package-name: &lt;ros package&gt;
-        vcs-repo-file-url: ${{ github.workspace }}/ci/deps.rosinstall
-        extra-cmake-args: &quot;-G Ninja -DCMAKE_TOOLCHAIN_FILE=c:/ci/toolchain.cmake -DCMAKE_BUILD_TYPE=Release&quot;
-      env:
-        COLCON_DEFAULTS_FILE: ${{ github.workspace }}/ci/defaults.yaml
-        ROS_PYTHON_VERSION: 3
-        CC: cl.exe
-        CXX: cl.exe
-    - uses: ros-tooling/action-ros-ci@master
-      with:
-        package-name: winml_tracker
-        vcs-repo-file-url: ${{ github.workspace }}/ci/empty.rosinstall
-        extra-cmake-args: &quot;-G Ninja -DCMAKE_TOOLCHAIN_FILE=c:/ci/toolchain.cmake -DCMAKE_BUILD_TYPE=Release&quot;
-      env:
-        COLCON_DEFAULTS_FILE: ${{ github.workspace }}/ci/packaging.yaml
-        ROS_PYTHON_VERSION: 3
-        CC: cl.exe
-        CXX: cl.exe        
-    - name: Build Chocolatey Package
-      shell: cmd
-      run: |
-        cd c:\opt\install
-        7z a -tzip ${{ github.workspace }}\package\tools\drop.zip *
-        echo $destination = 'c:\opt\ros\melodic\x64' &gt; ${{ github.workspace }}\package\tools\chocolateyInstall.ps1
-        type $GITHUB_WORKSPACE\package\chocolateyInstall_template.ps1 &gt;&gt; ${{ github.workspace }}\package\tools\chocolateyInstall.ps1
-        mkdir c:\opt\output
-        cd ${{ github.workspace }}\package
-        choco pack --trace --out c:\opt\output &lt;ros nuspec&gt;.nuspec 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} 
-        asset_path: c:/opt/output/&lt;ros nuspec&gt;.&lt;ros version&gt;.nupkg
-        asset_name: &lt;ros nuspec&gt;.&lt;ros version&gt;.nupkg
-        asset_content_type: application/zip 
-
-</code></pre>
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">build_and_test</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ matrix.os }}</span>
+    <span class="nt">strategy</span><span class="p">:</span>
+      <span class="nt">fail-fast</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+      <span class="nt">matrix</span><span class="p">:</span>
+          <span class="nt">os</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">windows-latest</span><span class="p p-Indicator">]</span>
+    <span class="nt">steps</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Cleanup windows environment</span>
+      <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bash</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">rm -rf /c/hostedtoolcache/windows/Boost/1.72.0/lib/cmake/Boost-1.72.0</span>
+        <span class="no">mkdir -p /c/ci</span>
+        <span class="no">cp $GITHUB_WORKSPACE/ci/toolchain.cmake /c/ci</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">goanpeca/setup-miniconda@v1</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">activate-environment</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">myenv</span>
+        <span class="nt">environment-file</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ci/environment.yaml</span>
+        <span class="nt">python-version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3.7</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ros-tooling/action-ros-ci@master</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">package-name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;ros package&gt;</span>
+        <span class="nt">vcs-repo-file-url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ github.workspace }}/ci/deps.rosinstall</span>
+        <span class="nt">extra-cmake-args</span><span class="p">:</span> <span class="s">&quot;-G</span><span class="nv"> </span><span class="s">Ninja</span><span class="nv"> </span><span class="s">-DCMAKE_TOOLCHAIN_FILE=c:/ci/toolchain.cmake</span><span class="nv"> </span><span class="s">-DCMAKE_BUILD_TYPE=Release&quot;</span>
+      <span class="nt">env</span><span class="p">:</span>
+        <span class="nt">COLCON_DEFAULTS_FILE</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ github.workspace }}/ci/defaults.yaml</span>
+        <span class="nt">ROS_PYTHON_VERSION</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+        <span class="nt">CC</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cl.exe</span>
+        <span class="nt">CXX</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cl.exe</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ros-tooling/action-ros-ci@master</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">package-name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">winml_tracker</span>
+        <span class="nt">vcs-repo-file-url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ github.workspace }}/ci/empty.rosinstall</span>
+        <span class="nt">extra-cmake-args</span><span class="p">:</span> <span class="s">&quot;-G</span><span class="nv"> </span><span class="s">Ninja</span><span class="nv"> </span><span class="s">-DCMAKE_TOOLCHAIN_FILE=c:/ci/toolchain.cmake</span><span class="nv"> </span><span class="s">-DCMAKE_BUILD_TYPE=Release&quot;</span>
+      <span class="nt">env</span><span class="p">:</span>
+        <span class="nt">COLCON_DEFAULTS_FILE</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ github.workspace }}/ci/packaging.yaml</span>
+        <span class="nt">ROS_PYTHON_VERSION</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+        <span class="nt">CC</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cl.exe</span>
+        <span class="nt">CXX</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cl.exe</span>        
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Build Chocolatey Package</span>
+      <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cmd</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">cd c:\opt\install</span>
+        <span class="no">7z a -tzip ${{ github.workspace }}\package\tools\drop.zip *</span>
+        <span class="no">echo $destination = &#39;c:\opt\ros\melodic\x64&#39; &gt; ${{ github.workspace }}\package\tools\chocolateyInstall.ps1</span>
+        <span class="no">type $GITHUB_WORKSPACE\package\chocolateyInstall_template.ps1 &gt;&gt; ${{ github.workspace }}\package\tools\chocolateyInstall.ps1</span>
+        <span class="no">mkdir c:\opt\output</span>
+        <span class="no">cd ${{ github.workspace }}\package</span>
+        <span class="no">choco pack --trace --out c:\opt\output &lt;ros nuspec&gt;.nuspec </span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create Release</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">create_release</span>
+      <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/create-release@v1</span>
+      <span class="nt">env</span><span class="p">:</span>
+        <span class="nt">GITHUB_TOKEN</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">tag_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ github.ref }}</span>
+        <span class="nt">release_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Release ${{ github.ref }}</span>
+        <span class="nt">draft</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="nt">prerelease</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Upload Release Asset</span>
+      <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">upload-release-asset</span> 
+      <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/upload-release-asset@v1</span>
+      <span class="nt">env</span><span class="p">:</span>
+        <span class="nt">GITHUB_TOKEN</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">upload_url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${{ steps.create_release.outputs.upload_url }}</span> 
+        <span class="nt">asset_path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">c:/opt/output/&lt;ros nuspec&gt;.&lt;ros version&gt;.nupkg</span>
+        <span class="nt">asset_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;ros nuspec&gt;.&lt;ros version&gt;.nupkg</span>
+        <span class="nt">asset_content_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">application/zip</span> 
+</code></pre></div>
                 
               
               

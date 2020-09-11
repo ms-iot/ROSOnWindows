@@ -358,8 +358,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1061,60 +1061,58 @@ Many packages have been ported by the community or build on Windows without modi
 <p>Determine if there is a binary release of the ROS package.</p>
 <ul>
 <li>Using <a href="http://wiki.ros.org">ROS Wiki</a> &nearr;, locate the binary release name and attempt to install using <code>Chocolatey</code>.</li>
-<li>If this succeeds, then you are all set!</li>
+<li>If this succeeds, then you are all set!
+<div class="highlight"><pre><span></span><code>choco install ros-melodic-<span class="p">&lt;</span>package_name&gt;
+</code></pre></div></li>
 </ul>
-<pre><code class="no-highlight">choco install ros-melodic-&lt;package_name&gt;
-</code></pre>
-
 <h2 id="source-installation">Source Installation</h2>
 <p>If there isn't a binary release, determine if there is a source only distribution.
 Here is an example workflow how to create a workspace to test the availability:</p>
-<pre><code class="Batchfile">:: activate the ROS environment
-c:\opt\ros\melodic\x64\setup.bat
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: activate the ROS environment</span>
+c<span class="p">:</span><span class="nl">\opt\ros\melodic\x64\setup.bat</span>
 
-:: create a empty workspace
-mkdir c:\catkin_ws\src
-cd c:\catkin_ws
+<span class="p">:</span><span class="c1">: create a empty workspace</span>
+<span class="k">mkdir</span> c:\catkin_ws\src
+<span class="k">cd</span> c:\catkin_ws
 
-:: generate the released package sources list and its ROS dependencies
-:: you can customize the command line to checkout the sources from different channels
-:: see the tips section for more details
-rosinstall_generator &lt;package_name&gt; --deps --exclude RPP --tar --flat &gt; pkg.rosinstall
+<span class="p">:</span><span class="c1">: generate the released package sources list and its ROS dependencies</span>
+<span class="p">:</span><span class="c1">: you can customize the command line to checkout the sources from different channels</span>
+<span class="p">:</span><span class="c1">: see the tips section for more details</span>
+rosinstall_generator <span class="p">&lt;</span>package_name<span class="p">&gt;</span> --deps --exclude RPP --tar --flat <span class="p">&gt;</span> pkg.rosinstall
 
-:: you can manually edit the pkg.rosinstall for more customizations.
-:: see the tips section for more details
+<span class="p">:</span><span class="c1">: you can manually edit the pkg.rosinstall for more customizations.</span>
+<span class="p">:</span><span class="c1">: see the tips section for more details</span>
 
-:: checkout the sources for real
+<span class="p">:</span><span class="c1">: checkout the sources for real</span>
 wstool init src
 wstool merge -r -y -t src pkg.rosinstall
 wstool update -t src
 
-:: attempt to acquire the external dependencies
+<span class="p">:</span><span class="c1">: attempt to acquire the external dependencies</span>
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 
-:: now catkin make to build the workspace
+<span class="p">:</span><span class="c1">: now catkin make to build the workspace</span>
 catkin_make
-</code></pre>
+</code></pre></div>
 
 <p>If everything goes well, now you can activate the development space - by calling <code>devel/setup.bat</code> - and use the package.</p>
-<pre><code class="Batchfile">:: activate the development space
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: activate the development space</span>
 devel\setup.bat
 
-:: test the new package is discoverable
-rospack find &lt;package_name&gt;
-</code></pre>
+<span class="p">:</span><span class="c1">: test the new package is discoverable</span>
+rospack find <span class="p">&lt;</span>package_name&gt;
+</code></pre></div>
 
 <h2 id="tips-for-source-installation">Tips for Source Installation</h2>
 <p>If something has not successfully been built, you can try to the following steps:</p>
 <ul>
-<li>If a Windows port has not yet been released, you can repeat <a href="#source-installation">Soruce Installation</a> but ask <code>rosinstall_generator</code> to use the development branch this time.</li>
-</ul>
-<pre><code class="Batchfile">:: use the development branch
-rosinstall_generator &lt;package&gt; --upstream-development --deps --exclude RPP &gt; pkg.rosinstall
-</code></pre>
-
-<ul>
+<li>
+<p>If a Windows port has not yet been released, you can repeat <a href="#source-installation">Soruce Installation</a> but ask <code>rosinstall_generator</code> to use the development branch this time.
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: use the development branch</span>
+rosinstall_generator <span class="p">&lt;</span>package<span class="p">&gt;</span> --upstream-development --deps --exclude RPP <span class="p">&gt;</span> pkg.rosinstall
+</code></pre></div></p>
+</li>
 <li>
 <p>If using the upstream development branch doesn't help, you can edit <code>pkg.rosinstall</code> to switch the <code>version:</code> of the broken package to other branch, like <code>windows</code> or <code>init_windows</code>, if it exists.</p>
 </li>

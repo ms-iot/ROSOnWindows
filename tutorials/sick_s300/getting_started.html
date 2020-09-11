@@ -360,8 +360,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1092,51 +1092,51 @@ I will begin with an empty workspace, add required ROS packages, define and run 
 <h2 id="step-1-clone-the-driver-package">Step 1: Clone the Driver Package</h2>
 <p>Firstly, you will need a <code>catkin</code> workspace to contain the driver package.
 Let's assume you are working on a empty workspace under <code>c:\s300_ws</code> and now you need to clone the driver package and its dependencies into the source folder:</p>
-<pre><code class="no-highlight">:: change the directory to the source subfolder.
-c:\s300_ws&gt; cd src
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: change the directory to the source subfolder.</span>
+c<span class="p">:</span><span class="nl">\s300_ws</span><span class="c1">&gt; cd src</span>
 
-:: checkout the driver package code.
-c:\s300_ws\src&gt; git clone https://github.com/ms-iot/cob_sick_s300
-c:\s300_ws\src&gt; git clone https://github.com/wjwwood/serial
-</code></pre>
+<span class="p">:</span><span class="c1">: checkout the driver package code.</span>
+c<span class="p">:</span><span class="nl">\s300_ws\src</span><span class="c1">&gt; git clone https://github.com/ms-iot/cob_sick_s300</span>
+c<span class="p">:</span><span class="nl">\s300_ws\src</span><span class="c1">&gt; git clone https://github.com/wjwwood/serial</span>
+</code></pre></div>
 
 <h2 id="step-2-create-your-owned-package">Step 2: Create your owned Package</h2>
 <p>Now you have the required packages in your workspace.
 By ROS convention, it is common to manage the peripheral nodes in ROS launch files.
 However, since we begin this tutorial with an empty workspace, let's create a new package so we can add the ROS launch files later.</p>
-<pre><code class="no-highlight">:: change the directory to the source subfolder.
-c:\s300_ws&gt; cd src
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: change the directory to the source subfolder.</span>
+c<span class="p">:</span><span class="nl">\s300_ws</span><span class="c1">&gt; cd src</span>
 
-:: create your owned package
-c:\s300_ws\src&gt; catkin_create_pkg my_pkg
-</code></pre>
+<span class="p">:</span><span class="c1">: create your owned package</span>
+c<span class="p">:</span><span class="nl">\s300_ws\src</span><span class="c1">&gt; catkin_create_pkg my_pkg</span>
+</code></pre></div>
 
 <h2 id="step-3-build-the-workspace">Step 3: Build the Workspace</h2>
 <p>Let's build the workspace to produce the executables and binaries.
 And remember to run <code>setup.bat</code> to add the development space into the current environment.</p>
-<pre><code class="no-highlight">:: Build the workspace
-c:\s300_ws&gt; catkin_make
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: Build the workspace</span>
+c<span class="p">:</span><span class="nl">\s300_ws</span><span class="c1">&gt; catkin_make</span>
 
-:: Add the development space into the current environment.
-c:\s300_ws&gt; devel\setup.bat
-</code></pre>
+<span class="p">:</span><span class="c1">: Add the development space into the current environment.</span>
+c<span class="p">:</span><span class="nl">\s300_ws</span><span class="c1">&gt; devel\setup.bat</span>
+</code></pre></div>
 
 <h2 id="step-4-write-a-ros-launch-file-running-laser-scanner-node">Step 4: Write a ROS Launch file running Laser Scanner node</h2>
 <p>At this moment, you are ready to add new ROS launch file for the new package.
 Let's add a new one called <code>my_pkg.launch</code>:</p>
-<pre><code class="no-highlight">:: Change the directory to new package
-c:\s300_ws&gt; roscd my_pkg
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: Change the directory to new package</span>
+c<span class="p">:</span><span class="nl">\s300_ws</span><span class="c1">&gt; roscd my_pkg</span>
 
-:: Create the ROS launch file
-C:\workspace\s300_ws\src\my_pkg&gt; mkdir launch &amp;&amp; notepad launch\my_pkg.launch
-</code></pre>
+<span class="p">:</span><span class="c1">: Create the ROS launch file</span>
+C<span class="p">:</span><span class="nl">\workspace\s300_ws\src\my_pkg</span><span class="c1">&gt; mkdir launch &amp;&amp; notepad launch\my_pkg.launch</span>
+</code></pre></div>
 
 <p>Once the <code>notepad</code> gets launched, copy and paste the following text into the new file, save it, and close the notepad:</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;launch&gt;
-    &lt;!-- start laser driver --&gt;
-    &lt;node name=&quot;laser_front&quot; pkg=&quot;cob_sick_s300&quot; type=&quot;cob_sick_s300&quot; respawn=&quot;false&quot; output=&quot;screen&quot;&gt;
-        &lt;rosparam subst_value=&quot;true&quot;&gt;
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;launch&gt;</span>
+    <span class="c">&lt;!-- start laser driver --&gt;</span>
+    <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;laser_front&quot;</span> <span class="na">pkg=</span><span class="s">&quot;cob_sick_s300&quot;</span> <span class="na">type=</span><span class="s">&quot;cob_sick_s300&quot;</span> <span class="na">respawn=</span><span class="s">&quot;false&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;rosparam</span> <span class="na">subst_value=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
             port: COM1
             baud: 115200
             scan_duration: 0.025 #no info about that in SICK-docu, but 0.025 is believable and looks good in rviz
@@ -1145,14 +1145,14 @@ C:\workspace\s300_ws\src\my_pkg&gt; mkdir launch &amp;&amp; notepad launch\my_pk
             scan_id: 7
             frame_id: /base_laser_link
             scan_intervals: [[-1.3526, 1.361357]] #[rad] these intervals are included to the scan
-        &lt;/rosparam&gt;
-    &lt;/node&gt;
+        <span class="nt">&lt;/rosparam&gt;</span>
+    <span class="nt">&lt;/node&gt;</span>
 
-    &lt;!-- start ROS visualization tools --&gt;
-    &lt;node name=&quot;rqt_gui&quot; pkg=&quot;rqt_gui&quot; type=&quot;rqt_gui&quot;/&gt;
-    &lt;node name=&quot;rviz&quot; pkg=&quot;rviz&quot; type=&quot;rviz&quot;/&gt;
-&lt;/launch&gt;
-</code></pre>
+    <span class="c">&lt;!-- start ROS visualization tools --&gt;</span>
+    <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;rqt_gui&quot;</span> <span class="na">pkg=</span><span class="s">&quot;rqt_gui&quot;</span> <span class="na">type=</span><span class="s">&quot;rqt_gui&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;rviz&quot;</span> <span class="na">pkg=</span><span class="s">&quot;rviz&quot;</span> <span class="na">type=</span><span class="s">&quot;rviz&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</code></pre></div>
 
 <p>Before we move forward, let's take a look some important parameters to accommodate your environment:</p>
 <ul>
@@ -1161,9 +1161,9 @@ C:\workspace\s300_ws\src\my_pkg&gt; mkdir launch &amp;&amp; notepad launch\my_pk
 </ul>
 <h2 id="step-5-start-to-run-ros-application">Step 5: Start to Run ROS application</h2>
 <p>After everything is correctly configured, you are ready to run it.</p>
-<pre><code class="no-highlight">:: Run the ROS launch file
-c:\s300_ws&gt; roslaunch my_pkg my_pkg.launch
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: Run the ROS launch file</span>
+c<span class="p">:</span><span class="nl">\s300_ws</span><span class="c1">&gt; roslaunch my_pkg my_pkg.launch</span>
+</code></pre></div>
 
 <p>A few moments later, you will see <code>rqt</code> and <code>rviz</code> tools running.
 On the <code>rqt</code>, you can turn on the real-time monitoring on the topic <code>/laser_front/scan</code>.
@@ -1192,7 +1192,7 @@ For more information, visit <a href="http://wiki.ros.org/cob_sick_s300">http://w
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1201,7 +1201,7 @@ For more information, visit <a href="http://wiki.ros.org/cob_sick_s300">http://w
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                TurtleBot 3
+                TurtleBot3
               </div>
             </div>
           </a>

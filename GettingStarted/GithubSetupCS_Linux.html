@@ -358,8 +358,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1177,30 +1177,30 @@ Credit goes to all the <a href="https://github.com/Autonomous-Racing-PG/ar-tu-do
 <li>Follow this ROS Wiki <a href="http://wiki.ros.org/Installation/Ubuntu">page</a> to install ROS Melodic on Ubuntu.</li>
 <li>Open a new shell. The below example assumes using <code>bash</code>.</li>
 </ol>
-<pre><code class="bash"># Clone the github project
+<div class="highlight"><pre><span></span><code><span class="c1"># Clone the github project</span>
 git clone https://github.com/&lt;your account&gt;/ros_simulation_lab --recursive
-cd ros_simulation_lab
+<span class="nb">cd</span> ros_simulation_lab
 
-# install required components
+<span class="c1"># install required components</span>
 sudo apt update
 rosdep update
 rosdep install --from-paths catkin_ws/src --ignore-src -r -y
 pip install circle-fit
 
-# build it
-cd catkin_ws
+<span class="c1"># build it</span>
+<span class="nb">cd</span> catkin_ws
 catkin_make
-</code></pre>
+</code></pre></div>
 
 <ol>
 <li>Run the autonomous car simulation.</li>
 </ol>
-<pre><code class="bash"># source the ROS devel space.
-source ./devel/setup.bat
+<div class="highlight"><pre><span></span><code><span class="c1"># source the ROS devel space.</span>
+<span class="nb">source</span> ./devel/setup.bat
 
-# run the application
-roslaunch src/ar-tu-do/ros_ws/launch/gazebo.launch world:=racetrack mode_override:=2
-</code></pre>
+<span class="c1"># run the application</span>
+roslaunch src/ar-tu-do/ros_ws/launch/gazebo.launch world:<span class="o">=</span>racetrack mode_override:<span class="o">=</span><span class="m">2</span>
+</code></pre></div>
 
 <p>This launch file runs a racecar in a simulated track in Gazebo and runs autonomous driving.</p>
 <p><img alt="simulation" src="https://github.com/ms-iot/ros_simulation_lab/raw/master/docs/simulation.png" /></p>
@@ -1208,12 +1208,12 @@ roslaunch src/ar-tu-do/ros_ws/launch/gazebo.launch world:=racetrack mode_overrid
 <ol>
 <li>End the previous exercise and run the following rostest file:</li>
 </ol>
-<pre><code class="bash"># source the ROS devel space.
-source ./devel/setup.bat
+<div class="highlight"><pre><span></span><code><span class="c1"># source the ROS devel space.</span>
+<span class="nb">source</span> ./devel/setup.bat
 
-# run the rostest
+<span class="c1"># run the rostest</span>
 rostest demo demo.test
-</code></pre>
+</code></pre></div>
 
 <p>This <a href="https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo/test/demo.test"><code>demo.test</code></a> runs the same task as the previous exercise but in headless mode.
 Additonally, it runs a <a href="https://github.com/ms-iot/ros_simulation_lab/catkin_ws/src/demo/nodes/demo.py"><code>demo.py</code></a> node to kick off a validation on the latest lap time.

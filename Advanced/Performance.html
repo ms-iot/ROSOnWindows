@@ -358,8 +358,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1119,8 +1119,8 @@
 <p>You can <a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-10-enterprise">try an evaluation of Windows 10 IoT Enterprise</a>, then talk to a <a href="https://go.microsoft.com/fwlink/?linkid=2094697">Windows 10 IoT Enterprise distributor to commercialize</a>.</p>
 <h2 id="fair-process-scheduling">Fair Process Scheduling</h2>
 <p>By default, Windows prioritizes foreground applications. This can cause a 'unfair' scheduling of ROS nodes, which can impact throughput in a ROS composition. To make scheduling more fair, consider setting the priority control flag to prioritize background applications (<code>0x18</code>):</p>
-<pre><code class="no-highlight">reg add HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl /v Win32PrioritySeparation /t REG_DWORD /d 0x18 /f
-</code></pre>
+<div class="highlight"><pre><span></span><code>reg add HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl /v Win32PrioritySeparation /t REG_DWORD /d 0x18 /f
+</code></pre></div>
 
 <h2 id="per-process-priority">Per process priority</h2>
 <p>Adjusting the process scheduler can dramatically improve the flow of messages through a ROS composition. However, some ROS nodes might require a higher scheduling priority than others. To address this, there are two models you can use - If you have source access, you can tune the process scheduling using the <code>SetPriorityClass</code> API; otherwise you can use command line tool per process.</p>
@@ -1131,8 +1131,8 @@
 </blockquote>
 <h3 id="command-line">Command Line</h3>
 <p>After you start a rosgraph with <code>roslaunch</code>, you can modify the priority of specific nodes using a PowerShell script.</p>
-<pre><code class="powershell">(get-process ros_winml_node).PriorityClass='AboveNormal'
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">get-process</span> <span class="n">ros_winml_node</span><span class="p">).</span><span class="n">PriorityClass</span><span class="p">=</span><span class="s1">&#39;AboveNormal&#39;</span>
+</code></pre></div>
 
 <h3 id="integrating-cross-platform-prioritization-directly-into-roslaunch-files">Integrating cross platform prioritization directly into ROSLaunch files.</h3>
 <p>Wouldn't that be cool? <a href="https://github.com/ms-iot/ROSOnWindows/issues/194">Upvote if you think so.</a></p>
@@ -1143,29 +1143,29 @@
 <h2 id="high-resolution-time">High Resolution Time</h2>
 <p>Windows Provides APIs for time using <code>QueryPerformanceFrequency</code> and <code>QueryPerformanceCounter</code> which returns the raw timer values. ROS time uses these APIs internally; however, you can use these high resolution timing outside of the ROS APIs.</p>
 <p>for more information, please refer to the <a href="https://docs.microsoft.com/en-us/windows/win32/sysinfo/acquiring-high-resolution-time-stamps">High Resolution timestamp documentation</a>.</p>
-<pre><code class="C++">LARGE_INTEGER StartingTime, EndingTime, ElapsedMicroseconds;
-LARGE_INTEGER Frequency;
+<div class="highlight"><pre><span></span><code><span class="n">LARGE_INTEGER</span> <span class="n">StartingTime</span><span class="p">,</span> <span class="n">EndingTime</span><span class="p">,</span> <span class="n">ElapsedMicroseconds</span><span class="p">;</span>
+<span class="n">LARGE_INTEGER</span> <span class="n">Frequency</span><span class="p">;</span>
 
-QueryPerformanceFrequency(&amp;Frequency); 
-QueryPerformanceCounter(&amp;StartingTime);
+<span class="n">QueryPerformanceFrequency</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Frequency</span><span class="p">);</span> 
+<span class="n">QueryPerformanceCounter</span><span class="p">(</span><span class="o">&amp;</span><span class="n">StartingTime</span><span class="p">);</span>
 
-// Activity to be timed
+<span class="c1">// Activity to be timed</span>
 
-QueryPerformanceCounter(&amp;EndingTime);
-ElapsedMicroseconds.QuadPart = EndingTime.QuadPart - StartingTime.QuadPart;
+<span class="n">QueryPerformanceCounter</span><span class="p">(</span><span class="o">&amp;</span><span class="n">EndingTime</span><span class="p">);</span>
+<span class="n">ElapsedMicroseconds</span><span class="p">.</span><span class="n">QuadPart</span> <span class="o">=</span> <span class="n">EndingTime</span><span class="p">.</span><span class="n">QuadPart</span> <span class="o">-</span> <span class="n">StartingTime</span><span class="p">.</span><span class="n">QuadPart</span><span class="p">;</span>
 
 
-//
-// We now have the elapsed number of ticks, along with the
-// number of ticks-per-second. We use these values
-// to convert to the number of elapsed microseconds.
-// To guard against loss-of-precision, we convert
-// to microseconds *before* dividing by ticks-per-second.
-//
+<span class="c1">//</span>
+<span class="c1">// We now have the elapsed number of ticks, along with the</span>
+<span class="c1">// number of ticks-per-second. We use these values</span>
+<span class="c1">// to convert to the number of elapsed microseconds.</span>
+<span class="c1">// To guard against loss-of-precision, we convert</span>
+<span class="c1">// to microseconds *before* dividing by ticks-per-second.</span>
+<span class="c1">//</span>
 
-ElapsedMicroseconds.QuadPart *= 1000000;
-ElapsedMicroseconds.QuadPart /= Frequency.QuadPart;
-</code></pre>
+<span class="n">ElapsedMicroseconds</span><span class="p">.</span><span class="n">QuadPart</span> <span class="o">*=</span> <span class="mi">1000000</span><span class="p">;</span>
+<span class="n">ElapsedMicroseconds</span><span class="p">.</span><span class="n">QuadPart</span> <span class="o">/=</span> <span class="n">Frequency</span><span class="p">.</span><span class="n">QuadPart</span><span class="p">;</span>
+</code></pre></div>
 
 <p>Additionally, STL has been enlightened with QueryPerformanceCounter. For more information, please visit the <a href="https://docs.microsoft.com/en-us/cpp/standard-library/chrono?view=vs-2019"><code>&lt;chrono&gt;</code> docs</a> for <code>steady_clock</code>.</p>
                 

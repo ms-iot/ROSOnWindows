@@ -360,8 +360,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1124,254 +1124,253 @@ In this tutorial, we will show you an example how to begin with a ROS package, i
 <h2 id="step-1-creating-a-ros-package">Step 1: Creating a ROS package</h2>
 <p>Firstly, you will need a <code>catkin</code> workspace to begin with.
 Assuming you have an empty workspace under <code>c:\can_ws</code>, now create a new package.</p>
-<pre><code class="Batchfile">:: change the directory to the source subfolder.
-c:\can_ws&gt; cd src
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: change the directory to the source subfolder.</span>
+c<span class="p">:</span><span class="nl">\can_ws</span><span class="c1">&gt; cd src</span>
 
-:: create your owned package
-c:\can_ws\src&gt; catkin_create_pkg my_pkg
-</code></pre>
+<span class="p">:</span><span class="c1">: create your owned package</span>
+c<span class="p">:</span><span class="nl">\can_ws\src</span><span class="c1">&gt; catkin_create_pkg my_pkg</span>
+</code></pre></div>
 
 <h2 id="step-2-adding-pcan-basic-sdk">Step 2: Adding PCAN-Basic SDK</h2>
 <p>The next step is to add <code>PCAN-Basic</code> library into your package.
 This example shows a way to pull and place the library into the correct location by <code>CMake</code> convention.
 Now open and edit the <code>CMakeLists.txt</code> under <code>src\my_pkg</code>.</p>
-<pre><code class="CMake"># Decide what architecture for the target
-set(TARGET_ARCH &quot;Win32&quot;)
-if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set(TARGET_ARCH &quot;x64&quot;)
-endif()
+<div class="highlight"><pre><span></span><code><span class="c"># Decide what architecture for the target</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">TARGET_ARCH</span> <span class="s2">&quot;Win32&quot;</span><span class="p">)</span>
+<span class="nb">if</span><span class="p">(</span><span class="s">CMAKE_SIZEOF_VOID_P</span> <span class="s">EQUAL</span> <span class="s">8</span><span class="p">)</span>
+    <span class="nb">set</span><span class="p">(</span><span class="s">TARGET_ARCH</span> <span class="s2">&quot;x64&quot;</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
 
-# Create locations to place the PCAN-Basic library
-file(MAKE_DIRECTORY
-    ${CMAKE_BINARY_DIR}/installed/pcan-basic/bin
-    ${CMAKE_BINARY_DIR}/installed/pcan-basic/lib
-    ${CMAKE_BINARY_DIR}/installed/pcan-basic/include)
+<span class="c"># Create locations to place the PCAN-Basic library</span>
+<span class="nb">file</span><span class="p">(</span><span class="s">MAKE_DIRECTORY</span>
+    <span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/installed/pcan-basic/bin</span>
+    <span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/installed/pcan-basic/lib</span>
+    <span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/installed/pcan-basic/include</span><span class="p">)</span>
 
-# Pull down the PCAN-Basic library
-include(ExternalProject)
-ExternalProject_Add(
-    pcan-basic
-    URL https://www.peak-system.com/fileadmin/media/files/pcan-basic.zip
-    URL_MD5 d388e723046e7b2f6bd06489a12a3d96
-    PREFIX ${CMAKE_BINARY_DIR}/pcan-basic
-    CONFIGURE_COMMAND &quot;&quot;
-    BUILD_COMMAND &quot;&quot;
-    INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory
-                    &lt;SOURCE_DIR&gt;/include ${CMAKE_BINARY_DIR}/installed/pcan-basic/include
-    COMMAND ${CMAKE_COMMAND} -E copy
-            &lt;SOURCE_DIR&gt;/${TARGET_ARCH}/PCANBasic.dll ${CMAKE_BINARY_DIR}/installed/pcan-basic/bin
-    COMMAND ${CMAKE_COMMAND} -E copy
-            &lt;SOURCE_DIR&gt;/${TARGET_ARCH}/VC_LIB/PCANBasic.lib ${CMAKE_BINARY_DIR}/installed/pcan-basic/lib
-    LOG_DOWNLOAD ON
-    LOG_INSTALL ON
-    )
+<span class="c"># Pull down the PCAN-Basic library</span>
+<span class="nb">include</span><span class="p">(</span><span class="s">ExternalProject</span><span class="p">)</span>
+<span class="nb">ExternalProject_Add</span><span class="p">(</span>
+    <span class="s">pcan-basic</span>
+    <span class="s">URL</span> <span class="s">https://www.peak-system.com/fileadmin/media/files/pcan-basic.zip</span>
+    <span class="s">URL_MD5</span> <span class="s">d388e723046e7b2f6bd06489a12a3d96</span>
+    <span class="s">PREFIX</span> <span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/pcan-basic</span>
+    <span class="s">CONFIGURE_COMMAND</span> <span class="s2">&quot;&quot;</span>
+    <span class="s">BUILD_COMMAND</span> <span class="s2">&quot;&quot;</span>
+    <span class="s">INSTALL_COMMAND</span> <span class="o">${</span><span class="nv">CMAKE_COMMAND</span><span class="o">}</span> <span class="s">-E</span> <span class="s">copy_directory</span>
+                    <span class="s">&lt;SOURCE_DIR&gt;/include</span> <span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/installed/pcan-basic/include</span>
+    <span class="s">COMMAND</span> <span class="o">${</span><span class="nv">CMAKE_COMMAND</span><span class="o">}</span> <span class="s">-E</span> <span class="s">copy</span>
+            <span class="s">&lt;SOURCE_DIR&gt;/</span><span class="o">${</span><span class="nv">TARGET_ARCH</span><span class="o">}</span><span class="s">/PCANBasic.dll</span> <span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/installed/pcan-basic/bin</span>
+    <span class="s">COMMAND</span> <span class="o">${</span><span class="nv">CMAKE_COMMAND</span><span class="o">}</span> <span class="s">-E</span> <span class="s">copy</span>
+            <span class="s">&lt;SOURCE_DIR&gt;/</span><span class="o">${</span><span class="nv">TARGET_ARCH</span><span class="o">}</span><span class="s">/VC_LIB/PCANBasic.lib</span> <span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/installed/pcan-basic/lib</span>
+    <span class="s">LOG_DOWNLOAD</span> <span class="s">ON</span>
+    <span class="s">LOG_INSTALL</span> <span class="s">ON</span>
+    <span class="p">)</span>
 
-# Initialize include paths and library paths
-set(pcan_LIBRARIES ${CMAKE_BINARY_DIR}/installed/pcan-basic/lib/PCANBasic.lib)
-set(pcan_INCLUDE_DIRS ${CMAKE_BINARY_DIR}/installed/pcan-basic/include)
+<span class="c"># Initialize include paths and library paths</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">pcan_LIBRARIES</span> <span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/installed/pcan-basic/lib/PCANBasic.lib</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">pcan_INCLUDE_DIRS</span> <span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/installed/pcan-basic/include</span><span class="p">)</span>
 
-# Remember to install the DLL side-by-side to ROS application
-install(FILES
-    ${CMAKE_BINARY_DIR}/installed/pcan-basic/bin/PCANBasic.dll
-    DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
-)
-</code></pre>
+<span class="c"># Remember to install the DLL side-by-side to ROS application</span>
+<span class="nb">install</span><span class="p">(</span><span class="s">FILES</span>
+    <span class="o">${</span><span class="nv">CMAKE_BINARY_DIR</span><span class="o">}</span><span class="s">/installed/pcan-basic/bin/PCANBasic.dll</span>
+    <span class="s">DESTINATION</span> <span class="o">${</span><span class="nv">CATKIN_GLOBAL_BIN_DESTINATION</span><span class="o">}</span>
+<span class="p">)</span>
+</code></pre></div>
 
 <p>And now you can build the package and see if everything is set up correctly.</p>
-<pre><code class="Batchfile">:: Build the workspace
-c:\can_ws&gt; catkin_make install
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: Build the workspace</span>
+c<span class="p">:</span><span class="nl">\can_ws</span><span class="c1">&gt; catkin_make install</span>
 
-:: Add the install space into the current environment.
-c:\can_ws&gt; install\setup.bat
-</code></pre>
+<span class="p">:</span><span class="c1">: Add the install space into the current environment.</span>
+c<span class="p">:</span><span class="nl">\can_ws</span><span class="c1">&gt; install\setup.bat</span>
+</code></pre></div>
 
 <h2 id="step-3-adding-simple-can-readwrite-loop">Step 3: Adding Simple CAN Read\Write Loop</h2>
 <p>Now you have the PCAN-Basic library ready to use in your ROS workspace.
 We are going to add a simple node doing the basic read/write loop.
 Now you go to the editor, create a file of <code>src/my_pkg/src/my_pkg_node.cpp</code> under your workspace, and copy &amp; paste the below code:</p>
-<pre><code class="c++">#include &lt;windows.h&gt;
-#include &lt;PCANBasic.h&gt;
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;PCANBasic.h&gt;</span><span class="cp"></span>
 
-#include &lt;exception&gt;
-#include &lt;iostream&gt;
+<span class="cp">#include</span> <span class="cpf">&lt;exception&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
-#include &lt;ros/ros.h&gt;
-#include &lt;ros/callback_queue.h&gt;
-#include &lt;ros/console.h&gt;
+<span class="cp">#include</span> <span class="cpf">&lt;ros/ros.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;ros/callback_queue.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;ros/console.h&gt;</span><span class="cp"></span>
 
-class PCANLoop
-{
-public:
-    PCANLoop()
-    {
-        TPCANStatus result = CAN_Initialize(PCAN_PCIBUS1, PCAN_BAUD_500K);
-        if (result != PCAN_ERROR_OK)
-        {
-            throw std::runtime_error(&quot;CAN_Initialize failed.&quot;);
-        }
-    }
+<span class="k">class</span> <span class="nc">PCANLoop</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">PCANLoop</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">TPCANStatus</span> <span class="n">result</span> <span class="o">=</span> <span class="n">CAN_Initialize</span><span class="p">(</span><span class="n">PCAN_PCIBUS1</span><span class="p">,</span> <span class="n">PCAN_BAUD_500K</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">!=</span> <span class="n">PCAN_ERROR_OK</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">&quot;CAN_Initialize failed.&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    void process()
-    {
-        send();
+    <span class="kt">void</span> <span class="n">process</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">send</span><span class="p">();</span>
 
-        while(read()); // process till the queue goes empty
-    }
+        <span class="k">while</span><span class="p">(</span><span class="n">read</span><span class="p">());</span> <span class="c1">// process till the queue goes empty</span>
+    <span class="p">}</span>
 
-private:
-    bool read()
-    {
-        TPCANMsg received = {0};
+<span class="k">private</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="n">read</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">TPCANMsg</span> <span class="n">received</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
 
-        TPCANStatus result = CAN_Read(PCAN_PCIBUS1, &amp;received, NULL);
-        if (result == PCAN_ERROR_QRCVEMPTY)
-        {
-            return false;
-        }
-        else if (result == PCAN_ERROR_OK)
-        {
-            // COMMENT: read the message here.
-            return true;
-        }
+        <span class="n">TPCANStatus</span> <span class="n">result</span> <span class="o">=</span> <span class="n">CAN_Read</span><span class="p">(</span><span class="n">PCAN_PCIBUS1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">received</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">PCAN_ERROR_QRCVEMPTY</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">PCAN_ERROR_OK</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">// COMMENT: read the message here.</span>
+            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        throw std::runtime_error(&quot;CAN_Read failed.&quot;);
-    }
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">&quot;CAN_Read failed.&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    void send()
-    {
-        // COMMENT: replace the message with yours.
-        TPCANMsg request = {0};
-        request.ID = 0;
-        request.MSGTYPE = PCAN_MESSAGE_STANDARD;
-        request.LEN = 8;
+    <span class="kt">void</span> <span class="n">send</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// COMMENT: replace the message with yours.</span>
+        <span class="n">TPCANMsg</span> <span class="n">request</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">MSGTYPE</span> <span class="o">=</span> <span class="n">PCAN_MESSAGE_STANDARD</span><span class="p">;</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">LEN</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
 
-        TPCANStatus result = CAN_Write(PCAN_PCIBUS1, &amp;request);
-        if (result != PCAN_ERROR_OK)
-        {
-            throw std::runtime_error(&quot;CAN_Write failed.&quot;);
-        }
-    }
-};
+        <span class="n">TPCANStatus</span> <span class="n">result</span> <span class="o">=</span> <span class="n">CAN_Write</span><span class="p">(</span><span class="n">PCAN_PCIBUS1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">request</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">!=</span> <span class="n">PCAN_ERROR_OK</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">&quot;CAN_Write failed.&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 
-/**
-* Control loop for PCAN
-*/
-void controlLoop(PCANLoop &amp;loop)
-{
-    try
-    {
-        loop.process();
-    }
-    catch (std::exception &amp;e)
-    {
-        ROS_ERROR_STREAM(&quot;controlLoop exception:&quot; &lt;&lt; e.what());
-    }
-}
+<span class="cm">/**</span>
+<span class="cm">* Control loop for PCAN</span>
+<span class="cm">*/</span>
+<span class="kt">void</span> <span class="nf">controlLoop</span><span class="p">(</span><span class="n">PCANLoop</span> <span class="o">&amp;</span><span class="n">loop</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">try</span>
+    <span class="p">{</span>
+        <span class="n">loop</span><span class="p">.</span><span class="n">process</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">exception</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ROS_ERROR_STREAM</span><span class="p">(</span><span class="s">&quot;controlLoop exception:&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-int main(int argc, char **argv)
-{
-    ros::init(argc, argv, &quot;my_node&quot;);
-    ros::NodeHandle nh, private_nh(&quot;~&quot;);
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="s">&quot;my_node&quot;</span><span class="p">);</span>
+    <span class="n">ros</span><span class="o">::</span><span class="n">NodeHandle</span> <span class="n">nh</span><span class="p">,</span> <span class="n">private_nh</span><span class="p">(</span><span class="s">&quot;~&quot;</span><span class="p">);</span>
 
-    try
-    {
-        double control_frequency;
-        private_nh.param&lt;double&gt;(&quot;control_frequency&quot;, control_frequency, 50.0);
+    <span class="k">try</span>
+    <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">control_frequency</span><span class="p">;</span>
+        <span class="n">private_nh</span><span class="p">.</span><span class="n">param</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;control_frequency&quot;</span><span class="p">,</span> <span class="n">control_frequency</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">);</span>
 
-        PCANLoop loop;
+        <span class="n">PCANLoop</span> <span class="n">loop</span><span class="p">;</span>
 
-        ros::CallbackQueue queue;
-        ros::AsyncSpinner spinner(1, &amp;queue);
+        <span class="n">ros</span><span class="o">::</span><span class="n">CallbackQueue</span> <span class="n">queue</span><span class="p">;</span>
+        <span class="n">ros</span><span class="o">::</span><span class="n">AsyncSpinner</span> <span class="n">spinner</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">queue</span><span class="p">);</span>
 
-        ros::TimerOptions control_timer(
-            ros::Duration(1 / control_frequency),
-            boost::bind(controlLoop, boost::ref(loop)),
-            &amp;queue);
-        ros::Timer control_loop = nh.createTimer(control_timer);
+        <span class="n">ros</span><span class="o">::</span><span class="n">TimerOptions</span> <span class="n">control_timer</span><span class="p">(</span>
+            <span class="n">ros</span><span class="o">::</span><span class="n">Duration</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">control_frequency</span><span class="p">),</span>
+            <span class="n">boost</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="n">controlLoop</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">loop</span><span class="p">)),</span>
+            <span class="o">&amp;</span><span class="n">queue</span><span class="p">);</span>
+        <span class="n">ros</span><span class="o">::</span><span class="n">Timer</span> <span class="n">control_loop</span> <span class="o">=</span> <span class="n">nh</span><span class="p">.</span><span class="n">createTimer</span><span class="p">(</span><span class="n">control_timer</span><span class="p">);</span>
 
-        spinner.start();
+        <span class="n">spinner</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
 
-        // Process remainder of ROS callbacks separately, mainly ControlManager related
-        ros::spin();
-    }
-    catch (std::exception &amp;e)
-    {
-        ROS_ERROR_STREAM(&quot;exception:&quot; &lt;&lt; e.what());
-    }
+        <span class="c1">// Process remainder of ROS callbacks separately, mainly ControlManager related</span>
+        <span class="n">ros</span><span class="o">::</span><span class="n">spin</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">exception</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">ROS_ERROR_STREAM</span><span class="p">(</span><span class="s">&quot;exception:&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+    <span class="p">}</span>
 
-    return 0;
-}
-</code></pre>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 
 <p>We will explain the code later.
 We need to describe the new node and its dependency in <code>CMakeLists.txt</code> and <code>package.xml</code>.
 Now open and edit the <code>src\my_pkg\CMakeLists.txt</code> file under the workspace.</p>
 <p><strong><code>src\my_pkg\CMakeLists.txt</code></strong></p>
 <p>Below is an example to describe a new node in <code>CMake</code>.</p>
-<pre><code class="CMake">
-## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp)
+<div class="highlight"><pre><span></span><code><span class="c">## Find catkin macros and libraries</span>
+<span class="c">## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)</span>
+<span class="c">## is used, also find other catkin packages</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">catkin</span> <span class="s">REQUIRED</span> <span class="s">COMPONENTS</span> <span class="s">roscpp</span><span class="p">)</span>
 
-...
+<span class="err">...</span>
 
-###########
-## Build ##
-###########
+<span class="c">###########</span>
+<span class="c">## Build ##</span>
+<span class="c">###########</span>
 
-## Specify additional locations of header files
-## Your package locations should be listed before other locations
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-  ${pcan_INCLUDE_DIRS}
-)
+<span class="c">## Specify additional locations of header files</span>
+<span class="c">## Your package locations should be listed before other locations</span>
+<span class="nb">include_directories</span><span class="p">(</span>
+  <span class="o">${</span><span class="nv">catkin_INCLUDE_DIRS</span><span class="o">}</span>
+  <span class="o">${</span><span class="nv">pcan_INCLUDE_DIRS</span><span class="o">}</span>
+<span class="p">)</span>
 
-## Declare a C++ executable
-## With catkin_make all packages are built within a single CMake context
-## The recommended prefix ensures that target names across packages don't collide
-add_executable(${PROJECT_NAME}_node src/my_pkg_node.cpp)
+<span class="c">## Declare a C++ executable</span>
+<span class="c">## With catkin_make all packages are built within a single CMake context</span>
+<span class="c">## The recommended prefix ensures that target names across packages don&#39;t collide</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_node</span> <span class="s">src/my_pkg_node.cpp</span><span class="p">)</span>
 
-## Rename C++ executable without prefix
-## The above recommended prefix causes long target names, the following renames the
-## target back to the shorter version for ease of user use
-## e.g. &quot;rosrun someones_pkg node&quot; instead of &quot;rosrun someones_pkg someones_pkg_node&quot;
-set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX &quot;&quot;)
+<span class="c">## Rename C++ executable without prefix</span>
+<span class="c">## The above recommended prefix causes long target names, the following renames the</span>
+<span class="c">## target back to the shorter version for ease of user use</span>
+<span class="c">## e.g. &quot;rosrun someones_pkg node&quot; instead of &quot;rosrun someones_pkg someones_pkg_node&quot;</span>
+<span class="nb">set_target_properties</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_node</span> <span class="s">PROPERTIES</span> <span class="s">OUTPUT_NAME</span> <span class="s">node</span> <span class="s">PREFIX</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 
-## Add cmake target dependencies of the executable
-## same as for the library above
-add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+<span class="c">## Add cmake target dependencies of the executable</span>
+<span class="c">## same as for the library above</span>
+<span class="nb">add_dependencies</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_node</span> <span class="o">${</span><span class="nv">${PROJECT_NAME</span><span class="o">}</span><span class="s">_EXPORTED_TARGETS}</span> <span class="o">${</span><span class="nv">catkin_EXPORTED_TARGETS</span><span class="o">}</span><span class="p">)</span>
 
-## Specify libraries to link a library or executable target against
-target_link_libraries(${PROJECT_NAME}_node
-  ${catkin_LIBRARIES}
-  ${pcan_LIBRARIES}
-)
+<span class="c">## Specify libraries to link a library or executable target against</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_node</span>
+  <span class="o">${</span><span class="nv">catkin_LIBRARIES</span><span class="o">}</span>
+  <span class="o">${</span><span class="nv">pcan_LIBRARIES</span><span class="o">}</span>
+<span class="p">)</span>
 
-#############
-## Install ##
-#############
+<span class="c">#############</span>
+<span class="c">## Install ##</span>
+<span class="c">#############</span>
 
-# all install targets should use catkin DESTINATION variables
-# See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
+<span class="c"># all install targets should use catkin DESTINATION variables</span>
+<span class="c"># See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html</span>
 
-## Mark executables for installation
-## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
-install(TARGETS ${PROJECT_NAME}_node
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-</code></pre>
+<span class="c">## Mark executables for installation</span>
+<span class="c">## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html</span>
+<span class="nb">install</span><span class="p">(</span><span class="s">TARGETS</span> <span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_node</span>
+  <span class="s">RUNTIME</span> <span class="s">DESTINATION</span> <span class="o">${</span><span class="nv">CATKIN_PACKAGE_BIN_DESTINATION</span><span class="o">}</span>
+<span class="p">)</span>
+</code></pre></div>
 
 <p><strong><code>src\my_pkg\package.xml</code></strong></p>
 <p>Make sure <code>roscpp</code> in the <code>&lt;depend&gt;</code> list.</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;package format=&quot;2&quot;&gt;
-  &lt;name&gt;my_pkg&lt;/name&gt;
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;package</span> <span class="na">format=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;name&gt;</span>my_pkg<span class="nt">&lt;/name&gt;</span>
   ...
-  &lt;depend&gt;roscpp&lt;/depend&gt;
+  <span class="nt">&lt;depend&gt;</span>roscpp<span class="nt">&lt;/depend&gt;</span>
   ...
-&lt;/package&gt;
-</code></pre>
+<span class="nt">&lt;/package&gt;</span>
+</code></pre></div>
 
 <h3 id="simple-can-readwrite-loop">Simple CAN Read/Write Loop</h3>
 <p>In this example, we use <a href="http://wiki.ros.org/roscpp/Overview/Callbacks%20and%20Spinning"><code>Callback and Spinning</code></a> from <code>roscpp</code> to set up a control loop running at 50Hz.
@@ -1380,19 +1379,19 @@ Depending on your CAN devices, you may need to add more protocol-specific implem
 <h2 id="step-4-building-the-workspace">Step 4: Building the Workspace</h2>
 <p>Now we have all the code in place.
 Let's rebuild the workspace again to ensure everything built.</p>
-<pre><code class="Batchfile">:: Build the workspace
-c:\can_ws&gt; catkin_make install
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: Build the workspace</span>
+c<span class="p">:</span><span class="nl">\can_ws</span><span class="c1">&gt; catkin_make install</span>
 
-:: Add the install space into the current environment.
-c:\can_ws&gt; install\setup.bat
-</code></pre>
+<span class="p">:</span><span class="c1">: Add the install space into the current environment.</span>
+c<span class="p">:</span><span class="nl">\can_ws</span><span class="c1">&gt; install\setup.bat</span>
+</code></pre></div>
 
 <h2 id="step-5-running-the-ros-application">Step 5: Running the ROS Application</h2>
 <p>Before we launch the application, we need to make sure <code>rosmaster</code> is up and running.
 Start another ROS command prompt and run <code>roscore</code>.
 Now we are ready to run this application.</p>
-<pre><code class="Batchfile">c:\can_ws&gt; rosrun my_pkg node
-</code></pre>
+<div class="highlight"><pre><span></span><code>c<span class="p">:</span><span class="nl">\can_ws</span><span class="c1">&gt; rosrun my_pkg node</span>
+</code></pre></div>
 
 <h2 id="summary">Summary</h2>
 <p>In this tutorial, we walk through the steps of integrate <code>PCAN-Basic</code> library into your ROS package, how to consume it by an simple CAN read/write loop application.

@@ -353,8 +353,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -928,26 +928,26 @@
                 
                   <h1>chocolateyInstall template</h1>
                 
-                <pre><code class="powershell">$ErrorActionPreference = 'Stop';
+                <div class="highlight"><pre><span></span><code><span class="nv">$ErrorActionPreference</span> <span class="p">=</span> <span class="s1">&#39;Stop&#39;</span><span class="p">;</span>
 
-$packageName= $env:ChocolateyPackageName
-$toolsDir   = &quot;$(Split-Path -parent $MyInvocation.MyCommand.Definition)&quot;
-$fileLocation = Join-Path $toolsDir 'drop.zip'
+<span class="nv">$packageName</span><span class="p">=</span> <span class="nv">$env:ChocolateyPackageName</span>
+<span class="nv">$toolsDir</span>   <span class="p">=</span> <span class="s2">&quot;</span><span class="p">$(</span><span class="nb">Split-Path</span> <span class="n">-parent</span> <span class="nv">$MyInvocation</span><span class="p">.</span><span class="n">MyCommand</span><span class="p">.</span><span class="n">Definition</span><span class="p">)</span><span class="s2">&quot;</span>
+<span class="nv">$fileLocation</span> <span class="p">=</span> <span class="nb">Join-Path</span> <span class="nv">$toolsDir</span> <span class="s1">&#39;drop.zip&#39;</span>
 
-$packageArgs = @{
-  packageName   = $packageName
-  destination   = $destination
-  fileFullPath64  = $fileLocation
-}
+<span class="nv">$packageArgs</span> <span class="p">=</span> <span class="p">@{</span>
+  <span class="n">packageName</span>   <span class="p">=</span> <span class="nv">$packageName</span>
+  <span class="n">destination</span>   <span class="p">=</span> <span class="nv">$destination</span>
+  <span class="n">fileFullPath64</span>  <span class="p">=</span> <span class="nv">$fileLocation</span>
+<span class="p">}</span>
 
-# - https://chocolatey.org/docs/helpers-get-chocolatey-unzip
-Get-ChocolateyUnzip @packageArgs
+<span class="c"># - https://chocolatey.org/docs/helpers-get-chocolatey-unzip</span>
+<span class="nb">Get-ChocolateyUnzip</span> <span class="nv">@packageArgs</span>
 
-Write-Host 'running rosdep...'
-$ErrorActionPreference = 'SilentlyContinue';
-$rosdepInstall = Join-Path $toolsDir 'rosdepInstall.bat'
-Start-Process -FilePath &quot;$env:comspec&quot; -Wait -NoNewWindow -ArgumentList &quot;/c&quot;, $rosdepInstall
-</code></pre>
+<span class="nb">Write-Host</span> <span class="s1">&#39;running rosdep...&#39;</span>
+<span class="nv">$ErrorActionPreference</span> <span class="p">=</span> <span class="s1">&#39;SilentlyContinue&#39;</span><span class="p">;</span>
+<span class="nv">$rosdepInstall</span> <span class="p">=</span> <span class="nb">Join-Path</span> <span class="nv">$toolsDir</span> <span class="s1">&#39;rosdepInstall.bat&#39;</span>
+<span class="nb">Start-Process</span> <span class="n">-FilePath</span> <span class="s2">&quot;$env:comspec&quot;</span> <span class="n">-Wait</span> <span class="n">-NoNewWindow</span> <span class="n">-ArgumentList</span> <span class="s2">&quot;/c&quot;</span><span class="p">,</span> <span class="nv">$rosdepInstall</span>
+</code></pre></div>
                 
               
               

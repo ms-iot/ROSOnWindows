@@ -419,8 +419,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1051,32 +1051,32 @@ http://wiki.ros.org/Installation/Windows</p>
 <h2 id="moveit-binary-installation-on-windows">MoveIt Binary Installation on Windows</h2>
 <p>Download the ROS on Windows with MoveIt packages.
 (open an elevated ROS Command Window as described in the installation instructions)</p>
-<pre><code class="Batchfile">mkdir c:\opt\chocolatey
-set ChocolateyInstall=c:\opt\chocolatey
-choco source add -n=ros-win -s=&quot;https://aka.ms/ros/public&quot; --priority=1
+<div class="highlight"><pre><span></span><code><span class="k">mkdir</span> c:\opt\chocolatey
+<span class="k">set</span> <span class="nv">ChocolateyInstall</span><span class="p">=</span>c:\opt\chocolatey
+choco source add -n=ros-win -s=<span class="s2">&quot;https://aka.ms/ros/public&quot;</span> --priority=1
 choco upgrade ros-melodic-moveit -y --execution-timeout=0
-</code></pre>
+</code></pre></div>
 
 <p>Close the window and open a new ROS Command Window. Make sure you have the most up to date packages:</p>
-<pre><code class="Batchfile">rosdep update
-</code></pre>
+<div class="highlight"><pre><span></span><code>rosdep update
+</code></pre></div>
 
 <h2 id="create-workspace-for-moveit-tutorials">Create Workspace for MoveIt Tutorials</h2>
 <p>Then, create a workspace and download the example code.</p>
 <p>(open a command prompt as admin)</p>
-<pre><code class="Batchfile">mkdir c:\moveit_ws\src
-cd c:\moveit_ws\src
+<div class="highlight"><pre><span></span><code><span class="k">mkdir</span> c:\moveit_ws\src
+<span class="k">cd</span> c:\moveit_ws\src
 catkin_init_workspace
 git clone https://github.com/ros-planning/moveit_tutorials.git -b melodic-devel
 git clone https://github.com/ros-planning/panda_moveit_config.git -b melodic-devel
 git clone https://github.com/frankaemika/franka_ros-release -b release/kinetic/franka_description
-cd c:\moveit_ws
+<span class="k">cd</span> c:\moveit_ws
 catkin_make
-</code></pre>
+</code></pre></div>
 
 <p>After it is built, source the catkin workspace.</p>
-<pre><code class="no-highlight">c:\moveit_ws\devel\setup.bat
-</code></pre>
+<div class="highlight"><pre><span></span><code>c<span class="p">:</span><span class="nl">\moveit_ws\devel\setup.bat</span>
+</code></pre></div>
 
 <h2 id="getting-started-with-moveit-tutorials">Getting Started with MoveIt Tutorials</h2>
 <p>Now you are ready to continue to the MoveIt Quickstart in RViz section of the tutorials <a href="https://ros-planning.github.io/moveit_tutorials/doc/quickstart_in_rviz/quickstart_in_rviz_tutorial.html">MoveIt Tutorials</a>.</p>

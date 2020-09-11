@@ -358,8 +358,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1081,33 +1081,33 @@ This project is a good example for ROS 2 developers how to organize a End-to-End
 <p>Open the ROS 2 command prompt and activate the Gazebo environment.</p>
 </li>
 </ol>
-<pre><code class="Batchfile">c:\opt\ros\foxy\x64\setup.bat
-c:\opt\ros\foxy\x64\share\gazebo\setup.bat
-set SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6
-</code></pre>
+<div class="highlight"><pre><span></span><code>c<span class="p">:</span><span class="nl">\opt\ros\foxy\x64\setup.bat</span>
+c<span class="p">:</span><span class="nl">\opt\ros\foxy\x64\share\gazebo\setup.bat</span>
+<span class="k">set</span> <span class="nv">SDF_PATH</span><span class="p">=</span>c:\opt\ros\foxy\x64\share\sdformat\1.6
+</code></pre></div>
 
 <ol>
 <li>Create an empty workspace and clone the Navigation2 repositories. For example,</li>
 </ol>
-<pre><code class="Batchfile">:: create an empty workspace
-mkdir c:\nav2_ws\src
-cd c:\nav2_ws
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: create an empty workspace</span>
+<span class="k">mkdir</span> c:\nav2_ws\src
+<span class="k">cd</span> c:\nav2_ws
 
-:: clone the Navigation2
+<span class="p">:</span><span class="c1">: clone the Navigation2</span>
 curl https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos -o navigation2_foxy.repos
-vcs import src &lt; navigation2_foxy.repos
-</code></pre>
+vcs import src <span class="p">&lt;</span> navigation2_foxy.repos
+</code></pre></div>
 
 <ol>
 <li>Build the Navigation2 System Tests projects.</li>
 </ol>
-<pre><code class="Batchfile">:: then, build the nav2_system_tests
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: then, build the nav2_system_tests</span>
 colcon build --packages-select nav2_system_tests
-</code></pre>
+</code></pre></div>
 
 <p>A few moment later, a similar message should be put to indicate a successful build:</p>
-<pre><code>Summary: 1 package finished [2min 10s]
-</code></pre>
+<div class="highlight"><pre><span></span><code>Summary: 1 package finished [2min 10s]
+</code></pre></div>
 
 <blockquote>
 <p>In cases of any build failures, <code>Log</code> folder can be found under the workspace. Detailed information can be found there.</p>
@@ -1115,14 +1115,14 @@ colcon build --packages-select nav2_system_tests
 <ol>
 <li>Run the Nav2 System Tests</li>
 </ol>
-<pre><code class="Batchfile">colcon test --packages-select nav2_system_tests
-</code></pre>
+<div class="highlight"><pre><span></span><code>colcon test --packages-select nav2_system_tests
+</code></pre></div>
 
 <ol>
 <li>Verify the test result.</li>
 </ol>
-<pre><code class="Batchfile">colcon test-result
-</code></pre>
+<div class="highlight"><pre><span></span><code>colcon test-result
+</code></pre></div>
 
 <h2 id="exercise-2-create-and-register-scale-set-agents-with-azure-pipelines">Exercise 2: Create and Register Scale Set Agents with Azure Pipelines</h2>
 <p>One of the advantages to use <code>Scale Set Agents</code> is that the machine usage can scale out on demend and scale in when idle.
@@ -1165,52 +1165,52 @@ It is managed by Azure DevOps, and the cost saving can be more optimized.</p>
    (Replace the pool with your agent pool name.)</p>
 </li>
 </ol>
-<pre><code class="yaml">jobs:
-- job: Nav2SystemTests
-  pool: 'VS2019-GPU'
-  timeoutInMinutes: 360
-  workspace:
-    clean: all
-  steps:
-  - script: |
-      rd /s /q c:\opt 2&gt;&amp;1
-      exit 0
-    displayName: 'Remove opt folder'
-  - powershell: |
-      $env:ChocolateyInstall=&quot;c:\opt\chocolatey&quot;
-      Set-ExecutionPolicy Bypass -Scope Process -Force;
-      iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-      choco sources add -n=roswin -s https://aka.ms/ros/public --priority 1
-      choco install ros-foxy-desktop -y --pre --no-progress -i
-    displayName: 'Install ROS 2 Foxy'
-  - script: |
-      mkdir C:\Users\AzDevOps\.gazebo\models
-      call &quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat&quot;
-      call &quot;c:\opt\ros\foxy\x64\setup.bat&quot;
-      call &quot;c:\opt\ros\foxy\x64\share\gazebo\setup.bat&quot;
-      set &quot;SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6&quot;
-      mkdir nav_ws\src
-      cd nav_ws
-      curl https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos -o navigation2_foxy.repos
-      vcs import --force src &lt; navigation2_foxy.repos
-      colcon build --packages-select nav2_system_tests
-      colcon test --packages-select nav2_system_tests --event-handlers console_direct+
-      colcon test-result
-    displayName: 'Build and run tests'
-    continueOnError: true
-    timeoutInMinutes: 30
-  - task: PublishTestResults@2
-    inputs:
-      testRunner: 'jUnit'
-      testResultsFiles: '**\*.xml'
-      searchFolder: $(System.DefaultWorkingDirectory)/nav_ws/build/nav2_system_tests/test_results
-    condition: always()
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: .\nav_ws\log
-      artifactName: 'logs'
-    condition: always()
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">jobs</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">job</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Nav2SystemTests</span>
+  <span class="nt">pool</span><span class="p">:</span> <span class="s">&#39;VS2019-GPU&#39;</span>
+  <span class="nt">timeoutInMinutes</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">360</span>
+  <span class="nt">workspace</span><span class="p">:</span>
+    <span class="nt">clean</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+  <span class="nt">steps</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+      <span class="no">rd /s /q c:\opt 2&gt;&amp;1</span>
+      <span class="no">exit 0</span>
+    <span class="nt">displayName</span><span class="p">:</span> <span class="s">&#39;Remove</span><span class="nv"> </span><span class="s">opt</span><span class="nv"> </span><span class="s">folder&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="nt">powershell</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+      <span class="no">$env:ChocolateyInstall=&quot;c:\opt\chocolatey&quot;</span>
+      <span class="no">Set-ExecutionPolicy Bypass -Scope Process -Force;</span>
+      <span class="no">iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))</span>
+      <span class="no">choco sources add -n=roswin -s https://aka.ms/ros/public --priority 1</span>
+      <span class="no">choco install ros-foxy-desktop -y --pre --no-progress -i</span>
+    <span class="nt">displayName</span><span class="p">:</span> <span class="s">&#39;Install</span><span class="nv"> </span><span class="s">ROS</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">Foxy&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+      <span class="no">mkdir C:\Users\AzDevOps\.gazebo\models</span>
+      <span class="no">call &quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat&quot;</span>
+      <span class="no">call &quot;c:\opt\ros\foxy\x64\setup.bat&quot;</span>
+      <span class="no">call &quot;c:\opt\ros\foxy\x64\share\gazebo\setup.bat&quot;</span>
+      <span class="no">set &quot;SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6&quot;</span>
+      <span class="no">mkdir nav_ws\src</span>
+      <span class="no">cd nav_ws</span>
+      <span class="no">curl https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos -o navigation2_foxy.repos</span>
+      <span class="no">vcs import --force src &lt; navigation2_foxy.repos</span>
+      <span class="no">colcon build --packages-select nav2_system_tests</span>
+      <span class="no">colcon test --packages-select nav2_system_tests --event-handlers console_direct+</span>
+      <span class="no">colcon test-result</span>
+    <span class="nt">displayName</span><span class="p">:</span> <span class="s">&#39;Build</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">run</span><span class="nv"> </span><span class="s">tests&#39;</span>
+    <span class="nt">continueOnError</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">timeoutInMinutes</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
+  <span class="p p-Indicator">-</span> <span class="nt">task</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PublishTestResults@2</span>
+    <span class="nt">inputs</span><span class="p">:</span>
+      <span class="nt">testRunner</span><span class="p">:</span> <span class="s">&#39;jUnit&#39;</span>
+      <span class="nt">testResultsFiles</span><span class="p">:</span> <span class="s">&#39;**\*.xml&#39;</span>
+      <span class="nt">searchFolder</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">$(System.DefaultWorkingDirectory)/nav_ws/build/nav2_system_tests/test_results</span>
+    <span class="nt">condition</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always()</span>
+  <span class="p p-Indicator">-</span> <span class="nt">task</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PublishBuildArtifacts@1</span>
+    <span class="nt">inputs</span><span class="p">:</span>
+      <span class="nt">pathtoPublish</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.\nav_ws\log</span>
+      <span class="nt">artifactName</span><span class="p">:</span> <span class="s">&#39;logs&#39;</span>
+    <span class="nt">condition</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always()</span>
+</code></pre></div>
 
 <ol>
 <li>The <a href="https://www.azuredevopslabs.com/labs/azuredevops/github-integration/"><code>Integrate Your GitHub Projects With Azure Pipelines</code></a> guides you how to create a pipeline for a GitHub project in Task 1 &amp; 2.

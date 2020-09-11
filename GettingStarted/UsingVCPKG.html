@@ -358,8 +358,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1008,60 +1008,53 @@
 <ul>
 <li>Fork <a href="https://github.com/ms-iot/rosdistro-db">https://github.com/ms-iot/rosdistro-db</a> &nearr; into your github account, if you haven't already</li>
 <li>Create a file called <code>0-update.list</code> in <code>c:\opt\ros\melodic\x64\etc\ros\rosdep\sources.list.d</code></li>
-<li>In this file, add a line which points to your fork.</li>
-</ul>
-<pre><code class="no-highlight"># os-specific listings first
-yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
-yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
-</code></pre>
-
-<ul>
+<li>In this file, add a line which points to your fork.
+<div class="highlight"><pre><span></span><code># os-specific listings first
+yaml https://raw.githubusercontent.com/<span class="p">&lt;</span>your github<span class="p">&gt;</span>/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
+yaml https://raw.githubusercontent.com/<span class="p">&lt;</span>your github<span class="p">&gt;</span>/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
+</code></pre></div></li>
 <li>Add a mapping from the dependency name used in the ROS package, to the name used in vcpkg. You can edit this file directly on github in your fork. 
   The format of the vcpkg.yaml:</li>
 </ul>
-<p><code>Python</code></p>
-<pre><code class="no-highlight">&lt;python-package-name&gt;:
+<p><code>Python</code>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span>python-package-name<span class="p">&gt;</span>:
     windows:
       pip:
-        packages: [&lt;python-package-name-in-pip&gt;]
-</code></pre>
-
-<p><code>C++</code></p>
-<pre><code class="no-highlight">  &lt;linux--package-name&gt;:
+        packages: [<span class="p">&lt;</span>python-package-name-in-pip<span class="p">&gt;</span>]
+</code></pre></div>
+  <code>C++</code>
+<div class="highlight"><pre><span></span><code>  <span class="p">&lt;</span>linux--package-name<span class="p">&gt;</span>:
     windows:
       vcpkg:
-        packages: [&lt;vcpkg-name&gt;]
-</code></pre>
-
+        packages: [<span class="p">&lt;</span>vcpkg-name<span class="p">&gt;</span>]
+</code></pre></div></p>
 <ul>
-<li>Update rosdeps on your computer.</li>
-</ul>
-<pre><code class="no-highlight">rosdep update
+<li>Update rosdeps on your computer.
+<div class="highlight"><pre><span></span><code>rosdep update
 rosdep install --from-paths src --ignore-src -r -y
-</code></pre>
+</code></pre></div>
+You'll see that the dependency resolves correctly. However, you may be provided with instructions for using that library in ROS nodes:
+<div class="highlight"><pre><span></span><code>The package <span class="p">&lt;</span>library<span class="p">&gt;</span>:x64-windows provides CMake targets:
 
-<p>You'll see that the dependency resolves correctly. However, you may be provided with instructions for using that library in ROS nodes:</p>
-<pre><code class="no-highlight">The package &lt;library&gt;:x64-windows provides CMake targets:
-
-    find_package(&lt;package&gt; CONFIG REQUIRED)
-    target_link_libraries(main PRIVATE &lt;package&gt; &lt;package&gt;::&lt;namespace&gt;)
-</code></pre>
-
+    find_package(<span class="p">&lt;</span>package<span class="p">&gt;</span> CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE <span class="p">&lt;</span>package<span class="p">&gt;</span> &lt;package<span class="p">&gt;</span>::<span class="p">&lt;</span>namespace<span class="p">&gt;</span>)
+</code></pre></div></li>
+</ul>
 <p>These may differ from how linkage happes on Linux. To link this library, to support both Windows and Linux, you can wrap it:</p>
-<pre><code class="no-highlight">if (MSVC)
-    target_link_libraries(main PRIVATE &lt;package&gt; &lt;package&gt;::&lt;namespace&gt;)
+<div class="highlight"><pre><span></span><code><span class="k">if</span> (MSVC)
+    target_link_libraries(main PRIVATE <span class="p">&lt;</span>package<span class="p">&gt;</span> &lt;package<span class="p">&gt;</span>::<span class="p">&lt;</span>namespace<span class="p">&gt;</span>)
 else()
-    target_link_libraries(main ... &lt;original&gt;)
+    target_link_libraries(main ... <span class="p">&lt;</span>original<span class="p">&gt;</span>)
 endif
-</code></pre>
+</code></pre></div>
 
 <ul>
 <li>Handling RelWithDebinfo
 ROS on Windows is delivered with Release binaries that have been built with Debug Info (using cmake's RelWithDebInfo target). When interacting with vcpkg, cmake will map RelWithDebInfo built binaries to Debug binaries. This mismatch will cause problems.</li>
 </ul>
-<p>To correct this, add the following to the cmake for the ROS node:</p>
-<pre><code class="no-highlight">set_target_properties(${&lt;dependency_LIBRARIES} PROPERTIES MAP_IMPORTED_CONFIG_RELWITHDEBINFO RELEASE)
-</code></pre>
+<p>To correct this, add the following to the cmake for the ROS node:
+<div class="highlight"><pre><span></span><code>set_target_properties(${<span class="p">&lt;</span>dependency_LIBRARIES} PROPERTIES MAP_IMPORTED_CONFIG_RELWITHDEBINFO RELEASE)
+</code></pre></div></p>
                 
               
               

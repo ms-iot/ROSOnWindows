@@ -358,8 +358,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -978,38 +978,36 @@ ROS 2 has supported Windows since its first releases.</p>
 <p>In order for a ROS1 node to be ported to Windows, it must first support ROS Melodic. ROS packages typically have a tagged branch for the ROS release if there are release specific changes. Fork the repository into your account and clone the melodic branch into a workspace created for the port. </p>
 <ol>
 <li>On github.com, fork <code>https://github.com/&lt;organization&gt;/&lt;project&gt;</code> into your personal github repo</li>
-<li>Create a workspace and clone:</li>
+<li>Create a workspace and clone:
+<div class="highlight"><pre><span></span><code><span class="k">mkdir</span> c:\ws\ros_ws\src
+<span class="k">cd</span> c:\ws\ros_ws\src
+git clone https://github.com/<span class="p">&lt;</span>your github<span class="p">&gt;</span>/<span class="p">&lt;</span>project&gt;
+<span class="k">cd</span> ..
+</code></pre></div></li>
 </ol>
-<pre><code class="no-highlight">mkdir c:\ws\ros_ws\src
-cd c:\ws\ros_ws\src
-git clone https://github.com/&lt;your github&gt;/&lt;project&gt;
-cd ..
-</code></pre>
-
 <h1 id="resolve-dependencies">Resolve Dependencies</h1>
 <p>Many ROS packages require dependent libraries. After checking out the sources for a ROS package, the tool <a href="http://wiki.ros.org/rosdep">rosdep</a> &nearr; is run, which will attempt to resolve package dependencies with binary and source distribution managers.</p>
 <p>On Windows, the Binary package manager <a href="https://chocolatey.org/">Chocolatey</a> &nearr; is used. For Source-code only distributions or dependent libraries, <a href="https://github.com/microsoft/vcpkg">Microsoft's VCPkg manager</a> &nearr; manager is used. When you install the desktop_full package, vcpkg is automatically installed and built for you.</p>
 <p>In the workspace, use <code>rosdep</code> to resolve dependencies</p>
-<pre><code class="no-highlight">rosdep update
+<div class="highlight"><pre><span></span><code>rosdep update
 rosdep install --from-paths src --ignore-src -r -y
-</code></pre>
+</code></pre></div>
 
-<p>You may see the following output indicating missing dependencies:</p>
-<pre><code class="no-highlight">ERROR: the following packages/stacks could not have their rosdep keys resolved
+<p>You may see the following output indicating missing dependencies:
+<div class="highlight"><pre><span></span><code>ERROR: the following packages/stacks could not have their rosdep keys resolved
 to system dependencies:
-&lt;package: No definition of [&lt;dependent library&gt;] for OS [windows]
+<span class="p">&lt;</span>package: No definition of [<span class="p">&lt;</span>dependent library<span class="p">&gt;</span>] for OS [windows]
 #All required rosdeps installed successfully
-</code></pre>
-
+</code></pre></div></p>
 <p>If there are missing dependencies, follow the steps in <a href="UsingVCPKG.html">Using VCPKG</a> to resolve them with existing ports or add a port using <a href="AddingVCPKG.html">Add VCPKG</a> as needed.</p>
 <p>Take note of special instructions printed while running <code>rosdep</code> - these may be needed in order to link correctly on Windows.</p>
 <h1 id="missing-ros-messages">Missing ROS Messages</h1>
 <p>Many ROS Messages are not packaged as binary distributions. These can simply be cloned into the repo. </p>
-<pre><code class="no-highlight">cd c:\ws\ros_ws\src
-git clone https://github.com/&lt;dependent package organization&gt;/&lt;depdnent package&gt;
-cd ..
+<div class="highlight"><pre><span></span><code><span class="k">cd</span> c:\ws\ros_ws\src
+git clone https://github.com/<span class="p">&lt;</span>dependent package organization<span class="p">&gt;</span>/<span class="p">&lt;</span>depdnent package&gt;
+<span class="k">cd</span> ..
 rosdep install --from-paths src --ignore-src -r -y
-</code></pre>
+</code></pre></div>
 
 <h1 id="fixing-build-breaks">Fixing Build breaks</h1>
 <p>While building you may encouter build breaks. Often, nodes depend on platform specific header files or features. In order to port these, it is recommended to leverage the cross platform equivelent in Boost, STL and cross platform libaries as part of the migration.</p>

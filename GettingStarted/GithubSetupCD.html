@@ -358,8 +358,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1117,10 +1117,9 @@
 <h2 id="sign-up-to-publish-packages">Sign up to Publish packages</h2>
 <p>Before you can publish packages, you need to acquire an API key from Chocolatey.
 To acquire an API key, you need to <a href="https://chocolatey.org/account/Register">register for an account</a>. Once you've registered for an account, you'll be assigned an API key, which you can assign to your local chocolatey install - and later as a Pipeline Secret.</p>
-<p>You can associate the API Key with your chocolatey command line tool to publish with the following command line:</p>
-<pre><code>choco apikey --key xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxxxxx --source https://push.chocolatey.org/
-</code></pre>
-
+<p>You can associate the API Key with your chocolatey command line tool to publish with the following command line:
+<div class="highlight"><pre><span></span><code>choco apikey --key xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxxxxx --source https://push.chocolatey.org/
+</code></pre></div></p>
 <h2 id="packaging-collateral">Packaging collateral</h2>
 <p>To build a chocolatey package, the following files and structure is recommended in your repository. The files will be described later.</p>
 <ul>
@@ -1142,24 +1141,24 @@ To acquire an API key, you need to <a href="https://chocolatey.org/account/Regis
 <p>A Chocolatey package includes a xml descriptor of the package. Create a file in the <code>package</code> folder named after your ROS package, with the code contents of <a href="choco_template.html">template.nuspec</a>.</p>
 <p>For example, if your ROS package is called MyCoolRobot, the file should be called <code>MyCoolRobot.nuspec</code></p>
 <p>Modify the properties of the XML file based on your specific requirements. For example:</p>
-<pre><code class="xml">&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;package xmlns=&quot;http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&quot;&gt;
-  &lt;metadata&gt;
-    &lt;id&gt;MyCoolRobot&lt;/id&gt;
-    &lt;version&gt;1.0.0&lt;/version&gt;
-    &lt;title&gt;MyCoolRobot ROS package&lt;/title&gt;
-    &lt;authors&gt;Malcom Reynolds&lt;/authors&gt;
-    &lt;licenseUrl&gt;http://www.github.com/ContosoRobotics/MyCoolRobot/License.txt&lt;/licenseUrl&gt;
-    &lt;projectUrl&gt;http://www.github.com/ContosoRobotics/MyCoolRobot&lt;/projectUrl&gt;
-    &lt;requireLicenseAcceptance&gt;false&lt;/requireLicenseAcceptance&gt;
-    &lt;description&gt;MyCoolRobot for ROS on Windows.&lt;/description&gt;
-    &lt;summary&gt;MyCoolRobot packaged as a rosdep.&lt;/summary&gt;
-    &lt;tags&gt;ros MyCoolRobot&lt;/tags&gt;
-    &lt;packageSourceUrl&gt;http://www.github.com/ContosoRobotics/MyCoolRobot&lt;/packageSourceUrl&gt;
-    &lt;docsUrl&gt;http://www.github.com/ContosoRobotics/MyCoolRobot/Docs&lt;/docsUrl&gt;
-  &lt;/metadata&gt;
-&lt;/package&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;package</span> <span class="na">xmlns=</span><span class="s">&quot;http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;metadata&gt;</span>
+    <span class="nt">&lt;id&gt;</span>MyCoolRobot<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;title&gt;</span>MyCoolRobot ROS package<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;authors&gt;</span>Malcom Reynolds<span class="nt">&lt;/authors&gt;</span>
+    <span class="nt">&lt;licenseUrl&gt;</span>http://www.github.com/ContosoRobotics/MyCoolRobot/License.txt<span class="nt">&lt;/licenseUrl&gt;</span>
+    <span class="nt">&lt;projectUrl&gt;</span>http://www.github.com/ContosoRobotics/MyCoolRobot<span class="nt">&lt;/projectUrl&gt;</span>
+    <span class="nt">&lt;requireLicenseAcceptance&gt;</span>false<span class="nt">&lt;/requireLicenseAcceptance&gt;</span>
+    <span class="nt">&lt;description&gt;</span>MyCoolRobot for ROS on Windows.<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;summary&gt;</span>MyCoolRobot packaged as a rosdep.<span class="nt">&lt;/summary&gt;</span>
+    <span class="nt">&lt;tags&gt;</span>ros MyCoolRobot<span class="nt">&lt;/tags&gt;</span>
+    <span class="nt">&lt;packageSourceUrl&gt;</span>http://www.github.com/ContosoRobotics/MyCoolRobot<span class="nt">&lt;/packageSourceUrl&gt;</span>
+    <span class="nt">&lt;docsUrl&gt;</span>http://www.github.com/ContosoRobotics/MyCoolRobot/Docs<span class="nt">&lt;/docsUrl&gt;</span>
+  <span class="nt">&lt;/metadata&gt;</span>
+<span class="nt">&lt;/package&gt;</span>
+</code></pre></div>
 
 <h2 id="adding-install-scripts">Adding install scripts</h2>
 <p>Create these files in the tools folder, and add the code contents of each. You can use these directly, or customize them for your project. Examples of customization include custom dependencies (like fetching and installing external Msi files).</p>
@@ -1176,38 +1175,35 @@ To acquire an API key, you need to <a href="https://chocolatey.org/account/Regis
 <p>In later states, the pipelines will generate a zip file containing the output of your ROS package. </p>
 <p>To simulate archive generation for testing, in your terminal window, change directory into the workspace containing your package, then build with install target.</p>
 <p>Install 7zip using Chocolatey (You only need to do this the first time you try to build a package).</p>
-<pre><code class="batch">choco install 7zip
-</code></pre>
+<div class="highlight"><pre><span></span><code>choco install 7zip
+</code></pre></div>
 
-<p><strong>Catkin</strong></p>
-<pre><code class="batch">catkin_make install -DCATKIN_BUILD_BINARY_PACKAGE=ON
-</code></pre>
-
+<p><strong>Catkin</strong>
+<div class="highlight"><pre><span></span><code>catkin_make install -DCATKIN_BUILD_BINARY_PACKAGE=ON
+</code></pre></div></p>
 <p><strong>Colcon</strong></p>
 <p><em>Coming Soon</em></p>
 <h3 id="package">Package</h3>
-<pre><code class="batch">cd install
-7z a -tzip ..\src\&lt;ros package&gt;\package\tools\drop.zip *
-cd ..\src\&lt;ros package&gt;\package
+<p><div class="highlight"><pre><span></span><code><span class="k">cd</span> install
+7z a -tzip ..\src\<span class="p">&lt;</span>ros package<span class="p">&gt;</span>\package\tools\drop.zip *
+<span class="k">cd</span> ..\src\<span class="p">&lt;</span>ros package<span class="p">&gt;</span>\package
 build.bat
-</code></pre>
-
-<p>If this command succeeds, you will have two nupkg files - one for pre-release in <code>output-pre</code>, and one release package in <code>output</code>.</p>
-<p>Install using the following command:</p>
-<pre><code class="batch">choco install output-pre\&lt;ros package&gt;.1.0.0.nupkg
-</code></pre>
-
+</code></pre></div>
+If this command succeeds, you will have two nupkg files - one for pre-release in <code>output-pre</code>, and one release package in <code>output</code>.</p>
+<p>Install using the following command:
+<div class="highlight"><pre><span></span><code>choco install output-pre\<span class="p">&lt;</span>ros package<span class="p">&gt;</span>.1.0.0.nupkg
+</code></pre></div></p>
 <p><strong>Troubleshoot</strong>
 If the package fails to install correctly, the nupkg is a zip file. You can expand the zip file and examine the contents. Verify that names are spelled correctly and that the contents match. Once you find the error, you can recreate the package using build.bat, and reinstall using:</p>
-<pre><code class="batch">choco install output-pre\&lt;ros package&gt;.1.0.0.nupkg --force
-</code></pre>
+<div class="highlight"><pre><span></span><code>choco install output-pre\<span class="p">&lt;</span>ros package<span class="p">&gt;</span>.1.0.0.nupkg --force
+</code></pre></div>
 
 <blockquote>
 <p>NOTE: Chocolatey will remove the root folder of a zip based chocolatey package - which potentially includes other zip based packages. We recommend not uninstalling a chocolatey package for this reason.</p>
 </blockquote>
 <h2 id="manually-publish-a-chocolatey-package">Manually Publish a chocolatey package</h2>
-<pre><code>choco push MyPackage.1.0.0.nupkg --source https://push.chocolatey.org/
-</code></pre>
+<div class="highlight"><pre><span></span><code>choco push MyPackage.1.0.0.nupkg --source https://push.chocolatey.org/
+</code></pre></div>
 
 <h1 id="automatically-generate-chocolatey-package-during-ci">Automatically generate chocolatey package during CI</h1>
 <p>Once you've crafted your nuspec and tested the installation, you can generate the chocolatey package during CI and publish it as a release. </p>
@@ -1227,38 +1223,32 @@ If the package fails to install correctly, the nupkg is a zip file. You can expa
 <ul>
 <li>Fork <a href="https://github.com/ms-iot/rosdistro-db">https://github.com/ms-iot/rosdistro-db</a> &nearr; into your github account</li>
 <li>Create a file called <code>0-update.list</code> in <code>c:\opt\ros\melodic\x64\etc\ros\rosdep\sources.list.d</code></li>
-<li>In this file, add a line which points to your fork:</li>
-</ul>
-<pre><code class="no-highlight"># os-specific listings first
-yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
-yaml https://raw.githubusercontent.com/&lt;your github&gt;/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
-</code></pre>
-
-<ul>
+<li>In this file, add a line which points to your fork:
+<div class="highlight"><pre><span></span><code># os-specific listings first
+yaml https://raw.githubusercontent.com/<span class="p">&lt;</span>your github<span class="p">&gt;</span>/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
+yaml https://raw.githubusercontent.com/<span class="p">&lt;</span>your github<span class="p">&gt;</span>/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
+</code></pre></div></li>
 <li>Add a mapping from the dependency name used in the ROS package</li>
 </ul>
-<p><code>Python</code></p>
-<pre><code class="no-highlight">&lt;python-package-name&gt;:
+<p><code>Python</code>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span>python-package-name<span class="p">&gt;</span>:
     windows:
       pip:
-        packages: [&lt;python-package-name-in-pip&gt;]
-</code></pre>
-
-<p><code>C++</code></p>
-<pre><code class="no-highlight">  &lt;package-name&gt;:
+        packages: [<span class="p">&lt;</span>python-package-name-in-pip<span class="p">&gt;</span>]
+</code></pre></div>
+  <code>C++</code>
+<div class="highlight"><pre><span></span><code>  <span class="p">&lt;</span>package-name<span class="p">&gt;</span>:
     windows:
       chocolatey:
-        depends: [&lt;chocolatey dependencies which aren't specified in the package.xml&gt;]
-        packages: [&lt;chocolatey-name&gt;]
-</code></pre>
-
+        depends: [<span class="p">&lt;</span>chocolatey dependencies which aren&#39;t specified in the package.xml<span class="p">&gt;</span>]
+        packages: [<span class="p">&lt;</span>chocolatey-name<span class="p">&gt;</span>]
+</code></pre></div></p>
 <ul>
-<li>Update rosdeps on your computer.</li>
-</ul>
-<pre><code class="no-highlight">rosdep update
+<li>Update rosdeps on your computer.
+<div class="highlight"><pre><span></span><code>rosdep update
 rosdep install --from-paths src --ignore-src -r -y
-</code></pre>
-
+</code></pre></div></li>
+</ul>
 <blockquote>
 <p>You may encounder a warning about missing packages. On Windows some packages were collapsed into their metapackage hosting package due to differences in dependency behavior on Windows.</p>
 </blockquote>

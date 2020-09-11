@@ -358,8 +358,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1581,76 +1581,70 @@ there will inevitably be required changes between platforms. This cookbook is in
 <p>Linux has a neat shortcut for refering to the users' home directory <code>~</code>. </p>
 <p>Windows uses the environment variable <code>%USERPROFILE%</code> - use this whenever you see <code>~</code> in ROS documentation.</p>
 <h2 id="quote-handling-in-command-window">Quote handling in command window</h2>
-<p>Cmd.exe is the command processor of command window.  Single quotes are not used at all by the cmd.exe except in batch file to enclose the command to run within a FOR /F statement.  Cmd.exe handles quoting with double quotes.  This is different from Linux that uses single quote as quote character.  As encounter quoting on Windows, please use double quote.  The following example shows using double quotes around the message contents:</p>
-<pre><code class="no-highlight">rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- &quot;[2.0, 0.0, 0.0]&quot; &quot;[0.0, 0.0, 1.8]&quot;
-</code></pre>
-
+<p>Cmd.exe is the command processor of command window.  Single quotes are not used at all by the cmd.exe except in batch file to enclose the command to run within a FOR /F statement.  Cmd.exe handles quoting with double quotes.  This is different from Linux that uses single quote as quote character.  As encounter quoting on Windows, please use double quote.  The following example shows using double quotes around the message contents:
+<div class="highlight"><pre><span></span><code>rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- <span class="s2">&quot;[2.0, 0.0, 0.0]&quot;</span> <span class="s2">&quot;[0.0, 0.0, 1.8]&quot;</span>
+</code></pre></div></p>
 <h3 id="paths-and-ros-commands">Paths and ROS commands</h3>
 <p>Many ROS Commands are sensitive to the drive letter they are executed from. This manifests in problems such as rosdeps not resolving correctly. </p>
 <p>To address this either:
   * Put all of your ROS workspaces on the C:\ drive
   * Link folders from your C:\ drive to your workspaces.</p>
-<p>To link a folder on Windows, use the mklink to create a filesystem link from one drive to another.:</p>
-<pre><code class="no-highlight">mkdir d:\workspaces
-mklink c:\workspaces d:\workspaces
-</code></pre>
-
+<p>To link a folder on Windows, use the mklink to create a filesystem link from one drive to another.:
+<div class="highlight"><pre><span></span><code><span class="k">mkdir</span> d:\workspaces
+<span class="k">mklink</span> c:\workspaces d:\workspaces
+</code></pre></div></p>
 <h3 id="symbol-visibility">Symbol Visibility</h3>
-<p>Windows and Linux handle symbol visibility differently. You may encounter a build error of the form:</p>
-<pre><code class="no-highlight">error C2448: '__attribute__': function-style initializer appears to be a function definition
-'visibility': identifier not found
-</code></pre>
-
+<p>Windows and Linux handle symbol visibility differently. You may encounter a build error of the form:
+<div class="highlight"><pre><span></span><code>error C2448: &#39;__attribute__&#39;: function-style initializer appears to be a function definition
+&#39;visibility&#39;: identifier not found
+</code></pre></div></p>
 <p><a href="https://gcc.gnu.org/wiki/Visibility">The GCC visibility documentation</a>&nearr; has a good article on handling the compiler differences. This includes adding a header file which uses a compiler switch to select the correct visibility macro handler.</p>
 <p>Symbol Visibility also impacts binary loading. If you are finding a Nodelet that does not run or a Qt Visualizer isn't working, it may be that the hosting process can not find an expected binary export. To diagnose this on Windows, the Windows developer tools includes a program called Gflags to enable various options. One of those options is called <em>Loader Snaps</em> which enables you to detect load failures while debugging. </p>
 <p>Please visit the Microsoft Documentation for more information on <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/setting-and-clearing-image-file-flags">Gflags</a> and  <a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/show-loader-snaps">Loaders snaps</a>.</p>
 <h3 id="install-library-targets-given-no-destination">install Library TARGETS given no DESTINATION!</h3>
-<p>Windows will generate separate archives and librarys. To handle this, add an ARCHIVE destination:</p>
-<pre><code class="no-highlight">install(
+<p>Windows will generate separate archives and librarys. To handle this, add an ARCHIVE destination:
+<div class="highlight"><pre><span></span><code>install(
     TARGETS ${PROJECT_NAME}
     ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
     LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
-</code></pre>
-
+</code></pre></div></p>
 <h3 id="all-warnings">All Warnings</h3>
 <p>Warnings are good. The options for selecting warning level are different. If you add specific compiler options for warnings, please add an MSVC selection. For the Visual Studio compiler, you'll use <code>/W3</code> for warning level 3 (or <code>/W4</code> which offers more warning options). If you would like to treat warnings as errors pass <code>/WX</code>. However, these warnings would need to be corrected before the compile will succeed.</p>
-<pre><code class="no-highlight">if(MSVC)
+<div class="highlight"><pre><span></span><code><span class="k">if</span>(MSVC)
   add_compile_options(/W3 /WX)
 else()
   add_compile_options(-Wall -Wextra)
 endif()
-</code></pre>
+</code></pre></div>
 
 <p>You can disable specific warnings using <code>#pragma</code>:</p>
-<pre><code class="c">#ifdef _MSC_VER
-  #pragma warning(disable: 4244)
-  #pragma warning(disable: 4661)
-#endif
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="cp">#ifdef _MSC_VER</span>
+  <span class="cp">#pragma warning(disable: 4244)</span>
+  <span class="cp">#pragma warning(disable: 4661)</span>
+<span class="cp">#endif</span>
+</code></pre></div>
 
 <h3 id="security-warnings">Security Warnings</h3>
 <p>Windows deprecates certain C APIs because they are inherently insecure. You will receive a message of the form:</p>
-<pre><code class="no-highlight">warning C4996: 'xxx': This function or variable may be unsafe. Consider using xxx_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-</code></pre>
+<div class="highlight"><pre><span></span><code>warning C4996: &#39;xxx&#39;: This function or variable may be unsafe. Consider using xxx_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+</code></pre></div>
 
 <p>Consider using modern equivelents. If you cannot use a modern equivelent, you can add the following to your cmake files:</p>
-<pre><code class="no-highlight">add_definitions(&quot;/D_CRT_SECURE_NO_WARNINGS&quot;)
-add_definitions(&quot;/D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS&quot;)
-</code></pre>
+<div class="highlight"><pre><span></span><code>add_definitions(<span class="s2">&quot;/D_CRT_SECURE_NO_WARNINGS&quot;</span>)
+add_definitions(<span class="s2">&quot;/D_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS&quot;</span>)
+</code></pre></div>
 
 <h3 id="c-versioning">C++ versioning</h3>
 <p>Use CMake to set the C++ version:</p>
-<pre><code class="no-highlight">if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 11)
+<p><div class="highlight"><pre><span></span><code><span class="k">if</span>(NOT<span class="err"> CMAKE_CXX_STANDARD)</span>
+  <span class="k">set</span><span class="nv">(CMAKE_CXX_STANDARD 11)</span>
 endif()
-</code></pre>
-
-<p>or </p>
-<pre><code class="no-highlight">if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 17)
+</code></pre></div>
+or 
+<div class="highlight"><pre><span></span><code><span class="k">if</span>(NOT<span class="err"> CMAKE_CXX_STANDARD)</span>
+  <span class="k">set</span><span class="nv">(CMAKE_CXX_STANDARD 17)</span>
 endif()
-</code></pre>
-
+</code></pre></div></p>
 <blockquote>
 <p>NOTE: Boost 1.66 in the Melodic requires CMAKE_CSS_STANDARD 11</p>
 </blockquote>
@@ -1659,42 +1653,38 @@ endif()
 <h3 id="unresolved-external">Unresolved External</h3>
 <p>Linux automatically exports symbols. Windows, symbols are private by default. <a href="https://cmake.org/cmake/help/v3.4/prop_tgt/WINDOWS_EXPORT_ALL_SYMBOLS.html">CMake provides a facility for this</a>.</p>
 <p>In your cmake:</p>
-<pre><code class="no-highlight">set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="nv">(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)</span>
+</code></pre></div>
 
 <p>However, you may encounter a problem with static class members, i.e. global data symbols, as discussed in https://blog.kitware.com/create-dlls-on-windows-without-declspec-using-new-cmake-export-all-feature/. In this case you need to manually handle visibility of the static class members, using the <a href="https://cmake.org/cmake/help/v3.4/module/GenerateExportHeader.html"><code>GenerateExportHeader</code></a> CMake module. </p>
 <p>In particular, if your static class members are contained in a library called <code>mylibrary</code>, you need to add the following lines in your CMake after the call to
-<code>add_library(mylibrary ...)</code>: </p>
-<pre><code>include(GenerateExportHeader)
+<code>add_library(mylibrary ...)</code>: 
+<div class="highlight"><pre><span></span><code>include(GenerateExportHeader)
 generate_export_header(mylibrary)
 target_include_directories(mylibrary PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
-</code></pre>
-
-<p>The <code>generate_export_header(mylibrary)</code> call creates a file called <code>mylibrary_export.h</code>, contained in the <code>${CMAKE_CURRENT_BINARY_DIR}</code> build directory. This file contains the definition of the <code>mylibrary_EXPORT</code> macro, that you can use to modify your code as in the following: </p>
-<pre><code>#include &quot;mylibrary_export.h&quot;
+</code></pre></div></p>
+<p>The <code>generate_export_header(mylibrary)</code> call creates a file called <code>mylibrary_export.h</code>, contained in the <code>${CMAKE_CURRENT_BINARY_DIR}</code> build directory. This file contains the definition of the <code>mylibrary_EXPORT</code> macro, that you can use to modify your code as in the following: 
+<div class="highlight"><pre><span></span><code>#include &quot;mylibrary_export.h&quot;
 
 class myclass
 {
  static MYLIBRARY_EXPORT int GlobalCounter;
 …
-</code></pre>
-
+</code></pre></div></p>
 <p>If this class definition is contained in a public header, you need to make sure to install the generated 
-<code>mylibrary_export.h</code> together with the rest of the headers, i.e. : </p>
-<pre><code>install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mylibrary_export.h
+<code>mylibrary_export.h</code> together with the rest of the headers, i.e. : 
+<div class="highlight"><pre><span></span><code>install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mylibrary_export.h
         DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
-</code></pre>
-
+</code></pre></div></p>
 <h3 id="beware-of-aggressive-optimization">Beware of aggressive optimization</h3>
 <p>The Microsoft compiler will optimize agressively. This can manifest in strange ways. One instance was in turtlebot3 fake code, is a ROS_ASSERT with a function that only returns true. Nothing else executed.</p>
 <h3 id="case-sensitivity">Case sensitivity</h3>
 <p>Linux is case sensitive, whereas Windows is not. We are trying to locate case sensitive areas and isolate them. This manifests in odd errors like this: </p>
-<pre><code class="no-highlight">RLException: multiple files named [turtlebot3_robot.launch] in package [turtlebot3_bringup]:
+<p><div class="highlight"><pre><span></span><code>RLException: multiple files named [turtlebot3_robot.launch] in package [turtlebot3_bringup]:
 - C:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
 - c:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
-</code></pre>
-
-<p>In this case, the ROS_PACKAGE_PATH has a lower case drive letter.</p>
+</code></pre></div>
+In this case, the ROS_PACKAGE_PATH has a lower case drive letter.</p>
 <h2 id="python">Python</h2>
 <h3 id="shebang">Shebang</h3>
 <p>Windows does not support Shebang character sequence for automatically launching an interpreter. To support Python nodes on Windows, a few changes need to be made.</p>
@@ -1704,13 +1694,12 @@ class myclass
 <p>If you are producing a command line application which will be installed with Pip, please add a windows wrapper.</p>
 <h2 id="errors">Errors</h2>
 <h3 id="gtest-notfound">gtest-NOTFOUND</h3>
-<p>This occurs when linking against gtest instead of ${GTEST_LIBRARIES}</p>
-<pre><code class="no-highlight">  target_link_libraries( rtest
+<p>This occurs when linking against gtest instead of ${GTEST_LIBRARIES}
+<div class="highlight"><pre><span></span><code>  target_link_libraries( rtest
       ${GTEST_LIBRARIES}
       ${catkin_LIBRARIES}
-  )
-</code></pre>
-
+  <span class="c1">)</span>
+</code></pre></div></p>
 <h3 id="syntax-error-constant-windowsh-included-before-conflicting-dependency">Syntax error: 'constant' (windows.h included before conflicting dependency)</h3>
 <h4 id="cause">Cause:</h4>
 <p><code>Windows.h</code> defines some macros which may conflict with variables defined in ROS packages. This causes build breaks if <code>windows.h</code> is included before a conflicting dependency.</p>
@@ -1719,17 +1708,16 @@ class myclass
 <p>C:\ws_moveit\src\moveit_tutorials\doc\perception_pipeline\src\cylinder_segment.cpp</p>
 <p>In this file in the <strong>MoveIt</strong> tutorials, a file which included the <code>window.h</code> header (pcl) was included before a file which included (marker.h via planning_scene_interface.h).
 This is problematic because marker.h defines <code>DELETE</code> as an enum member while <code>DELETE</code> is also defined as a macro in <code>windows.h</code>.</p>
-<p>In this case the build error was:</p>
-<pre><code class="Batchfile">C:\opt\ros\melodic\x64\include\visualization_msgs/Marker.h(132): error C2059: syntax error: 'constant'
-</code></pre>
-
+<p>In this case the build error was:
+<div class="highlight"><pre><span></span><code>C:\opt\ros\melodic\x64\include\visualization_msgs/Marker.h(132): error C2059: syntax error: &#39;constant&#39;
+</code></pre></div></p>
 <h4 id="fix">Fix:</h4>
 <p>Include any headers which define the conflicting variable (i.e. <code>DELETE</code>) above/before any headers which include <code>windows.h</code>.</p>
 <h2 id="missing-symbols">Missing Symbols</h2>
 <h3 id="m_pi">'M_PI'</h3>
 <p>Add the following to the top of your file:</p>
-<pre><code class="C++">#define _USE_MATH_DEFINES
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="cp">#define _USE_MATH_DEFINES</span>
+</code></pre></div>
 
 <p>or define it in the CMakeFile.exe</p>
 <h2 id="warnings">Warnings</h2>
@@ -1739,44 +1727,39 @@ This is problematic because marker.h defines <code>DELETE</code> as an enum memb
 Use appropriate casts ensuring accuracy of the conversion.</p>
 <h3 id="unreferenced-parameters">unreferenced parameters</h3>
 <p>Either remove the variable, or reference it in a noop block</p>
-<pre><code class="c++">uint8_t unused;
-unused;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">uint8_t</span> <span class="n">unused</span><span class="p">;</span>
+<span class="n">unused</span><span class="p">;</span>
+</code></pre></div>
 
 <h2 id="cmake_c_compiler-or-cmake_cxx_compiler-error">CMAKE_C_COMPILER or CMAKE_CXX_COMPILER error</h2>
-<p>When Visual Studio upgrades, it changes the path to the compilers. If you have previously built a ROS workspace, you'll see an error like this:</p>
-<pre><code>CMake Error in CMakeLists.txt:
+<p>When Visual Studio upgrades, it changes the path to the compilers. If you have previously built a ROS workspace, you'll see an error like this:
+<div class="highlight"><pre><span></span><code>CMake Error in CMakeLists.txt:
   The CMAKE_CXX_COMPILER:
 
     C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.22.27905/bin/Hostx64/x64/cl.exe
-</code></pre>
-
+</code></pre></div></p>
 <h3 id="cause_1">Cause</h3>
 <p>This is caused by a stale CMake cache.</p>
 <h3 id="fix_1">Fix</h3>
 <p>Remove the build, devel and install directories and rebuild.</p>
 <h2 id="cmake-tip-verbose-output">CMake Tip - verbose output</h2>
 <p>When debugging a build failure, it is sometimes helpful to have verbose logging enabled:</p>
-<pre><code>catkin_make -DCMAKE_VERBOSE_MAKEFILE=ON
-</code></pre>
+<div class="highlight"><pre><span></span><code>catkin_make -DCMAKE_VERBOSE_MAKEFILE=ON
+</code></pre></div>
 
 <h2 id="start-ros-on-boot">Start ROS on Boot</h2>
 <p>Once you are done developing your robot and want it to automatically start on boot, you'll want to use the <a href="https://docs.microsoft.com/en-us/windows/win32/taskschd">Windows Task Scheduler</a> to start the task.</p>
 <ul>
 <li>Create a Windows command file, which includes the ROS environment and Install environment,</li>
 </ul>
-<p><code>c:\catkin_ws\start_ros.bat</code></p>
-<pre><code class="Batchfile">call c:\opt\ros\melodic\x64\setup.bat
+<p><code>c:\catkin_ws\start_ros.bat</code>
+<div class="highlight"><pre><span></span><code>call c:\opt\ros\melodic\x64\setup.bat
 call c:\catkin_ws\install\setup.bat
 roslaunch &lt;package&gt; &lt;launch file&gt;
-</code></pre>
-
-<ul>
-<li>Use the command <a href="https://docs.microsoft.com/en-us/windows/win32/taskschd/schtasks">Schtasks</a>, to add a task which calls this script:</li>
-</ul>
-<pre><code class="Batchfile">schtasks /Create /RU &lt;User&gt; /RP &lt;password&gt; /SC ONLOGON /TN ROS /TR &quot;c:\catkin_ws\start_ros.bat&quot;
-</code></pre>
-
+</code></pre></div>
+* Use the command <a href="https://docs.microsoft.com/en-us/windows/win32/taskschd/schtasks">Schtasks</a>, to add a task which calls this script:
+<div class="highlight"><pre><span></span><code>schtasks /Create /RU &lt;User&gt; /RP &lt;password&gt; /SC ONLOGON /TN ROS /TR &quot;c:\catkin_ws\start_ros.bat&quot;
+</code></pre></div></p>
 <ul>
 <li>Enable Windows Auto logon
 Use the <a href="https://support.microsoft.com/en-us/help/324737/how-to-turn-on-automatic-logon-in-windows">Autologon documentation at Microsoft's Support website</a> to conigure autologon.</li>

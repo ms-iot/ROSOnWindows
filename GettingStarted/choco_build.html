@@ -353,8 +353,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -928,19 +928,19 @@
                 
                   <h1>Choco build</h1>
                 
-                <pre><code class="batch">@echo off
-:: seed ROS_DISTRO for the install scripts.
-echo set &quot;ROS_DISTRO=%ROS_DISTRO%&quot; &gt;&gt; tools\setup.bat
-echo set &quot;ROS_ETC_DIR=%ROS_ETC_DIR%&quot; &gt;&gt; tools\setup.bat
-echo set &quot;PYTHONHOME=%PYTHON_LOCATION%&quot; &gt;&gt; tools\setup.bat
-echo set &quot;ROS_PYTHON_VERSION=%ROS_PYTHON_VERSION%&quot; &gt;&gt; tools\setup.bat
+                <div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">echo</span> off
+<span class="p">:</span><span class="c1">: seed ROS_DISTRO for the install scripts.</span>
+<span class="k">echo</span> set <span class="s2">&quot;ROS_DISTRO=</span><span class="nv">%ROS_DISTRO%</span><span class="s2">&quot;</span> <span class="p">&gt;&gt;</span> tools\setup.bat
+<span class="k">echo</span> set <span class="s2">&quot;ROS_ETC_DIR=</span><span class="nv">%ROS_ETC_DIR%</span><span class="s2">&quot;</span> <span class="p">&gt;&gt;</span> tools\setup.bat
+<span class="k">echo</span> set <span class="s2">&quot;PYTHONHOME=</span><span class="nv">%PYTHON_LOCATION%</span><span class="s2">&quot;</span> <span class="p">&gt;&gt;</span> tools\setup.bat
+<span class="k">echo</span> set <span class="s2">&quot;ROS_PYTHON_VERSION=</span><span class="nv">%ROS_PYTHON_VERSION%</span><span class="s2">&quot;</span> <span class="p">&gt;&gt;</span> tools\setup.bat
 
-:: create Chocolatey packages.
-md output
-choco pack --trace --out output &lt;ros package&gt;.nuspec 
-md output-pre
-choco pack --trace --out output-pre &lt;ros package&gt;.nuspec
-</code></pre>
+<span class="p">:</span><span class="c1">: create Chocolatey packages.</span>
+<span class="k">md</span> output
+choco pack --trace --out output <span class="p">&lt;</span>ros package<span class="p">&gt;</span>.nuspec 
+<span class="k">md</span> output-pre
+choco pack --trace --out output-pre <span class="p">&lt;</span>ros package<span class="p">&gt;</span>.nuspec
+</code></pre></div>
                 
               
               

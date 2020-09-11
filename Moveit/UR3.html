@@ -426,8 +426,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1070,47 +1070,42 @@
 </ul>
 <h2 id="moveit-and-ur3-on-windows-installation">MoveIt and UR3 on Windows Installation</h2>
 <p>First, you can get started by installing moveit related packages from ROSOnWindows Chocolatey server.
-(open a command prompt as admin)</p>
-<pre><code class="no-highlight">choco upgrade ros-melodic-desktop_full -y
+(open a command prompt as admin)
+<div class="highlight"><pre><span></span><code>choco upgrade ros-melodic-desktop_full -y
 choco upgrade ros-melodic-moveit -y
-</code></pre>
-
+</code></pre></div></p>
 <p>Then, create a workspace, checkout and build the Universal Robot Driver for UR3.
-(open a command prompt as admin)</p>
-<pre><code class="no-highlight">c:\opt\ros\melodic\x64\setup.bat
-mkdir c:\catkin_ws\src
-cd c:\catkin_ws\src
+(open a command prompt as admin)
+<div class="highlight"><pre><span></span><code>c<span class="p">:</span><span class="nl">\opt\ros\melodic\x64\setup.bat</span>
+<span class="k">mkdir</span> c:\catkin_ws\src
+<span class="k">cd</span> c:\catkin_ws\src
 git clone https://github.com/ms-iot/universal_robot -b init_windows
 git clone https://github.com/ms-iot/ur_modern_driver -b init_windows
-cd c:\catkin_ws
+<span class="k">cd</span> c:\catkin_ws
 catkin_make
-c:\catkin_ws\devel\setup.bat
-</code></pre>
-
+c<span class="p">:</span><span class="nl">\catkin_ws\devel\setup.bat</span>
+</code></pre></div></p>
 <p>Now you are almost good to go to run UR3 launch files. Before proceeding, make sure your UR3 controller is on and the network is connected to your dev box.</p>
 <h2 id="running-ur3-launch-files">Running UR3 Launch Files</h2>
 <p>Now let's run it! In this example, it requires three launch files to run: One is to run the UR3 driver stack for planning execution, one is to run the UR3 motion planning, and the other one is to run the visualization tool.</p>
 <p>Let's start the UR3 driver stack:
-(open a command prompt as admin)</p>
-<pre><code class="no-highlight">c:\opt\ros\melodic\x64\setup.bat
-c:\catkin_ws\devel\setup.bat
+(open a command prompt as admin)
+<div class="highlight"><pre><span></span><code>c<span class="p">:</span><span class="nl">\opt\ros\melodic\x64\setup.bat</span>
+c<span class="p">:</span><span class="nl">\catkin_ws\devel\setup.bat</span>
 roslaunch ur_modern_driver ur3_bringup.launch robot_ip:=IP_OF_THE_ROBOT use_lowbandwidth_trajectory_follower:=true
-</code></pre>
-
+</code></pre></div></p>
 <p>Second, run the UR3 motion planning:
-(open a command prompt as admin)</p>
-<pre><code class="no-highlight">c:\opt\ros\melodic\x64\setup.bat
-c:\catkin_ws\devel\setup.bat
+(open a command prompt as admin)
+<div class="highlight"><pre><span></span><code>c<span class="p">:</span><span class="nl">\opt\ros\melodic\x64\setup.bat</span>
+c<span class="p">:</span><span class="nl">\catkin_ws\devel\setup.bat</span>
 roslaunch ur3_moveit_config ur3_moveit_planning_execution.launch
-</code></pre>
-
+</code></pre></div></p>
 <p>Finally, run the visualization tool:
-(open a command prompt as admin)</p>
-<pre><code class="no-highlight">c:\opt\ros\melodic\x64\setup.bat
-c:\catkin_ws\devel\setup.bat
+(open a command prompt as admin)
+<div class="highlight"><pre><span></span><code>c<span class="p">:</span><span class="nl">\opt\ros\melodic\x64\setup.bat</span>
+c<span class="p">:</span><span class="nl">\catkin_ws\devel\setup.bat</span>
 roslaunch ur3_moveit_config moveit_rviz.launch config:=true
-</code></pre>
-
+</code></pre></div></p>
 <blockquote>
 <p>Known Issue: When you don't see all panels displayed in RViz, try to enter full screen mode and exit (F11) to refresh the windows rendering.</p>
 </blockquote>
@@ -1119,13 +1114,13 @@ roslaunch ur3_moveit_config moveit_rviz.launch config:=true
 <ol>
 <li>The arm fails to move and <code>Invalid Trajectory: start point deviates from current robot state more than ...</code> shows in motion planning console window. It is likely the default value of <a href="http://moveit.ros.org/MoveIt/ros/2017/01/03/firstIndigoRelease.html">allowed_start_tolerance</a> being too small for you. Before figuring out a reasonable value,  edit <code>ur3_moveit_config/launch/move_group.launch</code> and adding <code>allowed_start_tolerance</code> can help:</li>
 </ol>
-<pre><code class="xml">&lt;node name=&quot;move_group&quot; launch-prefix=&quot;$(arg launch_prefix)&quot; pkg=&quot;moveit_ros_move_group&quot;
-      type=&quot;move_group&quot; respawn=&quot;false&quot; output=&quot;screen&quot; args=&quot;$(arg command_args)&quot;&gt;
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;move_group&quot;</span> <span class="na">launch-prefix=</span><span class="s">&quot;$(arg launch_prefix)&quot;</span> <span class="na">pkg=</span><span class="s">&quot;moveit_ros_move_group&quot;</span>
+      <span class="na">type=</span><span class="s">&quot;move_group&quot;</span> <span class="na">respawn=</span><span class="s">&quot;false&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span> <span class="na">args=</span><span class="s">&quot;$(arg command_args)&quot;</span><span class="nt">&gt;</span>
   ...
-  &lt;!-- default 0.01, disable 0.0 --&gt;
-  &lt;param name=&quot;trajectory_execution/allowed_start_tolerance&quot; value=&quot;0.0&quot;/&gt;
-&lt;/node&gt;
-</code></pre>
+  <span class="c">&lt;!-- default 0.01, disable 0.0 --&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;trajectory_execution/allowed_start_tolerance&quot;</span> <span class="na">value=</span><span class="s">&quot;0.0&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/node&gt;</span>
+</code></pre></div>
 
 <h2 id="more-information">More Information</h2>
 <ul>
@@ -1165,13 +1160,13 @@ roslaunch ur3_moveit_config moveit_rviz.launch config:=true
           </a>
         
         
-          <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                TurtleBot 3
+                TurtleBot3
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

@@ -433,8 +433,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1101,7 +1101,9 @@
 <li>Right Click, select More then "Run as Administrator"</li>
 <li>
 <p>Copy the following command line:</p>
-<p><code>@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" &amp;&amp; SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"</code></p>
+<div class="highlight"><pre><span></span><code>@&quot;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command &quot;iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))&quot; &amp;&amp; SET &quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;
+</code></pre></div>
+
 <ul>
 <li>Paste it into the command window.</li>
 <li>Approve any prompts</li>
@@ -1114,14 +1116,18 @@
 <li>Reopen the Visual Studio Command Window as described above.</li>
 <li>
 <p>Please install Git using the command here, even if you have it installed as an application:</p>
-<p><code>choco upgrade git -y</code></p>
+<div class="highlight"><pre><span></span><code>choco upgrade git -y
+</code></pre></div>
+
 </li>
 <li>
 <p>Close and Reopen the Visual Studio Command Window as described above.</p>
 </li>
 <li>
 <p>Ensure Git is now available in the Visual Studio command window:</p>
-<p><code>git --version</code></p>
+<div class="highlight"><pre><span></span><code>git --version
+</code></pre></div>
+
 </li>
 </ul>
 </li>
@@ -1132,11 +1138,11 @@
 <li>Open the command prompt as administrator.</li>
 <li>Run the following to install <code>ROS 2 Foxy</code>.</li>
 </ol>
-<pre><code class="Batchfile">mkdir c:\opt\chocolatey
-set ChocolateyInstall=c:\opt\chocolatey
-choco source add -n=ros-win -s=&quot;https://aka.ms/ros/public&quot; --priority=1
+<div class="highlight"><pre><span></span><code><span class="k">mkdir</span> c:\opt\chocolatey
+<span class="k">set</span> <span class="nv">ChocolateyInstall</span><span class="p">=</span>c:\opt\chocolatey
+choco source add -n=ros-win -s=<span class="s2">&quot;https://aka.ms/ros/public&quot;</span> --priority=1
 choco upgrade ros-foxy-desktop -y --execution-timeout=0 --pre
-</code></pre>
+</code></pre></div>
 
 <p>You can close the command prompt now.</p>
 <p>Now you have ROS 2 <code>ros-foxy-desktop</code> installed. </p>
@@ -1146,13 +1152,13 @@ choco upgrade ros-foxy-desktop -y --execution-timeout=0 --pre
 <li>Run the shortcut as administrator.</li>
 <li>Once the developer command prompt is open, run</li>
 </ol>
-<pre><code class="Batchfile">:: activate the ROS 2 environment
-c:\opt\ros\foxy\x64\setup.bat
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: activate the ROS 2 environment</span>
+c<span class="p">:</span><span class="nl">\opt\ros\foxy\x64\setup.bat</span>
 
-:: activate the Gazebo simulation environment
-c:\opt\ros\foxy\x64\share\gazebo\setup.bat
-set &quot;SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6&quot;
-</code></pre>
+<span class="p">:</span><span class="c1">: activate the Gazebo simulation environment</span>
+c<span class="p">:</span><span class="nl">\opt\ros\foxy\x64\share\gazebo\setup.bat</span>
+<span class="k">set</span> <span class="s2">&quot;SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6&quot;</span>
+</code></pre></div>
 
 <p>Now you are in the ROS 2 Developer command prompt.</p>
                 

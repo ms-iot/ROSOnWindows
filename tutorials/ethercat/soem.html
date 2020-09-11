@@ -360,8 +360,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1102,75 +1102,75 @@ In this tutorial, I will show you how to install and consume an open source <cod
 <p>Firstly, you will need a <code>catkin</code> workspace to begin with.
 Let's assume you are working on an empty workspace under <code>c:\ethercat_ws</code>.
 You can install <code>SOEM</code> from <code>vcpkg</code>:</p>
-<pre><code class="no-highlight">:: install vcpkg SOEM port
-c:\ethercat_ws&gt; vcpkg install SOEM:x64-windows
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: install vcpkg SOEM port</span>
+c<span class="p">:</span><span class="nl">\ethercat_ws</span><span class="c1">&gt; vcpkg install SOEM:x64-windows</span>
+</code></pre></div>
 
 <h2 id="step-2-create-your-own-package">Step 2: Create your own Package</h2>
 <p>Now you have the required libraries.
 Let's begin with a new package and build with <code>SOEM</code>.</p>
-<pre><code class="no-highlight">:: change the directory to the source subfolder.
-c:\ethercat_ws&gt; cd src
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: change the directory to the source subfolder.</span>
+c<span class="p">:</span><span class="nl">\ethercat_ws</span><span class="c1">&gt; cd src</span>
 
-:: create your owned package
-c:\ethercat_ws\src&gt; catkin_create_pkg my_pkg
-</code></pre>
+<span class="p">:</span><span class="c1">: create your owned package</span>
+c<span class="p">:</span><span class="nl">\ethercat_ws\src</span><span class="c1">&gt; catkin_create_pkg my_pkg</span>
+</code></pre></div>
 
 <h2 id="step-3-add-soem-application-code">Step 3: Add SOEM Application Code</h2>
 <p>Copy <a href="https://raw.githubusercontent.com/OpenEtherCATsociety/SOEM/master/test/linux/slaveinfo/slaveinfo.c"><code>slaveinfo.c</code></a> into the new package as the <code>SOEM</code> application code to run.</p>
-<pre><code class="no-highlight">:: make the directory to store the source.
-c:\ethercat_ws&gt; mkdir src\my_pkg\src
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: make the directory to store the source.</span>
+c<span class="p">:</span><span class="nl">\ethercat_ws</span><span class="c1">&gt; mkdir src\my_pkg\src</span>
 
-:: download the source of `slaveinfo.c`
-c:\ethercat_ws&gt; curl https://raw.githubusercontent.com/OpenEtherCATsociety/SOEM/master/test/linux/slaveinfo/slaveinfo.c -o src\my_pkg\src\slaveinfo.c
-</code></pre>
+<span class="p">:</span><span class="c1">: download the source of `slaveinfo.c`</span>
+c<span class="p">:</span><span class="nl">\ethercat_ws</span><span class="c1">&gt; curl https://raw.githubusercontent.com/OpenEtherCATsociety/SOEM/master/test/linux/slaveinfo/slaveinfo.c -o src\my_pkg\src\slaveinfo.c</span>
+</code></pre></div>
 
 <h2 id="step-4-edit-cmakeliststxt">Step 4: Edit CMakeLists.txt</h2>
 <p>You will also needs to edit the <code>src\my_pkg\CMakeLists.txt</code> to author the new executable and to be explicit on <code>SOEM</code> as dependency.</p>
 <p>Here is the <code>CMake</code> recipe to add to look for <code>SOEM</code>:</p>
-<pre><code class="cmake">find_path(winpcap_INCLUDE_DIRS NAMES pcap.h)
-find_library(winpcap_LIBRARY NAMES wpcap)
-find_library(packet_LIBRARY NAMES packet)
-find_path(soem_INCLUDE_DIRS NAMES ethercat.h PATH_SUFFIXES soem)
-find_library(soem_LIBRARY NAMES soem)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">find_path</span><span class="p">(</span><span class="s">winpcap_INCLUDE_DIRS</span> <span class="s">NAMES</span> <span class="s">pcap.h</span><span class="p">)</span>
+<span class="nb">find_library</span><span class="p">(</span><span class="s">winpcap_LIBRARY</span> <span class="s">NAMES</span> <span class="s">wpcap</span><span class="p">)</span>
+<span class="nb">find_library</span><span class="p">(</span><span class="s">packet_LIBRARY</span> <span class="s">NAMES</span> <span class="s">packet</span><span class="p">)</span>
+<span class="nb">find_path</span><span class="p">(</span><span class="s">soem_INCLUDE_DIRS</span> <span class="s">NAMES</span> <span class="s">ethercat.h</span> <span class="s">PATH_SUFFIXES</span> <span class="s">soem</span><span class="p">)</span>
+<span class="nb">find_library</span><span class="p">(</span><span class="s">soem_LIBRARY</span> <span class="s">NAMES</span> <span class="s">soem</span><span class="p">)</span>
+</code></pre></div>
 
 <p>Here is the recipe to author the <code>slaveinfo.c</code> as an excutable:</p>
-<pre><code class="cmake">include_directories(
-  ${catkin_INCLUDE_DIRS}
-  ${soem_INCLUDE_DIRS}
-  ${winpcap_INCLUDE_DIRS}
-)
+<div class="highlight"><pre><span></span><code><span class="nb">include_directories</span><span class="p">(</span>
+  <span class="o">${</span><span class="nv">catkin_INCLUDE_DIRS</span><span class="o">}</span>
+  <span class="o">${</span><span class="nv">soem_INCLUDE_DIRS</span><span class="o">}</span>
+  <span class="o">${</span><span class="nv">winpcap_INCLUDE_DIRS</span><span class="o">}</span>
+<span class="p">)</span>
 
-add_executable(${PROJECT_NAME}_node src/slaveinfo.c)
+<span class="nb">add_executable</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_node</span> <span class="s">src/slaveinfo.c</span><span class="p">)</span>
 
-set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME slaveinfo PREFIX &quot;&quot;)
+<span class="nb">set_target_properties</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_node</span> <span class="s">PROPERTIES</span> <span class="s">OUTPUT_NAME</span> <span class="s">slaveinfo</span> <span class="s">PREFIX</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 
-add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+<span class="nb">add_dependencies</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_node</span> <span class="o">${</span><span class="nv">${PROJECT_NAME</span><span class="o">}</span><span class="s">_EXPORTED_TARGETS}</span> <span class="o">${</span><span class="nv">catkin_EXPORTED_TARGETS</span><span class="o">}</span><span class="p">)</span>
 
-target_link_libraries(${PROJECT_NAME}_node
-  ${catkin_LIBRARIES}
-  ${soem_LIBRARY}
-  ${winpcap_LIBRARY}
-  ${packet_LIBRARY}
-  Ws2_32.lib Winmm.lib
-)
-</code></pre>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="o">${</span><span class="nv">PROJECT_NAME</span><span class="o">}</span><span class="s">_node</span>
+  <span class="o">${</span><span class="nv">catkin_LIBRARIES</span><span class="o">}</span>
+  <span class="o">${</span><span class="nv">soem_LIBRARY</span><span class="o">}</span>
+  <span class="o">${</span><span class="nv">winpcap_LIBRARY</span><span class="o">}</span>
+  <span class="o">${</span><span class="nv">packet_LIBRARY</span><span class="o">}</span>
+  <span class="s">Ws2_32.lib</span> <span class="s">Winmm.lib</span>
+<span class="p">)</span>
+</code></pre></div>
 
 <h2 id="step-5-build-the-workspace">Step 5: Build the Workspace</h2>
 <p>Let's build the workspace to produce the executables and binaries.
 And remember to run <code>setup.bat</code> to add the development space into the current environment.</p>
-<pre><code class="no-highlight">:: Build the workspace
-c:\ethercat_ws&gt; catkin_make
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: Build the workspace</span>
+c<span class="p">:</span><span class="nl">\ethercat_ws</span><span class="c1">&gt; catkin_make</span>
 
-:: Add the development space into the current environment.
-c:\ethercat_ws&gt; devel\setup.bat
-</code></pre>
+<span class="p">:</span><span class="c1">: Add the development space into the current environment.</span>
+c<span class="p">:</span><span class="nl">\ethercat_ws</span><span class="c1">&gt; devel\setup.bat</span>
+</code></pre></div>
 
 <h2 id="step-6-check-ethercat-network">Step 6: Check EtherCAT Network</h2>
 <p>Let's check the <code>EtherCAT</code> network to make sure the <code>SOEM</code> and the <code>EtherCAT</code> network is working.</p>
 <p>First, retrieve the list of ethernet adapter discovered on your machine.</p>
-<pre><code class="no-highlight">c:\ethercat_ws&gt; rosrun my_pkg slaveinfo
+<div class="highlight"><pre><span></span><code>c<span class="p">:</span><span class="nl">\ethercat_ws</span><span class="c1">&gt; rosrun my_pkg slaveinfo</span>
 
 SOEM (Simple Open EtherCAT Master)
 Slaveinfo
@@ -1187,12 +1187,12 @@ Description : Microsoft Corporation, Device to use for wpcap: \Device\NPF_{894B5
 Description : Microsoft, Device to use for wpcap: \Device\NPF_{A54146EA-CD6F-4A95-93E4-0919C4B2D685}
 Description : VMware Virtual Ethernet Adapter, Device to use for wpcap: \Device\NPF_{144028BF-951B-4209-B8D4-30E888BFB4CB}
 End program
-</code></pre>
+</code></pre></div>
 
 <p>Look for the ethernet adapter for your <code>EtherCAT</code> network and take a note of the path, for example, <code>\Device\NPF_{A54146EA-CD6F-4A95-93E4-0919C4B2D685}</code>.</p>
 <p>Now run the <code>slaveinfo</code> with the ethernet device path again to list what <code>EtherCAT</code> slave controllers are discovered on the network.
 You should see information similar to the below and check that the details make sense to your environment.</p>
-<pre><code class="no-highlight">c:\ethercat_ws&gt; rosrun soem slaveinfo \Device\NPF_{A54146EA-CD6F-4A95-93E4-0919C4B2D685}
+<div class="highlight"><pre><span></span><code>c<span class="p">:</span><span class="nl">\ethercat_ws</span><span class="c1">&gt; rosrun soem slaveinfo \Device\NPF_{A54146EA-CD6F-4A95-93E4-0919C4B2D685}</span>
 
 Slave:1
  Name:simco drive 40028083-00-0
@@ -1236,7 +1236,7 @@ PDO mapping according to CoE :
   [0x002D.0] 0x0000:0x00 0x00
   [0x002D.0] 0x0000:0x00 0x00
   [0x002D.0] 0x0000:0x00 0x00
-</code></pre>
+</code></pre></div>
 
 <h1 id="summary">Summary</h1>
 <p>Now you have a workspace to continue the learning of <code>SOEM</code>.

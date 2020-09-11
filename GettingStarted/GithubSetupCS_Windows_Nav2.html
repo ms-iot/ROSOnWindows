@@ -358,8 +358,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -1176,33 +1176,33 @@ This project is a good example for ROS 2 developers how to organize a End-to-End
 <p>Open the ROS 2 command prompt and activate the Gazebo environment.</p>
 </li>
 </ol>
-<pre><code class="Batchfile">c:\opt\ros\foxy\x64\setup.bat
-c:\opt\ros\foxy\x64\share\gazebo\setup.bat
-set SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6
-</code></pre>
+<div class="highlight"><pre><span></span><code>c<span class="p">:</span><span class="nl">\opt\ros\foxy\x64\setup.bat</span>
+c<span class="p">:</span><span class="nl">\opt\ros\foxy\x64\share\gazebo\setup.bat</span>
+<span class="k">set</span> <span class="nv">SDF_PATH</span><span class="p">=</span>c:\opt\ros\foxy\x64\share\sdformat\1.6
+</code></pre></div>
 
 <ol>
 <li>Create an empty workspace and clone the Navigation2 repositories. For example,</li>
 </ol>
-<pre><code class="Batchfile">:: create an empty workspace
-mkdir c:\nav2_ws\src
-cd c:\nav2_ws
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: create an empty workspace</span>
+<span class="k">mkdir</span> c:\nav2_ws\src
+<span class="k">cd</span> c:\nav2_ws
 
-:: clone the Navigation2
+<span class="p">:</span><span class="c1">: clone the Navigation2</span>
 curl https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos -o navigation2_foxy.repos
-vcs import src &lt; navigation2_foxy.repos
-</code></pre>
+vcs import src <span class="p">&lt;</span> navigation2_foxy.repos
+</code></pre></div>
 
 <ol>
 <li>Build the Navigation2 System Tests projects.</li>
 </ol>
-<pre><code class="Batchfile">:: then, build the nav2_system_tests
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: then, build the nav2_system_tests</span>
 colcon build --packages-select nav2_system_tests
-</code></pre>
+</code></pre></div>
 
 <p>A few moment later, a similar message should be put to indicate a successful build:</p>
-<pre><code>Summary: 1 package finished [2min 10s]
-</code></pre>
+<div class="highlight"><pre><span></span><code>Summary: 1 package finished [2min 10s]
+</code></pre></div>
 
 <blockquote>
 <p>In cases of any build failures, <code>Log</code> folder can be found under the workspace. Detailed information can be found there.</p>
@@ -1210,14 +1210,14 @@ colcon build --packages-select nav2_system_tests
 <ol>
 <li>Run the Nav2 System Tests</li>
 </ol>
-<pre><code class="Batchfile">colcon test --packages-select nav2_system_tests
-</code></pre>
+<div class="highlight"><pre><span></span><code>colcon test --packages-select nav2_system_tests
+</code></pre></div>
 
 <ol>
 <li>Verify the test result.</li>
 </ol>
-<pre><code class="Batchfile">colcon test-result
-</code></pre>
+<div class="highlight"><pre><span></span><code>colcon test-result
+</code></pre></div>
 
 <h2 id="exercise-2-provision-cloud-ci-environment-with-github-actions">Exercise 2: Provision Cloud CI Environment With GitHub Actions</h2>
 <h3 id="task-1-create-a-github-repository">Task 1: Create a GitHub Repository</h3>
@@ -1249,46 +1249,46 @@ In this example, you will define one to checkout the code, build it and run test
 <ol>
 <li>Create a file <code>.github/workflows/build-windows.yml</code> under your repository.</li>
 </ol>
-<pre><code class="yaml">name: Build and Test on Windows
-on: [push]
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Build and Test on Windows</span>
+<span class="nt">on</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">]</span>
 
-jobs:
-  build_and_test:
-    runs-on: [self-hosted, windows]
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: recursive
-    - name: Prepare
-      run: |
-        $env:ChocolateyInstall=&quot;c:\opt\chocolatey&quot;
-        Set-ExecutionPolicy Bypass -Scope Process -Force;
-        iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-        choco sources add -n=roswin -s https://aka.ms/ros/public --priority 1
-        choco install ros-foxy-desktop -y --pre --no-progress -i
-      shell: powershell
-    - name: Build
-      run: |
-        call &quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat&quot; -arch=amd64 -host_arch=amd64
-        call &quot;c:\opt\ros\foxy\x64\setup.bat&quot;
-        call &quot;c:\opt\ros\foxy\x64\share\gazebo\setup.bat&quot;
-        set &quot;SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6&quot;
-        mkdir ws\src
-        cd ws
-        curl https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos -o navigation2_foxy.repos
-        vcs import src &lt; navigation2_foxy.repos
-        colcon build --packages-select nav2_system_tests
-        colcon test --packages-select nav2_system_tests --event-handlers console_direct+
-        colcon test-result
-      shell: cmd
-    - name: Archive test results # workaround: https://github.com/actions/upload-artifact/issues/76
-      run: zip -r results.zip build
-      working-directory: ws
-    - name: Upload test results
-      uses: actions/upload-artifact@v2
-      with:
-        path: ws/results.zip
-</code></pre>
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">build_and_test</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">self-hosted</span><span class="p p-Indicator">,</span> <span class="nv">windows</span><span class="p p-Indicator">]</span>
+    <span class="nt">steps</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">submodules</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">recursive</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Prepare</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">$env:ChocolateyInstall=&quot;c:\opt\chocolatey&quot;</span>
+        <span class="no">Set-ExecutionPolicy Bypass -Scope Process -Force;</span>
+        <span class="no">iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;))</span>
+        <span class="no">choco sources add -n=roswin -s https://aka.ms/ros/public --priority 1</span>
+        <span class="no">choco install ros-foxy-desktop -y --pre --no-progress -i</span>
+      <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">powershell</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Build</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">call &quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat&quot; -arch=amd64 -host_arch=amd64</span>
+        <span class="no">call &quot;c:\opt\ros\foxy\x64\setup.bat&quot;</span>
+        <span class="no">call &quot;c:\opt\ros\foxy\x64\share\gazebo\setup.bat&quot;</span>
+        <span class="no">set &quot;SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6&quot;</span>
+        <span class="no">mkdir ws\src</span>
+        <span class="no">cd ws</span>
+        <span class="no">curl https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos -o navigation2_foxy.repos</span>
+        <span class="no">vcs import src &lt; navigation2_foxy.repos</span>
+        <span class="no">colcon build --packages-select nav2_system_tests</span>
+        <span class="no">colcon test --packages-select nav2_system_tests --event-handlers console_direct+</span>
+        <span class="no">colcon test-result</span>
+      <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">cmd</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Archive test results</span> <span class="c1"># workaround: https://github.com/actions/upload-artifact/issues/76</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">zip -r results.zip build</span>
+      <span class="nt">working-directory</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ws</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Upload test results</span>
+      <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v2</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ws/results.zip</span>
+</code></pre></div>
 
 <ol>
 <li>Commit and push the workflow files to your remote repository.</li>

@@ -358,8 +358,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -958,36 +958,36 @@
                 
                 
                 <h1 id="troubleshooting-ros-for-windows">Troubleshooting ROS for Windows</h1>
-<p>The COSINE Robotics feature team is monitoring <a href="https://answers.ros.org/questions/">ROS Answers</a> &nearr;, <a href="https://discourse.ros.org/">ROS Discourse</a> &nearr;, and the <a href="http://reddit.com/r/ros">/r/ROS Subreddit</a> &nearr;.</p>
+<p>The team is monitoring <a href="https://answers.ros.org/questions/">ROS Answers</a> 🔗, <a href="https://discourse.ros.org/">ROS Discourse</a> 🔗, and the <a href="http://reddit.com/r/ros">/r/ROS Subreddit</a> 🔗.</p>
 <blockquote>
 <p>This page will be updated with environment related problems as we diagnose them with customers.</p>
 </blockquote>
 <h1 id="windows-specific-bugs">Windows Specific Bugs</h1>
-<p>Please create a GitHub issue on the <a href="https://github.com/ms-iot/ROSOnWindows">ROS on Windows GitHub repository</a> &nearr;.</p>
+<p>Please create a GitHub issue on the <a href="https://github.com/ms-iot/ROSOnWindows">ROS on Windows GitHub repository</a> 🔗.</p>
 <h1 id="no-visual-studio-command-line-build">No Visual Studio command line build?</h1>
 <p>If you find that you do not have a Visual Studio command line in your start menu, it likely means that it wasn't installed during Visual Studio setup. </p>
 <p>To Fix, please launch the Visual Studio installer and select to install the C++ build environment.</p>
 <h1 id="cmake-fails-to-find-visual-studio-after-upgrade">CMake Fails to find Visual Studio after upgrade</h1>
 <p>CMake caches part of the build environment when building a workspace. If you upgrade Visual Studio after building, you may encounter an error like this:</p>
-<pre><code>CMake Error in CMakeLists.txt:
+<div class="highlight"><pre><span></span><code>CMake Error in CMakeLists.txt:
   The CMAKE_CXX_COMPILER:
 
     C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.22.27905/bin/Hostx64/x64/cl.exe
-</code></pre>
+</code></pre></div>
 
 <p>To correct this situation, please delete the devel, build and install directories and rebuild:</p>
-<pre><code class="bash">cd c:\catkin_ws
-rd /s build devel install
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">cd</span> c:\catkin_ws
+<span class="k">rd</span> /s build devel install
+</code></pre></div>
 
 <h1 id="failures-during-chocolatey-install-or-upgrade">Failures during Chocolatey install or upgrade</h1>
 <p>We have seen reports of transient errors during install or upgrade of chocolatey packages or dependencies. If you hit a bug such as :</p>
-<pre><code class="no-highlight">ERROR: The running command stopped because the preference variable &quot;ErrorActionPreference&quot; or common parameter is set to Stop: Exception: The upgrade of ros-catkin-tools was NOT successful. Error while running 'C:\ProgramData\chocolatey\lib\ros-catkin-tools\tools\chocolateyinstall.ps1'. See log for details.
-</code></pre>
+<div class="highlight"><pre><span></span><code>ERROR: The running command stopped because the preference variable <span class="s2">&quot;ErrorActionPreference&quot;</span> or common parameter is set to Stop: Exception: The upgrade of ros-catkin-tools was NOT successful. Error while running &#39;C:\ProgramData\chocolatey\lib\ros-catkin-tools\tools\chocolateyinstall.ps1&#39;. See log for details.
+</code></pre></div>
 
 <p>Please try running chocolatey upgrade directly on that package:</p>
-<pre><code class="bash">choco upgrade ros-catkin-tools
-</code></pre>
+<div class="highlight"><pre><span></span><code>choco upgrade ros-catkin-tools
+</code></pre></div>
                 
               
               

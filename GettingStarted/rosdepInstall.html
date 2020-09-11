@@ -353,8 +353,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot 3" class="md-nav__link">
-      TurtleBot 3
+    <a href="../Turtlebot/Turtlebot3.html" title="TurtleBot3" class="md-nav__link">
+      TurtleBot3
     </a>
   </li>
 
@@ -928,22 +928,22 @@
                 
                   <h1>rosdepInstall</h1>
                 
-                <pre><code class="batch">@echo off
-setlocal
+                <div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">echo</span> off
+<span class="k">setlocal</span>
 
-:: source ROS environments
-pushd %~dp0
-call &quot;setup.bat&quot;
+<span class="p">:</span><span class="c1">: source ROS environments</span>
+<span class="k">pushd</span> <span class="nv">%~dp0</span>
+<span class="k">call</span> <span class="s2">&quot;setup.bat&quot;</span>
 
-:: use Python from ROS installation
-set PATH=%PYTHONHOME%;%PYTHONHOME%\Scripts;%PATH%
-set PYTHONPATH=
+<span class="p">:</span><span class="c1">: use Python from ROS installation</span>
+<span class="k">set</span> <span class="nv">PATH</span><span class="p">=</span><span class="nv">%PYTHONHOME%</span>;<span class="nv">%PYTHONHOME%</span>\Scripts;<span class="nv">%PATH%</span>
+<span class="k">set</span> <span class="nv">PYTHONPATH</span><span class="p">=</span>
 
-:: install ROS system dependencies
+<span class="p">:</span><span class="c1">: install ROS system dependencies</span>
 rosdep init
 rosdep update
-rosdep install --from-paths c:\opt\ros\%ROS_DISTRO%\x64\share --ignore-src -r -y
-</code></pre>
+rosdep install --from-paths c:\opt\ros\<span class="nv">%ROS_DISTRO%</span>\x64\share --ignore-src -r -y
+</code></pre></div>
                 
               
               
