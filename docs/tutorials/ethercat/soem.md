@@ -21,7 +21,7 @@ Firstly, you will need a `catkin` workspace to begin with.
 Let's assume you are working on an empty workspace under `c:\ethercat_ws`.
 You can install `SOEM` from `vcpkg`:
 
-```no-highlight
+```bat
 :: install vcpkg SOEM port
 c:\ethercat_ws> vcpkg install SOEM:x64-windows
 ```
@@ -31,7 +31,7 @@ c:\ethercat_ws> vcpkg install SOEM:x64-windows
 Now you have the required libraries.
 Let's begin with a new package and build with `SOEM`.
 
-```no-highlight
+```bat
 :: change the directory to the source subfolder.
 c:\ethercat_ws> cd src
 
@@ -43,7 +43,7 @@ c:\ethercat_ws\src> catkin_create_pkg my_pkg
 
 Copy [`slaveinfo.c`](https://raw.githubusercontent.com/OpenEtherCATsociety/SOEM/master/test/linux/slaveinfo/slaveinfo.c) into the new package as the `SOEM` application code to run.
 
-```no-highlight
+```bat
 :: make the directory to store the source.
 c:\ethercat_ws> mkdir src\my_pkg\src
 
@@ -94,7 +94,7 @@ target_link_libraries(${PROJECT_NAME}_node
 Let's build the workspace to produce the executables and binaries.
 And remember to run `setup.bat` to add the development space into the current environment.
 
-```no-highlight
+```bat
 :: Build the workspace
 c:\ethercat_ws> catkin_make
 
@@ -108,7 +108,7 @@ Let's check the `EtherCAT` network to make sure the `SOEM` and the `EtherCAT` ne
 
 First, retrieve the list of ethernet adapter discovered on your machine.
 
-```no-highlight
+```bat
 c:\ethercat_ws> rosrun my_pkg slaveinfo
 
 SOEM (Simple Open EtherCAT Master)
@@ -133,7 +133,7 @@ Look for the ethernet adapter for your `EtherCAT` network and take a note of the
 Now run the `slaveinfo` with the ethernet device path again to list what `EtherCAT` slave controllers are discovered on the network.
 You should see information similar to the below and check that the details make sense to your environment.
 
-```no-highlight
+```bat
 c:\ethercat_ws> rosrun soem slaveinfo \Device\NPF_{A54146EA-CD6F-4A95-93E4-0919C4B2D685}
 
 Slave:1

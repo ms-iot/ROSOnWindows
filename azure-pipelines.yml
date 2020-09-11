@@ -23,7 +23,6 @@ jobs:
     env:
       gh_pat: $(gh_userpat)
   - script: |
-      pip install mkdocs
       pip install mkdocs-material
       mkdocs --version
       mkdocs gh-deploy
@@ -37,7 +36,6 @@ jobs:
     inputs:
       versionSpec: '3.7.x'
   - script: |
-      pip install mkdocs
       pip install mkdocs-material
       mkdocs --version
       mkdocs build

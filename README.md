@@ -6,10 +6,10 @@ Visit https://aka.ms/ros/docs to read the generated documentation.
 
 To test this generated HTML pages locally on your machine, you need a `Python` environment and run `MkDocs` tool.
 
-```no-highlight
+```bat
 :: git clone this repository.
 :: change directory to the repository root.
-pip install mkdocs
+pip install mkdocs-material
 mkdocs serve
 ```
 

@@ -5,7 +5,7 @@ vcpkg has thousands of recipies for many different cross platform libraries. If 
 ## Porting a C++ Dependency with vcpkg
 Before you begin, you'll want to fork vcpkg into your github account. Next, Fix up your the ROS environment to use your fork.
 
-```no-highlight
+```bat
 cd c:\opt\vcpkg
 git remote add upstream https://github.com/microsoft/vcpkg
 git remote set-url origin https://github.com/<your github>/vcpkg
@@ -19,7 +19,7 @@ Create a folder for the package you'd like to port, then add `CONTROL` and `port
 
 *CONTROL*
 
-```no-highlight
+```bat
 Source: <name>
 Version: <latest release version>
 Homepage: https://github.com/<organization>/<project>
@@ -28,7 +28,7 @@ Description: <Description from github>
 
 *portfile.cmake*
 
-```no-highlight
+```bat
 include(vcpkg_common_functions)
 
 vcpkg_from_github(
@@ -51,7 +51,7 @@ Then build with `vcpkg build <project>:x64-windows`
 
 Which will error because of the SHA512 hash mismatch:
 
-```no-highlight
+```bat
   File does not have expected hash:
 
           File path: [ C:/opt/vcpkg/downloads/temp/<package> ]
@@ -61,7 +61,7 @@ Which will error because of the SHA512 hash mismatch:
 
 Which is replaced in the *portfile* above:
 
-```no-highlight
+```bat
     SHA512 02a61de205bd1dd116677cf4c530d7adb689442252aeafdc549d54531a62ab10e999062403ddb8aed3d89e4f248ad10c0998739b33004ec02e9914150854d47c
 ```
 Then build again with `vcpkg build <package>:x64-windows`
@@ -74,7 +74,7 @@ We now need to change some code in order to make mavlink build correctly on Wind
 
 Seed the patch by adding the original unpacked sources (this won't be checked in):
 
-```no-highlight
+```bat
 cd c:\opt\vcpkg\buildtrees\<package>
 git init
 git add .
@@ -84,14 +84,14 @@ git commit -m "create patch"
 Next, fix the sources and attempt to build. Once builds complete and testing succeeds, you can create a vcpkg patch:
 
 
-```no-highlight
+```bat
 cd c:\opt\vcpkg\buildtrees\<package>\....
 git diff > ..\..\..\..\ports\<port>\<path name>.patch
 ```
 
 And include it in the portfile:
 
-```no-highlight
+```bat
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO <organization>/<project>

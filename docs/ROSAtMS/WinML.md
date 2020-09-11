@@ -15,7 +15,7 @@ Requirements:
 The WinML ROS Node is distrubted as source. To consume it in your robot, clone the winml_tracker sources into your workspace.
 
 For example:
-```no-highlight
+```bat
 mkdir c:\workspace\winml_demo\src
 cd c:\workspace\winml_demo\src
 catkin_init_workspace

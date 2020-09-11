@@ -12,7 +12,7 @@ You can [try an evaluation of Windows 10 IoT Enterprise](https://www.microsoft.c
 ## Fair Process Scheduling
 By default, Windows prioritizes foreground applications. This can cause a 'unfair' scheduling of ROS nodes, which can impact throughput in a ROS composition. To make scheduling more fair, consider setting the priority control flag to prioritize background applications (`0x18`):
 
-```no-highlight
+```bat
 reg add HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl /v Win32PrioritySeparation /t REG_DWORD /d 0x18 /f
 ```
 

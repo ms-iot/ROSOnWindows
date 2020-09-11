@@ -32,7 +32,7 @@ Credit goes to all the [contributors](https://github.com/Autonomous-Racing-PG/ar
 2. Follow this ROS Wiki [page](http://wiki.ros.org/Installation/Windows) to install ROS Melodic on Windows.
 3. Open the ROS command prompt, and run the following to build the project.
 
-```Batchfile
+```bat
 :: Clone the github project
 git clone https://github.com/<your account>/ros_simulation_lab --recursive
 cd ros_simulation_lab
@@ -48,7 +48,7 @@ catkin_make --use-ninja -DCMAKE_BUILD_TYPE=RELEASE
 
 4. Run the autonomous car simulation.
 
-```Batchfile
+```bat
 :: source the ROS devel space.
 devel\setup.bat
 
@@ -64,7 +64,7 @@ This launch file runs a racecar in a simulated track in Gazebo and runs autonomo
 
 1. End the previous exercise and run the following rostest file:
 
-```Batchfile
+```bat
 :: source the ROS devel space.
 devel\setup.bat
 

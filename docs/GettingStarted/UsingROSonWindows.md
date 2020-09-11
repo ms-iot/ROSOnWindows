@@ -15,7 +15,7 @@ Determine if there is a binary release of the ROS package.
 
 * Using [ROS Wiki](http://wiki.ros.org) &nearr;, locate the binary release name and attempt to install using `Chocolatey`.
 * If this succeeds, then you are all set!
-```no-highlight
+```bat
 choco install ros-melodic-<package_name>
 ```
 
@@ -24,7 +24,7 @@ choco install ros-melodic-<package_name>
 If there isn't a binary release, determine if there is a source only distribution.
 Here is an example workflow how to create a workspace to test the availability:
 
-```Batchfile
+```bat
 :: activate the ROS environment
 c:\opt\ros\melodic\x64\setup.bat
 
@@ -55,7 +55,7 @@ catkin_make
 
 If everything goes well, now you can activate the development space - by calling `devel/setup.bat` - and use the package.
 
-```Batchfile
+```bat
 :: activate the development space
 devel\setup.bat
 
@@ -68,7 +68,7 @@ rospack find <package_name>
 If something has not successfully been built, you can try to the following steps:
 
 * If a Windows port has not yet been released, you can repeat [Soruce Installation](#source-installation) but ask `rosinstall_generator` to use the development branch this time.
-```Batchfile
+```bat
 :: use the development branch
 rosinstall_generator <package> --upstream-development --deps --exclude RPP > pkg.rosinstall
 ```

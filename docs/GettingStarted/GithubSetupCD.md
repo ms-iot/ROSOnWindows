@@ -133,7 +133,7 @@ To update that mapping file, please follow these steps:
 * Fork [https://github.com/ms-iot/rosdistro-db](https://github.com/ms-iot/rosdistro-db) &nearr; into your github account
 * Create a file called `0-update.list` in `c:\opt\ros\melodic\x64\etc\ros\rosdep\sources.list.d`
 * In this file, add a line which points to your fork:
-```no-highlight
+```bat
 # os-specific listings first
 yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/rosdep/win-chocolatey.yaml windows
 yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/rosdep/vcpkg.yaml windows
@@ -143,14 +143,14 @@ yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/r
 
 
 `Python`
-```no-highlight
+```bat
 <python-package-name>:
     windows:
       pip:
         packages: [<python-package-name-in-pip>]
 ```
   `C++`
-```no-highlight
+```bat
   <package-name>:
     windows:
       chocolatey:
@@ -159,7 +159,7 @@ yaml https://raw.githubusercontent.com/<your github>/rosdistro-db/init_windows/r
 ```
 
 * Update rosdeps on your computer.
-```no-highlight
+```bat
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y
 ```

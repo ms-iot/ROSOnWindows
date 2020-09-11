@@ -9,7 +9,7 @@ http://wiki.ros.org/Installation/Windows
 Download the ROS on Windows with MoveIt packages.
 (open an elevated ROS Command Window as described in the installation instructions)
 
-```Batchfile
+```bat
 mkdir c:\opt\chocolatey
 set ChocolateyInstall=c:\opt\chocolatey
 choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
@@ -18,7 +18,7 @@ choco upgrade ros-melodic-moveit -y --execution-timeout=0
 
 Close the window and open a new ROS Command Window. Make sure you have the most up to date packages:
 
-```Batchfile
+```bat
 rosdep update
 ```
 
@@ -27,7 +27,7 @@ Then, create a workspace and download the example code.
 
 (open a command prompt as admin)
 
-```Batchfile
+```bat
 mkdir c:\moveit_ws\src
 cd c:\moveit_ws\src
 catkin_init_workspace
@@ -40,7 +40,7 @@ catkin_make
 
 After it is built, source the catkin workspace.
 
-```no-highlight
+```bat
 c:\moveit_ws\devel\setup.bat
 ```
 

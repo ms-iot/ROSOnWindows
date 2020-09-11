@@ -63,7 +63,7 @@ Chocolatey is a package manager for Windows. It is used to make it easy to insta
 2. Open the command prompt as administrator.
 3. Run the following to install `ROS 2 Foxy`.
 
-```Batchfile
+```bat
 mkdir c:\opt\chocolatey
 set ChocolateyInstall=c:\opt\chocolatey
 choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
@@ -80,7 +80,7 @@ Now you have ROS 2 `ros-foxy-desktop` installed.
 2. Run the shortcut as administrator.
 3. Once the developer command prompt is open, run
 
-```Batchfile
+```bat
 :: activate the ROS 2 environment
 c:\opt\ros\foxy\x64\setup.bat
 
