@@ -2,7 +2,7 @@
 title: System Tests with Continuous Simulation on Azure Pipelines
 ---
 
-This tutorial is to show how to use `Azure Pielines` with `Scale Set Agents` to exercise the [Navigation2 System Tests](https://github.com/ros-planning/navigation2/tree/main/nav2_system_tests).
+This tutorial is to show how to use `Azure Pielines` with [`Scale Set Agents`](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/scale-set-agents) to exercise the [Navigation2 System Tests](https://github.com/ros-planning/navigation2/tree/main/nav2_system_tests).
 It is a comprehensive End-to-End test pass with Gazebo simulation.
 This project is a good example for ROS 2 developers how to organize a End-to-End tests across multiple packages and tools.
 
