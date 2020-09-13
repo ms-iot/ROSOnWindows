@@ -1,44 +1,72 @@
 # MoveIt Tutorials on Windows
-This guide is to show you how to prepare a workspace (for ROS on Windows) for your MoveIt tutorials. Find out more about MoveIt, visit [here](https://ros-planning.github.io/moveit_tutorials/index.html).
-
-## Install ROS on Windows
-Follow the ROS on Windows installation istructions. You may skip the Binary Package Installation step and install the ros-melodic-moveit binary instead of ros-melodic-desktop_full or ros-eloquent-desktop (as shown in the next section).
-http://wiki.ros.org/Installation/Windows
+This guide is to show you how to prepare a workspace for MoveIt tutorials. Find out more about MoveIt, visit [here](https://moveit.ros.org/).
 
 ## MoveIt Binary Installation on Windows
 Download the ROS on Windows with MoveIt packages.
 (open an elevated ROS Command Window as described in the installation instructions)
 
-```bat
-mkdir c:\opt\chocolatey
-set ChocolateyInstall=c:\opt\chocolatey
-choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
-choco upgrade ros-melodic-moveit -y --execution-timeout=0
-```
+=== "Noetic"
 
-Close the window and open a new ROS Command Window. Make sure you have the most up to date packages:
+    ```bat
+    mkdir c:\opt\chocolatey
+    set ChocolateyInstall=c:\opt\chocolatey
+    choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
+    choco upgrade ros-noetic-desktop_full -y --execution-timeout=0
+    ```
 
-```bat
-rosdep update
-```
+=== "Melodic"
+
+    ```bat
+    mkdir c:\opt\chocolatey
+    set ChocolateyInstall=c:\opt\chocolatey
+    choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
+    choco upgrade ros-melodic-moveit -y --execution-timeout=0
+    ```
 
 ## Create Workspace for MoveIt Tutorials
 Then, create a workspace and download the example code.
 
 (open a command prompt as admin)
 
-```bat
-mkdir c:\moveit_ws\src
-cd c:\moveit_ws\src
-catkin_init_workspace
-git clone https://github.com/ros-planning/moveit_tutorials.git -b melodic-devel
-git clone https://github.com/ros-planning/panda_moveit_config.git -b melodic-devel
-git clone https://github.com/frankaemika/franka_ros-release -b release/kinetic/franka_description
-cd c:\moveit_ws
-catkin_make
-```
+=== "Noetic"
 
-After it is built, source the catkin workspace.
+    ```bat
+    :: activate ROS environment
+    c:\opt\ros\noetic\x64\setup.bat
+
+    :: checkout MoveIt tutorial packages
+    mkdir c:\moveit_ws\src
+    cd c:\moveit_ws\src
+
+    git clone https://github.com/ros-planning/moveit_tutorials.git -b melodic-devel
+    git clone https://github.com/ros-planning/panda_moveit_config.git -b melodic-devel
+    git clone https://github.com/frankaemika/franka_ros-release -b release/kinetic/franka_description
+
+    :: build packages
+    cd c:\moveit_ws
+    catkin_make
+    ```
+
+=== "Melodic"
+
+    ```bat
+    :: activate ROS environment
+    c:\opt\ros\melodic\x64\setup.bat
+
+    :: checkout MoveIt tutorial packages
+    mkdir c:\moveit_ws\src
+    cd c:\moveit_ws\src
+
+    git clone https://github.com/ros-planning/moveit_tutorials.git -b melodic-devel
+    git clone https://github.com/ros-planning/panda_moveit_config.git -b melodic-devel
+    git clone https://github.com/frankaemika/franka_ros-release -b release/kinetic/franka_description
+
+    :: build packages
+    cd c:\moveit_ws
+    catkin_make
+    ```
+
+After it is built, activate the development workspace.
 
 ```bat
 c:\moveit_ws\devel\setup.bat
