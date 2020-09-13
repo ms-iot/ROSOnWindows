@@ -367,13 +367,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#install-ros-on-windows" class="md-nav__link">
-    Install ROS on Windows
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#moveit-binary-installation-on-windows" class="md-nav__link">
     MoveIt Binary Installation on Windows
   </a>
@@ -996,13 +989,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#install-ros-on-windows" class="md-nav__link">
-    Install ROS on Windows
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#moveit-binary-installation-on-windows" class="md-nav__link">
     MoveIt Binary Installation on Windows
   </a>
@@ -1044,37 +1030,68 @@
                 
                 
                 <h1 id="moveit-tutorials-on-windows">MoveIt Tutorials on Windows</h1>
-<p>This guide is to show you how to prepare a workspace (for ROS on Windows) for your MoveIt tutorials. Find out more about MoveIt, visit <a href="https://ros-planning.github.io/moveit_tutorials/index.html">here</a>.</p>
-<h2 id="install-ros-on-windows">Install ROS on Windows</h2>
-<p>Follow the ROS on Windows installation istructions. You may skip the Binary Package Installation step and install the ros-melodic-moveit binary instead of ros-melodic-desktop_full or ros-eloquent-desktop (as shown in the next section).
-http://wiki.ros.org/Installation/Windows</p>
+<p>This guide is to show you how to prepare a workspace for MoveIt tutorials. Find out more about MoveIt, visit <a href="https://moveit.ros.org/">here</a>.</p>
 <h2 id="moveit-binary-installation-on-windows">MoveIt Binary Installation on Windows</h2>
 <p>Download the ROS on Windows with MoveIt packages.
 (open an elevated ROS Command Window as described in the installation instructions)</p>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Noetic</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="k">mkdir</span> c:\opt\chocolatey
+<span class="k">set</span> <span class="nv">ChocolateyInstall</span><span class="p">=</span>c:\opt\chocolatey
+choco source add -n=ros-win -s=<span class="s2">&quot;https://aka.ms/ros/public&quot;</span> --priority=1
+choco upgrade ros-noetic-desktop_full -y --execution-timeout=0
+</code></pre></div>
+
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Melodic</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="k">mkdir</span> c:\opt\chocolatey
 <span class="k">set</span> <span class="nv">ChocolateyInstall</span><span class="p">=</span>c:\opt\chocolatey
 choco source add -n=ros-win -s=<span class="s2">&quot;https://aka.ms/ros/public&quot;</span> --priority=1
 choco upgrade ros-melodic-moveit -y --execution-timeout=0
 </code></pre></div>
 
-<p>Close the window and open a new ROS Command Window. Make sure you have the most up to date packages:</p>
-<div class="highlight"><pre><span></span><code>rosdep update
-</code></pre></div>
-
+</div>
+</div>
 <h2 id="create-workspace-for-moveit-tutorials">Create Workspace for MoveIt Tutorials</h2>
 <p>Then, create a workspace and download the example code.</p>
 <p>(open a command prompt as admin)</p>
-<div class="highlight"><pre><span></span><code><span class="k">mkdir</span> c:\moveit_ws\src
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Noetic</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: activate ROS environment</span>
+c<span class="p">:</span><span class="nl">\opt\ros\noetic\x64\setup.bat</span>
+
+<span class="p">:</span><span class="c1">: checkout MoveIt tutorial packages</span>
+<span class="k">mkdir</span> c:\moveit_ws\src
 <span class="k">cd</span> c:\moveit_ws\src
-catkin_init_workspace
+
 git clone https://github.com/ros-planning/moveit_tutorials.git -b melodic-devel
 git clone https://github.com/ros-planning/panda_moveit_config.git -b melodic-devel
 git clone https://github.com/frankaemika/franka_ros-release -b release/kinetic/franka_description
+
+<span class="p">:</span><span class="c1">: build packages</span>
 <span class="k">cd</span> c:\moveit_ws
 catkin_make
 </code></pre></div>
 
-<p>After it is built, source the catkin workspace.</p>
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Melodic</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: activate ROS environment</span>
+c<span class="p">:</span><span class="nl">\opt\ros\melodic\x64\setup.bat</span>
+
+<span class="p">:</span><span class="c1">: checkout MoveIt tutorial packages</span>
+<span class="k">mkdir</span> c:\moveit_ws\src
+<span class="k">cd</span> c:\moveit_ws\src
+
+git clone https://github.com/ros-planning/moveit_tutorials.git -b melodic-devel
+git clone https://github.com/ros-planning/panda_moveit_config.git -b melodic-devel
+git clone https://github.com/frankaemika/franka_ros-release -b release/kinetic/franka_description
+
+<span class="p">:</span><span class="c1">: build packages</span>
+<span class="k">cd</span> c:\moveit_ws
+catkin_make
+</code></pre></div>
+
+</div>
+</div>
+<p>After it is built, activate the development workspace.</p>
 <div class="highlight"><pre><span></span><code>c<span class="p">:</span><span class="nl">\moveit_ws\devel\setup.bat</span>
 </code></pre></div>
 
