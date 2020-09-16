@@ -70,8 +70,8 @@ mkdir c:\nav2_ws\src
 pushd c:\nav2_ws
 
 :: checkout the required source code.
-wget https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos
-vcs import src < navigation2.repos
+curl -o nav2.repos https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos
+vcs import src < nav2.repos
 ```
 
 ## Build and Activate the Navigation 2 Workspace

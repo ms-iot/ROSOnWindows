@@ -1,16 +1,12 @@
 repositories:
-  navigation2:
-    type: git
-    url: https://github.com/ms-iot/navigation2.git
-    version: windows/0.4.2
   turtlebot3/turtlebot3:
     type: git
     url: https://github.com/ROBOTIS-GIT/turtlebot3.git
-    version: ros2
+    version: foxy-devel
   turtlebot3/turtlebot3_simulations:
     type: git
-    url: https://github.com/ms-iot/turtlebot3_simulations.git
-    version: windows/foxy-devel
+    url: https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+    version: ros2-devel
   utils/DynamixelSDK:
     type: git
     url: https://github.com/ROBOTIS-GIT/DynamixelSDK.git
