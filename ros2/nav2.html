@@ -1149,8 +1149,8 @@ Stay in this command prompt for the rest of this tutorial.</p>
 <span class="k">pushd</span> c:\nav2_ws
 
 <span class="p">:</span><span class="c1">: checkout the required source code.</span>
-wget https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos
-vcs import src <span class="p">&lt;</span> navigation2.repos
+curl -o nav2.repos https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos
+vcs import src <span class="p">&lt;</span> nav2.repos
 </code></pre></div>
 
 <h2 id="build-and-activate-the-navigation-2-workspace">Build and Activate the Navigation 2 Workspace</h2>
