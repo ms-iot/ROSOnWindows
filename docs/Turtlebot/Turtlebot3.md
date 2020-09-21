@@ -8,22 +8,19 @@ The TurtleBot3 uses a Lidar which requires the following driver.
 
  * [CP2102 Driver](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
 
-## Guide
-### General notes
+## General notes
 The TurtleBot3 documentation uses the unix command 'export' to set environment variables, instead use the following:
 ```bat
 set TURTLEBOT3_MODEL=waffle
 ```
 > NOTE: The value of %TURTLEBOT3_MODEL% is case-sensitive.
 
-Please use turtlebot3_bringup-win.launch which has Windows device bindings.
-
-## Setup
+## Step 1: Setup
 ### PC Setup
 Please follow the instructions for setting up your computer with [ROS on Windows](../GettingStarted/Setup.md).
 
 ### SBC Setup
-You can bypass this section
+You can bypass this section.
 
 ### OpenCR Setup
 Please follow the Windows instructions for the [ROBOTIS OpenCR board in the ROBOTIS Manual](http://emanual.robotis.com/docs/en/parts/controller/opencr10/).
@@ -35,23 +32,18 @@ ROS on Windows requires a x64 bit Windows 10 Desktop or Windows 10 IoT Enterpris
 
 > ROS on Windows was brought up using [UP2](https://up-board.org/upsquared/specifications/) and an Intel NUC.
 
-## Create a new workspace
+## Step 2: Create a new Workspace
 In a Command Window set up with the ROS environment, create a directory for your robot workspaces and a workspace for TurtleBot3.
 
 ```bat
 mkdir c:\ws\turtlebot3\src
-cd c:\ws\turtlebot3\src
-catkin_init_workspace
-git clone -b melodic-devel https://github.com/ROBOTIS-GIT/turtlebot3_msgs
-git clone -b melodic-devel https://github.com/ms-iot/turtlebot3_simulations
-git clone -b melodic-devel https://github.com/ms-iot/turtlebot3.git 
-git clone -b melodic-devel https://github.com/ms-iot/hls_lfcd_lds_driver
 cd c:\ws\turtlebot3
-rosdep update
-rosdep install --from-paths src --ignore-src -r -y
+
+curl -o tb3.repos https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/Turtlebot/turtlebot3_ros1.repos
+vcs import src < tb3.repos
 ```
 
-## Customize TurtleBot3 Launch Files
+## Step 3: Customize TurtleBot3 Launch Files
 Modify the ROS Launch files to map the devices to the correct COM port. To determine which COM ports you require, right click on the Windows Start Menu, Select Device Manager.
 
 Under the `Ports (COM & LPT)` node:
@@ -61,14 +53,14 @@ Under the `Ports (COM & LPT)` node:
 
 Enter the COM port in the correct fields in the launch files below:
 
-*turtlebot3_bringup/launch/turtlebot3_core-win.launch*
+*turtlebot3_bringup/launch/turtlebot3_core.launch*
 
 ```xml
 <node pkg="rosserial_python" type="serial_node.py" name="turtlebot3_core" output="screen">
     <param name="port" value="COMx"/>
 ```
 
-*turtlebot3_bringup/launch/turtlebot3_lidar-win.launch*
+*turtlebot3_bringup/launch/turtlebot3_lidar.launch*
 
 ```xml
 <node pkg="hls_lfcd_lds_driver" type="hlds_laser_publisher" name="turtlebot3_lds" output="screen">
@@ -76,13 +68,8 @@ Enter the COM port in the correct fields in the launch files below:
 ```
 
 
-## Build Nodes
+## Step 4: Build the Workspace
 To build the TurtleBot3 packages, enter the TurtleBot3 workspace and build using the catkin build system.
-
-```bat
-:: make sure all required binaries installed.
-choco upgrade ros-melodic-desktop_full -y
-```
 
 ```bat
 :: build TurtleBot3 workspace.
@@ -99,28 +86,50 @@ c:\ws\turtlebot3\devel\setup.bat
 > If you forget to merge the TurtleBot3 environment by calling the setup batch file, you'll get an error such as this:
 > `RLException: [turtlebot3_robot.launch] is neither a launch file in package [turtlebot3_bringup] nor is [turtlebot3_bringup] a launch file name`
 
-## Running TurtleBot
+## Step 5: Run TurtleBot3
 
 ### No Robot - No Problem!
 rViz is tool which allows you to visualize a representation of a robot, and project fake data in order to exerise or develop logic. The TurtleBot3 simulation is in the `turtlebot3_simulations` package.
 
 To start the simulation, open one elevated command prompt:
 
-```bat
-c:\opt\ros\melodic\x64\setup.bat
-c:\ws\turtlebot3\devel\setup.bat
-set TURTLEBOT3_MODEL=waffle
-roslaunch turtlebot3_fake turtlebot3_fake.launch
-```
+=== "Noetic"
+
+    ```bat
+    c:\opt\ros\noetic\x64\setup.bat
+    c:\ws\turtlebot3\devel\setup.bat
+    set TURTLEBOT3_MODEL=waffle
+    roslaunch turtlebot3_fake turtlebot3_fake.launch
+    ```
+
+=== "Melodic"
+
+    ```bat
+    c:\opt\ros\melodic\x64\setup.bat
+    c:\ws\turtlebot3\devel\setup.bat
+    set TURTLEBOT3_MODEL=waffle
+    roslaunch turtlebot3_fake turtlebot3_fake.launch
+    ```
 
 Then, open another elevated command prompt:
 
-```bat
-c:\opt\ros\melodic\x64\setup.bat
-c:\ws\turtlebot3\devel\setup.bat
-set TURTLEBOT3_MODEL=waffle
-roslaunch turtlebot3_gazebo turtlebot3_simulation.launch
-```
+=== "Noetic"
+
+    ```bat
+    c:\opt\ros\noetic\x64\setup.bat
+    c:\ws\turtlebot3\devel\setup.bat
+    set TURTLEBOT3_MODEL=waffle
+    roslaunch turtlebot3_gazebo turtlebot3_simulation.launch
+    ```
+
+=== "Melodic"
+
+    ```bat
+    c:\opt\ros\melodic\x64\setup.bat
+    c:\ws\turtlebot3\devel\setup.bat
+    set TURTLEBOT3_MODEL=waffle
+    roslaunch turtlebot3_gazebo turtlebot3_simulation.launch
+    ```
 
 Now you should see TurtleBot3 random walking on RViz. You can create your own logic which reads `/odom` or publish `/cmd_vel` to move the virtual robot.
 
@@ -129,19 +138,29 @@ SLAM (Simultaneous localization and mapping) is a very popular application in th
 
 To start this demo, open an evelated command prompt:
 
-```bat
-:: make sure all required binaries installed.
-choco upgrade ros-melodic-desktop_full -y
-choco upgrade ros-melodic-cartographer_ros -y
-```
+=== "Noetic"
 
-```bat
-:: run the demo.
-c:\opt\ros\melodic\x64\setup.bat
-c:\ws\turtlebot3\devel\setup.bat
-set TURTLEBOT3_MODEL=waffle
-roslaunch turtlebot3_gazebo turtlebot3_gazebo_cartographer_demo.launch
-```
+    ```bat
+    :: run the demo.
+    c:\opt\ros\noetic\x64\setup.bat
+    c:\ws\turtlebot3\devel\setup.bat
+    set TURTLEBOT3_MODEL=waffle
+
+    curl -o turtlebot3_demo.launch https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/Turtlebot/turtlebot3_demo.launch
+    roslaunch turtlebot3_demo.launch
+    ```
+
+=== "Melodic"
+
+    ```bat
+    :: run the demo.
+    c:\opt\ros\melodic\x64\setup.bat
+    c:\ws\turtlebot3\devel\setup.bat
+    set TURTLEBOT3_MODEL=waffle
+
+    curl -o turtlebot3_demo.launch https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/Turtlebot/turtlebot3_demo.launch
+    roslaunch turtlebot3_demo.launch
+    ```
 
 After a few moments, you will see Gazebo running a simulated world with your simulated TurtleBot3, RViz running the mapping progress, and a simulation node to drive the TurtleBot3 random walking.
 
@@ -156,5 +175,5 @@ In one command window, start `roscore`.
 In another command window, launch the TurtleBot robot code.
 
 ```bat
-roslaunch turtlebot3_bringup turtlebot3_robot-win.launch
+roslaunch turtlebot3_bringup turtlebot3_robot.launch
 ```
