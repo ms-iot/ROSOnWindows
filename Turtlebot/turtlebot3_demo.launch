@@ -1,0 +1,12 @@
+<launch>
+  <env name="GAZEBO_PLUGIN_PATH" value="$(find gazebo_plugins)"/>
+  <env name="GAZEBO_MODEL_PATH" value="$(find turtlebot3_gazebo)/models"/>
+
+  <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch"/>
+  <include file="$(find turtlebot3_slam)/launch/turtlebot3_slam.launch">
+    <arg name="slam_methods" value="cartographer" />
+    <arg name="configuration_basename" value="turtlebot3_lds_2d_gazebo.lua" />
+  </include>
+  <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_simulation.launch" />
+
+</launch>
