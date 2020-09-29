@@ -27,16 +27,3 @@ To correct this situation, please delete the devel, build and install directorie
 cd c:\catkin_ws
 rd /s build devel install
 ```
-
-# Failures during Chocolatey install or upgrade
-We have seen reports of transient errors during install or upgrade of chocolatey packages or dependencies. If you hit a bug such as :
-
-```bat
-ERROR: The running command stopped because the preference variable "ErrorActionPreference" or common parameter is set to Stop: Exception: The upgrade of ros-catkin-tools was NOT successful. Error while running 'C:\ProgramData\chocolatey\lib\ros-catkin-tools\tools\chocolateyinstall.ps1'. See log for details.
-```
-
-Please try running chocolatey upgrade directly on that package:
-
-```bat
-choco upgrade ros-catkin-tools
-```
