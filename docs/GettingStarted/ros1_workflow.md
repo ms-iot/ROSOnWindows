@@ -40,7 +40,7 @@ jobs:
         ROS_PYTHON_VERSION: 3
         CC: cl.exe
         CXX: cl.exe
-    - uses: ros-tooling/action-ros-ci@master
+    - uses: ros-tooling/action-ros-ci@0.0.17
       with:
         package-name: <ros package>
         vcs-repo-file-url: ${{ github.workspace }}/ci/empty.rosinstall
