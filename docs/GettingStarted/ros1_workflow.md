@@ -1,4 +1,4 @@
-```yaml
+``` yaml
 
 name: CI
 on:
@@ -7,52 +7,53 @@ on:
     branches:
       - master
   schedule:
-    # Run it regularly to detect flaky build breaks.
-    - cron:  '0 0 */3 * *'
+    # every Monday
+    - cron:  '0 0 * * 1'
 
 jobs:
-  build_and_test:
-    runs-on: ${{ matrix.os }}
+  build:
+    runs-on: [windows-latest]
     strategy:
       fail-fast: false
       matrix:
-          os: [windows-latest]
+        ROSDISTRO: [melodic, noetic]
     steps:
     - uses: actions/checkout@v2
-    - name: Cleanup windows environment
-      shell: bash
+      with:
+        submodules: recursive
+        path: src
+    - name: Install
+      shell: cmd
       run: |
-        rm -rf /c/hostedtoolcache/windows/Boost/1.72.0/lib/cmake/Boost-1.72.0
-        mkdir -p /c/ci
-        cp $GITHUB_WORKSPACE/ci/toolchain.cmake /c/ci
-    - uses: goanpeca/setup-miniconda@v1
-      with:
-        activate-environment: myenv
-        environment-file: ci/environment.yaml
-        python-version: 3.7
-    - uses: ros-tooling/action-ros-ci@master
-      with:
-        package-name: <ros package>
-        vcs-repo-file-url: ${{ github.workspace }}/ci/deps.rosinstall
-        extra-cmake-args: "-G Ninja -DCMAKE_TOOLCHAIN_FILE=c:/ci/toolchain.cmake -DCMAKE_BUILD_TYPE=Release"
+        choco sources add -n=roswin -s https://aka.ms/ros/public --priority 1
+        choco install ros-%ROSDISTRO%-desktop_full -y --no-progress
       env:
-        COLCON_DEFAULTS_FILE: ${{ github.workspace }}/ci/defaults.yaml
-        ROS_PYTHON_VERSION: 3
-        CC: cl.exe
-        CXX: cl.exe
-    - uses: ros-tooling/action-ros-ci@0.0.17
-      with:
-        package-name: <ros package>
-        vcs-repo-file-url: ${{ github.workspace }}/ci/empty.rosinstall
-        extra-cmake-args: "-G Ninja -DCMAKE_TOOLCHAIN_FILE=c:/ci/toolchain.cmake -DCMAKE_BUILD_TYPE=Release"
+        ROSDISTRO: ${{ matrix.ROSDISTRO }}
+    - name: Build
+      shell: cmd
+      run: |
+        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat" -arch=amd64 -host_arch=amd64
+        call "C:\opt\ros\%ROSDISTRO%\x64\setup.bat"
+
+        : Additional dependencies
+        : For other ROS repos, remove the : and add the clone commands
+        : pushd src
+        : git clone https://github.com/ms-iot/audio_common
+        : popd
+
+        : For other chocolatey packages, remove the : and add the choco packages
+        : choco install <package>
+
+        : For vcpkgs, remove the : and add the vcpkg dependencies.
+        : vcpkg install <package>
+
+        catkin_make install -DPYTHON_EXECUTABLE=C:\opt\ros\%ROSDISTRO%\x64\python.exe
       env:
-        COLCON_DEFAULTS_FILE: ${{ github.workspace }}/ci/packaging.yaml
-        ROS_PYTHON_VERSION: 3
-        CC: cl.exe
-        CXX: cl.exe
+        ROSDISTRO: ${{ matrix.ROSDISTRO }}
+
     - uses: actions/upload-artifact@v1
       with:
         name: drop
-        path: c:/opt/install
+        path: install
 
 ```
