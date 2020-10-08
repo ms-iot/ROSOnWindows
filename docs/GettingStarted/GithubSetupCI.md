@@ -1,45 +1,40 @@
-
 # Continuous Integration with Github Actions
-Actions are a feature of Github which allows you to easily integrate continuous integration into your builds. The Tooling Working Group of the ROS2 technical steering committee has built a [Github action](https://github.com/ros-tooling/action-ros-ci) &nearr;  which allows you to build ROS packages. Microsoft is contributing to this action.
 
-The ROS action has different setups for ROS1 and ROS2, which will be covered below.
+Actions are a feature of Github which allows you to easily integrate continuous integration into your builds.
 
-## ROS1 Setup
+## ROS1 CI Setup
+
 To configure your ROS1 repository for CI, you'll need to install the buildtime files which configures your solution for ROS building. 
 
-Initialize Dependencies and Toolchain
+Create the github action:
 
-  * On github, select the `Create new file` button.
-  * Name the file `ci/deps.rosinstall`
-  * In that file, place the contents of [deps.rosinstall](deps.md) into the newly created file
-  * Name the file `ci/empty.rosinstall`
-  * In that file, place the contents of [empty.rosinstall](empty.md) into the newly created file
-  * On github, select the `Create new file` button.
-  * Name the file `ci/defaults.yaml`
-  * In that file, place the contents of [defaults.yaml](defaults.md) into the newly created file
-  * Name the file `ci/packaging.yaml`
-  * In that file, place the contents of [packaging.yaml](packaging.md) into the newly created file
-  * On github, select the `Create new file` button.
-  * Name the file `ci/environment.yaml`
-  * In that file, place the contents of [environment.yaml](environment.md) into the newly created file
-  * On github, select the `Create new file` button.
-  * Name the file `ci/toolchain.cmake`
-  * In that file, place the contents of [toolchain.cmake](toolchain.md) into the newly created file
+* On github, select the `Actions` tab.
+* Create a `New Workflow` and name the workflow `Windows_ROS1.yaml`
+* Copy the contents of [Windows_ROS1.yaml](ros1_workflow.md) and replace the contents of the file created above.
+* Update the workflow for your ROS component. Use the comments in the file as a guide.
 
+If your ROS node has dependencies on other repositories, vcpkgs or chocolatey packages, add them before catkin_make.
+``` batch
+        : Additional dependencies
+        : For other ROS repos, remove the : and add the clone commands
+        : pushd src
+        : git clone https://github.com/ms-iot/audio_common
+        : popd
 
-Now create the Github Action
+        : For other chocolatey packages, remove the : and add the choco packages
+        : choco install <package>
 
-  * On github, select the `Action` tab.
-  * Create a new workflow
-  * In the new workflow, copy the contents of [main.yaml](ros1_workflow.md) to the newly created workflow file.
-  * Replace `<ros package>` with the ROS package you are generating
+        : For vcpkgs, remove the : and add the vcpkg dependencies.
+        : vcpkg install <package>
+```
 
 ## ROS2 Setup
-To configure your ROS2 repository for CI, you'll need to install the buildtime files which configures your solution for ROS building. 
+
+To configure your ROS2 repository for CI, you'll need to install the build time files which configures your solution for ROS building. 
 
 Now create the Github Action
 
-  * On github, select the `Action` tab.
-  * Create a new workflow
-  * In the new workflow, copy the contents of [main.yaml](ros2_workflow.md) to the newly created workflow file.
-  * Replace `<ros package>` with the ROS package you are generating
+* On github, select the `Action` tab.
+* Create a new workflow
+* In the new workflow, copy the contents of [main.yaml](ros2_workflow.md) to the newly created workflow file.
+* Replace `<ros package>` with the ROS package you are generating
