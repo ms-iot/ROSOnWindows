@@ -27,6 +27,11 @@ jobs:
       run: |
         choco sources add -n=roswin -s https://aka.ms/ros/public --priority 1
         choco install ros-%ROSDISTRO%-desktop_full -y --no-progress
+
+        : The desktop_full deployment has a chocolatey deployment which is isolated to the ROS distro 
+        : (so they don't conflict with each other)
+        : If you need other dependencies, they should go after setup.bat in the following block in order
+        : to be injected into the isolated deployment.
       env:
         ROSDISTRO: ${{ matrix.ROSDISTRO }}
     - name: Build
@@ -35,7 +40,7 @@ jobs:
         call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat" -arch=amd64 -host_arch=amd64
         call "C:\opt\ros\%ROSDISTRO%\x64\setup.bat"
 
-        : Additional dependencies
+        : Additional dependencies after setup.bat.
         : For other ROS repos, remove the : and add the clone commands
         : pushd src
         : git clone https://github.com/ms-iot/audio_common
