@@ -35,7 +35,7 @@ This short guide shows you how to build **Navigation 2** from source and later y
 mkdir c:\opt\chocolatey
 set ChocolateyInstall=c:\opt\chocolatey
 choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
-choco upgrade ros-foxy-desktop -y --execution-timeout=0 --pre
+choco upgrade ros-foxy-desktop -y --execution-timeout=0
 ```
 
 You can close the command prompt now.
@@ -83,7 +83,7 @@ Build the workspace by `colcon` build tool.
 pushd c:\nav2_ws
 
 :: build the workspace
-colcon build --cmake-args -DBUILD_TESTING=OFF
+colcon build
 ```
 
 Activate the workspace which was built.
