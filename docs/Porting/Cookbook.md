@@ -99,7 +99,7 @@ if(NOT CMAKE_CXX_STANDARD)
 endif()
 ```
 
-> NOTE: Boost 1.66 in the Melodic requires CMAKE_CSS_STANDARD 11
+> NOTE: Boost 1.66 in the Melodic requires CMAKE_CXX_STANDARD 11
 
 ### `__attribute____`
 `__attribute__` is not suppported with Microsoft compilers. You can use a macro replacement or use a cross platform convention.
