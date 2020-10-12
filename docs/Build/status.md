@@ -16,7 +16,7 @@ This is the latest CI and release status of projects under ROS on Windows.
 
 | Project Name | CI Status |
 |-----|-----|
-| [azure_kinect_ros_driver](https://github.com/microsoft/azure_kinect_ros_driver) | ![Azure_Kinect_ROS_Driver CI](https://github.com/microsoft/Azure_Kinect_ROS_Driver/workflows/Azure_Kinect_ROS_Driver%20CI/badge.svg?event=schedule) |
+| [azure_kinect_ros_driver](https://github.com/microsoft/azure_kinect_ros_driver) | ![CI](https://github.com/microsoft/Azure_Kinect_ROS_Driver/workflows/CI/badge.svg?event=schedule) |
 | [ros_azure_iothub](https://github.com/microsoft/ros_azure_iothub) | ![CI](https://github.com/microsoft/ros_azure_iothub/workflows/CI/badge.svg?event=schedule) |
 | [ros_msft_camera](https://github.com/ms-iot/ros_msft_camera) | ![CI](https://github.com/ms-iot/ros_msft_camera/workflows/CI/badge.svg?event=schedule) |
 | [ros_msft_luis](https://github.com/ms-iot/ros_msft_luis) | ![CI](https://github.com/ms-iot/ros_msft_luis/workflows/CI/badge.svg?event=schedule) |
