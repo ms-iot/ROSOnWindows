@@ -1123,7 +1123,7 @@ This short guide shows you how to build <strong>Navigation 2</strong> from sourc
 <div class="highlight"><pre><span></span><code><span class="k">mkdir</span> c:\opt\chocolatey
 <span class="k">set</span> <span class="nv">ChocolateyInstall</span><span class="p">=</span>c:\opt\chocolatey
 choco source add -n=ros-win -s=<span class="s2">&quot;https://aka.ms/ros/public&quot;</span> --priority=1
-choco upgrade ros-foxy-desktop -y --execution-timeout=0 --pre
+choco upgrade ros-foxy-desktop -y --execution-timeout=0
 </code></pre></div>
 <p>You can close the command prompt now.</p>
 <p>✔️ Now you have ROS 2 <code>ros-foxy-desktop</code> installed.</p>
@@ -1158,7 +1158,7 @@ vcs import src <span class="p">&lt;</span> nav2.repos
 <span class="k">pushd</span> c:\nav2_ws
 
 <span class="p">:</span><span class="c1">: build the workspace</span>
-colcon build --cmake-args -DBUILD_TESTING=OFF
+colcon build
 </code></pre></div>
 <p>Activate the workspace which was built.</p>
 <div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: activate it</span>
