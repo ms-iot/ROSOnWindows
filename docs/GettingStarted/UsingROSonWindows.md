@@ -41,9 +41,7 @@ rosinstall_generator <package_name> --deps --exclude RPP --tar --flat > pkg.rosi
 :: see the tips section for more details
 
 :: checkout the sources for real
-wstool init src
-wstool merge -r -y -t src pkg.rosinstall
-wstool update -t src
+vcs import --force src < pkg.rosinstall
 
 :: attempt to acquire the external dependencies
 rosdep update
