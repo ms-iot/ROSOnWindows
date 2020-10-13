@@ -1086,9 +1086,7 @@ rosinstall_generator <span class="p">&lt;</span>package_name<span class="p">&gt;
 <span class="p">:</span><span class="c1">: see the tips section for more details</span>
 
 <span class="p">:</span><span class="c1">: checkout the sources for real</span>
-wstool init src
-wstool merge -r -y -t src pkg.rosinstall
-wstool update -t src
+vcs import --force src <span class="p">&lt;</span> pkg.rosinstall
 
 <span class="p">:</span><span class="c1">: attempt to acquire the external dependencies</span>
 rosdep update
