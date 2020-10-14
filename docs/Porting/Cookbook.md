@@ -146,19 +146,13 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mylibrary_export.h
         DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
 ```
 
-### Beware of aggressive optimization
-The Microsoft compiler will optimize aggressively. This can manifest in strange ways. One instance was in TurtleBot3 fake code, is a ROS_ASSERT with a function that only returns true. Nothing else executed.
+### Beware of ROS_ASSERT Usage
 
-### Case sensitivity
-Linux is case sensitive, whereas Windows is not. We are trying to locate case sensitive areas and isolate them. This manifests in odd errors like this: 
+`ROS_ASSERT` is a macro only evaluating the condition when `NDEBUG` is not present.
+And `NDEBUG` is managed and defined by `CMake` for Windows build.
+As a result, none of the condition executes.
 
-```no-highlight
-RLException: multiple files named [turtlebot3_robot.launch] in package [turtlebot3_bringup]:
-- C:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
-- c:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
-```
-
-In this case, the `ROS_PACKAGE_PATH` has a lower case drive letter.
+A canonical example can be found [here](https://github.com/ROBOTIS-GIT/turtlebot3_simulations/pull/68).
 
 ### Error C2065 'M_PI': undeclared identifier
 
