@@ -826,15 +826,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#beware-of-aggressive-optimization" class="md-nav__link">
-    Beware of aggressive optimization
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#case-sensitivity" class="md-nav__link">
-    Case sensitivity
+  <a href="#beware-of-ros_assert-usage" class="md-nav__link">
+    Beware of ROS_ASSERT Usage
   </a>
   
 </li>
@@ -1357,15 +1350,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#beware-of-aggressive-optimization" class="md-nav__link">
-    Beware of aggressive optimization
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#case-sensitivity" class="md-nav__link">
-    Case sensitivity
+  <a href="#beware-of-ros_assert-usage" class="md-nav__link">
+    Beware of ROS_ASSERT Usage
   </a>
   
 </li>
@@ -1658,15 +1644,12 @@ there will inevitably be required changes between platforms. This cookbook is in
 <div class="highlight"><pre><span></span><code><span class="nb">install</span><span class="p">(</span><span class="s">FILES</span> <span class="o">${</span><span class="nv">CMAKE_CURRENT_BINARY_DIR</span><span class="o">}</span><span class="s">/mylibrary_export.h</span>
         <span class="s">DESTINATION</span> <span class="o">${</span><span class="nv">CATKIN_PACKAGE_INCLUDE_DESTINATION</span><span class="o">}</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="beware-of-aggressive-optimization">Beware of aggressive optimization</h3>
-<p>The Microsoft compiler will optimize aggressively. This can manifest in strange ways. One instance was in TurtleBot3 fake code, is a ROS_ASSERT with a function that only returns true. Nothing else executed.</p>
-<h3 id="case-sensitivity">Case sensitivity</h3>
-<p>Linux is case sensitive, whereas Windows is not. We are trying to locate case sensitive areas and isolate them. This manifests in odd errors like this: </p>
-<div class="highlight"><pre><span></span><code>RLException: multiple files named [turtlebot3_robot.launch] in package [turtlebot3_bringup]:
-- C:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
-- c:\ws\turtlebot_ws\install\share\turtlebot3_bringup\launch\turtlebot3_robot.launch
-</code></pre></div>
-<p>In this case, the <code>ROS_PACKAGE_PATH</code> has a lower case drive letter.</p>
+<h3 id="beware-of-ros_assert-usage">Beware of ROS_ASSERT Usage</h3>
+<p><code>ROS_ASSERT</code> is a macro only evaluating the condition when <code>NDEBUG</code> is not present.
+And <code>NDEBUG</code> is managed and defined by <code>CMake</code> for Windows build.
+As a result, none of the condition executes.</p>
+<p>A canonical example can be found <a href="https://github.com/ROBOTIS-GIT/turtlebot3_simulations/pull/68">here</a>.
+And a related discussion can be found <a href="https://github.com/ros/ros_comm/issues/1163">here</a>.</p>
 <h3 id="error-c2065-m_pi-undeclared-identifier">Error C2065 'M_PI': undeclared identifier</h3>
 <p>Add the following to the top of your file:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#define _USE_MATH_DEFINES</span>
