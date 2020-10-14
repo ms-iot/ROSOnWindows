@@ -153,6 +153,7 @@ And `NDEBUG` is managed and defined by `CMake` for Windows build.
 As a result, none of the condition executes.
 
 A canonical example can be found [here](https://github.com/ROBOTIS-GIT/turtlebot3_simulations/pull/68).
+And a related discussion can be found [here](https://github.com/ros/ros_comm/issues/1163).
 
 ### Error C2065 'M_PI': undeclared identifier
 
