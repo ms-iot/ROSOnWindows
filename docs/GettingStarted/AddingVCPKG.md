@@ -6,7 +6,7 @@ vcpkg has thousands of recipies for many different cross platform libraries. If 
 Before you begin, you'll want to fork vcpkg into your github account. Next, Fix up your the ROS environment to use your fork.
 
 ```bat
-cd c:\opt\vcpkg
+cd c:\opt\ros\%ROS_DISTRO\x64\tools\vcpkg
 git remote add upstream https://github.com/microsoft/vcpkg
 git remote set-url origin https://github.com/<your github>/vcpkg
 git fetch --all
@@ -75,7 +75,7 @@ We now need to change some code in order to make mavlink build correctly on Wind
 Seed the patch by adding the original unpacked sources (this won't be checked in):
 
 ```bat
-cd c:\opt\vcpkg\buildtrees\<package>
+cd c:\opt\ros\%ROS_DISTRO%\x64\tools\vcpkg\buildtrees\<package>
 git init
 git add .
 git commit -m "create patch"
@@ -85,7 +85,7 @@ Next, fix the sources and attempt to build. Once builds complete and testing suc
 
 
 ```bat
-cd c:\opt\vcpkg\buildtrees\<package>\....
+cd c:\opt\ros\%ROS_DISTRO%\x64\tools\vcpkg\buildtrees\<package>\....
 git diff > ..\..\..\..\ports\<port>\<path name>.patch
 ```
 
