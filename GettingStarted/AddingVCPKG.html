@@ -9,7 +9,7 @@
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.2">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
     
     
       
@@ -17,10 +17,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.38780c08.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.bc7e593a.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.3f72e892.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab28b872.min.css">
         
       
     
@@ -65,7 +65,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href=".." title="ROS on Windows" class="md-header-nav__button md-logo" aria-label="ROS on Windows">
       
@@ -150,7 +152,9 @@
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="ROS on Windows" class="md-nav__button md-logo" aria-label="ROS on Windows">
       
@@ -1035,7 +1039,7 @@
 <p>vcpkg has thousands of recipies for many different cross platform libraries. If you find that a dependency is not part of vcpkg, this walkthrough will help you get started. Every package has its own idiosyncrasies, so this is only a general ROS specific guide. Please refer to the documentation </p>
 <h2 id="porting-a-c-dependency-with-vcpkg">Porting a C++ Dependency with vcpkg</h2>
 <p>Before you begin, you'll want to fork vcpkg into your github account. Next, Fix up your the ROS environment to use your fork.</p>
-<div class="highlight"><pre><span></span><code><span class="k">cd</span> c:\opt\vcpkg
+<div class="highlight"><pre><span></span><code><span class="k">cd</span> c:\opt\ros\%ROS_DISTRO\x64\tools\vcpkg
 git remote add upstream https://github.com/microsoft/vcpkg
 git remote set-url origin https://github.com/<span class="p">&lt;</span>your github<span class="p">&gt;</span>/vcpkg
 git fetch --all
@@ -1083,13 +1087,13 @@ Then build again with <code>vcpkg build &lt;package&gt;:x64-windows</code></p>
 <h2 id="patching-during-vcpkg-build">Patching during vcpkg build</h2>
 <p>We now need to change some code in order to make mavlink build correctly on Windows. Following <a href="https://vcpkg.readthedocs.io/en/latest/examples/patching/">vcpkg patching documentation</a>, we will do the following.</p>
 <p>Seed the patch by adding the original unpacked sources (this won't be checked in):</p>
-<div class="highlight"><pre><span></span><code><span class="k">cd</span> c:\opt\vcpkg\buildtrees\<span class="p">&lt;</span>package&gt;
+<div class="highlight"><pre><span></span><code><span class="k">cd</span> c:\opt\ros\<span class="nv">%ROS_DISTRO%</span>\x64\tools\vcpkg\buildtrees\<span class="p">&lt;</span>package&gt;
 git init
 git add .
 git commit -m <span class="s2">&quot;create patch&quot;</span>
 </code></pre></div>
 <p>Next, fix the sources and attempt to build. Once builds complete and testing succeeds, you can create a vcpkg patch:</p>
-<div class="highlight"><pre><span></span><code><span class="k">cd</span> c:\opt\vcpkg\buildtrees\<span class="p">&lt;</span>package<span class="p">&gt;</span>\....
+<div class="highlight"><pre><span></span><code><span class="k">cd</span> c:\opt\ros\<span class="nv">%ROS_DISTRO%</span>\x64\tools\vcpkg\buildtrees\<span class="p">&lt;</span>package<span class="p">&gt;</span>\....
 git diff <span class="p">&gt;</span> ..\..\..\..\ports\<span class="p">&lt;</span>port<span class="p">&gt;</span>\<span class="p">&lt;</span>path name<span class="p">&gt;</span>.patch
 </code></pre></div>
 <p>And include it in the portfile:</p>
@@ -1171,8 +1175,8 @@ git diff <span class="p">&gt;</span> ..\..\..\..\ports\<span class="p">&lt;</spa
       
     </div>
     
-      <script src="../assets/javascripts/vendor.77e55a48.min.js"></script>
-      <script src="../assets/javascripts/bundle.9554a270.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
