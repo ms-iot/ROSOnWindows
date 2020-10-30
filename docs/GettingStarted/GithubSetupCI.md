@@ -14,6 +14,7 @@ Create the github action:
 * Update the workflow for your ROS component. Use the comments in the file as a guide.
 
 If your ROS node has dependencies on other repositories, vcpkgs or chocolatey packages, add them before catkin_make.
+
 ``` batch
         : Additional dependencies
         : For other ROS repos, remove the : and add the clone commands
@@ -28,13 +29,14 @@ If your ROS node has dependencies on other repositories, vcpkgs or chocolatey pa
         : vcpkg install <package>
 ```
 
+### Sample CI files for ROS1
+
+The [Azure Kinect ROS Node](https://github.com/microsoft/Azure_Kinect_ROS_Driver/blob/melodic/.github/workflows/main.yml) includes a 3rd Party SDK.
+
 ## ROS2 Setup
 
-To configure your ROS2 repository for CI, you'll need to install the build time files which configures your solution for ROS building. 
+Please visit the documentation for the [action-ros-ci](https://github.com/ros-tooling/action-ros-ci) by the tooling working group.
 
-Now create the Github Action
+### Sample CI files for ROS2
 
-* On github, select the `Action` tab.
-* Create a new workflow
-* In the new workflow, copy the contents of [main.yaml](ros2_workflow.md) to the newly created workflow file.
-* Replace `<ros package>` with the ROS package you are generating
+The [ONNX ROS Node](https://github.com/ms-iot/ros_msft_onnx/.github/workflows/ci.yml) by Microsoft builds on Linux and Windows for ROS2.
