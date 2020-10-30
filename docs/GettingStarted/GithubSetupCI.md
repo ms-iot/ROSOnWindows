@@ -31,7 +31,7 @@ If your ROS node has dependencies on other repositories, vcpkgs or chocolatey pa
 
 ### Sample CI files for ROS1
 
-The [Azure Kinect ROS Node](https://github.com/microsoft/Azure_Kinect_ROS_Driver/blob/melodic/.github/workflows/main.yml) includes a 3rd Party SDK
+The [Azure Kinect ROS Node](https://github.com/microsoft/Azure_Kinect_ROS_Driver/blob/melodic/.github/workflows/main.yml) includes a 3rd Party SDK.
 
 ## ROS2 Setup
 
