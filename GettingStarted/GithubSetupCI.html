@@ -516,12 +516,38 @@
     ROS1 CI Setup
   </a>
   
+    <nav class="md-nav" aria-label="ROS1 CI Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-ci-files-for-ros1" class="md-nav__link">
+    Sample CI files for ROS1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#ros2-setup" class="md-nav__link">
     ROS2 Setup
   </a>
+  
+    <nav class="md-nav" aria-label="ROS2 Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-ci-files-for-ros2" class="md-nav__link">
+    Sample CI files for ROS2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -995,12 +1021,38 @@
     ROS1 CI Setup
   </a>
   
+    <nav class="md-nav" aria-label="ROS1 CI Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-ci-files-for-ros1" class="md-nav__link">
+    Sample CI files for ROS1
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#ros2-setup" class="md-nav__link">
     ROS2 Setup
   </a>
+  
+    <nav class="md-nav" aria-label="ROS2 Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-ci-files-for-ros2" class="md-nav__link">
+    Sample CI files for ROS2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1032,7 +1084,7 @@
 <li>Copy the contents of <a href="ros1_workflow.html">Windows_ROS1.yaml</a> and replace the contents of the file created above.</li>
 <li>Update the workflow for your ROS component. Use the comments in the file as a guide.</li>
 </ul>
-<p>If your ROS node has dependencies on other repositories, vcpkgs or chocolatey packages, add them before catkin_make.
+<p>If your ROS node has dependencies on other repositories, vcpkgs or chocolatey packages, add them before catkin_make.</p>
 <div class="highlight"><pre><span></span><code>        <span class="p">:</span> <span class="nl">Additional</span><span class="c1"> dependencies</span>
         <span class="p">:</span> <span class="nl">For</span><span class="c1"> other ROS repos, remove the : and add the clone commands</span>
         <span class="p">:</span> <span class="nl">pushd</span><span class="c1"> src</span>
@@ -1044,16 +1096,13 @@
 
         <span class="p">:</span> <span class="nl">For</span><span class="c1"> vcpkgs, remove the : and add the vcpkg dependencies.</span>
         <span class="p">:</span> <span class="nl">vcpkg</span><span class="c1"> install &lt;package&gt;</span>
-</code></pre></div></p>
+</code></pre></div>
+<h3 id="sample-ci-files-for-ros1">Sample CI files for ROS1</h3>
+<p>The <a href="https://github.com/microsoft/Azure_Kinect_ROS_Driver/blob/melodic/.github/workflows/main.yml">Azure Kinect ROS Node</a> includes a 3rd Party SDK.</p>
 <h2 id="ros2-setup">ROS2 Setup</h2>
-<p>To configure your ROS2 repository for CI, you'll need to install the build time files which configures your solution for ROS building. </p>
-<p>Now create the Github Action</p>
-<ul>
-<li>On github, select the <code>Action</code> tab.</li>
-<li>Create a new workflow</li>
-<li>In the new workflow, copy the contents of <a href="ros2_workflow.html">main.yaml</a> to the newly created workflow file.</li>
-<li>Replace <code>&lt;ros package&gt;</code> with the ROS package you are generating</li>
-</ul>
+<p>Please visit the documentation for the <a href="https://github.com/ros-tooling/action-ros-ci">action-ros-ci</a> by the tooling working group.</p>
+<h3 id="sample-ci-files-for-ros2">Sample CI files for ROS2</h3>
+<p>The <a href="https://github.com/ms-iot/ros_msft_onnx/.github/workflows/ci.yml">ONNX ROS Node</a> by Microsoft builds on Linux and Windows for ROS2.</p>
                 
               
               
