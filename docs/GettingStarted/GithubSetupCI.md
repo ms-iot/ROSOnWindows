@@ -39,4 +39,4 @@ Please visit the documentation for the [action-ros-ci](https://github.com/ros-to
 
 ### Sample CI files for ROS2
 
-The [ONNX ROS Node](https://github.com/ms-iot/ros_msft_onnx/.github/workflows/ci.yml) by Microsoft builds on Linux and Windows for ROS2.
+The [ONNX ROS Node](https://github.com/ms-iot/ros_msft_onnx/blob/master/.github/workflows/ci.yaml) by Microsoft builds on Linux and Windows for ROS2.
