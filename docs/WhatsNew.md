@@ -5,11 +5,11 @@ This page tracks changes to the Azure Edge Robotics Documentation.
 ### ROS 2 Launch debugging in VSCode!
 Yes, you can now press F5 to launch a ROS2 node from VSCode and step through it.
 
-### Updated Depednencies
+### Updated Dependencies
 OPML with ROS Industrial
 
 ### ROS Node bringup for UFactory XArm on ROS on Windows
-Brought up in colaboration with UFActory.
+Brought up in collaboration with UFActory.
 https://github.com/ms-iot/xarm_ros
 
 
