@@ -14,20 +14,22 @@ CMake Error at C:/ws_ros2/install/random_numbers/share/random_numbers/cmake/amen
   couldn't be found
 ```
 
-The two main solutions to this are adding visibility control headers and the WINDOWS_EXPORT_ALL_SYMBOLS property. It is recommended to use visibility control headers as they are more deterministic and provide other benefits such as binary size and link times. These benefits apply when building with GCC as well.
+Two solutions to export symbols on Windows are Visibility Control Headers and the `WINDOWS_EXPORT_ALL_SYMBOLS` property.
+
+Microsoft recommends ROS developers use Visibility Control Headers to control the export of symbols from a binary. Visibility Control Headers provide more control over the symbol export macro and offer other benefits including smaller binary size and reduced link times.
 
 ## Visibility Control Headers
 
-Open Robotics recommends using a deterministic method to ensure symbol visibility. This method is to use visibility control headers. The purpose of these headers is to define a macro for each library which correctly declares symbols as dllimport or dllexport. This is decided based on whether the library is being consumed or being built itself. The logic in the macro also takes the compiler into account and includes logic to select the appropriate syntax.
+The purpose of Visibility Control Headers headers is to define a macro for each library which correctly declares symbols as dllimport or dllexport. This is decided based on whether the library is being consumed or being built itself. The logic in the macro also takes the compiler into account and includes logic to select the appropriate syntax.
 
 The following link includes step by step instructions for adding explicit symbol visibility to a library “yielding the highest quality code with the greatest reductions in binary size, load times and link times”: [The GCC visibility documentation](https://gcc.gnu.org/wiki/Visibility).
 
-A `visibility_control.hpp` header like the one in the example below can be placed in the `includes` folder for each library with a unique macro name.
+A header named `visibility_control.hpp` can be placed in the `includes` folder for each library as shown in the example below.
 
 ### Example: Robot State Visibility Control Header
 
-This example shows how a visibility control header was added for the `robot_state` library within `movit_core`.
-Add a visibility header to the include folder for the library. The boiler plate logic is used with the library name used in the macro to make it unique in the project. In another library, `ROBOT_STATE` would be replaced with the library name.
+This example shows how a visibility control header would be added for a `my_lib` library with a class called `example_class`.
+Add a visibility header to the include folder for the library. The boiler plate logic is used with the library name used in the macro to make it unique in the project. In another library, `MY_LIB` would be replaced with the library name.
 ```c++ 
 // Copyright (c) 2019, Open Source Robotics Foundation, Inc.
 // All rights reserved.
@@ -63,66 +65,70 @@ Add a visibility header to the include folder for the library. The boiler plate 
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#ifndef ROBOT_STATE__VISIBILITY_CONTROL_HPP_
-#define ROBOT_STATE__VISIBILITY_CONTROL_HPP_
+#ifndef MY_LIB__VISIBILITY_CONTROL_HPP_
+#define MY_LIB__VISIBILITY_CONTROL_HPP_
 // This logic was borrowed (then namespaced) from the examples on the gcc wiki:
 //     https://gcc.gnu.org/wiki/Visibility
 #if defined _WIN32 || defined __CYGWIN__
   #ifdef __GNUC__
-    #define ROBOT_STATE_EXPORT __attribute__ ((dllexport))
-    #define ROBOT_STATE_IMPORT __attribute__ ((dllimport))
+    #define MY_LIB_EXPORT __attribute__ ((dllexport))
+    #define MY_LIB_IMPORT __attribute__ ((dllimport))
   #else
-    #define ROBOT_STATE_EXPORT __declspec(dllexport)
-    #define ROBOT_STATE_IMPORT __declspec(dllimport)
+    #define MY_LIB_EXPORT __declspec(dllexport)
+    #define MY_LIB_IMPORT __declspec(dllimport)
   #endif
-  #ifdef ROBOT_STATE_BUILDING_LIBRARY
-    #define ROBOT_STATE_PUBLIC ROBOT_STATE_EXPORT
+  #ifdef MY_LIB_BUILDING_LIBRARY
+    #define MY_LIB_PUBLIC MY_LIB_EXPORT
   #else
-    #define ROBOT_STATE_PUBLIC ROBOT_STATE_IMPORT
+    #define MY_LIB_PUBLIC MY_LIB_IMPORT
   #endif
-  #define ROBOT_STATE_PUBLIC_TYPE ROBOT_STATE_PUBLIC
-  #define ROBOT_STATE_LOCAL
+  #define MY_LIB_PUBLIC_TYPE MY_LIB_PUBLIC
+  #define MY_LIB_LOCAL
 #else
-  #define ROBOT_STATE_EXPORT __attribute__ ((visibility("default")))
-  #define ROBOT_STATE_IMPORT
+  #define MY_LIB_EXPORT __attribute__ ((visibility("default")))
+  #define MY_LIB_IMPORT
   #if __GNUC__ >= 4
-    #define ROBOT_STATE_PUBLIC __attribute__ ((visibility("default")))
-    #define ROBOT_STATE_LOCAL  __attribute__ ((visibility("hidden")))
+    #define MY_LIB_PUBLIC __attribute__ ((visibility("default")))
+    #define MY_LIB_LOCAL  __attribute__ ((visibility("hidden")))
   #else
-    #define ROBOT_STATE_PUBLIC
-    #define ROBOT_STATE_LOCAL
+    #define MY_LIB_PUBLIC
+    #define MY_LIB_LOCAL
   #endif
-  #define ROBOT_STATE_PUBLIC_TYPE
+  #define MY_LIB_PUBLIC_TYPE
 #endif
-#endif  // ROBOT_STATE__VISIBILITY_CONTROL_HPP_
+#endif  // MY_LIB__VISIBILITY_CONTROL_HPP_
 ```
-To use the macro, add `ROBOT_STATE_PUBLIC` before symbols which need to be visible to external libraries. For example:
+To use the macro, add `MY_LIB_PUBLIC` before symbols which need to be visible to external libraries. For example:
  
 ```c++
-Class ROBOT_STATE_PUBLIC example_class {}
+Class MY_LIB_PUBLIC example_class {}
 ```
 
 ```c++
-ROBOT_STATE_PUBLIC void example_function (){}
+MY_LIB_PUBLIC void example_function (){}
 ``` 
 
 ## WINDOWS_EXPORT_ALL_SYMBOLS Target Property
-CMake implements a macro which will export all symbols on Windows. The `WINDOWS_EXPORT_ALL_SYMBOLS` property turns all `add_library` calls which do not specify type to shared builds. Calls to `add_library` build the specified library from source as either `STATIC`, `SHARED` or `MODULE`. Without the `WINDOWS_EXPORT_ALL_SYMBOLS` property, if no type is specified it will default to either `STATIC`, `SHARED` based on the value of the `BUILD_SHARED_LIBS` variable.
+CMake implements a macro which will export all symbols on Windows. The `WINDOWS_EXPORT_ALL_SYMBOLS` property causes function symbols to be automatically exported on windows. More detail of how it works can be found in the [WINDOWS_EXPORT_ALL_SYMBOLS CMake Documentation](https://cmake.org/cmake/help/latest/prop_tgt/WINDOWS_EXPORT_ALL_SYMBOLS.html).
 
 The property can be implemented by adding the following to the CMakeLists file:
 `set_target_properties(${LIB_NAME} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)`
 
 Note: if there is more than one library in a CMakeLists file you will need to call `set_target_properties` on each of them separately.
 
-There is an exception to this method in the case of global data such as static data members in classes. For example:
+There is an exception to this method in the case of global data symbols. For example, a global static data member like the one below.
 
 ```c++
-class KinematicsBase
+class Example_class
 {
 public:
-  static const rclcpp::Logger LOGGER;
+  static const int Global_data_num;
 …
 ```
 
 In these cases dllimprort/dllexport must be applied explicitly. This can be done using generate_export_header as described in the following article:
 [Create dlls on Windows without declspec() using new CMake export all feature](https://blog.kitware.com/create-dlls-on-windows-without-declspec-using-new-cmake-export-all-feature/).
+
+## Conclusion
+
+Symbols must be exported on windows as there is no export by default option as with GCC and Clang. Microsoft recomends adding Visibility Control Headers which provide macros to control the export of symbols. The headers provide other benefits to binary size and linker performance, both when building with MSVC or GCC. 

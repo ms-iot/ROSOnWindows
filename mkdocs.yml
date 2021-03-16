@@ -38,7 +38,7 @@ nav:
         - Using a C++ Dependency: GettingStarted/UsingVCPKG.md
         - Porting a C++ Dependency: GettingStarted/AddingVCPKG.md
         - Porting Cookbook: Porting/Cookbook.md
-        - Adding Symbol Visiblity Headers: Porting/SymbolVisibility.md
+        - Symbol Visibility: Porting/SymbolVisibility.md
     - ROS at Microsoft:
         - Azure VM with ROS: ROSAtMS/AzureVM.md
         - Windows ML ROS Node: ROSAtMS/WinML.md
