@@ -14,6 +14,10 @@ CMake Error at C:/ws_ros2/install/random_numbers/share/random_numbers/cmake/amen
   couldn't be found
 ```
 
+Symbol Visibility also impacts binary loading. If you are finding a Nodelet that does not run or a Qt Visualizer isn't working, it may be that the hosting process can not find an expected binary export. To diagnose this on Windows, the Windows developer tools includes a program called Gflags to enable various options. One of those options is called *Loader Snaps* which enables you to detect load failures while debugging.
+
+Please visit the Microsoft Documentation for more information on [Gflags](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/setting-and-clearing-image-file-flags) and  [Loaders snaps](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/show-loader-snaps).
+
 Two solutions to export symbols on Windows are Visibility Control Headers and the `WINDOWS_EXPORT_ALL_SYMBOLS` property.
 
 Microsoft recommends ROS developers use Visibility Control Headers to control the export of symbols from a binary. Visibility Control Headers provide more control over the symbol export macro and offer other benefits including smaller binary size and reduced link times.
