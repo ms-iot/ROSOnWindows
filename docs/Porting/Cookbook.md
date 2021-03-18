@@ -42,11 +42,7 @@ error C2448: '__attribute__': function-style initializer appears to be a functio
 'visibility': identifier not found
 ```
 
-[The GCC visibility documentation](https://gcc.gnu.org/wiki/Visibility)&nearr; has a good article on handling the compiler differences. This includes adding a header file which uses a compiler switch to select the correct visibility macro handler.
-
-Symbol Visibility also impacts binary loading. If you are finding a Nodelet that does not run or a Qt Visualizer isn't working, it may be that the hosting process can not find an expected binary export. To diagnose this on Windows, the Windows developer tools includes a program called Gflags to enable various options. One of those options is called *Loader Snaps* which enables you to detect load failures while debugging.
-
-Please visit the Microsoft Documentation for more information on [Gflags](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/setting-and-clearing-image-file-flags) and  [Loaders snaps](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/show-loader-snaps).
+See the [Symbol Visibility Documentation](SymbolVisibility.md) for resolution steps and more information.
 
 ### install Library TARGETS given no DESTINATION! 
 
