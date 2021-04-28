@@ -4,7 +4,7 @@ This page tracks changes to the Azure Edge Robotics Documentation.
 ## April 2021
 ### ROS2 Foxy on Hololens
 We've been working on migrating a prototype of ROS2 on Hololens code to Foxy. 
-This is split into two repositories, [ROS2 Native](http://aka.ms/ros/mrtk_native) and [ROS2 Mixed Reality Toolkit for Unity](http://aka.ms/ros/mrtk). When this work is completed, it will be made available as a nuget package on the Microsoft Chocolatey & Nuget server for ROS, with instructions for installation located on the [Azure Edge Robotics landing Page](https://aka.ms/ros.
+This is split into two repositories, [ROS2 Native](http://aka.ms/ros/mrtk_native) and [ROS2 Mixed Reality Toolkit for Unity](http://aka.ms/ros/mrtk). When this work is completed, it will be made available as a nuget package on the Microsoft Chocolatey & Nuget server for ROS, with instructions for installation located on the [Azure Edge Robotics landing Page](https://aka.ms/ros).
 
 ### Noetic Installation dependencies
 During late April, vcredist2010 was broken on Chocolatey.org, due to a security fix changing the hash of the installer. Because the Microsoft ROS installers depended on this for installation, the chocolatey packages were blocked. We are spinning a new build without this dependency.
