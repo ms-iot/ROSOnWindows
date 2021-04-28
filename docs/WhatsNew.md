@@ -1,6 +1,31 @@
 # What's New
 This page tracks changes to the Azure Edge Robotics Documentation.
 
+## April 2021
+### ROS2 Foxy on Hololens
+We've been working on migrating a prototype of ROS2 on Hololens code to Foxy. 
+This is split into two repositories, [ROS2 Native](http://aka.ms/ros/mrtk_native) and [ROS2 Mixed Reality Toolkit for Unity](http://aka.ms/ros/mrtk). When this work is completed, it will be made available as a nuget package on the Microsoft Chocolatey & Nuget server for ROS, with instructions for installation located on the [Azure Edge Robotics landing Page](https://aka.ms/ros.
+
+### Noetic Installation dependencies
+During late April, vcredist2010 was broken on Chocolatey.org, due to a security fix changing the hash of the installer. Because the Microsoft ROS installers depended on this for installation, the chocolatey packages were blocked. We are spinning a new build without this dependency.
+
+### Azure Kinect
+We have a large number of Pull Requests in the Azure Kinect which we will address in May.
+
+### Visual Studio Code updates
+We [root caused a a memory leak in vscode](https://github.com/ms-iot/vscode-ros/issues/393) and have addressed this with the Visual Studio code team. The next release will fix the core issue in VSCode. Until this is released, if you use VSCode in a container on Ubuntu, please do not enable Port forwarding - instead run ROSCore in the container.
+
+### rosdep for ROS2
+The Microsoft ROS2 releases do not automatically include rosdep. We investigated how do appropriately add this to the release. We will include in future releases - starting with a rev of Foxy, and in Galactic.
+
+## March 2021
+### ROS Camera node for Windows
+We resolved an issue with stride, which impacted some modes of the Azure Kinect.
+
+### ROS2 Rolling and Galactic
+Introduced rolling builds and set up for Galactic release of ROS2.
+Updated maintainers handbook.
+
 ## January 2021
 ### ROS 2 Launch debugging in VSCode!
 Yes, you can now press F5 to launch a ROS2 node from VSCode and step through it.
