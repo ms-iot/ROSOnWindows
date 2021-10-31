@@ -135,4 +135,4 @@ In these cases dllimprort/dllexport must be applied explicitly. This can be done
 
 ## Conclusion
 
-Symbols must be exported on windows as there is no export by default option as with GCC and Clang. Microsoft recomends adding Visibility Control Headers which provide macros to control the export of symbols. The headers provide other benefits to binary size and linker performance, both when building with MSVC or GCC. 
+Symbols must be exported on windows as there is no export by default option as with GCC and Clang. Microsoft recommends adding Visibility Control Headers which provide macros to control the export of symbols. The headers provide other benefits to binary size and linker performance, both when building with MSVC or GCC. 
