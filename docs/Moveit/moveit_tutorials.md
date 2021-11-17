@@ -38,7 +38,7 @@ Then, create a workspace and download the example code.
     mkdir c:\moveit_ws\src
     cd c:\moveit_ws\src
 
-    git clone https://github.com/ros-planning/moveit_tutorials.git -b master
+    git clone https://github.com/ms-iot/moveit_tutorials.git -b 1.1.1
     git clone https://github.com/ros-planning/panda_moveit_config.git -b melodic-devel
     git clone https://github.com/frankaemika/franka_ros-release -b release/kinetic/franka_description
 
