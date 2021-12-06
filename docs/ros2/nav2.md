@@ -1,75 +1,33 @@
 ---
-title: Navigation 2 on Windows
+title: Navigation 2 on Windows using Turtlebot 3
 ---
 
-[**Navigation 2**][nav2] is the next generation ROS Navigation stack for ROS 2.
-Edge robotics team at Microsoft has bootstrapped a Windows port for **Navigation 2**.
-This short guide shows you how to build **Navigation 2** from source and later you can get started with **Navigation 2** exercises.
+# ROS2 Navigation 2 with Windows
+[Nav2](https://navigation.ros.org/) is the next generation ROS Navigation stack for ROS 2.
+This short guide shows you how to quickly get started with **Navigation 2** on Windows.
+
 
 ![](./nav2.gif)
 
 ## Objectives
 
-  * Exercise the ROS 2 Windows installation.
-  * Bootstrap an environment running **Navigation 2** samples.
+  * Exercise the ROS 2 on Windows installation.
+  * Bootstrap an environment running **Navigation 2** with Turtlebot.
 
 ## Prerequisites
+This walkthrough depends on having [ROS 2 Foxy on Windows](../GettingStarted/SetupRos2.md) installed.
 
-> The instructions can be found on [`http://wiki.ros.org/Installation/Windows`](http://wiki.ros.org/Installation/Windows).
-
-✔️ 64-bit (amd64) environment of `Windows 10 Desktop`.
-
-✔️ `Visual Studio 2019` with `Desktop development with C++` workload included.
-
-✔️ `Chocolatey` package manager installed.
-
-✔️ `Git` source control software installed.
-
-## Installing ROS 2 on Windows
-
-1. From the start menu, look for [`x64 Native Tools Command Prompt for VS 2019`][vsdevcmd].
-2. Open the command prompt as administrator.
-3. Run the following to install `ROS 2 Foxy`.
-
-```bat
-mkdir c:\opt\chocolatey
-set ChocolateyInstall=c:\opt\chocolatey
-choco source add -n=ros-win -s="https://aka.ms/ros/public" --priority=1
-choco upgrade ros-foxy-desktop -y --execution-timeout=0
-```
-
-You can close the command prompt now.
-
-✔️ Now you have ROS 2 `ros-foxy-desktop` installed.
-
-## Open a Developer Command Prompt
-
-1. From the start menu, look for [`x64 Native Tools Command Prompt for VS 2019`][vsdevcmd].
-2. Run the shortcut as administrator.
-3. Once the developer command prompt is open, run
-
-```bat
-:: activate the ROS 2 environment
-c:\opt\ros\foxy\x64\setup.bat
-
-:: activate the Gazebo simulation environment
-c:\opt\ros\foxy\x64\share\gazebo\setup.bat
-set "SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6"
-```
-
-Now you are in the ROS 2 Developer command prompt.
-Stay in this command prompt for the rest of this tutorial.
 
 ## Create a Navigation 2 Workspace
 
-Create a empty workspace to contain the Navigation 2 project, and then resolve the additional dependencies.
+Create a empty workspace to contain the [Robotis Turtlebot3](https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/) Navigation2 sources. 
+This is a quick walkthrough, a complete set of tutorials is available on the Robotis website. 
 
 ```bat
 :: create a empty workspace
 mkdir c:\nav2_ws\src
 pushd c:\nav2_ws
 
-:: checkout the required source code.
 curl -o nav2.repos https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos
 vcs import src < nav2.repos
 ```
@@ -89,30 +47,55 @@ colcon build
 Activate the workspace which was built.
 
 ```bat
-:: activate it
+:: activate the workspace so that ROS can find your freshly built binaries.
 install\setup.bat
 ```
 
+## One Time Setup
+In order to "seed" your environment, you'll either need to create a navigation map, or use the following commands to download a pregenerated one:
+```cmd
+curl -o c:\nav2_ws\map.pgm https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/master/turtlebot3_navigation/maps/map.pgm
+curl -o c:\nav2_ws\map.yaml https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/master/turtlebot3_navigation/maps/map.yaml
+```
+
+
 ## Verify your environment with Gazebo and TurtleBot3
 
-Now you are in the Navigation 2 activated environment.
-Before you explore more, let's run a little exercise to make sure your environment ready to go.
+To run this walkthrough you will need two terminal windows with the ROS2 environment loaded. 
+
+In the both terminal windows, perform the following actions:
 
 ```bat
 cd c:\nav2_ws
-
 set GAZEBO_MODEL_PATH=C:\nav2_ws\install\turtlebot3_gazebo\share\turtlebot3_gazebo\models;%GAZEBO_MODEL_PATH%
 set TURTLEBOT3_MODEL=waffle
-
-curl -o map.pgm https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/master/turtlebot3_navigation/maps/map.pgm
-curl -o map.yaml https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/master/turtlebot3_navigation/maps/map.yaml
-
-start ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
-start ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=c:\nav2_ws\map.yaml
 ```
 
-After a few moment, you should see `TurtleBot3` in a simulation world and the respective map shows in `RViz`.
-You can use `2D pose` in `RViz` to give a estimate location to intialize your robot, and use `2D goal` to see Navigation 2 planning a path in action.
+Now in terminal window one, launch the simulation environment:
+
+```cmd
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+```
+The Gazebo Simulation environment will take several minutes to load the first time, as it is attempting to download assets from the network.
+
+In terminal window two, launch the navigation stack.
+```cmd
+ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=c:\nav2_ws\map.yaml
+```
+
+After a few moments, you should see `TurtleBot3` in a simulation world and the respective map shows in `RViz`. You may notice many warnings in the terminal window, this is normal. 
+
+Before navigating the robot, you must set the initial pose of the robot:
+
+1. Select `2D pose estimate` button in the toolbar of `RViz`.
+1. Align the cursor to where the Turtlebot appears in the map.
+1. Press the left mouse button without releasing, then drag in the direction the turtlebot is facing, then release the mouse button. 
+1. You should now see the costmap displayed.
+1. You can now use the `Navigation2 goal` button to set a goal. 
+1. Similar to setting the initial position, press the left button where you would like the robot to move to, then drag in the direction you'd like it to face when it completes. 
+1. When you release the mouse button, the robot will navigate around obsticals. 
+
+> Note: To shutdown Gazebo, please close the Window, otherwise the UI can hang requiring termination through the Windows task manager.
 
 ## Explore Navigation 2 Samples
 
@@ -121,6 +104,18 @@ Here we share some good starting points:
 
 * [TurtleBot3 ROS 2 Simulation: Virtual SLAM and Virtual Navigation][turtlebot3ros2]
 * [Navigation 2][nav2]
+
+
+## Citation
+This tutorial references Navigation2 for ROS2. 
+```
+@InProceedings{macenski2020marathon2,
+author = {Macenski, Steven and Martin, Francisco and White, Ruffin and Ginés Clavero, Jonatan},
+title = {The Marathon 2: A Navigation System},
+booktitle = {2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+year = {2020}
+}
+```
 
 
 [nav2]: https://ros-planning.github.io/navigation2/

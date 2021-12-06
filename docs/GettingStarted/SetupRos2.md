@@ -18,12 +18,11 @@ title: ROS 2 Binary Installation
 
 ## Install Visual Studio 2019
 
-Building a ROS project for Windows requires Visual Studio and the Microsoft SDKs for Windows.
-
-* [Download Visual Studio 2019](https://docs.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=vs-2019)
+Building a ROS project for Windows requires Visual Studio 2019 and the Microsoft Windows 10 SDK.
+ * [[https://visualstudio.microsoft.com/vs/older-downloads/|Download Visual Studio 2019|target="_blank"]]
+  * Visual Studio 2019 is required to maintain toolchain compatibility with published binaries.
     * Vcpkg is used for managing dependent libraries. It requires that the English language pack be installed.
     * Include "Desktop development with C++" workload.
-    * If you already have Visual Studio 2019 installed, you can [Modify Installation](https://docs.microsoft.com/en-us/visualstudio/install/modify-visual-studio?view=vs-2019)
 
 ## Install Windows Package Manager
 
