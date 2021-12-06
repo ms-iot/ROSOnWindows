@@ -8,20 +8,19 @@
       
       
       
-      
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.4">
     
     
       
-        <title>Navigation 2 on Windows - ROS on Windows</title>
+        <title>Navigation 2 on Windows using Turtlebot 3 - ROS on Windows</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.a57b2b03.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.2a4617e2.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.9204c3b2.min.css">
         
       
     
@@ -31,14 +30,13 @@
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
-    
+    <script>function __md_scope(e,t,_){return new URL(_||(t===localStorage?"..":".."),location).pathname+"."+e}function __md_get(e,t=localStorage,_){return JSON.parse(t.getItem(__md_scope(e,t,_)))}function __md_set(e,t,_=localStorage,o){try{_.setItem(__md_scope(e,_,o),JSON.stringify(t))}catch(e){}}</script>
     
       
-
 
     
     
@@ -53,7 +51,6 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
   
     
-    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -61,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#objectives" class="md-skip">
+        <a href="#ros2-navigation-2-with-windows" class="md-skip">
           Skip to content
         </a>
       
@@ -69,6 +66,7 @@
     <div data-md-component="announce">
       
     </div>
+    
     
       
 
@@ -93,7 +91,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Navigation 2 on Windows
+              Navigation 2 on Windows using Turtlebot 3
             
           </span>
         </div>
@@ -105,8 +103,7 @@
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
@@ -138,8 +135,7 @@
     
     
       <div class="md-header__source">
-        
-<a href="https://github.com/ms-iot/rosonwindows/" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/ms-iot/rosonwindows/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -184,8 +180,7 @@
   </label>
   
     <div class="md-nav__source">
-      
-<a href="https://github.com/ms-iot/rosonwindows/" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/ms-iot/rosonwindows/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
@@ -527,6 +522,8 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           Navigation 2
@@ -539,10 +536,11 @@
       
         
 
-
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -566,20 +564,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-ros-2-on-windows" class="md-nav__link">
-    Installing ROS 2 on Windows
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#open-a-developer-command-prompt" class="md-nav__link">
-    Open a Developer Command Prompt
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#create-a-navigation-2-workspace" class="md-nav__link">
     Create a Navigation 2 Workspace
   </a>
@@ -594,6 +578,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#one-time-setup" class="md-nav__link">
+    One Time Setup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#verify-your-environment-with-gazebo-and-turtlebot3" class="md-nav__link">
     Verify your environment with Gazebo and TurtleBot3
   </a>
@@ -603,6 +594,13 @@
         <li class="md-nav__item">
   <a href="#explore-navigation-2-samples" class="md-nav__link">
     Explore Navigation 2 Samples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    Citation
   </a>
   
 </li>
@@ -1217,10 +1215,11 @@
                   <div class="md-sidebar__inner">
                     
 
-
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -1244,20 +1243,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-ros-2-on-windows" class="md-nav__link">
-    Installing ROS 2 on Windows
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#open-a-developer-command-prompt" class="md-nav__link">
-    Open a Developer Command Prompt
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#create-a-navigation-2-workspace" class="md-nav__link">
     Create a Navigation 2 Workspace
   </a>
@@ -1267,6 +1252,13 @@
         <li class="md-nav__item">
   <a href="#build-and-activate-the-navigation-2-workspace" class="md-nav__link">
     Build and Activate the Navigation 2 Workspace
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-time-setup" class="md-nav__link">
+    One Time Setup
   </a>
   
 </li>
@@ -1285,6 +1277,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#citation" class="md-nav__link">
+    Citation
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1297,65 +1296,29 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/ros2/nav2.md" title="Edit this page" class="md-content__button md-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
-                  </a>
-                
-                
-                  <h1>Navigation 2</h1>
-                
-                <p><a href="https://ros-planning.github.io/navigation2/"><strong>Navigation 2</strong></a> is the next generation ROS Navigation stack for ROS 2.
-Edge robotics team at Microsoft has bootstrapped a Windows port for <strong>Navigation 2</strong>.
-This short guide shows you how to build <strong>Navigation 2</strong> from source and later you can get started with <strong>Navigation 2</strong> exercises.</p>
+<a href="https://github.com/ms-iot/rosonwindows/edit/master/docs/ros2/nav2.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+<h1 id="ros2-navigation-2-with-windows">ROS2 Navigation 2 with Windows</h1>
+<p><a href="https://navigation.ros.org/">Nav2</a> is the next generation ROS Navigation stack for ROS 2.
+This short guide shows you how to quickly get started with <strong>Navigation 2</strong> on Windows.</p>
 <p><img alt="" src="nav2.gif" /></p>
 <h2 id="objectives">Objectives</h2>
 <ul>
-<li>Exercise the ROS 2 Windows installation.</li>
-<li>Bootstrap an environment running <strong>Navigation 2</strong> samples.</li>
+<li>Exercise the ROS 2 on Windows installation.</li>
+<li>Bootstrap an environment running <strong>Navigation 2</strong> with Turtlebot.</li>
 </ul>
 <h2 id="prerequisites">Prerequisites</h2>
-<blockquote>
-<p>The instructions can be found on <a href="http://wiki.ros.org/Installation/Windows"><code>http://wiki.ros.org/Installation/Windows</code></a>.</p>
-</blockquote>
-<p>✔️ 64-bit (amd64) environment of <code>Windows 10 Desktop</code>.</p>
-<p>✔️ <code>Visual Studio 2019</code> with <code>Desktop development with C++</code> workload included.</p>
-<p>✔️ <code>Chocolatey</code> package manager installed.</p>
-<p>✔️ <code>Git</code> source control software installed.</p>
-<h2 id="installing-ros-2-on-windows">Installing ROS 2 on Windows</h2>
-<ol>
-<li>From the start menu, look for <a href="https://docs.microsoft.com/en-us/dotnet/framework/tools/developer-command-prompt-for-vs"><code>x64 Native Tools Command Prompt for VS 2019</code></a>.</li>
-<li>Open the command prompt as administrator.</li>
-<li>Run the following to install <code>ROS 2 Foxy</code>.</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="k">mkdir</span> c:\opt\chocolatey
-<span class="k">set</span> <span class="nv">ChocolateyInstall</span><span class="p">=</span>c:\opt\chocolatey
-choco source add -n=ros-win -s=<span class="s2">&quot;https://aka.ms/ros/public&quot;</span> --priority=1
-choco upgrade ros-foxy-desktop -y --execution-timeout=0
-</code></pre></div>
-<p>You can close the command prompt now.</p>
-<p>✔️ Now you have ROS 2 <code>ros-foxy-desktop</code> installed.</p>
-<h2 id="open-a-developer-command-prompt">Open a Developer Command Prompt</h2>
-<ol>
-<li>From the start menu, look for <a href="https://docs.microsoft.com/en-us/dotnet/framework/tools/developer-command-prompt-for-vs"><code>x64 Native Tools Command Prompt for VS 2019</code></a>.</li>
-<li>Run the shortcut as administrator.</li>
-<li>Once the developer command prompt is open, run</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: activate the ROS 2 environment</span>
-c<span class="p">:</span><span class="nl">\opt\ros\foxy\x64\setup.bat</span>
-
-<span class="p">:</span><span class="c1">: activate the Gazebo simulation environment</span>
-c<span class="p">:</span><span class="nl">\opt\ros\foxy\x64\share\gazebo\setup.bat</span>
-<span class="k">set</span> <span class="s2">&quot;SDF_PATH=c:\opt\ros\foxy\x64\share\sdformat\1.6&quot;</span>
-</code></pre></div>
-<p>Now you are in the ROS 2 Developer command prompt.
-Stay in this command prompt for the rest of this tutorial.</p>
+<p>This walkthrough depends on having <a href="../GettingStarted/SetupRos2.html">ROS 2 Foxy on Windows</a> installed.</p>
 <h2 id="create-a-navigation-2-workspace">Create a Navigation 2 Workspace</h2>
-<p>Create a empty workspace to contain the Navigation 2 project, and then resolve the additional dependencies.</p>
+<p>Create a empty workspace to contain the <a href="https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/">Robotis Turtlebot3</a> Navigation2 sources. 
+This is a quick walkthrough, a complete set of tutorials is available on the Robotis website. </p>
 <div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: create a empty workspace</span>
 <span class="k">mkdir</span> c:\nav2_ws\src
 <span class="k">pushd</span> c:\nav2_ws
 
-<span class="p">:</span><span class="c1">: checkout the required source code.</span>
 curl -o nav2.repos https://raw.githubusercontent.com/ms-iot/ROSOnWindows/master/docs/ros2/navigation2_foxy.repos
 vcs import src <span class="p">&lt;</span> nav2.repos
 </code></pre></div>
@@ -1368,25 +1331,42 @@ vcs import src <span class="p">&lt;</span> nav2.repos
 colcon build
 </code></pre></div>
 <p>Activate the workspace which was built.</p>
-<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: activate it</span>
+<div class="highlight"><pre><span></span><code><span class="p">:</span><span class="c1">: activate the workspace so that ROS can find your freshly built binaries.</span>
 install\setup.bat
 </code></pre></div>
+<h2 id="one-time-setup">One Time Setup</h2>
+<p>In order to "seed" your environment, you'll either need to create a navigation map, or use the following commands to download a pregenerated one:
+<div class="highlight"><pre><span></span><code>curl -o c:\nav2_ws\map.pgm https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/master/turtlebot3_navigation/maps/map.pgm
+curl -o c:\nav2_ws\map.yaml https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/master/turtlebot3_navigation/maps/map.yaml
+</code></pre></div></p>
 <h2 id="verify-your-environment-with-gazebo-and-turtlebot3">Verify your environment with Gazebo and TurtleBot3</h2>
-<p>Now you are in the Navigation 2 activated environment.
-Before you explore more, let's run a little exercise to make sure your environment ready to go.</p>
+<p>To run this walkthrough you will need two terminal windows with the ROS2 environment loaded. </p>
+<p>In the both terminal windows, perform the following actions:</p>
 <div class="highlight"><pre><span></span><code><span class="k">cd</span> c:\nav2_ws
-
 <span class="k">set</span> <span class="nv">GAZEBO_MODEL_PATH</span><span class="p">=</span>C:\nav2_ws\install\turtlebot3_gazebo\share\turtlebot3_gazebo\models;<span class="nv">%GAZEBO_MODEL_PATH%</span>
 <span class="k">set</span> <span class="nv">TURTLEBOT3_MODEL</span><span class="p">=</span>waffle
-
-curl -o map.pgm https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/master/turtlebot3_navigation/maps/map.pgm
-curl -o map.yaml https://raw.githubusercontent.com/ROBOTIS-GIT/turtlebot3/master/turtlebot3_navigation/maps/map.yaml
-
-<span class="k">start</span> ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
-<span class="k">start</span> ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=c:\nav2_ws\map.yaml
 </code></pre></div>
-<p>After a few moment, you should see <code>TurtleBot3</code> in a simulation world and the respective map shows in <code>RViz</code>.
-You can use <code>2D pose</code> in <code>RViz</code> to give a estimate location to intialize your robot, and use <code>2D goal</code> to see Navigation 2 planning a path in action.</p>
+<p>Now in terminal window one, launch the simulation environment:</p>
+<p><div class="highlight"><pre><span></span><code>ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+</code></pre></div>
+The Gazebo Simulation environment will take several minutes to load the first time, as it is attempting to download assets from the network.</p>
+<p>In terminal window two, launch the navigation stack.
+<div class="highlight"><pre><span></span><code>ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=c:\nav2_ws\map.yaml
+</code></pre></div></p>
+<p>After a few moments, you should see <code>TurtleBot3</code> in a simulation world and the respective map shows in <code>RViz</code>. You may notice many warnings in the terminal window, this is normal. </p>
+<p>Before navigating the robot, you must set the initial pose of the robot:</p>
+<ol>
+<li>Select <code>2D pose estimate</code> button in the toolbar of <code>RViz</code>.</li>
+<li>Align the cursor to where the Turtlebot appears in the map.</li>
+<li>Press the left mouse button without releasing, then drag in the direction the turtlebot is facing, then release the mouse button. </li>
+<li>You should now see the costmap displayed.</li>
+<li>You can now use the <code>Navigation2 goal</code> button to set a goal. </li>
+<li>Similar to setting the initial position, press the left button where you would like the robot to move to, then drag in the direction you'd like it to face when it completes. </li>
+<li>When you release the mouse button, the robot will navigate around obsticals. </li>
+</ol>
+<blockquote>
+<p>Note: To shutdown Gazebo, please close the Window, otherwise the UI can hang requiring termination through the Windows task manager.</p>
+</blockquote>
 <h2 id="explore-navigation-2-samples">Explore Navigation 2 Samples</h2>
 <p>There are many <strong>Navigation 2</strong> resources online.
 Here we share some good starting points:</p>
@@ -1394,13 +1374,15 @@ Here we share some good starting points:</p>
 <li><a href="http://emanual.robotis.com/docs/en/platform/turtlebot3/ros2_simulation/#ros-2-simulation">TurtleBot3 ROS 2 Simulation: Virtual SLAM and Virtual Navigation</a></li>
 <li><a href="https://ros-planning.github.io/navigation2/">Navigation 2</a></li>
 </ul>
-                
-                  
-                
-              
-              
-                
-
+<h2 id="citation">Citation</h2>
+<p>This tutorial references Navigation2 for ROS2. 
+<div class="highlight"><pre><span></span><code>@InProceedings{macenski2020marathon2,
+author = {Macenski, Steven and Martin, Francisco and White, Ruffin and Ginés Clavero, Jonatan},
+title = {The Marathon 2: A Navigation System},
+booktitle = {2020 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+year = {2020}
+}
+</code></pre></div></p>
 
               
             </article>
@@ -1409,8 +1391,7 @@ Here we share some good starting points:</p>
         
       </main>
       
-        
-<footer class="md-footer">
+        <footer class="md-footer">
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
@@ -1449,16 +1430,15 @@ Here we share some good starting points:</p>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        
-          Made with
-          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-            Material for MkDocs
-          </a>
-        
-        
-      </div>
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
@@ -1468,10 +1448,10 @@ Here we share some good starting points:</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.ca141e46.min.js"}</script>
     
     
-      <script src="../assets/javascripts/bundle.b1047164.min.js"></script>
+      <script src="../assets/javascripts/bundle.6baa0517.min.js"></script>
       
     
   </body>
