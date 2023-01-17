@@ -15,9 +15,9 @@ jobs:
         env:
           ado_token: "${{ secrets.ADO_PERSONAL_ACCESS_TOKEN }}"
           github_token: "${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}"
-          ado_organization: "msazuredev"
-          ado_project: "Mission Engineering"
-          ado_area_path: "Mission Engineering\\A3R\\Robotics Foundations"
+          ado_organization: "${{ secrets.ADO_ORGANIZATION_TOKEN }}"
+          ado_project: "${{ secrets.ADO_PROJECT_TOKEN }}"
+          ado_area_path: "${{ secrets.ADO_AREA_PATH_TOKEN }}"
           ado_wit: "Issue"
           ado_new_state: "New"
           ado_active_state: "Active"
