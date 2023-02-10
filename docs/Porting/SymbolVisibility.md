@@ -112,6 +112,12 @@ Class MY_LIB_PUBLIC example_class {}
 MY_LIB_PUBLIC void example_function (){}
 ``` 
 
+In your `CMakeLists.txt`, add the following after defining your target to trigger exporting symbols:
+
+`target_compile_definitions(${LIB_NAME} PRIVATE "MY_LIB_BUILDING_LIBRARY")`
+
+
+
 ## WINDOWS_EXPORT_ALL_SYMBOLS Target Property
 CMake implements a macro which will export all symbols on Windows. The `WINDOWS_EXPORT_ALL_SYMBOLS` property causes function symbols to be automatically exported on windows. More detail of how it works can be found in the [WINDOWS_EXPORT_ALL_SYMBOLS CMake Documentation](https://cmake.org/cmake/help/latest/prop_tgt/WINDOWS_EXPORT_ALL_SYMBOLS.html).
 
